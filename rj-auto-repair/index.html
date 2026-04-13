@@ -1,0 +1,1263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>R&J Auto Repair | Ypsilanti's Trusted Mechanic Since 2004</title>
+<meta name="description" content="Family-owned auto repair in Ypsilanti, MI. 20+ years serving the Ann Arbor & University of Michigan community. Honest work, fair prices. Call (734) 482-4989.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --midnight: #0f172a;
+  --midnight-light: #1e293b;
+  --rust: #ea580c;
+  --rust-dark: #c2410c;
+  --rust-glow: #f97316;
+  --cream: #fef3c7;
+  --cream-dim: #fde68a;
+  --steel: #94a3b8;
+  --steel-light: #cbd5e1;
+  --white: #f8fafc;
+  --shadow: rgba(0, 0, 0, 0.4);
+}
+
+html { scroll-behavior: smooth; font-size: 16px; }
+
+body {
+  font-family: 'Source Sans 3', 'Segoe UI', sans-serif;
+  background: var(--midnight);
+  color: var(--white);
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+/* ============ UTILITY ============ */
+.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+/* ============ TOPBAR ============ */
+.topbar {
+  background: rgba(15, 23, 42, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  border-bottom: 1px solid rgba(234, 88, 12, 0.2);
+  transition: box-shadow 0.3s;
+}
+.topbar.scrolled {
+  box-shadow: 0 4px 30px rgba(0,0,0,0.5);
+}
+.topbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.topbar-logo {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: 1.5rem;
+  color: var(--white);
+  text-decoration: none;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.topbar-logo span { color: var(--rust); }
+
+.topbar-nav { display: flex; align-items: center; gap: 28px; }
+.topbar-nav a {
+  color: var(--steel-light);
+  text-decoration: none;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+.topbar-nav a:hover { color: var(--rust-glow); }
+
+.topbar-cta {
+  background: var(--rust);
+  color: white !important;
+  padding: 10px 22px;
+  border-radius: 6px;
+  font-weight: 700 !important;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.2s;
+  box-shadow: 0 2px 12px rgba(234, 88, 12, 0.3);
+}
+.topbar-cta:hover {
+  background: var(--rust-glow) !important;
+  color: white !important;
+  transform: translateY(-1px);
+}
+
+/* Mobile menu */
+.mobile-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+.mobile-toggle span {
+  display: block;
+  width: 26px;
+  height: 3px;
+  background: var(--white);
+  margin: 5px 0;
+  border-radius: 2px;
+  transition: 0.3s;
+}
+
+/* ============ HERO ============ */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding-top: 80px;
+  background: linear-gradient(135deg, var(--midnight) 0%, #0c1220 50%, #1a0f08 100%);
+  clip-path: polygon(0 0, 100% 0, 100% 88%, 0 100%);
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background:
+    radial-gradient(ellipse 800px 600px at 75% 40%, rgba(234, 88, 12, 0.08) 0%, transparent 70%),
+    radial-gradient(ellipse 600px 400px at 20% 80%, rgba(234, 88, 12, 0.05) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* Subtle grid pattern */
+.hero::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.hero-text { max-width: 580px; }
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(234, 88, 12, 0.12);
+  border: 1px solid rgba(234, 88, 12, 0.3);
+  border-radius: 50px;
+  padding: 8px 20px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--rust-glow);
+  margin-bottom: 24px;
+}
+.hero-badge::before {
+  content: '';
+  width: 8px; height: 8px;
+  background: var(--rust);
+  border-radius: 50%;
+  animation: pulse-dot 2s infinite;
+}
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(234, 88, 12, 0.6); }
+  50% { opacity: 0.7; box-shadow: 0 0 0 8px rgba(234, 88, 12, 0); }
+}
+
+.hero h1 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: clamp(3rem, 6vw, 4.5rem);
+  line-height: 0.95;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  margin-bottom: 24px;
+}
+.hero h1 .line-1 { color: var(--white); display: block; }
+.hero h1 .line-2 { color: var(--cream); display: block; }
+.hero h1 .line-3 {
+  color: var(--rust);
+  display: block;
+  font-size: 1.15em;
+  -webkit-text-stroke: 0;
+}
+
+.hero-sub {
+  font-size: 1.2rem;
+  color: var(--steel-light);
+  line-height: 1.7;
+  margin-bottom: 36px;
+  max-width: 460px;
+}
+.hero-sub strong { color: var(--cream); font-weight: 600; }
+
+.hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--rust);
+  color: white;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 16px 36px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.25s;
+  box-shadow: 0 4px 20px rgba(234, 88, 12, 0.35);
+}
+.btn-primary:hover {
+  background: var(--rust-glow);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 28px rgba(234, 88, 12, 0.5);
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: transparent;
+  color: var(--steel-light);
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 600;
+  font-size: 1.05rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 16px 32px;
+  border: 2px solid rgba(148, 163, 184, 0.3);
+  border-radius: 8px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.25s;
+}
+.btn-outline:hover {
+  border-color: var(--rust);
+  color: var(--cream);
+}
+
+/* Hero right: stat blocks */
+.hero-visual {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: flex-end;
+}
+
+.stat-card {
+  background: rgba(30, 41, 59, 0.6);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(148, 163, 184, 0.1);
+  border-radius: 16px;
+  padding: 28px 36px;
+  width: 340px;
+  transition: transform 0.3s, border-color 0.3s;
+}
+.stat-card:hover {
+  transform: translateX(-8px);
+  border-color: rgba(234, 88, 12, 0.3);
+}
+.stat-card:nth-child(2) { margin-right: 40px; }
+.stat-card:nth-child(3) { margin-right: 10px; }
+
+.stat-number {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: 3rem;
+  color: var(--rust);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.stat-label {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--steel);
+}
+
+/* ============ TRUST BAR ============ */
+.trust-bar {
+  padding: 60px 0 80px;
+  margin-top: -60px;
+  position: relative;
+  z-index: 5;
+}
+.trust-inner {
+  display: flex;
+  justify-content: center;
+  gap: 48px;
+  flex-wrap: wrap;
+}
+.trust-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 28px;
+  background: rgba(30, 41, 59, 0.5);
+  border: 1px solid rgba(148, 163, 184, 0.08);
+  border-radius: 12px;
+}
+.trust-icon {
+  width: 44px; height: 44px;
+  background: rgba(234, 88, 12, 0.1);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.3rem;
+  flex-shrink: 0;
+}
+.trust-text {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--steel-light);
+}
+.trust-text span { display: block; color: var(--cream); font-size: 1rem; }
+
+/* ============ ABOUT ============ */
+.about {
+  padding: 100px 0 120px;
+  position: relative;
+}
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.about-visual {
+  position: relative;
+}
+.about-image-block {
+  background: linear-gradient(135deg, var(--midnight-light), #1a2744);
+  border-radius: 20px;
+  padding: 48px 40px;
+  border: 1px solid rgba(148, 163, 184, 0.08);
+  position: relative;
+  overflow: hidden;
+}
+.about-image-block::before {
+  content: '';
+  position: absolute;
+  top: -2px; left: -2px; right: -2px; bottom: -2px;
+  background: linear-gradient(135deg, rgba(234, 88, 12, 0.3), transparent 50%);
+  border-radius: 22px;
+  z-index: -1;
+}
+
+.about-quote {
+  font-family: 'Source Sans 3', serif;
+  font-size: 1.55rem;
+  font-style: italic;
+  color: var(--cream);
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+.about-quote::before {
+  content: '\201C';
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 4rem;
+  color: var(--rust);
+  line-height: 0;
+  vertical-align: -0.4em;
+  margin-right: 4px;
+}
+.about-attribution {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 600;
+  color: var(--steel);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+}
+
+.about-floating-stat {
+  position: absolute;
+  bottom: -30px;
+  right: -20px;
+  background: var(--rust);
+  color: white;
+  padding: 20px 28px;
+  border-radius: 14px;
+  box-shadow: 0 8px 30px rgba(234, 88, 12, 0.35);
+}
+.about-floating-stat .stat-number { color: white; font-size: 2.2rem; }
+.about-floating-stat .stat-label { color: rgba(255,255,255,0.85); font-size: 0.8rem; }
+
+.about-text-side h2 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800;
+  font-size: clamp(2.2rem, 4vw, 3rem);
+  text-transform: uppercase;
+  line-height: 1.05;
+  margin-bottom: 8px;
+}
+.about-text-side h2 span { color: var(--rust); }
+
+.about-tagline {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: var(--cream-dim);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 28px;
+}
+
+.about-text-side p {
+  color: var(--steel-light);
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+.about-text-side p strong { color: var(--cream); }
+
+.about-highlights {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 32px;
+}
+.about-highlight {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  background: rgba(30, 41, 59, 0.5);
+  border-radius: 10px;
+  border-left: 3px solid var(--rust);
+}
+.about-highlight-icon { font-size: 1.2rem; }
+.about-highlight-text {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 600;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--steel-light);
+}
+
+/* ============ SERVICES ============ */
+.services {
+  padding: 100px 0 120px;
+  background: linear-gradient(180deg, var(--midnight) 0%, #0a1128 100%);
+  position: relative;
+}
+.services::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(234, 88, 12, 0.3), transparent);
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 64px;
+}
+.section-overline {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--rust);
+  margin-bottom: 12px;
+}
+.section-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  text-transform: uppercase;
+  line-height: 1;
+  margin-bottom: 16px;
+}
+.section-title span { color: var(--rust); }
+.section-subtitle {
+  color: var(--steel);
+  font-size: 1.15rem;
+  max-width: 540px;
+  margin: 0 auto;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+/* Offset pattern */
+.services-grid .service-card:nth-child(2) { margin-top: 40px; }
+.services-grid .service-card:nth-child(5) { margin-top: 40px; }
+
+.service-card {
+  background: rgba(30, 41, 59, 0.4);
+  border: 1px solid rgba(148, 163, 184, 0.07);
+  border-radius: 16px;
+  padding: 36px 32px;
+  transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  position: relative;
+  overflow: hidden;
+}
+.service-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--rust);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s;
+}
+.service-card:hover {
+  background: rgba(30, 41, 59, 0.7);
+  border-color: rgba(234, 88, 12, 0.15);
+  transform: translateY(-6px);
+}
+.service-card:hover::after { transform: scaleX(1); }
+
+.service-icon {
+  width: 56px; height: 56px;
+  background: rgba(234, 88, 12, 0.1);
+  border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.6rem;
+  margin-bottom: 20px;
+  border: 1px solid rgba(234, 88, 12, 0.15);
+}
+
+.service-card h3 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 1.3rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+  color: var(--cream);
+}
+.service-card p {
+  color: var(--steel);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+/* ============ WHY US ============ */
+.why-us {
+  padding: 100px 0 120px;
+  position: relative;
+}
+
+.why-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.why-list { display: flex; flex-direction: column; gap: 24px; }
+
+.why-item {
+  display: flex;
+  gap: 24px;
+  padding: 28px 32px;
+  background: rgba(30, 41, 59, 0.3);
+  border-radius: 14px;
+  border: 1px solid rgba(148, 163, 184, 0.05);
+  transition: all 0.3s;
+}
+.why-item:hover {
+  background: rgba(30, 41, 59, 0.6);
+  border-color: rgba(234, 88, 12, 0.2);
+}
+
+.why-number {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: 2.5rem;
+  color: var(--rust);
+  line-height: 1;
+  min-width: 50px;
+  opacity: 0.7;
+}
+.why-item-content h3 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 1.25rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--cream);
+  margin-bottom: 6px;
+}
+.why-item-content p {
+  color: var(--steel);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+.why-cta-box {
+  background: linear-gradient(135deg, var(--midnight-light) 0%, #1a2744 100%);
+  border-radius: 24px;
+  padding: 52px 44px;
+  border: 1px solid rgba(234, 88, 12, 0.15);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.why-cta-box::before {
+  content: '';
+  position: absolute;
+  top: -50%; right: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(234, 88, 12, 0.06) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.why-cta-box h3 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: 2rem;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  position: relative;
+}
+.why-cta-box h3 span { color: var(--rust); }
+
+.why-cta-box .cta-phone {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800;
+  font-size: 2.8rem;
+  color: var(--rust);
+  text-decoration: none;
+  display: block;
+  margin: 20px 0 12px;
+  transition: color 0.2s;
+  position: relative;
+}
+.why-cta-box .cta-phone:hover { color: var(--rust-glow); }
+
+.why-cta-box .cta-note {
+  color: var(--steel);
+  font-size: 1rem;
+  margin-bottom: 28px;
+  position: relative;
+}
+
+/* ============ REVIEWS ============ */
+.reviews {
+  padding: 100px 0 120px;
+  background: linear-gradient(180deg, #0a1128 0%, var(--midnight) 100%);
+  position: relative;
+}
+.reviews::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(234, 88, 12, 0.3), transparent);
+}
+
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.review-card {
+  background: rgba(30, 41, 59, 0.4);
+  border: 1px solid rgba(148, 163, 184, 0.07);
+  border-radius: 16px;
+  padding: 32px 28px;
+  transition: all 0.3s;
+}
+.review-card:hover {
+  border-color: rgba(234, 88, 12, 0.2);
+  transform: translateY(-4px);
+}
+.review-card:nth-child(2) { margin-top: 30px; }
+
+.review-stars {
+  color: var(--rust-glow);
+  font-size: 1.1rem;
+  margin-bottom: 16px;
+  letter-spacing: 3px;
+}
+.review-text {
+  color: var(--steel-light);
+  font-size: 1rem;
+  line-height: 1.7;
+  font-style: italic;
+  margin-bottom: 20px;
+}
+.review-author {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 600;
+  color: var(--cream);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+}
+.review-source {
+  color: var(--steel);
+  font-size: 0.8rem;
+}
+
+/* ============ CTA SECTION ============ */
+.final-cta {
+  padding: 120px 0;
+  position: relative;
+  text-align: center;
+  overflow: hidden;
+}
+.final-cta::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background:
+    radial-gradient(ellipse 600px 400px at 50% 50%, rgba(234, 88, 12, 0.1) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.final-cta h2 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  text-transform: uppercase;
+  line-height: 1;
+  margin-bottom: 16px;
+  position: relative;
+}
+.final-cta h2 span { color: var(--rust); }
+
+.final-cta p {
+  color: var(--steel-light);
+  font-size: 1.2rem;
+  max-width: 520px;
+  margin: 0 auto 40px;
+  position: relative;
+}
+
+.final-cta-phone {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  color: var(--rust);
+  text-decoration: none;
+  display: inline-block;
+  margin-bottom: 32px;
+  transition: all 0.3s;
+  position: relative;
+}
+.final-cta-phone:hover {
+  color: var(--rust-glow);
+  transform: scale(1.05);
+}
+
+.final-cta-actions {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  position: relative;
+}
+
+/* ============ FOOTER ============ */
+.footer {
+  padding: 60px 0 40px;
+  border-top: 1px solid rgba(148, 163, 184, 0.08);
+}
+.footer-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 40px;
+  margin-bottom: 40px;
+}
+
+.footer-brand .topbar-logo {
+  font-size: 1.3rem;
+  display: inline-block;
+  margin-bottom: 12px;
+}
+.footer-brand p {
+  color: var(--steel);
+  font-size: 0.9rem;
+  line-height: 1.7;
+  max-width: 280px;
+}
+
+.footer-col h4 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--cream);
+  margin-bottom: 16px;
+}
+.footer-col p,
+.footer-col a {
+  color: var(--steel);
+  font-size: 0.9rem;
+  text-decoration: none;
+  display: block;
+  line-height: 2;
+  transition: color 0.2s;
+}
+.footer-col a:hover { color: var(--rust-glow); }
+
+.footer-bottom {
+  border-top: 1px solid rgba(148, 163, 184, 0.06);
+  padding-top: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--steel);
+  font-size: 0.8rem;
+}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 1024px) {
+  .hero-content { grid-template-columns: 1fr; gap: 40px; }
+  .hero-visual { align-items: flex-start; }
+  .stat-card:nth-child(2) { margin-right: 0; }
+  .stat-card:nth-child(3) { margin-right: 0; }
+  .about-grid { grid-template-columns: 1fr; gap: 60px; }
+  .why-grid { grid-template-columns: 1fr; gap: 60px; }
+  .services-grid { grid-template-columns: repeat(2, 1fr); }
+  .services-grid .service-card:nth-child(2) { margin-top: 0; }
+  .services-grid .service-card:nth-child(5) { margin-top: 0; }
+  .reviews-grid { grid-template-columns: repeat(2, 1fr); }
+  .review-card:nth-child(2) { margin-top: 0; }
+  .footer-inner { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 768px) {
+  .topbar-nav { display: none; }
+  .topbar-nav.open {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0; right: 0;
+    background: rgba(15, 23, 42, 0.98);
+    backdrop-filter: blur(16px);
+    padding: 24px;
+    gap: 16px;
+    border-bottom: 1px solid rgba(234, 88, 12, 0.2);
+  }
+  .mobile-toggle { display: block; }
+
+  .hero { clip-path: polygon(0 0, 100% 0, 100% 93%, 0 100%); min-height: auto; padding: 100px 0 120px; }
+  .hero h1 { font-size: 2.6rem; }
+  .hero-visual { flex-direction: row; flex-wrap: wrap; gap: 12px; }
+  .stat-card { width: auto; flex: 1; min-width: 140px; padding: 20px; }
+  .stat-number { font-size: 2rem; }
+
+  .services-grid { grid-template-columns: 1fr; }
+  .reviews-grid { grid-template-columns: 1fr; }
+
+  .about-highlights { grid-template-columns: 1fr; }
+
+  .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============ TOPBAR ============ -->
+<nav class="topbar" id="topbar">
+  <div class="topbar-inner">
+    <a href="#" class="topbar-logo">R<span>&</span>J Auto</a>
+    <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="topbar-nav" id="navMenu">
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#why-us">Why Us</a>
+      <a href="#reviews">Reviews</a>
+      <a href="tel:+17344824989" class="topbar-cta">Call Now</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="hero">
+  <div class="hero-content">
+    <div class="hero-text">
+      <div class="hero-badge reveal">Family-Owned &bull; Ypsilanti, MI</div>
+      <h1>
+        <span class="line-1 reveal reveal-delay-1">Honest Auto</span>
+        <span class="line-2 reveal reveal-delay-2">Repair You Can</span>
+        <span class="line-3 reveal reveal-delay-3">Count On.</span>
+      </h1>
+      <p class="hero-sub reveal reveal-delay-3">
+        Serving <strong>Ypsilanti, Ann Arbor</strong>, and the University of Michigan community for over <strong>20 years</strong>. No upsells, no surprises — just good work at a fair price.
+      </p>
+      <div class="hero-actions reveal reveal-delay-4">
+        <a href="tel:+17344824989" class="btn-primary">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"></path></svg>
+          (734) 482-4989
+        </a>
+        <a href="#services" class="btn-outline">Our Services</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="stat-card reveal reveal-delay-1">
+        <div class="stat-number">20+</div>
+        <div class="stat-label">Years in Business</div>
+      </div>
+      <div class="stat-card reveal reveal-delay-2">
+        <div class="stat-number">4.7</div>
+        <div class="stat-label">Star Rating</div>
+      </div>
+      <div class="stat-card reveal reveal-delay-3">
+        <div class="stat-number">30+</div>
+        <div class="stat-label">Years Experience</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TRUST BAR ============ -->
+<div class="trust-bar">
+  <div class="container">
+    <div class="trust-inner reveal">
+      <div class="trust-item">
+        <div class="trust-icon">&#9881;</div>
+        <div class="trust-text"><span>Full Service</span>All Makes & Models</div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">&#9733;</div>
+        <div class="trust-text"><span>4.7 Star Rated</span>Google Reviews</div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">&#9829;</div>
+        <div class="trust-text"><span>Family Owned</span>Community Trusted</div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">&#128736;</div>
+        <div class="trust-text"><span>ASE-Level</span>Expert Diagnostics</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ ABOUT ============ -->
+<section class="about" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-visual reveal">
+        <div class="about-image-block">
+          <p class="about-quote">They told me exactly what was wrong, what it would cost, and finished ahead of schedule. I've been coming back for 8 years now and wouldn't trust anyone else with my car.</p>
+          <p class="about-attribution">-- Long-time Customer, Ypsilanti</p>
+        </div>
+        <div class="about-floating-stat">
+          <div class="stat-number">4.7</div>
+          <div class="stat-label">Google Rating</div>
+        </div>
+      </div>
+      <div class="about-text-side">
+        <h2 class="reveal">Built on <span>Honest Work</span></h2>
+        <p class="about-tagline reveal reveal-delay-1">Not the Biggest Shop. Just the Most Trusted.</p>
+        <p class="reveal reveal-delay-2">
+          R&J Auto Repair was founded by <strong>John</strong> right here in Ypsilanti over two decades ago. With <strong>30+ years of hands-on mechanic experience</strong>, John built this shop on a simple promise: do honest work, charge fair prices, and treat every car like it's family.
+        </p>
+        <p class="reveal reveal-delay-3">
+          We're proud to be a <strong>family-owned business</strong> serving the Ypsilanti, Ann Arbor, and greater Washtenaw County community. From University of Michigan students needing a quick fix to families trusting us with their daily drivers — we take care of our neighbors.
+        </p>
+        <div class="about-highlights reveal reveal-delay-4">
+          <div class="about-highlight">
+            <span class="about-highlight-icon">&#128295;</span>
+            <span class="about-highlight-text">30+ Yr Mechanic</span>
+          </div>
+          <div class="about-highlight">
+            <span class="about-highlight-icon">&#127969;</span>
+            <span class="about-highlight-text">Family Owned</span>
+          </div>
+          <div class="about-highlight">
+            <span class="about-highlight-icon">&#128176;</span>
+            <span class="about-highlight-text">Fair Pricing</span>
+          </div>
+          <div class="about-highlight">
+            <span class="about-highlight-icon">&#129309;</span>
+            <span class="about-highlight-text">Honest Diagnosis</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SERVICES ============ -->
+<section class="services" id="services">
+  <div class="container">
+    <div class="section-header">
+      <p class="section-overline reveal">What We Do</p>
+      <h2 class="section-title reveal reveal-delay-1">Full-Service <span>Auto Repair</span></h2>
+      <p class="section-subtitle reveal reveal-delay-2">From routine maintenance to major repairs, we handle it all under one roof.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="service-icon">&#128275;</div>
+        <h3>Brake Service</h3>
+        <p>Pads, rotors, calipers, brake lines, and ABS diagnostics. We'll keep you stopping safely in Michigan weather.</p>
+      </div>
+      <div class="service-card reveal reveal-delay-1">
+        <div class="service-icon">&#9881;</div>
+        <h3>Engine Repair</h3>
+        <p>From minor tune-ups to major overhauls. Check engine light? Misfires? Strange noises? Bring it in.</p>
+      </div>
+      <div class="service-card reveal reveal-delay-2">
+        <div class="service-icon">&#128736;</div>
+        <h3>Transmission</h3>
+        <p>Fluid flushes, clutch replacement, full transmission rebuilds. Manual and automatic, we've seen it all.</p>
+      </div>
+      <div class="service-card reveal reveal-delay-3">
+        <div class="service-icon">&#128187;</div>
+        <h3>Diagnostics</h3>
+        <p>Advanced computer diagnostics to find the real problem — not just guess. We explain everything before we start.</p>
+      </div>
+      <div class="service-card reveal reveal-delay-4">
+        <div class="service-icon">&#10052;</div>
+        <h3>Heating & A/C</h3>
+        <p>Stay comfortable year-round. Michigan winters and summers are no joke — we'll keep your climate system running.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">&#128663;</div>
+        <h3>Suspension & Steering</h3>
+        <p>Shocks, struts, ball joints, tie rods, alignments. If your ride's rough, we'll smooth it out.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHY US ============ -->
+<section class="why-us" id="why-us">
+  <div class="container">
+    <div class="why-grid">
+      <div class="why-list">
+        <div class="section-header" style="text-align: left; margin-bottom: 32px;">
+          <p class="section-overline reveal">The R&J Difference</p>
+          <h2 class="section-title reveal reveal-delay-1">Why Ypsilanti <span>Trusts Us</span></h2>
+        </div>
+        <div class="why-item reveal">
+          <div class="why-number">01</div>
+          <div class="why-item-content">
+            <h3>No Surprise Bills</h3>
+            <p>We give you an honest estimate before we start. If something changes, we call you first. Period.</p>
+          </div>
+        </div>
+        <div class="why-item reveal reveal-delay-1">
+          <div class="why-number">02</div>
+          <div class="why-item-content">
+            <h3>We Won't Upsell You</h3>
+            <p>If your car doesn't need it, we won't sell it. We'd rather earn your trust than make a quick buck.</p>
+          </div>
+        </div>
+        <div class="why-item reveal reveal-delay-2">
+          <div class="why-number">03</div>
+          <div class="why-item-content">
+            <h3>30+ Years Under the Hood</h3>
+            <p>John has been turning wrenches since before most shops opened. That experience shows in every repair.</p>
+          </div>
+        </div>
+        <div class="why-item reveal reveal-delay-3">
+          <div class="why-number">04</div>
+          <div class="why-item-content">
+            <h3>Your Neighbors Trust Us</h3>
+            <p>4.7 stars and counting. UofM students, families, retirees — we take care of the whole community.</p>
+          </div>
+        </div>
+      </div>
+      <div class="why-cta-box reveal">
+        <h3>Need a <span>Repair?</span></h3>
+        <p class="cta-note">Call us or stop by. No appointment needed for most services.</p>
+        <a href="tel:+17344824989" class="cta-phone">(734) 482-4989</a>
+        <p class="cta-note">Monday - Friday &bull; Walk-ins Welcome</p>
+        <a href="tel:+17344824989" class="btn-primary" style="margin-top: 20px;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"></path></svg>
+          Click to Call
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ REVIEWS ============ -->
+<section class="reviews" id="reviews">
+  <div class="container">
+    <div class="section-header">
+      <p class="section-overline reveal">Real Reviews</p>
+      <h2 class="section-title reveal reveal-delay-1">What Our <span>Customers Say</span></h2>
+      <p class="section-subtitle reveal reveal-delay-2">Don't take our word for it. Here's what the community thinks.</p>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card reveal">
+        <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="review-text">"Took my car in for a weird noise and they diagnosed it immediately. Fixed the issue same day for way less than the dealership quoted me. Honest guys."</p>
+        <p class="review-author">Mike T.</p>
+        <p class="review-source">Google Review</p>
+      </div>
+      <div class="review-card reveal reveal-delay-1">
+        <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="review-text">"I'm a UMich grad student on a budget. They could have charged me for a bunch of stuff but they were straight up about what I actually needed. Saved me hundreds."</p>
+        <p class="review-author">Sarah K.</p>
+        <p class="review-source">Google Review</p>
+      </div>
+      <div class="review-card reveal reveal-delay-2">
+        <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="review-text">"Been bringing my family's cars here for years. They always explain what's going on, never pressure you. John is the real deal — an old-school honest mechanic."</p>
+        <p class="review-author">David R.</p>
+        <p class="review-source">Google Review</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FINAL CTA ============ -->
+<section class="final-cta">
+  <div class="container">
+    <h2 class="reveal">Your Car <span>Deserves Better.</span></h2>
+    <p class="reveal reveal-delay-1">Stop overpaying at the dealership. Get honest, expert auto repair from a family that's been doing this for over 20 years.</p>
+    <a href="tel:+17344824989" class="final-cta-phone reveal reveal-delay-2">(734) 482-4989</a>
+    <div class="final-cta-actions reveal reveal-delay-3">
+      <a href="tel:+17344824989" class="btn-primary">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"></path></svg>
+        Call R&J Auto Today
+      </a>
+      <a href="https://maps.google.com/?q=R%26J+Auto+Repair+Ypsilanti+MI" target="_blank" class="btn-outline">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+        Get Directions
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="#" class="topbar-logo">R<span>&</span>J Auto</a>
+        <p>Family-owned auto repair proudly serving Ypsilanti, Ann Arbor, and the University of Michigan community since 2004.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <a href="#about">About Us</a>
+        <a href="#services">Services</a>
+        <a href="#why-us">Why Choose Us</a>
+        <a href="#reviews">Reviews</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <a href="tel:+17344824989">(734) 482-4989</a>
+        <p>Ypsilanti, Michigan</p>
+        <p>Mon - Fri: Open</p>
+        <p>Sat - Sun: Closed</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 R&J Auto Repair. All rights reserved.</p>
+      <p>Ypsilanti, Michigan</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Topbar scroll effect
+const topbar = document.getElementById('topbar');
+window.addEventListener('scroll', () => {
+  topbar.classList.toggle('scrolled', window.scrollY > 50);
+});
+
+// Mobile menu toggle
+const mobileToggle = document.getElementById('mobileToggle');
+const navMenu = document.getElementById('navMenu');
+mobileToggle.addEventListener('click', () => {
+  navMenu.classList.toggle('open');
+});
+
+// Close mobile menu on link click
+navMenu.querySelectorAll('a').forEach(a => {
+  a.addEventListener('click', () => navMenu.classList.remove('open'));
+});
+
+// Smooth scroll for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+</script>
+
+</body>
+</html>

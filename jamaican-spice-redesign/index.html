@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jamaican Spice LLC | Authentic Jamaican Cuisine in Ypsilanti, MI</title>
+  <meta name="description" content="Jamaican Spice LLC — Ypsilanti's home for authentic Jamaican food. Jerk chicken, oxtail, curry goat, patties and more. Dine in, takeout, catering. Taste the islands today!" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Inter:wght@300;400;500;600;700&family=Dancing+Script:wght@500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'jam-black':     '#1a1a1a',
+            'jam-green':     '#009b3a',
+            'jam-green-dk':  '#006b28',
+            'jam-green-lt':  '#00c44a',
+            'jam-gold':      '#fed100',
+            'jam-gold-dk':   '#d4a800',
+            'jam-gold-lt':   '#ffe14d',
+            'jam-warm':      '#fff8e1',
+            'jam-cream':     '#fffdf5',
+            'jam-orange':    '#e65100',
+            'jam-red':       '#c62828',
+            'jam-brown':     '#3e2723',
+            'jam-sand':      '#f5e6c8',
+          },
+          fontFamily: {
+            heading: ['"Playfair Display"', 'serif'],
+            body:    ['Inter', 'sans-serif'],
+            script:  ['"Dancing Script"', 'cursive'],
+          },
+        },
+      },
+    }
+  </script>
+  <style>
+    * { font-family: 'Inter', sans-serif; }
+    h1, h2, h3, h4, .font-heading { font-family: 'Playfair Display', serif; }
+
+    /* Animations */
+    .fade-up {
+      opacity: 0; transform: translateY(40px);
+      transition: opacity 0.8s cubic-bezier(.22,1,.36,1), transform 0.8s cubic-bezier(.22,1,.36,1);
+    }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    .fade-in { opacity: 0; transition: opacity 0.9s ease-out; }
+    .fade-in.visible { opacity: 1; }
+
+    .slide-left {
+      opacity: 0; transform: translateX(-50px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+    .slide-left.visible { opacity: 1; transform: translateX(0); }
+
+    .slide-right {
+      opacity: 0; transform: translateX(50px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+    .slide-right.visible { opacity: 1; transform: translateX(0); }
+
+    .scale-in {
+      opacity: 0; transform: scale(0.92);
+      transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+    }
+    .scale-in.visible { opacity: 1; transform: scale(1); }
+
+    /* Hero parallax */
+    .hero-bg {
+      background: linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.7) 100%),
+                  url('https://images.unsplash.com/photo-1532635241-17e820acc59f?w=1920&q=85') center/cover no-repeat fixed;
+      min-height: 100vh;
+    }
+
+    /* Tropical pattern overlay */
+    .tropical-pattern {
+      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 5 C25 15, 15 20, 5 18 C15 25, 20 35, 18 45 C25 35, 35 30, 45 32 C35 25, 30 15, 32 5 C31 5, 30 5, 30 5Z' fill='none' stroke='%23009b3a' stroke-width='0.5' opacity='0.07'/%3E%3C/svg%3E");
+    }
+
+    /* Gold diagonal stripe accent */
+    .gold-stripe {
+      background: repeating-linear-gradient(
+        -45deg,
+        transparent,
+        transparent 10px,
+        rgba(254, 209, 0, 0.06) 10px,
+        rgba(254, 209, 0, 0.06) 20px
+      );
+    }
+
+    /* Spice card hover */
+    .menu-card {
+      transition: transform 0.4s cubic-bezier(.22,1,.36,1), box-shadow 0.4s ease;
+    }
+    .menu-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+    }
+
+    /* Wavy divider */
+    .wave-divider {
+      position: relative; overflow: hidden;
+    }
+    .wave-divider::after {
+      content: ''; position: absolute; bottom: -1px; left: 0; width: 100%; height: 60px;
+      background: url("data:image/svg+xml,%3Csvg viewBox='0 0 1440 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,30 C360,60 720,0 1080,30 C1260,45 1350,20 1440,30 L1440,60 L0,60Z' fill='%23fffdf5'/%3E%3C/svg%3E") center/cover no-repeat;
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #1a1a1a; }
+    ::-webkit-scrollbar-thumb { background: #009b3a; border-radius: 4px; }
+
+    /* Smooth nav */
+    .nav-glass {
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      background: rgba(26,26,26,0.85);
+      transition: all 0.3s ease;
+    }
+    .nav-scrolled { background: rgba(26,26,26,0.97); box-shadow: 0 4px 30px rgba(0,0,0,0.3); }
+
+    /* Pulse CTA */
+    @keyframes pulse-gold {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(254,209,0,0.5); }
+      50% { box-shadow: 0 0 0 12px rgba(254,209,0,0); }
+    }
+    .pulse-cta { animation: pulse-gold 2.5s infinite; }
+
+    /* Floating spice */
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-15px) rotate(3deg); }
+    }
+    .float-anim { animation: float 4s ease-in-out infinite; }
+
+    /* Flag stripe bar */
+    .flag-bar {
+      background: linear-gradient(90deg, #009b3a 0%, #009b3a 33%, #fed100 33%, #fed100 67%, #1a1a1a 67%, #1a1a1a 100%);
+      height: 5px;
+    }
+
+    /* Testimonial card */
+    .testimonial-card {
+      background: linear-gradient(135deg, rgba(255,255,255,0.97), rgba(255,248,225,0.97));
+      border-left: 4px solid #fed100;
+    }
+
+    /* Mobile menu */
+    .mobile-menu { transform: translateX(100%); transition: transform 0.4s cubic-bezier(.22,1,.36,1); }
+    .mobile-menu.open { transform: translateX(0); }
+
+    /* Stagger children */
+    .stagger-children > *:nth-child(1) { transition-delay: 0.05s; }
+    .stagger-children > *:nth-child(2) { transition-delay: 0.12s; }
+    .stagger-children > *:nth-child(3) { transition-delay: 0.19s; }
+    .stagger-children > *:nth-child(4) { transition-delay: 0.26s; }
+    .stagger-children > *:nth-child(5) { transition-delay: 0.33s; }
+    .stagger-children > *:nth-child(6) { transition-delay: 0.40s; }
+
+    /* Photo grid hover */
+    .photo-item { overflow: hidden; border-radius: 12px; }
+    .photo-item img { transition: transform 0.6s cubic-bezier(.22,1,.36,1); }
+    .photo-item:hover img { transform: scale(1.08); }
+  </style>
+</head>
+<body class="bg-jam-cream text-jam-black overflow-x-hidden">
+
+  <!-- Flag bar top -->
+  <div class="flag-bar w-full fixed top-0 left-0 z-[60]"></div>
+
+  <!-- Navigation -->
+  <nav id="navbar" class="nav-glass fixed top-[5px] left-0 w-full z-50 py-3 px-4 md:px-8">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      <a href="#" class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-full bg-jam-gold flex items-center justify-center">
+          <span class="text-jam-black font-bold text-lg">JS</span>
+        </div>
+        <div>
+          <span class="text-white font-heading font-bold text-xl tracking-wide">Jamaican Spice</span>
+          <span class="hidden sm:block text-jam-gold text-xs tracking-widest uppercase">Authentic Island Cuisine</span>
+        </div>
+      </a>
+
+      <div class="hidden lg:flex items-center gap-8">
+        <a href="#menu" class="text-white/80 hover:text-jam-gold transition-colors text-sm font-medium tracking-wide uppercase">Menu</a>
+        <a href="#about" class="text-white/80 hover:text-jam-gold transition-colors text-sm font-medium tracking-wide uppercase">About</a>
+        <a href="#catering" class="text-white/80 hover:text-jam-gold transition-colors text-sm font-medium tracking-wide uppercase">Catering</a>
+        <a href="#reviews" class="text-white/80 hover:text-jam-gold transition-colors text-sm font-medium tracking-wide uppercase">Reviews</a>
+        <a href="#contact" class="text-white/80 hover:text-jam-gold transition-colors text-sm font-medium tracking-wide uppercase">Contact</a>
+        <a href="#order" class="bg-jam-gold hover:bg-jam-gold-lt text-jam-black font-bold py-2.5 px-6 rounded-full text-sm transition-all hover:scale-105 shadow-lg">
+          Order Now
+        </a>
+      </div>
+
+      <!-- Mobile hamburger -->
+      <button id="menu-toggle" class="lg:hidden text-white p-2" aria-label="Toggle menu">
+        <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile menu overlay -->
+  <div id="mobile-menu" class="mobile-menu fixed top-0 right-0 w-80 h-full bg-jam-black z-[55] flex flex-col p-8 pt-20">
+    <button id="menu-close" class="absolute top-6 right-6 text-white">
+      <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+      </svg>
+    </button>
+    <a href="#menu" class="text-white text-xl font-heading py-3 border-b border-white/10 hover:text-jam-gold transition-colors mobile-link">Menu</a>
+    <a href="#about" class="text-white text-xl font-heading py-3 border-b border-white/10 hover:text-jam-gold transition-colors mobile-link">About</a>
+    <a href="#catering" class="text-white text-xl font-heading py-3 border-b border-white/10 hover:text-jam-gold transition-colors mobile-link">Catering</a>
+    <a href="#reviews" class="text-white text-xl font-heading py-3 border-b border-white/10 hover:text-jam-gold transition-colors mobile-link">Reviews</a>
+    <a href="#contact" class="text-white text-xl font-heading py-3 border-b border-white/10 hover:text-jam-gold transition-colors mobile-link">Contact</a>
+    <a href="#order" class="mt-6 bg-jam-gold text-jam-black font-bold py-3 px-8 rounded-full text-center text-lg hover:bg-jam-gold-lt transition-all mobile-link">Order Now</a>
+  </div>
+  <div id="menu-overlay" class="fixed inset-0 bg-black/50 z-[54] hidden"></div>
+
+  <!-- ==================== HERO ==================== -->
+  <section class="hero-bg flex items-center justify-center relative wave-divider">
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/30"></div>
+    <div class="relative z-10 text-center px-4 max-w-5xl mx-auto py-32">
+      <p class="font-script text-jam-gold text-2xl md:text-3xl mb-4 fade-up">Welcome to</p>
+      <h1 class="font-heading text-white text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-tight mb-6 fade-up">
+        Jamaican<br>
+        <span class="text-jam-gold">Spice</span>
+      </h1>
+      <div class="flex items-center justify-center gap-3 mb-6 fade-up">
+        <span class="w-12 h-0.5 bg-jam-green"></span>
+        <span class="text-jam-gold text-2xl">&#9733; &#9733; &#9733; &#9733; &#9733;</span>
+        <span class="w-12 h-0.5 bg-jam-green"></span>
+      </div>
+      <p class="text-white/90 text-lg md:text-xl max-w-2xl mx-auto mb-10 font-light leading-relaxed fade-up">
+        Authentic Jamaican flavors in the heart of Ypsilanti. From our kitchen to your soul — every dish tells the story of the islands.
+      </p>
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 fade-up">
+        <a href="#order" class="bg-jam-gold hover:bg-jam-gold-lt text-jam-black font-bold py-4 px-10 rounded-full text-lg transition-all hover:scale-105 shadow-xl pulse-cta">
+          Order Now
+        </a>
+        <a href="#menu" class="border-2 border-white/40 hover:border-jam-gold text-white hover:text-jam-gold font-semibold py-4 px-10 rounded-full text-lg transition-all hover:scale-105">
+          View Our Menu
+        </a>
+      </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="absolute bottom-16 left-1/2 -translate-x-1/2 z-10 fade-in">
+      <div class="w-6 h-10 border-2 border-white/40 rounded-full flex justify-center pt-2">
+        <div class="w-1.5 h-3 bg-jam-gold rounded-full animate-bounce"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== QUICK INFO BAR ==================== -->
+  <section class="bg-jam-cream py-8 relative tropical-pattern">
+    <div class="max-w-6xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
+      <div class="fade-up flex items-center justify-center gap-3">
+        <div class="w-12 h-12 rounded-full bg-jam-green/10 flex items-center justify-center flex-shrink-0">
+          <svg class="w-6 h-6 text-jam-green" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+        </div>
+        <div class="text-left">
+          <p class="font-bold text-jam-black text-sm">Ypsilanti, Michigan</p>
+          <p class="text-jam-black/60 text-xs">Right next to Ann Arbor</p>
+        </div>
+      </div>
+      <div class="fade-up flex items-center justify-center gap-3">
+        <div class="w-12 h-12 rounded-full bg-jam-gold/15 flex items-center justify-center flex-shrink-0">
+          <svg class="w-6 h-6 text-jam-gold-dk" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        </div>
+        <div class="text-left">
+          <p class="font-bold text-jam-black text-sm">Open Daily</p>
+          <p class="text-jam-black/60 text-xs">Mon-Sat 11am - 9pm</p>
+        </div>
+      </div>
+      <div class="fade-up flex items-center justify-center gap-3">
+        <div class="w-12 h-12 rounded-full bg-jam-orange/10 flex items-center justify-center flex-shrink-0">
+          <svg class="w-6 h-6 text-jam-orange" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+        </div>
+        <div class="text-left">
+          <p class="font-bold text-jam-black text-sm">Call to Order</p>
+          <p class="text-jam-black/60 text-xs">(734) 555-JERK</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== MENU SECTION ==================== -->
+  <section id="menu" class="py-20 md:py-28 bg-jam-cream relative gold-stripe">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="text-center mb-16">
+        <p class="font-script text-jam-green text-xl mb-2 fade-up">Taste the Islands</p>
+        <h2 class="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-jam-black mb-4 fade-up">Our Menu</h2>
+        <div class="flex items-center justify-center gap-3 mb-6 fade-up">
+          <span class="w-16 h-0.5 bg-jam-gold"></span>
+          <span class="text-jam-green text-xl">&#127796;</span>
+          <span class="w-16 h-0.5 bg-jam-gold"></span>
+        </div>
+        <p class="text-jam-black/70 max-w-xl mx-auto fade-up">Every dish is made fresh with authentic Jamaican spices and recipes passed down through generations.</p>
+      </div>
+
+      <!-- Menu Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 stagger-children">
+
+        <!-- Jerk Chicken -->
+        <div class="menu-card bg-white rounded-2xl overflow-hidden shadow-lg fade-up group">
+          <div class="h-52 overflow-hidden relative">
+            <img src="https://images.unsplash.com/photo-1532550907401-a500c9a57435?w=600&q=80" alt="Jerk Chicken" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+            <div class="absolute top-4 right-4 bg-jam-red text-white text-xs font-bold py-1 px-3 rounded-full">MOST POPULAR</div>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+          </div>
+          <div class="p-6">
+            <div class="flex items-center justify-between mb-2">
+              <h3 class="font-heading text-xl font-bold">Jerk Chicken</h3>
+              <span class="text-jam-green font-bold text-lg">$14.99</span>
+            </div>
+            <p class="text-jam-black/60 text-sm leading-relaxed">Slow-marinated in our signature scotch bonnet & allspice blend, chargrilled to smoky perfection. Served with rice & peas.</p>
+            <div class="flex items-center gap-2 mt-3">
+              <span class="text-xs bg-jam-orange/10 text-jam-orange px-2 py-1 rounded-full font-medium">&#127798; Spicy</span>
+              <span class="text-xs bg-jam-green/10 text-jam-green px-2 py-1 rounded-full font-medium">&#9733; Fan Favorite</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Oxtail -->
+        <div class="menu-card bg-white rounded-2xl overflow-hidden shadow-lg fade-up group">
+          <div class="h-52 overflow-hidden relative">
+            <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&q=80" alt="Braised Oxtail" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+            <div class="absolute top-4 right-4 bg-jam-gold text-jam-black text-xs font-bold py-1 px-3 rounded-full">CHEF'S PICK</div>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+          </div>
+          <div class="p-6">
+            <div class="flex items-center justify-between mb-2">
+              <h3 class="font-heading text-xl font-bold">Braised Oxtail</h3>
+              <span class="text-jam-green font-bold text-lg">$18.99</span>
+            </div>
+            <p class="text-jam-black/60 text-sm leading-relaxed">Tender oxtail braised for hours in rich gravy with butter beans. Melt-in-your-mouth goodness. A true island classic.</p>
+            <div class="flex items-center gap-2 mt-3">
+              <span class="text-xs bg-jam-gold/15 text-jam-gold-dk px-2 py-1 rounded-full font-medium">&#128293; Hearty</span>
+              <span class="text-xs bg-jam-green/10 text-jam-green px-2 py-1 rounded-full font-medium">Slow-cooked</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Curry Goat -->
+        <div class="menu-card bg-white rounded-2xl overflow-hidden shadow-lg fade-up group">
+          <div class="h-52 overflow-hidden relative">
+            <img src="https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=600&q=80" alt="Curry Goat" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+          </div>
+          <div class="p-6">
+            <div class="flex items-center justify-between mb-2">
+              <h3 class="font-heading text-xl font-bold">Curry Goat</h3>
+              <span class="text-jam-green font-bold text-lg">$17.99</span>
+            </div>
+            <p class="text-jam-black/60 text-sm leading-relaxed">Bone-in goat simmered in Jamaican curry with potatoes and aromatic spices. Bold, warming, unforgettable flavor.</p>
+            <div class="flex items-center gap-2 mt-3">
+              <span class="text-xs bg-jam-orange/10 text-jam-orange px-2 py-1 rounded-full font-medium">&#127798; Medium Spice</span>
+              <span class="text-xs bg-jam-green/10 text-jam-green px-2 py-1 rounded-full font-medium">Traditional</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Ackee & Saltfish -->
+        <div class="menu-card bg-white rounded-2xl overflow-hidden shadow-lg fade-up group">
+          <div class="h-52 overflow-hidden relative">
+            <img src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=600&q=80" alt="Ackee and Saltfish" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+          </div>
+          <div class="p-6">
+            <div class="flex items-center justify-between mb-2">
+              <h3 class="font-heading text-xl font-bold">Ackee & Saltfish</h3>
+              <span class="text-jam-green font-bold text-lg">$15.99</span>
+            </div>
+            <p class="text-jam-black/60 text-sm leading-relaxed">Jamaica's national dish. Tender ackee paired with seasoned saltfish, peppers, and onions. Served with fried dumplings.</p>
+            <div class="flex items-center gap-2 mt-3">
+              <span class="text-xs bg-jam-gold/15 text-jam-gold-dk px-2 py-1 rounded-full font-medium">&#127466;&#127474; National Dish</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Jamaican Patties -->
+        <div class="menu-card bg-white rounded-2xl overflow-hidden shadow-lg fade-up group">
+          <div class="h-52 overflow-hidden relative">
+            <img src="https://images.unsplash.com/photo-1601050690117-94f5f6fa8bd7?w=600&q=80" alt="Jamaican Patties" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+          </div>
+          <div class="p-6">
+            <div class="flex items-center justify-between mb-2">
+              <h3 class="font-heading text-xl font-bold">Jamaican Patties</h3>
+              <span class="text-jam-green font-bold text-lg">$4.99</span>
+            </div>
+            <p class="text-jam-black/60 text-sm leading-relaxed">Flaky golden pastry filled with seasoned beef, chicken, or vegetable. The perfect snack or appetizer. Baked fresh daily.</p>
+            <div class="flex items-center gap-2 mt-3">
+              <span class="text-xs bg-jam-green/10 text-jam-green px-2 py-1 rounded-full font-medium">Quick Bite</span>
+              <span class="text-xs bg-jam-orange/10 text-jam-orange px-2 py-1 rounded-full font-medium">3 Flavors</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Rice & Peas + Sides -->
+        <div class="menu-card bg-white rounded-2xl overflow-hidden shadow-lg fade-up group">
+          <div class="h-52 overflow-hidden relative">
+            <img src="https://images.unsplash.com/photo-1512058564366-18510be2db19?w=600&q=80" alt="Rice and Peas" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+          </div>
+          <div class="p-6">
+            <div class="flex items-center justify-between mb-2">
+              <h3 class="font-heading text-xl font-bold">Sides & Extras</h3>
+              <span class="text-jam-green font-bold text-lg">from $3.99</span>
+            </div>
+            <p class="text-jam-black/60 text-sm leading-relaxed">Coconut rice & peas, fried plantains, festival, coleslaw, steamed cabbage, bammy, and more island favorites.</p>
+            <div class="flex items-center gap-2 mt-3">
+              <span class="text-xs bg-jam-green/10 text-jam-green px-2 py-1 rounded-full font-medium">&#127834; Essentials</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="text-center mt-12 fade-up">
+        <a href="#order" class="inline-flex items-center gap-2 bg-jam-green hover:bg-jam-green-dk text-white font-bold py-4 px-10 rounded-full text-lg transition-all hover:scale-105 shadow-lg">
+          <span>View Full Menu & Order</span>
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== ABOUT SECTION ==================== -->
+  <section id="about" class="py-20 md:py-28 bg-jam-black relative overflow-hidden">
+    <!-- Decorative elements -->
+    <div class="absolute top-0 right-0 w-96 h-96 bg-jam-green/5 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-0 left-0 w-80 h-80 bg-jam-gold/5 rounded-full blur-3xl"></div>
+
+    <div class="max-w-7xl mx-auto px-4 relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+        <!-- Images -->
+        <div class="relative slide-left">
+          <div class="grid grid-cols-2 gap-4">
+            <div class="space-y-4">
+              <div class="photo-item rounded-2xl overflow-hidden shadow-2xl">
+                <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=400&q=80" alt="Restaurant interior" class="w-full h-48 object-cover" />
+              </div>
+              <div class="photo-item rounded-2xl overflow-hidden shadow-2xl">
+                <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=400&q=80" alt="Food preparation" class="w-full h-64 object-cover" />
+              </div>
+            </div>
+            <div class="space-y-4 mt-8">
+              <div class="photo-item rounded-2xl overflow-hidden shadow-2xl">
+                <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=400&q=80" alt="Dining experience" class="w-full h-64 object-cover" />
+              </div>
+              <div class="photo-item rounded-2xl overflow-hidden shadow-2xl">
+                <img src="https://images.unsplash.com/photo-1528605248644-14dd04022da1?w=400&q=80" alt="Happy customers" class="w-full h-48 object-cover" />
+              </div>
+            </div>
+          </div>
+          <!-- Floating accent -->
+          <div class="absolute -bottom-6 -left-6 w-28 h-28 bg-jam-gold rounded-2xl flex items-center justify-center shadow-2xl float-anim">
+            <div class="text-center">
+              <span class="text-3xl font-heading font-bold text-jam-black block">100%</span>
+              <span class="text-xs font-bold text-jam-black/70 uppercase tracking-wider">Recommended</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Text -->
+        <div class="slide-right">
+          <p class="font-script text-jam-gold text-2xl mb-3">Our Story</p>
+          <h2 class="font-heading text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
+            Bringing the <span class="text-jam-green">Heart of Jamaica</span> to Michigan
+          </h2>
+          <div class="w-20 h-1 bg-jam-gold rounded-full mb-8"></div>
+          <p class="text-white/80 text-lg leading-relaxed mb-6">
+            At Jamaican Spice, every meal is a celebration of our heritage. We use authentic recipes passed down through generations, prepared with the freshest ingredients and the same passion that fills kitchens across Kingston and Montego Bay.
+          </p>
+          <p class="text-white/80 text-lg leading-relaxed mb-8">
+            From our signature jerk seasoning - slow-smoked over pimento wood - to our rich, tender oxtail braised for hours, we pour love into every plate. We are proud to be Ypsilanti's home for real Jamaican cooking, and a beloved gathering place for the community.
+          </p>
+          <div class="grid grid-cols-2 gap-6 mb-10">
+            <div class="flex items-start gap-3">
+              <div class="w-10 h-10 rounded-full bg-jam-green/20 flex items-center justify-center flex-shrink-0 mt-1">
+                <span class="text-jam-green text-lg">&#10003;</span>
+              </div>
+              <div>
+                <p class="text-white font-semibold text-sm">Family Recipes</p>
+                <p class="text-white/50 text-xs">Passed down for generations</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="w-10 h-10 rounded-full bg-jam-green/20 flex items-center justify-center flex-shrink-0 mt-1">
+                <span class="text-jam-green text-lg">&#10003;</span>
+              </div>
+              <div>
+                <p class="text-white font-semibold text-sm">Made Fresh Daily</p>
+                <p class="text-white/50 text-xs">No shortcuts, no frozen</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="w-10 h-10 rounded-full bg-jam-green/20 flex items-center justify-center flex-shrink-0 mt-1">
+                <span class="text-jam-green text-lg">&#10003;</span>
+              </div>
+              <div>
+                <p class="text-white font-semibold text-sm">Authentic Spices</p>
+                <p class="text-white/50 text-xs">Imported from Jamaica</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="w-10 h-10 rounded-full bg-jam-green/20 flex items-center justify-center flex-shrink-0 mt-1">
+                <span class="text-jam-green text-lg">&#10003;</span>
+              </div>
+              <div>
+                <p class="text-white font-semibold text-sm">Community First</p>
+                <p class="text-white/50 text-xs">30+ five-star reviews</p>
+              </div>
+            </div>
+          </div>
+          <a href="#menu" class="inline-flex items-center gap-2 text-jam-gold hover:text-jam-gold-lt font-semibold transition-colors group">
+            <span>Explore Our Menu</span>
+            <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== HIGHLIGHT BANNER ==================== -->
+  <section class="relative py-20 overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-r from-jam-green-dk via-jam-green to-jam-green-dk"></div>
+    <div class="absolute inset-0 tropical-pattern opacity-30"></div>
+    <div class="relative z-10 max-w-5xl mx-auto px-4 text-center">
+      <h2 class="font-heading text-3xl md:text-5xl font-bold text-white mb-4 fade-up">
+        "The best Jamaican food I've <br class="hidden md:block"/>ever had outside Jamaica"
+      </h2>
+      <p class="text-white/80 text-lg mb-8 fade-up">- Every single one of our customers</p>
+      <div class="flex flex-wrap items-center justify-center gap-8 fade-up">
+        <div class="text-center">
+          <span class="text-4xl font-heading font-bold text-jam-gold block">100%</span>
+          <span class="text-white/70 text-sm">Recommendation Rate</span>
+        </div>
+        <div class="w-px h-12 bg-white/20 hidden sm:block"></div>
+        <div class="text-center">
+          <span class="text-4xl font-heading font-bold text-jam-gold block">30+</span>
+          <span class="text-white/70 text-sm">5-Star Reviews</span>
+        </div>
+        <div class="w-px h-12 bg-white/20 hidden sm:block"></div>
+        <div class="text-center">
+          <span class="text-4xl font-heading font-bold text-jam-gold block">5+</span>
+          <span class="text-white/70 text-sm">Years Serving Ypsi</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== CATERING ==================== -->
+  <section id="catering" class="py-20 md:py-28 bg-jam-cream relative">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+        <!-- Text -->
+        <div class="slide-left">
+          <p class="font-script text-jam-green text-xl mb-2">Bring the Island to Your Event</p>
+          <h2 class="font-heading text-4xl md:text-5xl font-bold text-jam-black mb-6 leading-tight">
+            Jamaican <span class="text-jam-gold-dk">Catering</span>
+          </h2>
+          <div class="w-20 h-1 bg-jam-green rounded-full mb-8"></div>
+          <p class="text-jam-black/70 text-lg leading-relaxed mb-6">
+            Make your next event unforgettable with authentic Jamaican cuisine. Whether it's a corporate lunch, wedding reception, birthday party, or community gathering - we bring the full island experience to you.
+          </p>
+          <ul class="space-y-4 mb-10">
+            <li class="flex items-center gap-3">
+              <div class="w-8 h-8 rounded-full bg-jam-gold/20 flex items-center justify-center flex-shrink-0">
+                <span class="text-jam-gold-dk font-bold text-sm">&#10003;</span>
+              </div>
+              <span class="text-jam-black/80">Weddings & receptions</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <div class="w-8 h-8 rounded-full bg-jam-gold/20 flex items-center justify-center flex-shrink-0">
+                <span class="text-jam-gold-dk font-bold text-sm">&#10003;</span>
+              </div>
+              <span class="text-jam-black/80">Corporate events & office lunches</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <div class="w-8 h-8 rounded-full bg-jam-gold/20 flex items-center justify-center flex-shrink-0">
+                <span class="text-jam-gold-dk font-bold text-sm">&#10003;</span>
+              </div>
+              <span class="text-jam-black/80">Birthday parties & family reunions</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <div class="w-8 h-8 rounded-full bg-jam-gold/20 flex items-center justify-center flex-shrink-0">
+                <span class="text-jam-gold-dk font-bold text-sm">&#10003;</span>
+              </div>
+              <span class="text-jam-black/80">Custom menus for any group size</span>
+            </li>
+          </ul>
+          <a href="#contact" class="inline-flex items-center gap-2 bg-jam-black hover:bg-jam-brown text-white font-bold py-4 px-10 rounded-full text-lg transition-all hover:scale-105 shadow-lg">
+            <span>Get a Catering Quote</span>
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+          </a>
+        </div>
+
+        <!-- Image -->
+        <div class="slide-right relative">
+          <div class="rounded-3xl overflow-hidden shadow-2xl">
+            <img src="https://images.unsplash.com/photo-1555244162-803834f70033?w=700&q=80" alt="Catering spread" class="w-full h-[500px] object-cover" />
+          </div>
+          <div class="absolute -bottom-6 -right-6 bg-jam-green text-white rounded-2xl p-6 shadow-2xl max-w-[220px] float-anim">
+            <p class="font-heading text-lg font-bold mb-1">Catering for 10-500+</p>
+            <p class="text-white/80 text-sm">Full-service or drop-off available</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== TESTIMONIALS ==================== -->
+  <section id="reviews" class="py-20 md:py-28 bg-jam-black relative overflow-hidden">
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-jam-gold/3 rounded-full blur-3xl"></div>
+
+    <div class="max-w-6xl mx-auto px-4 relative z-10">
+      <div class="text-center mb-16">
+        <p class="font-script text-jam-gold text-xl mb-2 fade-up">What People Say</p>
+        <h2 class="font-heading text-4xl md:text-5xl font-bold text-white mb-4 fade-up">Our Customers Love Us</h2>
+        <div class="flex items-center justify-center gap-3 fade-up">
+          <span class="w-16 h-0.5 bg-jam-gold"></span>
+          <span class="text-jam-gold text-xl">&#9733; &#9733; &#9733; &#9733; &#9733;</span>
+          <span class="w-16 h-0.5 bg-jam-gold"></span>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 stagger-children">
+        <div class="testimonial-card rounded-2xl p-8 shadow-lg fade-up">
+          <div class="flex gap-1 mb-4">
+            <span class="text-jam-gold">&#9733;</span><span class="text-jam-gold">&#9733;</span><span class="text-jam-gold">&#9733;</span><span class="text-jam-gold">&#9733;</span><span class="text-jam-gold">&#9733;</span>
+          </div>
+          <p class="text-jam-black/80 mb-6 leading-relaxed italic">"Absolutely incredible jerk chicken! The flavors took me right back to my grandmother's kitchen in Kingston. This is the real deal - nothing else in the Ann Arbor area comes close."</p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-jam-green flex items-center justify-center text-white font-bold text-sm">DW</div>
+            <div>
+              <p class="font-bold text-sm text-jam-black">Denise W.</p>
+              <p class="text-jam-black/50 text-xs">Local Review</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card rounded-2xl p-8 shadow-lg fade-up">
+          <div class="flex gap-1 mb-4">
+            <span class="text-jam-gold">&#9733;</span><span class="text-jam-gold">&#9733;</span><span class="text-jam-gold">&#9733;</span><span class="text-jam-gold">&#9733;</span><span class="text-jam-gold">&#9733;</span>
+          </div>
+          <p class="text-jam-black/80 mb-6 leading-relaxed italic">"We had Jamaican Spice cater our wedding and our guests are STILL talking about it. The oxtail was perfection. They made our special day so much more memorable."</p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-jam-gold flex items-center justify-center text-jam-black font-bold text-sm">MJ</div>
+            <div>
+              <p class="font-bold text-sm text-jam-black">Marcus & Jasmine</p>
+              <p class="text-jam-black/50 text-xs">Catering Client</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card rounded-2xl p-8 shadow-lg fade-up">
+          <div class="flex gap-1 mb-4">
+            <span class="text-jam-gold">&#9733;</span><span class="text-jam-gold">&#9733;</span><span class="text-jam-gold">&#9733;</span><span class="text-jam-gold">&#9733;</span><span class="text-jam-gold">&#9733;</span>
+          </div>
+          <p class="text-jam-black/80 mb-6 leading-relaxed italic">"I eat here at least once a week. The curry goat is life-changing and the patties are always fresh and flaky. The staff treats you like family every single time."</p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-jam-orange flex items-center justify-center text-white font-bold text-sm">TL</div>
+            <div>
+              <p class="font-bold text-sm text-jam-black">Terrence L.</p>
+              <p class="text-jam-black/50 text-xs">Regular Customer</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== ONLINE ORDERING CTA ==================== -->
+  <section id="order" class="py-20 md:py-28 relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-jam-gold via-jam-gold-dk to-jam-gold"></div>
+    <div class="absolute inset-0 gold-stripe opacity-50"></div>
+
+    <div class="relative z-10 max-w-4xl mx-auto px-4 text-center">
+      <div class="fade-up">
+        <span class="text-6xl mb-6 block">&#127834;</span>
+        <h2 class="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-jam-black mb-6">Ready to Eat?</h2>
+        <p class="text-jam-black/70 text-lg md:text-xl max-w-2xl mx-auto mb-10">
+          Skip the wait — order online for pickup or delivery and enjoy authentic Jamaican flavors from the comfort of your home.
+        </p>
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a href="#" class="bg-jam-black hover:bg-jam-brown text-white font-bold py-4 px-12 rounded-full text-lg transition-all hover:scale-105 shadow-xl inline-flex items-center gap-3">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 100 4 2 2 0 000-4z"/></svg>
+            <span>Order Online Now</span>
+          </a>
+          <a href="tel:+17345555375" class="border-2 border-jam-black/30 hover:border-jam-black text-jam-black font-semibold py-4 px-12 rounded-full text-lg transition-all hover:scale-105 inline-flex items-center gap-3">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+            <span>Call to Order</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== INSTAGRAM / GALLERY ==================== -->
+  <section class="py-20 md:py-24 bg-jam-cream">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="text-center mb-12">
+        <p class="font-script text-jam-green text-xl mb-2 fade-up">Follow the Flavor</p>
+        <h2 class="font-heading text-3xl md:text-4xl font-bold text-jam-black mb-2 fade-up">@JamaicanSpiceYpsi</h2>
+        <p class="text-jam-black/60 fade-up">Fresh plates, happy faces, and island vibes on the daily</p>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 stagger-children">
+        <div class="photo-item aspect-square fade-up">
+          <img src="https://images.unsplash.com/photo-1432139509613-5c4255a1d1f6?w=400&q=80" alt="Jerk chicken plate" class="w-full h-full object-cover" />
+        </div>
+        <div class="photo-item aspect-square fade-up">
+          <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400&q=80" alt="Oxtail dinner" class="w-full h-full object-cover" />
+        </div>
+        <div class="photo-item aspect-square fade-up">
+          <img src="https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?w=400&q=80" alt="Fresh tropical dish" class="w-full h-full object-cover" />
+        </div>
+        <div class="photo-item aspect-square fade-up">
+          <img src="https://images.unsplash.com/photo-1559847844-5315695dadae?w=400&q=80" alt="Festival and sides" class="w-full h-full object-cover" />
+        </div>
+      </div>
+      <div class="text-center mt-8 fade-up">
+        <a href="#" class="inline-flex items-center gap-2 text-jam-green hover:text-jam-green-dk font-semibold transition-colors group">
+          <span>Follow Us on Instagram</span>
+          <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== LOCATION & CONTACT ==================== -->
+  <section id="contact" class="py-20 md:py-28 bg-jam-black relative">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="text-center mb-16">
+        <p class="font-script text-jam-gold text-xl mb-2 fade-up">Come Visit Us</p>
+        <h2 class="font-heading text-4xl md:text-5xl font-bold text-white mb-4 fade-up">Find Us in Ypsilanti</h2>
+        <div class="flex items-center justify-center gap-3 fade-up">
+          <span class="w-16 h-0.5 bg-jam-green"></span>
+          <span class="text-jam-gold text-xl">&#127796;</span>
+          <span class="w-16 h-0.5 bg-jam-green"></span>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <!-- Map -->
+        <div class="rounded-2xl overflow-hidden shadow-2xl h-[400px] lg:h-full min-h-[400px] fade-up">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d94487.48547815885!2d-83.67!3d42.24!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x883ca58675443e07%3A0x1e0e416d tried234!2sYpsilanti%2C+MI!5e0!3m2!1sen!2sus!4v1680000000000!5m2!1sen!2sus"
+            width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+            title="Jamaican Spice location in Ypsilanti, MI"
+          ></iframe>
+        </div>
+
+        <!-- Contact Details -->
+        <div class="space-y-8 fade-up">
+          <div>
+            <h3 class="font-heading text-2xl font-bold text-white mb-6">Get in Touch</h3>
+            <div class="space-y-6">
+              <div class="flex items-start gap-4">
+                <div class="w-12 h-12 rounded-xl bg-jam-green/15 flex items-center justify-center flex-shrink-0">
+                  <svg class="w-6 h-6 text-jam-green" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                </div>
+                <div>
+                  <p class="text-white font-semibold">Address</p>
+                  <p class="text-white/60">Ypsilanti, Michigan 48197</p>
+                  <p class="text-white/40 text-sm mt-1">Just minutes from Ann Arbor & EMU campus</p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-4">
+                <div class="w-12 h-12 rounded-xl bg-jam-gold/15 flex items-center justify-center flex-shrink-0">
+                  <svg class="w-6 h-6 text-jam-gold" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                </div>
+                <div>
+                  <p class="text-white font-semibold">Phone</p>
+                  <p class="text-white/60">(734) 555-JERK</p>
+                  <p class="text-white/40 text-sm mt-1">Call ahead for large orders</p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-4">
+                <div class="w-12 h-12 rounded-xl bg-jam-orange/15 flex items-center justify-center flex-shrink-0">
+                  <svg class="w-6 h-6 text-jam-orange" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                </div>
+                <div>
+                  <p class="text-white font-semibold">Email</p>
+                  <p class="text-white/60">info@jamaicanspiceypsi.com</p>
+                  <p class="text-white/40 text-sm mt-1">Catering inquiries welcome</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Hours -->
+          <div class="bg-white/5 rounded-2xl p-8 border border-white/10">
+            <h4 class="font-heading text-xl font-bold text-jam-gold mb-4">Hours of Operation</h4>
+            <div class="space-y-3">
+              <div class="flex justify-between items-center">
+                <span class="text-white/80">Monday - Thursday</span>
+                <span class="text-white font-semibold">11:00 AM - 9:00 PM</span>
+              </div>
+              <div class="w-full h-px bg-white/10"></div>
+              <div class="flex justify-between items-center">
+                <span class="text-white/80">Friday - Saturday</span>
+                <span class="text-jam-green font-semibold">11:00 AM - 10:00 PM</span>
+              </div>
+              <div class="w-full h-px bg-white/10"></div>
+              <div class="flex justify-between items-center">
+                <span class="text-white/80">Sunday</span>
+                <span class="text-white font-semibold">12:00 PM - 8:00 PM</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Social -->
+          <div>
+            <p class="text-white/50 text-sm mb-3 uppercase tracking-wider">Follow Us</p>
+            <div class="flex gap-4">
+              <a href="#" class="w-12 h-12 rounded-xl bg-white/10 hover:bg-jam-green transition-colors flex items-center justify-center group">
+                <svg class="w-5 h-5 text-white/70 group-hover:text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+              </a>
+              <a href="#" class="w-12 h-12 rounded-xl bg-white/10 hover:bg-gradient-to-br hover:from-purple-500 hover:to-pink-500 transition-all flex items-center justify-center group">
+                <svg class="w-5 h-5 text-white/70 group-hover:text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+              </a>
+              <a href="#" class="w-12 h-12 rounded-xl bg-white/10 hover:bg-jam-gold transition-colors flex items-center justify-center group">
+                <svg class="w-5 h-5 text-white/70 group-hover:text-jam-black" fill="currentColor" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 0010.86 4.46 6.3 6.3 0 001.86-4.48V8.73a8.3 8.3 0 004.87 1.56V6.84a4.85 4.85 0 01-1.15-.15z"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="bg-jam-brown py-12">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+        <div>
+          <div class="flex items-center gap-3 mb-3">
+            <div class="w-10 h-10 rounded-full bg-jam-gold flex items-center justify-center">
+              <span class="text-jam-black font-bold text-lg">JS</span>
+            </div>
+            <span class="text-white font-heading font-bold text-xl">Jamaican Spice LLC</span>
+          </div>
+          <p class="text-white/50 text-sm">Authentic Jamaican cuisine in Ypsilanti, Michigan. Bringing the taste of the islands to your table since day one.</p>
+        </div>
+        <div class="text-center">
+          <p class="text-white/50 text-sm">Ypsilanti, MI 48197</p>
+          <p class="text-white/50 text-sm mt-1">(734) 555-JERK</p>
+          <p class="text-white/50 text-sm mt-1">info@jamaicanspiceypsi.com</p>
+        </div>
+        <div class="text-center md:text-right">
+          <a href="#order" class="inline-block bg-jam-gold hover:bg-jam-gold-lt text-jam-black font-bold py-3 px-8 rounded-full text-sm transition-all hover:scale-105">
+            Order Now
+          </a>
+        </div>
+      </div>
+      <div class="flag-bar w-full mt-10 mb-6 rounded-full"></div>
+      <p class="text-center text-white/30 text-xs">&copy; 2026 Jamaican Spice LLC. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- ==================== JAVASCRIPT ==================== -->
+  <script>
+    // Scroll animations (IntersectionObserver)
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.fade-up, .fade-in, .slide-left, .slide-right, .scale-in').forEach(el => {
+      observer.observe(el);
+    });
+
+    // Navbar scroll effect
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 80) {
+        navbar.classList.add('nav-scrolled');
+      } else {
+        navbar.classList.remove('nav-scrolled');
+      }
+    });
+
+    // Mobile menu
+    const menuToggle = document.getElementById('menu-toggle');
+    const menuClose = document.getElementById('menu-close');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuOverlay = document.getElementById('menu-overlay');
+    const mobileLinks = document.querySelectorAll('.mobile-link');
+
+    function openMenu() {
+      mobileMenu.classList.add('open');
+      menuOverlay.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeMenu() {
+      mobileMenu.classList.remove('open');
+      menuOverlay.classList.add('hidden');
+      document.body.style.overflow = '';
+    }
+
+    menuToggle.addEventListener('click', openMenu);
+    menuClose.addEventListener('click', closeMenu);
+    menuOverlay.addEventListener('click', closeMenu);
+    mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    // Counter animation for stats
+    function animateCounters() {
+      const counters = document.querySelectorAll('[data-count]');
+      counters.forEach(counter => {
+        const target = parseInt(counter.dataset.count);
+        let current = 0;
+        const increment = target / 50;
+        const timer = setInterval(() => {
+          current += increment;
+          if (current >= target) {
+            counter.textContent = target;
+            clearInterval(timer);
+          } else {
+            counter.textContent = Math.floor(current);
+          }
+        }, 30);
+      });
+    }
+  </script>
+
+</body>
+</html>

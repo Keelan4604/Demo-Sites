@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>8:30 Beer Challenge</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- Animated background layers -->
+  <div class="bg-gradient"></div>
+  <canvas id="bubbleCanvas" class="bubble-canvas"></canvas>
+
+  <!-- Confetti canvas (hidden until celebration) -->
+  <canvas id="confettiCanvas" class="confetti-canvas"></canvas>
+
+  <!-- ========== SCREEN: SETUP ========== -->
+  <div id="setupScreen" class="screen active">
+    <div class="logo-section">
+      <div class="beer-icon-wrap">
+        <div class="beer-icon">🍺</div>
+      </div>
+      <h1 class="logo-title">8<span class="colon-blink">:</span>30</h1>
+      <p class="logo-sub">BEER CHALLENGE</p>
+    </div>
+
+    <div class="glass-card setup-card">
+      <h2>Add Players</h2>
+      <p class="hint">Everyone drinks. Everyone finishes. Or nobody moves on.</p>
+
+      <div class="player-input-row">
+        <input type="text" id="playerNameInput" placeholder="Enter player name..." maxlength="20" autocomplete="off" />
+        <button id="addPlayerBtn" class="btn btn-amber">Add</button>
+      </div>
+
+      <div id="playerList" class="player-chips"></div>
+
+      <div class="quick-add">
+        <span class="hint">Quick add:</span>
+        <button class="btn btn-ghost btn-sm" data-quick="2">2 Players</button>
+        <button class="btn btn-ghost btn-sm" data-quick="4">4 Players</button>
+        <button class="btn btn-ghost btn-sm" data-quick="6">6 Players</button>
+      </div>
+
+      <button id="startGameBtn" class="btn btn-primary btn-lg" disabled>
+        <span>Start Challenge</span>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+      </button>
+    </div>
+
+    <div class="rules-card glass-card">
+      <h3>How It Works</h3>
+      <div class="rules-grid">
+        <div class="rule">
+          <div class="rule-num">1</div>
+          <p>Everyone cracks a beer and the 8:30 timer starts</p>
+        </div>
+        <div class="rule">
+          <div class="rule-num">2</div>
+          <p>Finish your beer before time runs out</p>
+        </div>
+        <div class="rule">
+          <div class="rule-num">3</div>
+          <p>If <strong>everyone</strong> finishes, the round is complete</p>
+        </div>
+        <div class="rule">
+          <div class="rule-num">4</div>
+          <p>Crack another and go again — how many rounds can you survive?</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== SCREEN: GAME ========== -->
+  <div id="gameScreen" class="screen">
+    <header class="game-header">
+      <div class="header-left">
+        <span class="round-badge" id="roundBadge">ROUND 1</span>
+      </div>
+      <h1 class="header-title">8<span class="colon-blink">:</span>30</h1>
+      <button id="menuBtn" class="btn btn-ghost btn-icon" title="Menu">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </header>
+
+    <!-- Timer Section -->
+    <div class="timer-section">
+      <div class="timer-ring-wrap">
+        <svg class="timer-ring" viewBox="0 0 200 200">
+          <circle class="timer-ring-bg" cx="100" cy="100" r="90" />
+          <circle class="timer-ring-progress" id="timerRingProgress" cx="100" cy="100" r="90" />
+        </svg>
+        <div class="timer-inner">
+          <div class="timer-display" id="timerDisplay">08:30</div>
+          <div class="timer-label" id="timerLabel">TAP TO START</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Beer Glass Fill Visual -->
+    <div class="beer-glass-section">
+      <div class="beer-glass">
+        <div class="beer-fill" id="beerFill">
+          <div class="beer-foam"></div>
+          <div class="beer-liquid"></div>
+        </div>
+        <div class="glass-shine"></div>
+      </div>
+      <p class="beer-label" id="beerLabel">Full beer — ready to drink!</p>
+    </div>
+
+    <!-- Controls -->
+    <div class="controls-row">
+      <button id="startPauseBtn" class="btn btn-primary btn-lg">
+        <svg class="icon-play" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        <svg class="icon-pause" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="6" y1="4" x2="6" y2="20"/><line x1="18" y1="4" x2="18" y2="20"/></svg>
+        <span id="startPauseText">Start</span>
+      </button>
+      <button id="resetBtn" class="btn btn-ghost btn-lg">Reset</button>
+    </div>
+
+    <!-- Players Grid -->
+    <div class="glass-card players-card">
+      <h2>Players <span id="survivorCount" class="survivor-count"></span></h2>
+      <div id="playersGrid" class="players-grid"></div>
+    </div>
+
+    <!-- Round Complete Button -->
+    <button id="roundCompleteBtn" class="btn btn-success btn-xl round-complete-btn">
+      <span>Everyone Finished! Next Round</span>
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+    </button>
+
+    <!-- History -->
+    <div class="glass-card history-card">
+      <h2>Round History</h2>
+      <div id="historyList" class="history-list">
+        <p class="hint">No rounds completed yet. Let's go!</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== SCREEN: GAME OVER ========== -->
+  <div id="gameOverScreen" class="screen">
+    <div class="game-over-content">
+      <div class="trophy">🏆</div>
+      <h1 class="game-over-title">Challenge Complete!</h1>
+      <div class="final-stats glass-card">
+        <div class="stat-big">
+          <span class="stat-number" id="finalRounds">0</span>
+          <span class="stat-label">Rounds Survived</span>
+        </div>
+        <div class="stat-big">
+          <span class="stat-number" id="finalBeers">0</span>
+          <span class="stat-label">Total Beers</span>
+        </div>
+        <div class="stat-big">
+          <span class="stat-number" id="finalTime">0:00</span>
+          <span class="stat-label">Total Time</span>
+        </div>
+      </div>
+      <div id="finalPlayerStats" class="final-player-stats"></div>
+      <div class="game-over-actions">
+        <button id="playAgainBtn" class="btn btn-primary btn-lg">Play Again</button>
+        <button id="newPlayersBtn" class="btn btn-ghost btn-lg">New Players</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== MENU OVERLAY ========== -->
+  <div id="menuOverlay" class="overlay">
+    <div class="overlay-content glass-card">
+      <h2>Menu</h2>
+      <button id="endGameBtn" class="btn btn-danger btn-lg btn-full">End Challenge</button>
+      <button id="resetGameBtn" class="btn btn-ghost btn-lg btn-full">Reset Current Round</button>
+      <button id="closeMenuBtn" class="btn btn-ghost btn-lg btn-full">Close</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

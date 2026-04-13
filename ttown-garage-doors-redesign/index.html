@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>T-Town Garage Doors and More | Tuscaloosa's Trusted Garage Door Experts</title>
+  <meta name="description" content="Tuscaloosa's premier garage door installation, repair, and maintenance company. Commercial, industrial, and residential. Same day emergency service available." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            charcoal: { 50: '#f6f6f6', 100: '#e7e7e7', 200: '#d1d1d1', 300: '#b0b0b0', 400: '#888888', 500: '#6d6d6d', 600: '#5d5d5d', 700: '#4f4f4f', 800: '#3d3d3d', 900: '#2a2a2a', 950: '#1a1a1a' },
+            amber: { 50: '#fff8eb', 100: '#ffecc6', 200: '#ffd688', 300: '#ffbc4b', 400: '#ffa520', 500: '#f58a07', 600: '#d96602', 700: '#b44506', 800: '#92350c', 900: '#78290d', 950: '#45140a' },
+          },
+          fontFamily: {
+            heading: ['"Inter"', 'system-ui', 'sans-serif'],
+            body: ['"Inter"', 'system-ui', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <style>
+    * { font-family: 'Inter', system-ui, sans-serif; }
+    html { scroll-behavior: smooth; }
+
+    /* Animations */
+    .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+    .fade-left { opacity: 0; transform: translateX(-30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .fade-left.visible { opacity: 1; transform: translateX(0); }
+    .fade-right { opacity: 0; transform: translateX(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .fade-right.visible { opacity: 1; transform: translateX(0); }
+    .scale-in { opacity: 0; transform: scale(0.9); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .scale-in.visible { opacity: 1; transform: scale(1); }
+
+    /* Hero background */
+    .hero-bg {
+      background: linear-gradient(135deg, rgba(26,26,26,0.92) 0%, rgba(42,42,42,0.88) 50%, rgba(26,26,26,0.95) 100%),
+                  url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="g" patternUnits="userSpaceOnUse" width="20" height="20"><rect width="20" height="20" fill="none"/><path d="M0 20L20 0M-5 5L5 -5M15 25L25 15" stroke="rgba(245,138,7,0.05)" stroke-width="1"/></pattern></defs><rect fill="url(%23g)" width="100" height="100"/></svg>');
+      background-size: cover, 200px 200px;
+    }
+
+    /* Service card hover */
+    .service-card { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    .service-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.2); }
+    .service-card .icon-wrap { transition: background-color 0.3s ease, transform 0.3s ease; }
+    .service-card:hover .icon-wrap { background-color: #f58a07; transform: scale(1.1); }
+    .service-card:hover .icon-wrap i { color: white !important; }
+
+    /* Gallery */
+    .gallery-item { overflow: hidden; border-radius: 12px; }
+    .gallery-item img { transition: transform 0.5s ease; }
+    .gallery-item:hover img { transform: scale(1.08); }
+
+    /* Stat counter */
+    .stat-number { font-variant-numeric: tabular-nums; }
+
+    /* Sticky header background */
+    .nav-scrolled { background: rgba(26,26,26,0.98) !important; backdrop-filter: blur(12px); box-shadow: 0 2px 20px rgba(0,0,0,0.3); }
+
+    /* CTA pulse */
+    @keyframes pulse-ring {
+      0% { transform: scale(1); opacity: 1; }
+      100% { transform: scale(1.4); opacity: 0; }
+    }
+    .cta-pulse::before {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      border-radius: inherit;
+      background: #f58a07;
+      animation: pulse-ring 2s ease-out infinite;
+      z-index: -1;
+    }
+
+    /* Diagonal section */
+    .diagonal-top { clip-path: polygon(0 40px, 100% 0, 100% 100%, 0 100%); }
+    .diagonal-bottom { clip-path: polygon(0 0, 100% 0, 100% calc(100% - 40px), 0 100%); }
+
+    /* Testimonial card */
+    .testimonial-card { transition: transform 0.3s ease; }
+    .testimonial-card:hover { transform: translateY(-4px); }
+
+    /* Mobile menu */
+    .mobile-menu { transform: translateX(100%); transition: transform 0.35s ease; }
+    .mobile-menu.open { transform: translateX(0); }
+
+    /* Before/After slider */
+    .ba-slider { position: relative; overflow: hidden; cursor: col-resize; }
+    .ba-slider .ba-after { position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; }
+    .ba-slider .ba-handle {
+      position: absolute; top: 0; width: 4px; height: 100%; background: #f58a07;
+      cursor: col-resize; z-index: 10; transform: translateX(-50%);
+    }
+    .ba-slider .ba-handle::after {
+      content: '\f337'; font-family: 'Font Awesome 6 Free'; font-weight: 900;
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      background: #f58a07; color: white; width: 40px; height: 40px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; font-size: 14px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
+
+    /* Form focus */
+    .form-input:focus { border-color: #f58a07; box-shadow: 0 0 0 3px rgba(245,138,7,0.15); }
+  </style>
+</head>
+<body class="bg-charcoal-950 text-white antialiased">
+
+  <!-- Emergency Banner -->
+  <div class="bg-amber-500 text-charcoal-950 py-2 text-center text-sm font-semibold tracking-wide">
+    <div class="container mx-auto px-4 flex items-center justify-center gap-2 flex-wrap">
+      <i class="fas fa-bolt"></i>
+      <span>SAME DAY EMERGENCY SERVICE AVAILABLE</span>
+      <span class="mx-2 hidden sm:inline">|</span>
+      <a href="tel:+12055551234" class="font-bold hover:underline flex items-center gap-1">
+        <i class="fas fa-phone"></i> (205) 555-1234
+      </a>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <nav id="navbar" class="sticky top-0 z-50 bg-charcoal-950/80 backdrop-blur-md transition-all duration-300">
+    <div class="container mx-auto px-4 lg:px-8">
+      <div class="flex items-center justify-between h-16 lg:h-20">
+        <!-- Logo -->
+        <a href="#" class="flex items-center gap-3 group">
+          <div class="w-10 h-10 lg:w-12 lg:h-12 bg-amber-500 rounded-lg flex items-center justify-center transform group-hover:rotate-3 transition-transform">
+            <i class="fas fa-warehouse text-charcoal-950 text-lg lg:text-xl"></i>
+          </div>
+          <div class="leading-tight">
+            <span class="text-lg lg:text-xl font-extrabold tracking-tight">T-Town</span>
+            <span class="block text-[10px] lg:text-xs text-charcoal-300 font-medium tracking-widest uppercase">Garage Doors &amp; More</span>
+          </div>
+        </a>
+
+        <!-- Desktop Nav -->
+        <div class="hidden lg:flex items-center gap-8">
+          <a href="#services" class="text-sm font-medium text-charcoal-200 hover:text-amber-400 transition-colors">Services</a>
+          <a href="#gallery" class="text-sm font-medium text-charcoal-200 hover:text-amber-400 transition-colors">Gallery</a>
+          <a href="#about" class="text-sm font-medium text-charcoal-200 hover:text-amber-400 transition-colors">About</a>
+          <a href="#reviews" class="text-sm font-medium text-charcoal-200 hover:text-amber-400 transition-colors">Reviews</a>
+          <a href="#areas" class="text-sm font-medium text-charcoal-200 hover:text-amber-400 transition-colors">Service Area</a>
+          <a href="#contact" class="text-sm font-medium text-charcoal-200 hover:text-amber-400 transition-colors">Contact</a>
+        </div>
+
+        <!-- CTA + Mobile Toggle -->
+        <div class="flex items-center gap-4">
+          <a href="tel:+12055551234" class="hidden md:flex items-center gap-2 bg-amber-500 hover:bg-amber-600 text-charcoal-950 font-bold px-5 py-2.5 rounded-lg transition-colors text-sm">
+            <i class="fas fa-phone-volume"></i>
+            (205) 555-1234
+          </a>
+          <button id="menuBtn" class="lg:hidden w-10 h-10 flex items-center justify-center text-charcoal-200 hover:text-amber-400">
+            <i class="fas fa-bars text-xl"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div id="mobileMenu" class="mobile-menu fixed inset-y-0 right-0 w-72 bg-charcoal-900 z-[60] shadow-2xl p-8">
+    <button id="closeMenu" class="absolute top-4 right-4 w-10 h-10 flex items-center justify-center text-charcoal-300 hover:text-white">
+      <i class="fas fa-times text-xl"></i>
+    </button>
+    <div class="mt-12 flex flex-col gap-6">
+      <a href="#services" class="text-lg font-medium text-charcoal-200 hover:text-amber-400 mobile-link">Services</a>
+      <a href="#gallery" class="text-lg font-medium text-charcoal-200 hover:text-amber-400 mobile-link">Gallery</a>
+      <a href="#about" class="text-lg font-medium text-charcoal-200 hover:text-amber-400 mobile-link">About</a>
+      <a href="#reviews" class="text-lg font-medium text-charcoal-200 hover:text-amber-400 mobile-link">Reviews</a>
+      <a href="#areas" class="text-lg font-medium text-charcoal-200 hover:text-amber-400 mobile-link">Service Area</a>
+      <a href="#contact" class="text-lg font-medium text-charcoal-200 hover:text-amber-400 mobile-link">Contact</a>
+      <a href="tel:+12055551234" class="mt-4 flex items-center justify-center gap-2 bg-amber-500 text-charcoal-950 font-bold px-5 py-3 rounded-lg">
+        <i class="fas fa-phone-volume"></i> (205) 555-1234
+      </a>
+    </div>
+  </div>
+  <div id="menuOverlay" class="fixed inset-0 bg-black/50 z-[55] hidden"></div>
+
+  <!-- Hero Section -->
+  <section class="hero-bg relative min-h-[90vh] flex items-center overflow-hidden">
+    <!-- Animated geometric shapes -->
+    <div class="absolute inset-0 overflow-hidden pointer-events-none">
+      <div class="absolute top-20 right-10 w-72 h-72 bg-amber-500/5 rounded-full blur-3xl"></div>
+      <div class="absolute bottom-20 left-10 w-96 h-96 bg-amber-500/3 rounded-full blur-3xl"></div>
+      <div class="absolute top-1/3 left-1/4 w-px h-40 bg-gradient-to-b from-transparent via-amber-500/20 to-transparent"></div>
+      <div class="absolute top-1/4 right-1/3 w-px h-56 bg-gradient-to-b from-transparent via-amber-500/10 to-transparent"></div>
+    </div>
+
+    <div class="container mx-auto px-4 lg:px-8 py-20 relative z-10">
+      <div class="max-w-3xl">
+        <div class="fade-up inline-flex items-center gap-2 bg-amber-500/10 border border-amber-500/20 rounded-full px-4 py-2 mb-6">
+          <span class="w-2 h-2 bg-amber-500 rounded-full animate-pulse"></span>
+          <span class="text-amber-400 text-sm font-medium">Tuscaloosa's Trusted Garage Door Experts</span>
+        </div>
+
+        <h1 class="fade-up text-4xl sm:text-5xl lg:text-7xl font-black leading-[1.05] tracking-tight mb-6" style="transition-delay: 0.1s">
+          Garage Doors
+          <span class="block text-amber-400">Done Right.</span>
+        </h1>
+
+        <p class="fade-up text-lg sm:text-xl text-charcoal-300 max-w-xl mb-8 leading-relaxed" style="transition-delay: 0.2s">
+          From emergency repairs to full commercial installations, we keep Tuscaloosa's doors opening and closing. Locally owned, fast response, quality you can count on.
+        </p>
+
+        <div class="fade-up flex flex-col sm:flex-row gap-4 mb-12" style="transition-delay: 0.3s">
+          <a href="tel:+12055551234" class="relative cta-pulse inline-flex items-center justify-center gap-3 bg-amber-500 hover:bg-amber-600 text-charcoal-950 font-bold px-8 py-4 rounded-xl text-lg transition-colors">
+            <i class="fas fa-phone-volume text-xl"></i>
+            <div class="text-left">
+              <span class="block text-xs font-medium opacity-70">Call Now 24/7</span>
+              <span class="block text-xl">(205) 555-1234</span>
+            </div>
+          </a>
+          <a href="#contact" class="inline-flex items-center justify-center gap-2 border-2 border-charcoal-600 hover:border-amber-500 text-white font-semibold px-8 py-4 rounded-xl transition-colors">
+            Get Free Estimate
+            <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+
+        <!-- Trust badges -->
+        <div class="fade-up flex flex-wrap gap-6 items-center" style="transition-delay: 0.4s">
+          <div class="flex items-center gap-2 text-charcoal-400">
+            <div class="flex text-amber-400 text-sm">
+              <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+            </div>
+            <span class="text-sm font-medium">5.0 on Google</span>
+          </div>
+          <div class="flex items-center gap-2 text-charcoal-400 text-sm">
+            <i class="fas fa-shield-halved text-amber-500"></i>
+            <span>Licensed &amp; Insured</span>
+          </div>
+          <div class="flex items-center gap-2 text-charcoal-400 text-sm">
+            <i class="fas fa-clock text-amber-500"></i>
+            <span>Same Day Service</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-50">
+      <span class="text-xs text-charcoal-400 uppercase tracking-widest">Scroll</span>
+      <div class="w-6 h-10 border-2 border-charcoal-600 rounded-full flex justify-center pt-2">
+        <div class="w-1.5 h-3 bg-amber-500 rounded-full animate-bounce"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Bar -->
+  <section class="bg-charcoal-900 border-y border-charcoal-800">
+    <div class="container mx-auto px-4 lg:px-8 py-10">
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="text-center fade-up">
+          <div class="stat-number text-3xl lg:text-4xl font-black text-amber-400" data-target="15">0</div>
+          <div class="text-sm text-charcoal-400 mt-1 font-medium">Years in Business</div>
+        </div>
+        <div class="text-center fade-up" style="transition-delay: 0.1s">
+          <div class="stat-number text-3xl lg:text-4xl font-black text-amber-400" data-target="5000">0</div>
+          <div class="text-sm text-charcoal-400 mt-1 font-medium">Doors Installed &amp; Repaired</div>
+        </div>
+        <div class="text-center fade-up" style="transition-delay: 0.2s">
+          <div class="stat-number text-3xl lg:text-4xl font-black text-amber-400" data-target="100">0</div>
+          <div class="text-sm text-charcoal-400 mt-1 font-medium">5-Star Reviews</div>
+        </div>
+        <div class="text-center fade-up" style="transition-delay: 0.3s">
+          <div class="text-3xl lg:text-4xl font-black text-amber-400">24/7</div>
+          <div class="text-sm text-charcoal-400 mt-1 font-medium">Emergency Service</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section id="services" class="py-20 lg:py-28 bg-charcoal-950">
+    <div class="container mx-auto px-4 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <div class="fade-up inline-flex items-center gap-2 text-amber-400 text-sm font-semibold uppercase tracking-widest mb-4">
+          <div class="w-8 h-px bg-amber-500"></div>
+          What We Do
+          <div class="w-8 h-px bg-amber-500"></div>
+        </div>
+        <h2 class="fade-up text-3xl lg:text-5xl font-extrabold mb-4">Our Services</h2>
+        <p class="fade-up text-charcoal-400 text-lg">Comprehensive garage door solutions for homes and businesses across West Alabama.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Service 1 -->
+        <div class="service-card fade-up bg-charcoal-900 border border-charcoal-800 rounded-2xl p-8 group">
+          <div class="icon-wrap w-14 h-14 bg-charcoal-800 rounded-xl flex items-center justify-center mb-6">
+            <i class="fas fa-plus-circle text-amber-400 text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3">New Installation</h3>
+          <p class="text-charcoal-400 leading-relaxed mb-4">Full garage door installation for new construction and replacements. Wide selection of styles, materials, and brands to match any property.</p>
+          <a href="#contact" class="inline-flex items-center gap-2 text-amber-400 font-medium text-sm hover:gap-3 transition-all">
+            Get a Quote <i class="fas fa-arrow-right text-xs"></i>
+          </a>
+        </div>
+
+        <!-- Service 2 -->
+        <div class="service-card fade-up bg-charcoal-900 border border-charcoal-800 rounded-2xl p-8 group" style="transition-delay: 0.1s">
+          <div class="icon-wrap w-14 h-14 bg-charcoal-800 rounded-xl flex items-center justify-center mb-6">
+            <i class="fas fa-wrench text-amber-400 text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Repair &amp; Service</h3>
+          <p class="text-charcoal-400 leading-relaxed mb-4">Broken springs, damaged panels, off-track doors, opener issues. We diagnose and fix it fast so you're not stuck waiting.</p>
+          <a href="#contact" class="inline-flex items-center gap-2 text-amber-400 font-medium text-sm hover:gap-3 transition-all">
+            Schedule Repair <i class="fas fa-arrow-right text-xs"></i>
+          </a>
+        </div>
+
+        <!-- Service 3 -->
+        <div class="service-card fade-up bg-charcoal-900 border border-charcoal-800 rounded-2xl p-8 group" style="transition-delay: 0.2s">
+          <div class="icon-wrap w-14 h-14 bg-charcoal-800 rounded-xl flex items-center justify-center mb-6">
+            <i class="fas fa-clipboard-check text-amber-400 text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Maintenance</h3>
+          <p class="text-charcoal-400 leading-relaxed mb-4">Annual tune-ups keep your door running smoothly and extend its life. Lubrication, balance check, safety inspection, and adjustments.</p>
+          <a href="#contact" class="inline-flex items-center gap-2 text-amber-400 font-medium text-sm hover:gap-3 transition-all">
+            Book Tune-Up <i class="fas fa-arrow-right text-xs"></i>
+          </a>
+        </div>
+
+        <!-- Service 4 -->
+        <div class="service-card fade-up bg-charcoal-900 border border-charcoal-800 rounded-2xl p-8 group">
+          <div class="icon-wrap w-14 h-14 bg-charcoal-800 rounded-xl flex items-center justify-center mb-6">
+            <i class="fas fa-building text-amber-400 text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Commercial Doors</h3>
+          <p class="text-charcoal-400 leading-relaxed mb-4">Roll-up doors, sectional doors, high-speed doors, loading docks. Built for the demands of warehouses, shops, and storefronts.</p>
+          <a href="#contact" class="inline-flex items-center gap-2 text-amber-400 font-medium text-sm hover:gap-3 transition-all">
+            Commercial Quote <i class="fas fa-arrow-right text-xs"></i>
+          </a>
+        </div>
+
+        <!-- Service 5 -->
+        <div class="service-card fade-up bg-charcoal-900 border border-charcoal-800 rounded-2xl p-8 group" style="transition-delay: 0.1s">
+          <div class="icon-wrap w-14 h-14 bg-charcoal-800 rounded-xl flex items-center justify-center mb-6">
+            <i class="fas fa-bolt text-amber-400 text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Emergency Service</h3>
+          <p class="text-charcoal-400 leading-relaxed mb-4">Door stuck open? Security compromised? We respond fast to emergency calls. Available when you need us, day or night.</p>
+          <a href="tel:+12055551234" class="inline-flex items-center gap-2 text-amber-400 font-medium text-sm hover:gap-3 transition-all">
+            Call Now <i class="fas fa-arrow-right text-xs"></i>
+          </a>
+        </div>
+
+        <!-- Service 6 -->
+        <div class="service-card fade-up bg-charcoal-900 border border-charcoal-800 rounded-2xl p-8 group" style="transition-delay: 0.2s">
+          <div class="icon-wrap w-14 h-14 bg-charcoal-800 rounded-xl flex items-center justify-center mb-6">
+            <i class="fas fa-microchip text-amber-400 text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Openers &amp; Smart Tech</h3>
+          <p class="text-charcoal-400 leading-relaxed mb-4">Modern garage door openers with WiFi, smartphone control, battery backup, and quiet belt-drive systems. Installation and programming.</p>
+          <a href="#contact" class="inline-flex items-center gap-2 text-amber-400 font-medium text-sm hover:gap-3 transition-all">
+            Learn More <i class="fas fa-arrow-right text-xs"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Banner -->
+  <section class="relative overflow-hidden">
+    <div class="bg-gradient-to-r from-amber-600 via-amber-500 to-amber-600 py-12 lg:py-16">
+      <div class="absolute inset-0 opacity-10">
+        <div class="absolute inset-0" style="background-image: repeating-linear-gradient(45deg, transparent, transparent 20px, rgba(0,0,0,0.1) 20px, rgba(0,0,0,0.1) 22px);"></div>
+      </div>
+      <div class="container mx-auto px-4 lg:px-8 relative z-10">
+        <div class="flex flex-col lg:flex-row items-center justify-between gap-8">
+          <div class="text-center lg:text-left">
+            <h3 class="text-2xl lg:text-3xl font-extrabold text-charcoal-950 mb-2">Need a Garage Door Fixed Today?</h3>
+            <p class="text-charcoal-900/80 text-lg">Same day service available. Free estimates on all jobs.</p>
+          </div>
+          <a href="tel:+12055551234" class="flex items-center gap-3 bg-charcoal-950 hover:bg-charcoal-900 text-white font-bold px-8 py-4 rounded-xl text-lg transition-colors shrink-0">
+            <i class="fas fa-phone-volume text-amber-400"></i>
+            (205) 555-1234
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery / Before & After -->
+  <section id="gallery" class="py-20 lg:py-28 bg-charcoal-950">
+    <div class="container mx-auto px-4 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <div class="fade-up inline-flex items-center gap-2 text-amber-400 text-sm font-semibold uppercase tracking-widest mb-4">
+          <div class="w-8 h-px bg-amber-500"></div>
+          Our Work
+          <div class="w-8 h-px bg-amber-500"></div>
+        </div>
+        <h2 class="fade-up text-3xl lg:text-5xl font-extrabold mb-4">Recent Projects</h2>
+        <p class="fade-up text-charcoal-400 text-lg">See the difference quality garage door service makes.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Project 1 -->
+        <div class="gallery-item fade-up group relative bg-charcoal-900 rounded-2xl overflow-hidden aspect-[4/3]">
+          <div class="absolute inset-0 bg-gradient-to-br from-charcoal-800 to-charcoal-700 flex items-center justify-center">
+            <div class="text-center p-8">
+              <i class="fas fa-home text-5xl text-amber-500/30 mb-4"></i>
+              <div class="text-charcoal-400 text-sm">Residential Installation</div>
+            </div>
+          </div>
+          <div class="absolute inset-0 bg-gradient-to-t from-charcoal-950/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
+            <div>
+              <h4 class="font-bold text-lg">Residential Carriage Style</h4>
+              <p class="text-charcoal-300 text-sm">Two-car insulated carriage house door with decorative hardware</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="gallery-item fade-up group relative bg-charcoal-900 rounded-2xl overflow-hidden aspect-[4/3]" style="transition-delay: 0.1s">
+          <div class="absolute inset-0 bg-gradient-to-br from-charcoal-700 to-charcoal-800 flex items-center justify-center">
+            <div class="text-center p-8">
+              <i class="fas fa-building text-5xl text-amber-500/30 mb-4"></i>
+              <div class="text-charcoal-400 text-sm">Commercial Roll-Up</div>
+            </div>
+          </div>
+          <div class="absolute inset-0 bg-gradient-to-t from-charcoal-950/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
+            <div>
+              <h4 class="font-bold text-lg">Commercial Roll-Up Doors</h4>
+              <p class="text-charcoal-300 text-sm">Triple bay insulated steel roll-up for auto body shop</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="gallery-item fade-up group relative bg-charcoal-900 rounded-2xl overflow-hidden aspect-[4/3]" style="transition-delay: 0.2s">
+          <div class="absolute inset-0 bg-gradient-to-br from-charcoal-800 to-charcoal-700 flex items-center justify-center">
+            <div class="text-center p-8">
+              <i class="fas fa-cog text-5xl text-amber-500/30 mb-4"></i>
+              <div class="text-charcoal-400 text-sm">Spring Replacement</div>
+            </div>
+          </div>
+          <div class="absolute inset-0 bg-gradient-to-t from-charcoal-950/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
+            <div>
+              <h4 class="font-bold text-lg">Emergency Spring Repair</h4>
+              <p class="text-charcoal-300 text-sm">Same-day torsion spring replacement - back up and running in 45 min</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 4 -->
+        <div class="gallery-item fade-up group relative bg-charcoal-900 rounded-2xl overflow-hidden aspect-[4/3]">
+          <div class="absolute inset-0 bg-gradient-to-br from-charcoal-700 to-charcoal-800 flex items-center justify-center">
+            <div class="text-center p-8">
+              <i class="fas fa-door-open text-5xl text-amber-500/30 mb-4"></i>
+              <div class="text-charcoal-400 text-sm">Modern Flush Panel</div>
+            </div>
+          </div>
+          <div class="absolute inset-0 bg-gradient-to-t from-charcoal-950/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
+            <div>
+              <h4 class="font-bold text-lg">Contemporary Flush Panel</h4>
+              <p class="text-charcoal-300 text-sm">Sleek modern flush panel door with frosted glass inserts</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 5 -->
+        <div class="gallery-item fade-up group relative bg-charcoal-900 rounded-2xl overflow-hidden aspect-[4/3]" style="transition-delay: 0.1s">
+          <div class="absolute inset-0 bg-gradient-to-br from-charcoal-800 to-charcoal-700 flex items-center justify-center">
+            <div class="text-center p-8">
+              <i class="fas fa-industry text-5xl text-amber-500/30 mb-4"></i>
+              <div class="text-charcoal-400 text-sm">Industrial Install</div>
+            </div>
+          </div>
+          <div class="absolute inset-0 bg-gradient-to-t from-charcoal-950/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
+            <div>
+              <h4 class="font-bold text-lg">Warehouse High-Speed Door</h4>
+              <p class="text-charcoal-300 text-sm">High-speed industrial door with safety sensors for distribution center</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 6 -->
+        <div class="gallery-item fade-up group relative bg-charcoal-900 rounded-2xl overflow-hidden aspect-[4/3]" style="transition-delay: 0.2s">
+          <div class="absolute inset-0 bg-gradient-to-br from-charcoal-700 to-charcoal-800 flex items-center justify-center">
+            <div class="text-center p-8">
+              <i class="fas fa-microchip text-5xl text-amber-500/30 mb-4"></i>
+              <div class="text-charcoal-400 text-sm">Smart Opener Install</div>
+            </div>
+          </div>
+          <div class="absolute inset-0 bg-gradient-to-t from-charcoal-950/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
+            <div>
+              <h4 class="font-bold text-lg">Smart Opener Upgrade</h4>
+              <p class="text-charcoal-300 text-sm">WiFi-enabled belt drive opener with battery backup and phone control</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="py-20 lg:py-28 bg-charcoal-900">
+    <div class="container mx-auto px-4 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+        <div class="fade-left">
+          <div class="relative">
+            <div class="bg-charcoal-800 rounded-2xl aspect-[4/3] flex items-center justify-center overflow-hidden">
+              <div class="text-center p-12">
+                <i class="fas fa-users text-8xl text-amber-500/20 mb-6"></i>
+                <p class="text-charcoal-500 text-sm">Our Team at Work</p>
+              </div>
+            </div>
+            <!-- Floating badge -->
+            <div class="absolute -bottom-6 -right-6 bg-amber-500 text-charcoal-950 rounded-2xl p-6 shadow-xl">
+              <div class="text-3xl font-black">15+</div>
+              <div class="text-sm font-semibold">Years Serving<br>Tuscaloosa</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="fade-right">
+          <div class="inline-flex items-center gap-2 text-amber-400 text-sm font-semibold uppercase tracking-widest mb-4">
+            <div class="w-8 h-px bg-amber-500"></div>
+            About Us
+          </div>
+          <h2 class="text-3xl lg:text-4xl font-extrabold mb-6">Locally Owned.<br>Tuscaloosa Proud.</h2>
+          <p class="text-charcoal-300 text-lg leading-relaxed mb-6">
+            T-Town Garage Doors and More has been the go-to garage door company in West Alabama for over 15 years. We started with one truck and a commitment to honest work at fair prices. Today we serve hundreds of residential and commercial customers across Tuscaloosa and surrounding communities.
+          </p>
+          <p class="text-charcoal-400 leading-relaxed mb-8">
+            Our technicians are factory trained, our trucks are fully stocked, and we stand behind every job. When your garage door needs attention, we show up fast, explain your options clearly, and get it done right the first time.
+          </p>
+
+          <div class="grid grid-cols-2 gap-6">
+            <div class="flex items-start gap-3">
+              <div class="w-10 h-10 bg-amber-500/10 rounded-lg flex items-center justify-center shrink-0 mt-0.5">
+                <i class="fas fa-certificate text-amber-400"></i>
+              </div>
+              <div>
+                <div class="font-semibold text-sm">Licensed &amp; Insured</div>
+                <div class="text-charcoal-500 text-xs mt-0.5">Full coverage for your peace of mind</div>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="w-10 h-10 bg-amber-500/10 rounded-lg flex items-center justify-center shrink-0 mt-0.5">
+                <i class="fas fa-truck-fast text-amber-400"></i>
+              </div>
+              <div>
+                <div class="font-semibold text-sm">Fast Response</div>
+                <div class="text-charcoal-500 text-xs mt-0.5">Same day service on most calls</div>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="w-10 h-10 bg-amber-500/10 rounded-lg flex items-center justify-center shrink-0 mt-0.5">
+                <i class="fas fa-hand-holding-dollar text-amber-400"></i>
+              </div>
+              <div>
+                <div class="font-semibold text-sm">Fair Pricing</div>
+                <div class="text-charcoal-500 text-xs mt-0.5">Upfront quotes, no hidden fees</div>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="w-10 h-10 bg-amber-500/10 rounded-lg flex items-center justify-center shrink-0 mt-0.5">
+                <i class="fas fa-shield-halved text-amber-400"></i>
+              </div>
+              <div>
+                <div class="font-semibold text-sm">Warranty Backed</div>
+                <div class="text-charcoal-500 text-xs mt-0.5">Parts and labor guaranteed</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process Section -->
+  <section class="py-20 lg:py-28 bg-charcoal-950 relative">
+    <div class="container mx-auto px-4 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <div class="fade-up inline-flex items-center gap-2 text-amber-400 text-sm font-semibold uppercase tracking-widest mb-4">
+          <div class="w-8 h-px bg-amber-500"></div>
+          How It Works
+          <div class="w-8 h-px bg-amber-500"></div>
+        </div>
+        <h2 class="fade-up text-3xl lg:text-5xl font-extrabold mb-4">Simple as 1-2-3</h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8 relative">
+        <!-- Connecting line -->
+        <div class="hidden md:block absolute top-16 left-[20%] right-[20%] h-0.5 bg-gradient-to-r from-amber-500/0 via-amber-500/30 to-amber-500/0"></div>
+
+        <div class="fade-up text-center relative">
+          <div class="w-16 h-16 bg-amber-500 rounded-2xl flex items-center justify-center mx-auto mb-6 text-charcoal-950 text-2xl font-black relative z-10">1</div>
+          <h3 class="text-xl font-bold mb-3">Call or Request a Quote</h3>
+          <p class="text-charcoal-400">Tell us what's going on. We'll ask a few questions and give you an honest estimate right over the phone.</p>
+        </div>
+
+        <div class="fade-up text-center relative" style="transition-delay: 0.15s">
+          <div class="w-16 h-16 bg-amber-500 rounded-2xl flex items-center justify-center mx-auto mb-6 text-charcoal-950 text-2xl font-black relative z-10">2</div>
+          <h3 class="text-xl font-bold mb-3">We Show Up Fast</h3>
+          <p class="text-charcoal-400">Our fully-stocked trucks arrive ready to work. We inspect, confirm the plan, and get started with zero surprises.</p>
+        </div>
+
+        <div class="fade-up text-center relative" style="transition-delay: 0.3s">
+          <div class="w-16 h-16 bg-amber-500 rounded-2xl flex items-center justify-center mx-auto mb-6 text-charcoal-950 text-2xl font-black relative z-10">3</div>
+          <h3 class="text-xl font-bold mb-3">Job Done Right</h3>
+          <p class="text-charcoal-400">Quality work, cleaned up jobsite, and a warranty to back it up. Your door works like new.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reviews Section -->
+  <section id="reviews" class="py-20 lg:py-28 bg-charcoal-900">
+    <div class="container mx-auto px-4 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <div class="fade-up inline-flex items-center gap-2 text-amber-400 text-sm font-semibold uppercase tracking-widest mb-4">
+          <div class="w-8 h-px bg-amber-500"></div>
+          Reviews
+          <div class="w-8 h-px bg-amber-500"></div>
+        </div>
+        <h2 class="fade-up text-3xl lg:text-5xl font-extrabold mb-4">What Our Customers Say</h2>
+        <div class="fade-up flex items-center justify-center gap-3 mt-4">
+          <div class="flex text-amber-400 text-xl">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+          </div>
+          <span class="text-charcoal-300 font-semibold">5.0 Average Rating</span>
+        </div>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Review 1 -->
+        <div class="testimonial-card fade-up bg-charcoal-800 border border-charcoal-700 rounded-2xl p-8">
+          <div class="flex text-amber-400 mb-4">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+          </div>
+          <p class="text-charcoal-200 leading-relaxed mb-6">"Our garage door spring broke at 7 AM and we couldn't get the car out. Called T-Town and they were at our house by 9. Fixed it in under an hour. Couldn't ask for better service."</p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-amber-500/10 rounded-full flex items-center justify-center">
+              <span class="text-amber-400 font-bold text-sm">MJ</span>
+            </div>
+            <div>
+              <div class="font-semibold text-sm">Mike Johnson</div>
+              <div class="text-charcoal-500 text-xs">Tuscaloosa, AL</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Review 2 -->
+        <div class="testimonial-card fade-up bg-charcoal-800 border border-charcoal-700 rounded-2xl p-8" style="transition-delay: 0.1s">
+          <div class="flex text-amber-400 mb-4">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+          </div>
+          <p class="text-charcoal-200 leading-relaxed mb-6">"We had them install new commercial roll-up doors at our shop. Professional from start to finish. The doors look great and work perfectly. Price was exactly what they quoted."</p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-amber-500/10 rounded-full flex items-center justify-center">
+              <span class="text-amber-400 font-bold text-sm">SR</span>
+            </div>
+            <div>
+              <div class="font-semibold text-sm">Sarah Reynolds</div>
+              <div class="text-charcoal-500 text-xs">Northport, AL</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Review 3 -->
+        <div class="testimonial-card fade-up bg-charcoal-800 border border-charcoal-700 rounded-2xl p-8" style="transition-delay: 0.2s">
+          <div class="flex text-amber-400 mb-4">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+          </div>
+          <p class="text-charcoal-200 leading-relaxed mb-6">"Third time using T-Town Garage Doors. They've replaced two doors and an opener for us now. Always on time, always fair. They're the only ones I'll call for garage door work."</p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-amber-500/10 rounded-full flex items-center justify-center">
+              <span class="text-amber-400 font-bold text-sm">DW</span>
+            </div>
+            <div>
+              <div class="font-semibold text-sm">David Williams</div>
+              <div class="text-charcoal-500 text-xs">Tuscaloosa, AL</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Review 4 -->
+        <div class="testimonial-card fade-up bg-charcoal-800 border border-charcoal-700 rounded-2xl p-8">
+          <div class="flex text-amber-400 mb-4">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+          </div>
+          <p class="text-charcoal-200 leading-relaxed mb-6">"Had an older wooden door that was falling apart. They helped us pick a beautiful new insulated door that matches our house perfectly. Huge difference in our curb appeal!"</p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-amber-500/10 rounded-full flex items-center justify-center">
+              <span class="text-amber-400 font-bold text-sm">LT</span>
+            </div>
+            <div>
+              <div class="font-semibold text-sm">Lisa Thompson</div>
+              <div class="text-charcoal-500 text-xs">Cottondale, AL</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Review 5 -->
+        <div class="testimonial-card fade-up bg-charcoal-800 border border-charcoal-700 rounded-2xl p-8" style="transition-delay: 0.1s">
+          <div class="flex text-amber-400 mb-4">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+          </div>
+          <p class="text-charcoal-200 leading-relaxed mb-6">"Manage several rental properties and use T-Town for all garage door needs. They're fast, reliable, and their pricing is honest. Hard to find a company you can trust like that."</p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-amber-500/10 rounded-full flex items-center justify-center">
+              <span class="text-amber-400 font-bold text-sm">RH</span>
+            </div>
+            <div>
+              <div class="font-semibold text-sm">Robert Harris</div>
+              <div class="text-charcoal-500 text-xs">Tuscaloosa, AL</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Review 6 -->
+        <div class="testimonial-card fade-up bg-charcoal-800 border border-charcoal-700 rounded-2xl p-8" style="transition-delay: 0.2s">
+          <div class="flex text-amber-400 mb-4">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+          </div>
+          <p class="text-charcoal-200 leading-relaxed mb-6">"My garage door cable snapped on a Saturday. They came out within two hours and had it fixed. Weekend emergency and still treated us like their top priority. Highly recommend!"</p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-amber-500/10 rounded-full flex items-center justify-center">
+              <span class="text-amber-400 font-bold text-sm">AC</span>
+            </div>
+            <div>
+              <div class="font-semibold text-sm">Amanda Chen</div>
+              <div class="text-charcoal-500 text-xs">Northport, AL</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Service Area Section -->
+  <section id="areas" class="py-20 lg:py-28 bg-charcoal-950">
+    <div class="container mx-auto px-4 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div class="fade-left">
+          <div class="inline-flex items-center gap-2 text-amber-400 text-sm font-semibold uppercase tracking-widest mb-4">
+            <div class="w-8 h-px bg-amber-500"></div>
+            Service Area
+          </div>
+          <h2 class="text-3xl lg:text-4xl font-extrabold mb-6">Serving West Alabama</h2>
+          <p class="text-charcoal-300 text-lg leading-relaxed mb-8">
+            We're proud to serve Tuscaloosa and the surrounding communities. If you're in West Alabama and need garage door work, chances are we cover your area.
+          </p>
+
+          <div class="grid grid-cols-2 gap-3">
+            <div class="flex items-center gap-2 text-charcoal-200">
+              <i class="fas fa-location-dot text-amber-500 text-sm"></i>
+              <span>Tuscaloosa</span>
+            </div>
+            <div class="flex items-center gap-2 text-charcoal-200">
+              <i class="fas fa-location-dot text-amber-500 text-sm"></i>
+              <span>Northport</span>
+            </div>
+            <div class="flex items-center gap-2 text-charcoal-200">
+              <i class="fas fa-location-dot text-amber-500 text-sm"></i>
+              <span>Cottondale</span>
+            </div>
+            <div class="flex items-center gap-2 text-charcoal-200">
+              <i class="fas fa-location-dot text-amber-500 text-sm"></i>
+              <span>Coaling</span>
+            </div>
+            <div class="flex items-center gap-2 text-charcoal-200">
+              <i class="fas fa-location-dot text-amber-500 text-sm"></i>
+              <span>Brookwood</span>
+            </div>
+            <div class="flex items-center gap-2 text-charcoal-200">
+              <i class="fas fa-location-dot text-amber-500 text-sm"></i>
+              <span>Vance</span>
+            </div>
+            <div class="flex items-center gap-2 text-charcoal-200">
+              <i class="fas fa-location-dot text-amber-500 text-sm"></i>
+              <span>Lake View</span>
+            </div>
+            <div class="flex items-center gap-2 text-charcoal-200">
+              <i class="fas fa-location-dot text-amber-500 text-sm"></i>
+              <span>Duncanville</span>
+            </div>
+            <div class="flex items-center gap-2 text-charcoal-200">
+              <i class="fas fa-location-dot text-amber-500 text-sm"></i>
+              <span>Moundville</span>
+            </div>
+            <div class="flex items-center gap-2 text-charcoal-200">
+              <i class="fas fa-location-dot text-amber-500 text-sm"></i>
+              <span>Holt</span>
+            </div>
+          </div>
+
+          <p class="text-charcoal-500 text-sm mt-6">Don't see your area? Give us a call — we likely cover it.</p>
+        </div>
+
+        <div class="fade-right">
+          <!-- Stylized map placeholder -->
+          <div class="bg-charcoal-900 border border-charcoal-800 rounded-2xl aspect-square flex items-center justify-center relative overflow-hidden">
+            <div class="absolute inset-0 opacity-10">
+              <div class="absolute inset-0" style="background-image: radial-gradient(circle at 2px 2px, rgba(245,138,7,0.3) 1px, transparent 0); background-size: 24px 24px;"></div>
+            </div>
+            <div class="text-center relative z-10">
+              <i class="fas fa-map-location-dot text-6xl text-amber-500/30 mb-4"></i>
+              <div class="text-charcoal-400">Serving a 30+ mile radius</div>
+              <div class="text-charcoal-500 text-sm">around Tuscaloosa, AL</div>
+              <div class="mt-6 inline-flex items-center gap-2 bg-amber-500/10 border border-amber-500/20 rounded-full px-4 py-2">
+                <i class="fas fa-truck text-amber-400 text-sm"></i>
+                <span class="text-amber-400 text-sm font-medium">Free estimates in our service area</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-20 lg:py-28 bg-charcoal-900">
+    <div class="container mx-auto px-4 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <div class="fade-up inline-flex items-center gap-2 text-amber-400 text-sm font-semibold uppercase tracking-widest mb-4">
+          <div class="w-8 h-px bg-amber-500"></div>
+          Contact Us
+          <div class="w-8 h-px bg-amber-500"></div>
+        </div>
+        <h2 class="fade-up text-3xl lg:text-5xl font-extrabold mb-4">Get Your Free Estimate</h2>
+        <p class="fade-up text-charcoal-400 text-lg">Fill out the form below or call us directly. We respond to all inquiries within 1 business hour.</p>
+      </div>
+
+      <div class="grid lg:grid-cols-5 gap-8 max-w-6xl mx-auto">
+        <!-- Contact Info -->
+        <div class="lg:col-span-2 space-y-6">
+          <div class="fade-left bg-charcoal-800 border border-charcoal-700 rounded-2xl p-6">
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 bg-amber-500/10 rounded-xl flex items-center justify-center shrink-0">
+                <i class="fas fa-phone text-amber-400 text-xl"></i>
+              </div>
+              <div>
+                <div class="font-semibold mb-1">Phone</div>
+                <a href="tel:+12055551234" class="text-amber-400 text-lg font-bold hover:underline">(205) 555-1234</a>
+                <div class="text-charcoal-500 text-sm mt-1">Available 24/7 for emergencies</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="fade-left bg-charcoal-800 border border-charcoal-700 rounded-2xl p-6" style="transition-delay: 0.1s">
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 bg-amber-500/10 rounded-xl flex items-center justify-center shrink-0">
+                <i class="fas fa-envelope text-amber-400 text-xl"></i>
+              </div>
+              <div>
+                <div class="font-semibold mb-1">Email</div>
+                <a href="mailto:info@ttowngaragedoors.com" class="text-amber-400 hover:underline">info@ttowngaragedoors.com</a>
+                <div class="text-charcoal-500 text-sm mt-1">We respond within 1 hour</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="fade-left bg-charcoal-800 border border-charcoal-700 rounded-2xl p-6" style="transition-delay: 0.2s">
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 bg-amber-500/10 rounded-xl flex items-center justify-center shrink-0">
+                <i class="fas fa-clock text-amber-400 text-xl"></i>
+              </div>
+              <div>
+                <div class="font-semibold mb-1">Business Hours</div>
+                <div class="text-charcoal-300 text-sm space-y-0.5">
+                  <div>Mon - Fri: 7:00 AM - 6:00 PM</div>
+                  <div>Saturday: 8:00 AM - 2:00 PM</div>
+                  <div>Sunday: Emergency Only</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="fade-left bg-charcoal-800 border border-charcoal-700 rounded-2xl p-6" style="transition-delay: 0.3s">
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 bg-amber-500/10 rounded-xl flex items-center justify-center shrink-0">
+                <i class="fas fa-location-dot text-amber-400 text-xl"></i>
+              </div>
+              <div>
+                <div class="font-semibold mb-1">Location</div>
+                <div class="text-charcoal-300 text-sm">Tuscaloosa, Alabama</div>
+                <div class="text-charcoal-500 text-sm mt-1">Serving all of West Alabama</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="lg:col-span-3 fade-right">
+          <form class="bg-charcoal-800 border border-charcoal-700 rounded-2xl p-8 space-y-5" onsubmit="event.preventDefault(); document.getElementById('formSuccess').classList.remove('hidden'); this.reset();">
+            <div class="grid sm:grid-cols-2 gap-5">
+              <div>
+                <label class="block text-sm font-medium text-charcoal-200 mb-2">First Name *</label>
+                <input type="text" required class="form-input w-full bg-charcoal-900 border border-charcoal-600 rounded-xl px-4 py-3 text-white placeholder-charcoal-500 focus:outline-none transition-all" placeholder="John" />
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-charcoal-200 mb-2">Last Name *</label>
+                <input type="text" required class="form-input w-full bg-charcoal-900 border border-charcoal-600 rounded-xl px-4 py-3 text-white placeholder-charcoal-500 focus:outline-none transition-all" placeholder="Smith" />
+              </div>
+            </div>
+
+            <div class="grid sm:grid-cols-2 gap-5">
+              <div>
+                <label class="block text-sm font-medium text-charcoal-200 mb-2">Phone *</label>
+                <input type="tel" required class="form-input w-full bg-charcoal-900 border border-charcoal-600 rounded-xl px-4 py-3 text-white placeholder-charcoal-500 focus:outline-none transition-all" placeholder="(205) 555-0000" />
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-charcoal-200 mb-2">Email</label>
+                <input type="email" class="form-input w-full bg-charcoal-900 border border-charcoal-600 rounded-xl px-4 py-3 text-white placeholder-charcoal-500 focus:outline-none transition-all" placeholder="john@email.com" />
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium text-charcoal-200 mb-2">Service Needed *</label>
+              <select required class="form-input w-full bg-charcoal-900 border border-charcoal-600 rounded-xl px-4 py-3 text-white focus:outline-none transition-all">
+                <option value="" class="text-charcoal-500">Select a service...</option>
+                <option>New Door Installation</option>
+                <option>Door Repair</option>
+                <option>Spring Replacement</option>
+                <option>Opener Installation</option>
+                <option>Maintenance / Tune-Up</option>
+                <option>Commercial Door Service</option>
+                <option>Emergency Repair</option>
+                <option>Other</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium text-charcoal-200 mb-2">Tell Us About Your Project</label>
+              <textarea rows="4" class="form-input w-full bg-charcoal-900 border border-charcoal-600 rounded-xl px-4 py-3 text-white placeholder-charcoal-500 focus:outline-none transition-all resize-none" placeholder="Describe the issue or what you're looking for..."></textarea>
+            </div>
+
+            <button type="submit" class="w-full bg-amber-500 hover:bg-amber-600 text-charcoal-950 font-bold py-4 rounded-xl transition-colors text-lg flex items-center justify-center gap-2">
+              Request Free Estimate
+              <i class="fas fa-arrow-right"></i>
+            </button>
+
+            <div id="formSuccess" class="hidden bg-green-500/10 border border-green-500/20 rounded-xl p-4 text-center">
+              <i class="fas fa-check-circle text-green-400 text-xl mb-2"></i>
+              <p class="text-green-400 font-semibold">Thank you! We'll be in touch within 1 hour.</p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-charcoal-950 border-t border-charcoal-800 py-12">
+    <div class="container mx-auto px-4 lg:px-8">
+      <div class="grid md:grid-cols-3 gap-8 mb-10">
+        <!-- Logo & description -->
+        <div>
+          <a href="#" class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 bg-amber-500 rounded-lg flex items-center justify-center">
+              <i class="fas fa-warehouse text-charcoal-950 text-lg"></i>
+            </div>
+            <div class="leading-tight">
+              <span class="text-lg font-extrabold tracking-tight">T-Town</span>
+              <span class="block text-[10px] text-charcoal-400 font-medium tracking-widest uppercase">Garage Doors &amp; More</span>
+            </div>
+          </a>
+          <p class="text-charcoal-500 text-sm leading-relaxed">Tuscaloosa's trusted garage door company. Installation, repair, and maintenance for residential and commercial properties.</p>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+          <h4 class="font-semibold mb-4">Quick Links</h4>
+          <div class="space-y-2.5">
+            <a href="#services" class="block text-charcoal-400 hover:text-amber-400 text-sm transition-colors">Services</a>
+            <a href="#gallery" class="block text-charcoal-400 hover:text-amber-400 text-sm transition-colors">Gallery</a>
+            <a href="#about" class="block text-charcoal-400 hover:text-amber-400 text-sm transition-colors">About Us</a>
+            <a href="#reviews" class="block text-charcoal-400 hover:text-amber-400 text-sm transition-colors">Reviews</a>
+            <a href="#contact" class="block text-charcoal-400 hover:text-amber-400 text-sm transition-colors">Contact</a>
+          </div>
+        </div>
+
+        <!-- Services -->
+        <div>
+          <h4 class="font-semibold mb-4">Services</h4>
+          <div class="space-y-2.5">
+            <span class="block text-charcoal-400 text-sm">Garage Door Installation</span>
+            <span class="block text-charcoal-400 text-sm">Garage Door Repair</span>
+            <span class="block text-charcoal-400 text-sm">Spring Replacement</span>
+            <span class="block text-charcoal-400 text-sm">Opener Installation</span>
+            <span class="block text-charcoal-400 text-sm">Commercial Doors</span>
+            <span class="block text-charcoal-400 text-sm">Emergency Service</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-t border-charcoal-800 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+        <p class="text-charcoal-600 text-sm">&copy; 2026 T-Town Garage Doors and More. All rights reserved.</p>
+        <div class="flex items-center gap-4">
+          <a href="#" class="w-9 h-9 bg-charcoal-800 rounded-lg flex items-center justify-center text-charcoal-400 hover:bg-amber-500 hover:text-charcoal-950 transition-all">
+            <i class="fab fa-facebook-f text-sm"></i>
+          </a>
+          <a href="#" class="w-9 h-9 bg-charcoal-800 rounded-lg flex items-center justify-center text-charcoal-400 hover:bg-amber-500 hover:text-charcoal-950 transition-all">
+            <i class="fab fa-google text-sm"></i>
+          </a>
+          <a href="#" class="w-9 h-9 bg-charcoal-800 rounded-lg flex items-center justify-center text-charcoal-400 hover:bg-amber-500 hover:text-charcoal-950 transition-all">
+            <i class="fab fa-yelp text-sm"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to top -->
+  <button id="backToTop" class="fixed bottom-6 right-6 w-12 h-12 bg-amber-500 text-charcoal-950 rounded-xl shadow-lg flex items-center justify-center opacity-0 translate-y-4 transition-all duration-300 hover:bg-amber-600 z-50">
+    <i class="fas fa-arrow-up font-bold"></i>
+  </button>
+
+  <script>
+    // Intersection Observer for scroll animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.fade-up, .fade-left, .fade-right, .scale-in').forEach(el => observer.observe(el));
+
+    // Navbar scroll effect
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        navbar.classList.add('nav-scrolled');
+      } else {
+        navbar.classList.remove('nav-scrolled');
+      }
+    });
+
+    // Back to top button
+    const backToTop = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 600) {
+        backToTop.classList.remove('opacity-0', 'translate-y-4');
+        backToTop.classList.add('opacity-100', 'translate-y-0');
+      } else {
+        backToTop.classList.add('opacity-0', 'translate-y-4');
+        backToTop.classList.remove('opacity-100', 'translate-y-0');
+      }
+    });
+    backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    // Mobile menu
+    const menuBtn = document.getElementById('menuBtn');
+    const closeMenu = document.getElementById('closeMenu');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const menuOverlay = document.getElementById('menuOverlay');
+
+    function openMenu() {
+      mobileMenu.classList.add('open');
+      menuOverlay.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeMenuFn() {
+      mobileMenu.classList.remove('open');
+      menuOverlay.classList.add('hidden');
+      document.body.style.overflow = '';
+    }
+
+    menuBtn.addEventListener('click', openMenu);
+    closeMenu.addEventListener('click', closeMenuFn);
+    menuOverlay.addEventListener('click', closeMenuFn);
+    document.querySelectorAll('.mobile-link').forEach(l => l.addEventListener('click', closeMenuFn));
+
+    // Counter animation
+    function animateCounters() {
+      document.querySelectorAll('.stat-number[data-target]').forEach(el => {
+        const target = parseInt(el.dataset.target);
+        const duration = 2000;
+        const start = performance.now();
+
+        function update(now) {
+          const elapsed = now - start;
+          const progress = Math.min(elapsed / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          const value = Math.round(eased * target);
+          el.textContent = value.toLocaleString() + (target >= 100 ? '+' : '+');
+          if (progress < 1) requestAnimationFrame(update);
+        }
+        requestAnimationFrame(update);
+      });
+    }
+
+    // Trigger counters when stats section is visible
+    const statsObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          animateCounters();
+          statsObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+
+    const statsSection = document.querySelector('.stat-number');
+    if (statsSection) statsObserver.observe(statsSection.closest('section'));
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const href = a.getAttribute('href');
+        if (href === '#') return;
+        e.preventDefault();
+        const target = document.querySelector(href);
+        if (target) {
+          const offset = navbar.offsetHeight + 20;
+          const top = target.getBoundingClientRect().top + window.scrollY - offset;
+          window.scrollTo({ top, behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>

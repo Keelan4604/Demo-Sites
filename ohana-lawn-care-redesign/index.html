@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ohana Lawn Care & Delivery LLC | Veteran-Owned Lawn Care in Huntsville, AL</title>
+  <meta name="description" content="Ohana Lawn Care & Delivery LLC — Veteran-owned lawn care serving Limestone & Madison Counties. BBB Accredited. Reliable, professional service you can trust." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'ohana-green':    '#2d6a4f',
+            'ohana-green-lt': '#52b788',
+            'ohana-green-dk': '#1b4332',
+            'ohana-lime':     '#95d5b2',
+            'ohana-cream':    '#fefae0',
+            'ohana-sand':     '#f4f1de',
+            'ohana-earth':    '#6b705c',
+            'ohana-bark':     '#3a3a2e',
+            'ohana-sky':      '#a8dadc',
+            'ohana-navy':     '#1d3557',
+            'ohana-red':      '#9b2226',
+            'ohana-gold':     '#dda15e',
+          },
+          fontFamily: {
+            heading: ['"DM Serif Display"', 'serif'],
+            body:    ['"Plus Jakarta Sans"', 'sans-serif'],
+            display: ['Outfit', 'sans-serif'],
+          },
+        },
+      },
+    }
+  </script>
+  <style>
+    * { font-family: 'Plus Jakarta Sans', sans-serif; }
+    h1, h2, h3, .font-heading { font-family: 'DM Serif Display', serif; }
+    .font-display { font-family: 'Outfit', sans-serif; }
+
+    /* Animations */
+    .fade-up {
+      opacity: 0; transform: translateY(40px);
+      transition: opacity 0.8s cubic-bezier(.22,1,.36,1), transform 0.8s cubic-bezier(.22,1,.36,1);
+    }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    .fade-in { opacity: 0; transition: opacity 0.9s ease-out; }
+    .fade-in.visible { opacity: 1; }
+
+    .slide-left {
+      opacity: 0; transform: translateX(-60px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+    .slide-left.visible { opacity: 1; transform: translateX(0); }
+
+    .slide-right {
+      opacity: 0; transform: translateX(60px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+    .slide-right.visible { opacity: 1; transform: translateX(0); }
+
+    .scale-in {
+      opacity: 0; transform: scale(0.9);
+      transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+    }
+    .scale-in.visible { opacity: 1; transform: scale(1); }
+
+    /* Hero */
+    .hero-bg {
+      background: linear-gradient(160deg, rgba(27,67,50,0.88) 0%, rgba(45,106,79,0.75) 40%, rgba(0,0,0,0.5) 100%),
+                  url('https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=1920&q=85') center/cover no-repeat;
+      min-height: 100vh;
+    }
+
+    /* Grass texture overlay */
+    .grass-pattern {
+      background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5 35 Q7 20 10 35 M15 35 Q17 15 20 35 M25 35 Q28 22 30 35 M35 35 Q37 18 40 35' fill='none' stroke='%2352b788' stroke-width='0.8' opacity='0.06'/%3E%3C/svg%3E");
+    }
+
+    /* Service card */
+    .service-card {
+      transition: transform 0.4s cubic-bezier(.22,1,.36,1), box-shadow 0.4s ease;
+      border-bottom: 3px solid transparent;
+    }
+    .service-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 25px 60px rgba(0,0,0,0.12);
+      border-bottom-color: #52b788;
+    }
+
+    /* Leaf divider */
+    .leaf-divider {
+      position: relative; overflow: hidden;
+    }
+    .leaf-divider::after {
+      content: ''; position: absolute; bottom: -1px; left: 0; width: 100%; height: 70px;
+      background: url("data:image/svg+xml,%3Csvg viewBox='0 0 1440 70' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,35 C240,70 480,0 720,35 C960,70 1200,0 1440,35 L1440,70 L0,70Z' fill='%23fefae0'/%3E%3C/svg%3E") center/cover no-repeat;
+    }
+
+    /* Nav */
+    .nav-glass {
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      background: rgba(27,67,50,0.85);
+      transition: all 0.3s ease;
+    }
+    .nav-scrolled { background: rgba(27,67,50,0.97); box-shadow: 0 4px 30px rgba(0,0,0,0.3); }
+
+    /* Pulse CTA */
+    @keyframes pulse-green {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(82,183,136,0.5); }
+      50% { box-shadow: 0 0 0 14px rgba(82,183,136,0); }
+    }
+    .pulse-cta { animation: pulse-green 2.5s infinite; }
+
+    /* Float */
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-12px) rotate(2deg); }
+    }
+    .float-anim { animation: float 5s ease-in-out infinite; }
+
+    /* Flag accent */
+    .flag-accent {
+      background: linear-gradient(90deg, #1d3557 0%, #1d3557 25%, #9b2226 25%, #9b2226 50%, #fefae0 50%, #fefae0 100%);
+      height: 4px;
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #1b4332; }
+    ::-webkit-scrollbar-thumb { background: #52b788; border-radius: 4px; }
+
+    /* Counter animation */
+    .counter-box {
+      background: linear-gradient(135deg, #1b4332, #2d6a4f);
+      border: 1px solid rgba(82,183,136,0.3);
+    }
+
+    /* Testimonial */
+    .testimonial-card {
+      background: linear-gradient(135deg, rgba(255,255,255,0.97), rgba(254,250,224,0.97));
+      border-left: 4px solid #52b788;
+    }
+
+    /* Organic blob shape */
+    .blob {
+      border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    }
+
+    /* Mobile menu */
+    .mobile-menu {
+      transform: translateX(100%);
+      transition: transform 0.3s ease;
+    }
+    .mobile-menu.open { transform: translateX(0); }
+  </style>
+</head>
+<body class="bg-ohana-cream text-ohana-bark">
+
+  <!-- Flag Accent Bar -->
+  <div class="flag-accent w-full fixed top-0 z-[60]"></div>
+
+  <!-- Navigation -->
+  <nav class="nav-glass fixed top-1 w-full z-50 px-4 lg:px-8">
+    <div class="max-w-7xl mx-auto flex items-center justify-between h-16">
+      <a href="#" class="flex items-center gap-3">
+        <div class="w-10 h-10 bg-ohana-green-lt rounded-full flex items-center justify-center">
+          <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+        </div>
+        <div>
+          <span class="font-heading text-white text-xl">Ohana</span>
+          <span class="block text-ohana-lime text-[10px] font-display tracking-[0.3em] uppercase -mt-1">Lawn Care & Delivery</span>
+        </div>
+      </a>
+      <div class="hidden md:flex items-center gap-8">
+        <a href="#services" class="text-ohana-lime/80 hover:text-white text-sm font-medium transition">Services</a>
+        <a href="#about" class="text-ohana-lime/80 hover:text-white text-sm font-medium transition">About</a>
+        <a href="#areas" class="text-ohana-lime/80 hover:text-white text-sm font-medium transition">Service Area</a>
+        <a href="#reviews" class="text-ohana-lime/80 hover:text-white text-sm font-medium transition">Reviews</a>
+        <a href="#contact" class="bg-ohana-green-lt text-ohana-green-dk px-5 py-2.5 rounded-full text-sm font-bold hover:bg-white transition pulse-cta">Get Free Quote</a>
+      </div>
+      <button id="menuBtn" class="md:hidden text-white">
+        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div id="mobileMenu" class="mobile-menu fixed inset-0 z-[55] bg-ohana-green-dk/98 flex flex-col items-center justify-center gap-8 md:hidden">
+    <button id="closeMenu" class="absolute top-6 right-6 text-white"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg></button>
+    <a href="#services" class="text-white text-2xl font-heading mobile-link">Services</a>
+    <a href="#about" class="text-white text-2xl font-heading mobile-link">About</a>
+    <a href="#areas" class="text-white text-2xl font-heading mobile-link">Service Area</a>
+    <a href="#reviews" class="text-white text-2xl font-heading mobile-link">Reviews</a>
+    <a href="#contact" class="bg-ohana-green-lt text-ohana-green-dk px-8 py-3 rounded-full text-lg font-bold mobile-link">Get Free Quote</a>
+  </div>
+
+  <!-- Hero -->
+  <section class="hero-bg leaf-divider relative flex items-center">
+    <div class="max-w-7xl mx-auto px-4 lg:px-8 py-32 lg:py-0 w-full grid lg:grid-cols-2 gap-12 items-center min-h-screen">
+      <div class="fade-up">
+        <div class="inline-flex items-center gap-2 bg-ohana-navy/60 text-ohana-cream px-4 py-2 rounded-full mb-6 border border-ohana-cream/20">
+          <svg class="w-4 h-4 text-ohana-gold" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <span class="text-sm font-display font-medium">Veteran-Owned &bull; BBB Accredited</span>
+        </div>
+        <h1 class="font-heading text-white text-5xl lg:text-7xl leading-[1.05] mb-6">
+          Your Lawn,<br/>
+          <span class="text-ohana-green-lt">Our Pride.</span>
+        </h1>
+        <p class="text-ohana-lime/80 text-lg lg:text-xl max-w-lg mb-8 leading-relaxed">
+          Professional lawn care serving Limestone & Madison Counties. Built on military discipline, delivered with aloha spirit.
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a href="tel:2564298915" class="bg-ohana-green-lt text-ohana-green-dk px-8 py-4 rounded-full font-bold text-lg hover:bg-white transition pulse-cta flex items-center gap-2">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+            (256) 429-8915
+          </a>
+          <a href="#contact" class="border-2 border-ohana-lime/40 text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-ohana-lime/10 transition">
+            Free Estimate
+          </a>
+        </div>
+      </div>
+      <div class="hidden lg:flex justify-center fade-in" style="transition-delay:0.4s">
+        <div class="relative">
+          <div class="w-80 h-80 blob bg-ohana-green-lt/20 absolute -top-8 -left-8 float-anim"></div>
+          <div class="w-72 h-72 blob bg-ohana-gold/20 absolute -bottom-6 -right-6 float-anim" style="animation-delay:1.5s"></div>
+          <div class="relative z-10 bg-white/10 backdrop-blur-md rounded-3xl p-8 border border-white/20">
+            <div class="text-center">
+              <div class="text-6xl mb-4">🌿</div>
+              <p class="font-heading text-white text-3xl mb-2">Family First</p>
+              <p class="text-ohana-lime/80 text-sm">"Ohana means family. We treat every yard like it's our own."</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Bar -->
+  <section class="bg-ohana-cream py-12 -mt-1">
+    <div class="max-w-5xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-6">
+      <div class="counter-box rounded-2xl p-6 text-center scale-in">
+        <div class="text-3xl lg:text-4xl font-display font-bold text-ohana-green-lt counter" data-target="500">0</div>
+        <div class="text-ohana-lime/70 text-sm mt-1">Happy Customers</div>
+      </div>
+      <div class="counter-box rounded-2xl p-6 text-center scale-in" style="transition-delay:0.1s">
+        <div class="text-3xl lg:text-4xl font-display font-bold text-ohana-green-lt">BBB</div>
+        <div class="text-ohana-lime/70 text-sm mt-1">Accredited</div>
+      </div>
+      <div class="counter-box rounded-2xl p-6 text-center scale-in" style="transition-delay:0.2s">
+        <div class="text-3xl lg:text-4xl font-display font-bold text-ohana-green-lt flex items-center justify-center gap-1">
+          <svg class="w-6 h-6 text-ohana-gold" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          5.0
+        </div>
+        <div class="text-ohana-lime/70 text-sm mt-1">Average Rating</div>
+      </div>
+      <div class="counter-box rounded-2xl p-6 text-center scale-in" style="transition-delay:0.3s">
+        <div class="text-3xl lg:text-4xl font-display font-bold text-ohana-green-lt">2</div>
+        <div class="text-ohana-lime/70 text-sm mt-1">Counties Served</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section id="services" class="bg-ohana-cream grass-pattern py-20 lg:py-28">
+    <div class="max-w-7xl mx-auto px-4 lg:px-8">
+      <div class="text-center mb-16 fade-up">
+        <span class="font-display text-ohana-green-lt tracking-[0.25em] uppercase text-sm font-semibold">What We Do</span>
+        <h2 class="font-heading text-ohana-green-dk text-4xl lg:text-5xl mt-3">Our Services</h2>
+        <div class="w-20 h-1 bg-ohana-green-lt mx-auto mt-4 rounded-full"></div>
+      </div>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Service 1 -->
+        <div class="service-card bg-white rounded-2xl p-8 fade-up">
+          <div class="w-14 h-14 bg-ohana-green/10 rounded-xl flex items-center justify-center mb-5">
+            <svg class="w-7 h-7 text-ohana-green" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 21h18M5 21V7l7-4 7 4v14"/></svg>
+          </div>
+          <h3 class="font-heading text-ohana-green-dk text-xl mb-3">Lawn Mowing</h3>
+          <p class="text-ohana-earth leading-relaxed">Regular mowing schedules that keep your yard looking sharp. Weekly, bi-weekly, or one-time service available.</p>
+        </div>
+        <!-- Service 2 -->
+        <div class="service-card bg-white rounded-2xl p-8 fade-up" style="transition-delay:0.1s">
+          <div class="w-14 h-14 bg-ohana-green/10 rounded-xl flex items-center justify-center mb-5">
+            <svg class="w-7 h-7 text-ohana-green" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 3v18m-7-7l7 7 7-7M5 10a7 7 0 0114 0"/></svg>
+          </div>
+          <h3 class="font-heading text-ohana-green-dk text-xl mb-3">Landscaping</h3>
+          <p class="text-ohana-earth leading-relaxed">From garden beds to complete landscape design. Transform your outdoor space into something beautiful.</p>
+        </div>
+        <!-- Service 3 -->
+        <div class="service-card bg-white rounded-2xl p-8 fade-up" style="transition-delay:0.2s">
+          <div class="w-14 h-14 bg-ohana-green/10 rounded-xl flex items-center justify-center mb-5">
+            <svg class="w-7 h-7 text-ohana-green" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+          </div>
+          <h3 class="font-heading text-ohana-green-dk text-xl mb-3">Leaf Removal</h3>
+          <p class="text-ohana-earth leading-relaxed">Seasonal cleanups to keep your property pristine. Full yard debris removal and hauling included.</p>
+        </div>
+        <!-- Service 4 -->
+        <div class="service-card bg-white rounded-2xl p-8 fade-up" style="transition-delay:0.3s">
+          <div class="w-14 h-14 bg-ohana-green/10 rounded-xl flex items-center justify-center mb-5">
+            <svg class="w-7 h-7 text-ohana-green" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 10h16M4 14h16M4 18h16"/></svg>
+          </div>
+          <h3 class="font-heading text-ohana-green-dk text-xl mb-3">Edging & Trimming</h3>
+          <p class="text-ohana-earth leading-relaxed">Clean, crisp edges along driveways, sidewalks, and garden beds. The details that make the difference.</p>
+        </div>
+        <!-- Service 5 -->
+        <div class="service-card bg-white rounded-2xl p-8 fade-up" style="transition-delay:0.4s">
+          <div class="w-14 h-14 bg-ohana-green/10 rounded-xl flex items-center justify-center mb-5">
+            <svg class="w-7 h-7 text-ohana-green" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+          </div>
+          <h3 class="font-heading text-ohana-green-dk text-xl mb-3">Mulching</h3>
+          <p class="text-ohana-earth leading-relaxed">Fresh mulch installation for beds and tree rings. Moisture retention, weed suppression, and curb appeal in one.</p>
+        </div>
+        <!-- Service 6 -->
+        <div class="service-card bg-white rounded-2xl p-8 fade-up" style="transition-delay:0.5s">
+          <div class="w-14 h-14 bg-ohana-green/10 rounded-xl flex items-center justify-center mb-5">
+            <svg class="w-7 h-7 text-ohana-green" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1"/></svg>
+          </div>
+          <h3 class="font-heading text-ohana-green-dk text-xl mb-3">Delivery Services</h3>
+          <p class="text-ohana-earth leading-relaxed">Need materials delivered? Soil, mulch, gravel, and more brought right to your property. Fast and reliable.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About / Veteran Section -->
+  <section id="about" class="bg-ohana-green-dk py-20 lg:py-28 relative overflow-hidden">
+    <div class="absolute inset-0 opacity-5">
+      <svg class="w-full h-full" viewBox="0 0 200 200"><defs><pattern id="stars" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse"><polygon points="20,2 24,15 38,15 27,23 31,36 20,28 9,36 13,23 2,15 16,15" fill="white" opacity="0.3"/></pattern></defs><rect width="200" height="200" fill="url(#stars)"/></svg>
+    </div>
+    <div class="max-w-7xl mx-auto px-4 lg:px-8 grid lg:grid-cols-2 gap-16 items-center relative z-10">
+      <div class="slide-left">
+        <div class="relative">
+          <div class="bg-ohana-green rounded-3xl p-1 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1589923188651-268a9765e432?w=700&q=80" alt="Professional lawn care" class="rounded-3xl w-full h-80 lg:h-[28rem] object-cover" />
+          </div>
+          <div class="absolute -bottom-6 -right-6 bg-ohana-navy text-white rounded-2xl p-6 shadow-2xl">
+            <div class="flex items-center gap-3">
+              <div class="w-12 h-12 bg-ohana-red/20 rounded-full flex items-center justify-center">
+                <span class="text-2xl">🇺🇸</span>
+              </div>
+              <div>
+                <p class="font-display font-bold text-lg">Veteran Owned</p>
+                <p class="text-ohana-sky text-sm">Proudly Serving</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="slide-right">
+        <span class="font-display text-ohana-green-lt tracking-[0.25em] uppercase text-sm font-semibold">Our Story</span>
+        <h2 class="font-heading text-white text-4xl lg:text-5xl mt-3 mb-6">Built on Discipline.<br/><span class="text-ohana-green-lt">Delivered with Heart.</span></h2>
+        <p class="text-ohana-lime/70 text-lg leading-relaxed mb-6">
+          After serving our country, we brought military precision home to North Alabama. Ohana means family in Hawaiian &mdash; and that's how we treat every customer. When we show up, we show up on time, every time, and we don't leave until the job is done right.
+        </p>
+        <p class="text-ohana-lime/70 text-lg leading-relaxed mb-8">
+          Our BBB accreditation isn't just a badge &mdash; it's our promise. We hold ourselves to the highest standards because that's what you deserve.
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <div class="flex items-center gap-2 bg-ohana-green/40 rounded-full px-4 py-2">
+            <svg class="w-5 h-5 text-ohana-green-lt" fill="currentColor" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+            <span class="text-white text-sm font-medium">Licensed & Insured</span>
+          </div>
+          <div class="flex items-center gap-2 bg-ohana-green/40 rounded-full px-4 py-2">
+            <svg class="w-5 h-5 text-ohana-green-lt" fill="currentColor" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+            <span class="text-white text-sm font-medium">BBB Accredited</span>
+          </div>
+          <div class="flex items-center gap-2 bg-ohana-green/40 rounded-full px-4 py-2">
+            <svg class="w-5 h-5 text-ohana-green-lt" fill="currentColor" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+            <span class="text-white text-sm font-medium">Veteran Owned</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Service Area -->
+  <section id="areas" class="bg-ohana-sand py-20 lg:py-28">
+    <div class="max-w-7xl mx-auto px-4 lg:px-8">
+      <div class="text-center mb-16 fade-up">
+        <span class="font-display text-ohana-green-lt tracking-[0.25em] uppercase text-sm font-semibold">Coverage</span>
+        <h2 class="font-heading text-ohana-green-dk text-4xl lg:text-5xl mt-3">Where We Serve</h2>
+        <div class="w-20 h-1 bg-ohana-green-lt mx-auto mt-4 rounded-full"></div>
+      </div>
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div class="fade-up">
+          <div class="bg-white rounded-3xl p-8 shadow-lg">
+            <div class="aspect-video rounded-2xl overflow-hidden bg-ohana-green/5 mb-6">
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d414487.2843653818!2d-87.1023!3d34.7!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88626b67!2sHuntsville%2C+AL!5e0!3m2!1sen!2sus!4v1" width="100%" height="100%" style="border:0;min-height:280px;" allowfullscreen loading="lazy"></iframe>
+            </div>
+            <p class="text-ohana-earth text-center text-sm">Proudly serving the greater Huntsville metro area</p>
+          </div>
+        </div>
+        <div class="space-y-6 fade-up" style="transition-delay:0.2s">
+          <div class="flex items-start gap-4 bg-white rounded-xl p-6 shadow-sm">
+            <div class="w-12 h-12 bg-ohana-green-lt/20 rounded-full flex items-center justify-center flex-shrink-0">
+              <span class="text-xl">📍</span>
+            </div>
+            <div>
+              <h4 class="font-display font-bold text-ohana-green-dk text-lg">Madison County</h4>
+              <p class="text-ohana-earth text-sm mt-1">Huntsville, Madison, Harvest, Meridianville, Hazel Green, New Hope, Owens Cross Roads</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-4 bg-white rounded-xl p-6 shadow-sm">
+            <div class="w-12 h-12 bg-ohana-green-lt/20 rounded-full flex items-center justify-center flex-shrink-0">
+              <span class="text-xl">📍</span>
+            </div>
+            <div>
+              <h4 class="font-display font-bold text-ohana-green-dk text-lg">Limestone County</h4>
+              <p class="text-ohana-earth text-sm mt-1">Athens, Tanner, Elkmont, Ardmore, Mooresville</p>
+            </div>
+          </div>
+          <div class="bg-ohana-green-dk rounded-xl p-6 text-center">
+            <p class="text-ohana-lime/80 text-sm mb-2">Not sure if you're in our area?</p>
+            <a href="tel:2564298915" class="text-white font-display font-bold text-xl hover:text-ohana-green-lt transition">Call us: (256) 429-8915</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reviews -->
+  <section id="reviews" class="bg-ohana-cream py-20 lg:py-28 grass-pattern">
+    <div class="max-w-7xl mx-auto px-4 lg:px-8">
+      <div class="text-center mb-16 fade-up">
+        <span class="font-display text-ohana-green-lt tracking-[0.25em] uppercase text-sm font-semibold">Testimonials</span>
+        <h2 class="font-heading text-ohana-green-dk text-4xl lg:text-5xl mt-3">What Our Customers Say</h2>
+        <div class="w-20 h-1 bg-ohana-green-lt mx-auto mt-4 rounded-full"></div>
+      </div>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="testimonial-card rounded-2xl p-8 fade-up">
+          <div class="flex gap-1 mb-4">
+            <svg class="w-5 h-5 text-ohana-gold" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="w-5 h-5 text-ohana-gold" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="w-5 h-5 text-ohana-gold" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="w-5 h-5 text-ohana-gold" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="w-5 h-5 text-ohana-gold" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <p class="text-ohana-earth leading-relaxed mb-4">"Paul and his team are incredible. Always on time, yard looks amazing every single week. Best lawn service we've ever had in Huntsville."</p>
+          <p class="font-display font-semibold text-ohana-green-dk text-sm">- Sarah M., Madison</p>
+        </div>
+        <div class="testimonial-card rounded-2xl p-8 fade-up" style="transition-delay:0.1s">
+          <div class="flex gap-1 mb-4">
+            <svg class="w-5 h-5 text-ohana-gold" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="w-5 h-5 text-ohana-gold" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="w-5 h-5 text-ohana-gold" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="w-5 h-5 text-ohana-gold" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="w-5 h-5 text-ohana-gold" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <p class="text-ohana-earth leading-relaxed mb-4">"As a veteran myself, I love supporting veteran-owned businesses. But even setting that aside, Ohana does the best work in the area. Period."</p>
+          <p class="font-display font-semibold text-ohana-green-dk text-sm">- James K., Athens</p>
+        </div>
+        <div class="testimonial-card rounded-2xl p-8 fade-up" style="transition-delay:0.2s">
+          <div class="flex gap-1 mb-4">
+            <svg class="w-5 h-5 text-ohana-gold" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="w-5 h-5 text-ohana-gold" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="w-5 h-5 text-ohana-gold" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="w-5 h-5 text-ohana-gold" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="w-5 h-5 text-ohana-gold" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <p class="text-ohana-earth leading-relaxed mb-4">"They did an incredible leaf cleanup and mulch job. My neighbors keep asking who does my yard. Highly recommend Ohana!"</p>
+          <p class="font-display font-semibold text-ohana-green-dk text-sm">- Linda T., Huntsville</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Smart Chat Feature -->
+  <section class="bg-ohana-green py-16 relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10">
+      <svg class="w-full h-full" viewBox="0 0 100 100"><circle cx="80" cy="20" r="30" fill="white"/><circle cx="20" cy="80" r="25" fill="white"/></svg>
+    </div>
+    <div class="max-w-4xl mx-auto px-4 text-center relative z-10 fade-up">
+      <div class="inline-flex items-center gap-2 bg-white/20 rounded-full px-5 py-2 mb-6">
+        <svg class="w-5 h-5 text-ohana-cream" fill="currentColor" viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/></svg>
+        <span class="text-ohana-cream font-display font-medium text-sm">Coming Soon</span>
+      </div>
+      <h2 class="font-heading text-white text-3xl lg:text-4xl mb-4">Smart Chat Assistant</h2>
+      <p class="text-ohana-lime/80 text-lg max-w-2xl mx-auto">
+        Soon you'll be able to get instant quotes, schedule service, and ask questions 24/7 through our smart website chat. No waiting on hold &mdash; get answers when you need them.
+      </p>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="bg-ohana-cream py-20 lg:py-28">
+    <div class="max-w-7xl mx-auto px-4 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-16">
+        <div class="fade-up">
+          <span class="font-display text-ohana-green-lt tracking-[0.25em] uppercase text-sm font-semibold">Get In Touch</span>
+          <h2 class="font-heading text-ohana-green-dk text-4xl lg:text-5xl mt-3 mb-6">Ready for a<br/><span class="text-ohana-green">Better Yard?</span></h2>
+          <p class="text-ohana-earth text-lg leading-relaxed mb-8">Get your free estimate today. We'll come out, walk the property, and give you an honest price. No pressure, no surprises.</p>
+          <div class="space-y-6">
+            <a href="tel:2564298915" class="flex items-center gap-4 group">
+              <div class="w-14 h-14 bg-ohana-green-lt/20 rounded-xl flex items-center justify-center group-hover:bg-ohana-green-lt/40 transition">
+                <svg class="w-6 h-6 text-ohana-green" fill="currentColor" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+              </div>
+              <div>
+                <p class="text-ohana-earth text-sm">Call or Text</p>
+                <p class="font-display font-bold text-ohana-green-dk text-xl">(256) 429-8915</p>
+              </div>
+            </a>
+            <div class="flex items-center gap-4">
+              <div class="w-14 h-14 bg-ohana-green-lt/20 rounded-xl flex items-center justify-center">
+                <svg class="w-6 h-6 text-ohana-green" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+              </div>
+              <div>
+                <p class="text-ohana-earth text-sm">Service Area</p>
+                <p class="font-display font-bold text-ohana-green-dk">Limestone & Madison Counties, AL</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-4">
+              <div class="w-14 h-14 bg-ohana-green-lt/20 rounded-xl flex items-center justify-center">
+                <svg class="w-6 h-6 text-ohana-green" fill="currentColor" viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+              </div>
+              <div>
+                <p class="text-ohana-earth text-sm">Hours</p>
+                <p class="font-display font-bold text-ohana-green-dk">Mon-Sat: 7:00 AM - 6:00 PM</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="fade-up" style="transition-delay:0.2s">
+          <form action="https://formspree.io/f/placeholder" method="POST" class="bg-white rounded-3xl p-8 lg:p-10 shadow-lg">
+            <h3 class="font-heading text-ohana-green-dk text-2xl mb-6">Get Your Free Estimate</h3>
+            <div class="space-y-5">
+              <div>
+                <label class="block text-ohana-earth text-sm font-medium mb-2">Full Name</label>
+                <input type="text" name="name" required class="w-full border border-ohana-earth/20 rounded-xl px-4 py-3 focus:outline-none focus:border-ohana-green-lt focus:ring-2 focus:ring-ohana-green-lt/20 transition" placeholder="Your name" />
+              </div>
+              <div class="grid grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-ohana-earth text-sm font-medium mb-2">Phone</label>
+                  <input type="tel" name="phone" required class="w-full border border-ohana-earth/20 rounded-xl px-4 py-3 focus:outline-none focus:border-ohana-green-lt focus:ring-2 focus:ring-ohana-green-lt/20 transition" placeholder="(256) 555-0000" />
+                </div>
+                <div>
+                  <label class="block text-ohana-earth text-sm font-medium mb-2">Email</label>
+                  <input type="email" name="email" class="w-full border border-ohana-earth/20 rounded-xl px-4 py-3 focus:outline-none focus:border-ohana-green-lt focus:ring-2 focus:ring-ohana-green-lt/20 transition" placeholder="you@email.com" />
+                </div>
+              </div>
+              <div>
+                <label class="block text-ohana-earth text-sm font-medium mb-2">Service Needed</label>
+                <select name="service" class="w-full border border-ohana-earth/20 rounded-xl px-4 py-3 focus:outline-none focus:border-ohana-green-lt focus:ring-2 focus:ring-ohana-green-lt/20 transition bg-white">
+                  <option value="">Select a service...</option>
+                  <option>Lawn Mowing</option>
+                  <option>Landscaping</option>
+                  <option>Leaf Removal</option>
+                  <option>Edging & Trimming</option>
+                  <option>Mulching</option>
+                  <option>Delivery Service</option>
+                  <option>Other</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-ohana-earth text-sm font-medium mb-2">Property Address</label>
+                <input type="text" name="address" class="w-full border border-ohana-earth/20 rounded-xl px-4 py-3 focus:outline-none focus:border-ohana-green-lt focus:ring-2 focus:ring-ohana-green-lt/20 transition" placeholder="123 Main St, Huntsville, AL" />
+              </div>
+              <div>
+                <label class="block text-ohana-earth text-sm font-medium mb-2">Message</label>
+                <textarea name="message" rows="3" class="w-full border border-ohana-earth/20 rounded-xl px-4 py-3 focus:outline-none focus:border-ohana-green-lt focus:ring-2 focus:ring-ohana-green-lt/20 transition resize-none" placeholder="Tell us about your yard..."></textarea>
+              </div>
+              <button type="submit" class="w-full bg-ohana-green text-white py-4 rounded-xl font-display font-bold text-lg hover:bg-ohana-green-dk transition">
+                Request Free Estimate
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-ohana-green-dk py-12">
+    <div class="max-w-7xl mx-auto px-4 lg:px-8">
+      <div class="grid md:grid-cols-3 gap-8 mb-8">
+        <div>
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 bg-ohana-green-lt rounded-full flex items-center justify-center">
+              <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+            </div>
+            <div>
+              <span class="font-heading text-white text-lg">Ohana Lawn Care</span>
+              <span class="block text-ohana-lime/60 text-xs font-display">& Delivery LLC</span>
+            </div>
+          </div>
+          <p class="text-ohana-lime/60 text-sm leading-relaxed">Veteran-owned lawn care serving Limestone & Madison Counties with military precision and aloha spirit.</p>
+        </div>
+        <div>
+          <h4 class="font-display font-bold text-white mb-4">Quick Links</h4>
+          <div class="space-y-2">
+            <a href="#services" class="block text-ohana-lime/60 hover:text-white text-sm transition">Services</a>
+            <a href="#about" class="block text-ohana-lime/60 hover:text-white text-sm transition">About Us</a>
+            <a href="#areas" class="block text-ohana-lime/60 hover:text-white text-sm transition">Service Area</a>
+            <a href="#contact" class="block text-ohana-lime/60 hover:text-white text-sm transition">Contact</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="font-display font-bold text-white mb-4">Contact</h4>
+          <p class="text-ohana-lime/60 text-sm">(256) 429-8915</p>
+          <p class="text-ohana-lime/60 text-sm mt-1">Huntsville, AL</p>
+          <p class="text-ohana-lime/60 text-sm mt-1">Mon-Sat: 7:00 AM - 6:00 PM</p>
+        </div>
+      </div>
+      <div class="flag-accent w-full mb-6"></div>
+      <p class="text-ohana-lime/40 text-center text-sm">&copy; 2025 Ohana Lawn Care & Delivery LLC. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    // Intersection Observer for animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+    document.querySelectorAll('.fade-up, .fade-in, .slide-left, .slide-right, .scale-in').forEach(el => {
+      observer.observe(el);
+    });
+
+    // Counter animation
+    function animateCounters() {
+      document.querySelectorAll('.counter').forEach(counter => {
+        const target = parseInt(counter.dataset.target);
+        const duration = 2000;
+        const start = performance.now();
+        function update(now) {
+          const elapsed = now - start;
+          const progress = Math.min(elapsed / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          counter.textContent = Math.floor(target * eased) + '+';
+          if (progress < 1) requestAnimationFrame(update);
+        }
+        requestAnimationFrame(update);
+      });
+    }
+
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          animateCounters();
+          counterObserver.disconnect();
+        }
+      });
+    }, { threshold: 0.3 });
+
+    document.querySelectorAll('.counter').forEach(el => counterObserver.observe(el));
+
+    // Nav scroll effect
+    window.addEventListener('scroll', () => {
+      const nav = document.querySelector('nav');
+      nav.classList.toggle('nav-scrolled', window.scrollY > 50);
+    });
+
+    // Mobile menu
+    document.getElementById('menuBtn').addEventListener('click', () => {
+      document.getElementById('mobileMenu').classList.add('open');
+    });
+    document.getElementById('closeMenu').addEventListener('click', () => {
+      document.getElementById('mobileMenu').classList.remove('open');
+    });
+    document.querySelectorAll('.mobile-link').forEach(link => {
+      link.addEventListener('click', () => {
+        document.getElementById('mobileMenu').classList.remove('open');
+      });
+    });
+  </script>
+</body>
+</html>

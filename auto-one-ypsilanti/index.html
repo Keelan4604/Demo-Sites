@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Auto-One | Full Service Auto Repair | Ypsilanti, MI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Archivo+Black&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0c0c0c;--surface:#161616;--surface2:#1e1e1e;
+  --green:#22c55e;--green-dim:rgba(34,197,94,0.15);--green-glow:rgba(34,197,94,0.08);
+  --lime:#a3e635;--white:#f0f0f0;--gray:#888;--gray-light:#aaa;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Manrope',sans-serif;background:var(--bg);color:var(--white);overflow-x:hidden}
+h1,h2,.big-text{font-family:'Archivo Black',sans-serif}
+
+.mobile-call{position:fixed;bottom:0;width:100%;background:var(--green);padding:.75rem;text-align:center;z-index:200;display:none}
+.mobile-call a{color:#000;font-weight:800;text-decoration:none;font-size:1rem;letter-spacing:1px}
+@media(max-width:768px){.mobile-call{display:block}}
+
+nav{position:fixed;top:0;width:100%;z-index:100;padding:1rem 5%;display:flex;justify-content:space-between;align-items:center;backdrop-filter:blur(20px);background:rgba(12,12,12,0.92);border-bottom:1px solid rgba(34,197,94,0.1)}
+.nav-brand{font-family:'Archivo Black',sans-serif;font-size:1.3rem;letter-spacing:-1px}
+.nav-brand span{color:var(--green)}
+.nav-menu{display:flex;gap:2rem;list-style:none}
+.nav-menu a{color:var(--gray);text-decoration:none;font-size:.82rem;font-weight:500;transition:color .3s;letter-spacing:.5px;text-transform:uppercase}
+.nav-menu a:hover{color:var(--green)}
+.nav-call{background:var(--green);color:#000;padding:.6rem 1.4rem;border-radius:6px;text-decoration:none;font-weight:700;font-size:.85rem;transition:all .3s}
+.nav-call:hover{background:var(--lime);transform:translateY(-1px)}
+@media(max-width:768px){.nav-menu{display:none}}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:6rem 5%;position:relative}
+.hero::before{content:'';position:absolute;top:50%;left:50%;width:600px;height:600px;background:radial-gradient(circle,var(--green-glow),transparent 70%);transform:translate(-50%,-50%);pointer-events:none}
+.hero-inner{position:relative;z-index:2;max-width:800px}
+.hero-tag{display:inline-flex;align-items:center;gap:.6rem;background:var(--green-dim);border:1px solid rgba(34,197,94,0.25);padding:.5rem 1.2rem;border-radius:50px;font-size:.75rem;color:var(--green);font-weight:600;margin-bottom:2rem;letter-spacing:2px;text-transform:uppercase}
+.hero-tag .dot{width:8px;height:8px;background:var(--green);border-radius:50%;animation:blink 1.5s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.hero h1{font-size:clamp(3rem,7vw,6rem);line-height:.95;letter-spacing:-3px;margin-bottom:1.5rem}
+.hero h1 .green{color:var(--green)}
+.hero-desc{font-size:1.1rem;color:var(--gray-light);max-width:550px;margin:0 auto 2.5rem;line-height:1.7;font-weight:400}
+.hero-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.btn-green{background:var(--green);color:#000;padding:1rem 2.5rem;border-radius:6px;text-decoration:none;font-weight:800;font-size:1rem;transition:all .3s;display:inline-flex;align-items:center;gap:.5rem}
+.btn-green:hover{background:var(--lime);transform:translateY(-2px);box-shadow:0 10px 30px rgba(34,197,94,0.25)}
+.btn-ghost{border:2px solid rgba(255,255,255,0.15);color:var(--white);padding:1rem 2.5rem;border-radius:6px;text-decoration:none;font-weight:600;font-size:1rem;transition:all .3s}
+.btn-ghost:hover{border-color:var(--green);color:var(--green)}
+
+/* MARQUEE */
+.marquee{padding:2rem 0;border-top:1px solid rgba(255,255,255,0.05);border-bottom:1px solid rgba(255,255,255,0.05);overflow:hidden;white-space:nowrap}
+.marquee-track{display:inline-flex;animation:scroll 20s linear infinite}
+@keyframes scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.marquee-item{padding:0 3rem;font-family:'Archivo Black',sans-serif;font-size:1rem;color:rgba(255,255,255,0.08);text-transform:uppercase;letter-spacing:3px}
+.marquee-item.highlight{color:rgba(34,197,94,0.3)}
+
+/* SERVICES */
+.services{padding:6rem 5%}
+.sec-label{font-size:.7rem;letter-spacing:4px;text-transform:uppercase;color:var(--green);font-weight:600;margin-bottom:.8rem}
+.sec-title{font-size:clamp(1.8rem,3vw,2.8rem);letter-spacing:-1px;margin-bottom:.5rem}
+.sec-desc{color:var(--gray);font-size:.95rem;max-width:550px;margin-bottom:3rem;line-height:1.7}
+.svc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1px;background:rgba(255,255,255,0.03);border-radius:12px;overflow:hidden}
+.svc-item{background:var(--surface);padding:2rem;transition:all .3s;position:relative}
+.svc-item:hover{background:var(--surface2)}
+.svc-item::after{content:'';position:absolute;top:0;left:0;width:3px;height:0;background:var(--green);transition:height .4s}
+.svc-item:hover::after{height:100%}
+.svc-item h3{font-size:.95rem;font-weight:700;margin-bottom:.3rem;display:flex;align-items:center;gap:.5rem}
+.svc-item h3 .icon{font-size:1.2rem}
+.svc-item p{color:var(--gray);font-size:.8rem;line-height:1.5}
+
+/* WHY */
+.why{padding:6rem 5%;background:var(--surface)}
+.why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem;margin-top:3rem}
+.why-card{background:var(--bg);border:1px solid rgba(255,255,255,0.05);border-radius:12px;padding:2rem;transition:all .4s}
+.why-card:hover{border-color:rgba(34,197,94,0.2);transform:translateY(-3px)}
+.why-card .num{font-family:'Archivo Black',sans-serif;font-size:3rem;color:rgba(34,197,94,0.2);line-height:1;margin-bottom:.5rem}
+.why-card h3{font-size:1rem;font-weight:700;margin-bottom:.3rem}
+.why-card p{color:var(--gray);font-size:.85rem;line-height:1.6}
+
+/* LOCATION */
+.location{padding:6rem 5%}
+.loc-card{background:linear-gradient(135deg,var(--surface),var(--surface2));border:1px solid rgba(34,197,94,0.1);border-radius:16px;padding:3rem;display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
+.loc-info h2{font-size:clamp(1.5rem,2.5vw,2.2rem);letter-spacing:-1px;margin-bottom:1rem}
+.loc-info p{color:var(--gray);font-size:.9rem;line-height:1.7;margin-bottom:1.5rem}
+.loc-details{display:flex;flex-direction:column;gap:.8rem}
+.loc-detail{display:flex;align-items:center;gap:.8rem;color:var(--gray-light);font-size:.9rem}
+.loc-detail .dot{width:8px;height:8px;background:var(--green);border-radius:50%;flex-shrink:0}
+.loc-map{background:var(--bg);border-radius:12px;height:300px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,0.05);position:relative;overflow:hidden}
+.loc-map::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 60% 40%,var(--green-glow),transparent 60%)}
+.loc-map .pin{font-size:3rem;position:relative;z-index:2;animation:float 3s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.loc-map .city{position:relative;z-index:2;font-family:'Archivo Black',sans-serif;font-size:1.5rem;color:rgba(255,255,255,0.1);margin-top:.5rem}
+
+/* CTA */
+.cta{padding:6rem 5%;text-align:center}
+.cta-wrap{background:var(--green-dim);border:1px solid rgba(34,197,94,0.2);border-radius:20px;padding:4rem 3rem;position:relative;overflow:hidden}
+.cta-wrap::before{content:'';position:absolute;top:-100px;left:50%;width:400px;height:400px;background:radial-gradient(circle,rgba(34,197,94,0.1),transparent);transform:translateX(-50%);pointer-events:none}
+.cta h2{font-size:clamp(2rem,3.5vw,3rem);letter-spacing:-1px;margin-bottom:.5rem;position:relative;z-index:2}
+.cta .sub{color:var(--gray);font-size:.95rem;margin-bottom:2rem;position:relative;z-index:2}
+.cta-phone{font-family:'Archivo Black',sans-serif;font-size:clamp(2rem,5vw,4rem);color:var(--green);text-decoration:none;display:block;margin-bottom:1.5rem;position:relative;z-index:2;transition:all .3s}
+.cta-phone:hover{color:var(--lime);transform:scale(1.03)}
+.cta-hours{color:var(--gray);font-size:.85rem;position:relative;z-index:2}
+
+footer{padding:2rem 5%;border-top:1px solid rgba(255,255,255,0.05);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+footer p{color:var(--gray);font-size:.75rem}
+.bbb{background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.2);padding:.3rem .8rem;border-radius:4px;font-size:.7rem;color:var(--green);font-weight:600;letter-spacing:1px}
+
+@media(max-width:768px){
+  .loc-card{grid-template-columns:1fr}
+  .cta-wrap{padding:2.5rem 1.5rem}
+  footer{flex-direction:column;text-align:center}
+}
+
+.reveal{opacity:0;transform:translateY(20px);transition:all .5s ease-out}
+.reveal.show{opacity:1;transform:translateY(0)}
+</style>
+</head>
+<body>
+
+<div class="mobile-call"><a href="tel:7345283667">TAP TO CALL (734) 528-3667</a></div>
+
+<nav>
+  <div class="nav-brand">AUTO<span>-ONE</span></div>
+  <ul class="nav-menu">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#why">Why Us</a></li>
+    <li><a href="#location">Location</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="tel:7345283667" class="nav-call">(734) 528-3667</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-tag"><span class="dot"></span>BBB Accredited Business</div>
+    <h1>YOUR <span class="green">ONE</span> STOP SHOP</h1>
+    <p class="hero-desc">Full-service auto repair in Ypsilanti, Michigan. Brakes, electrical, AC, suspension, exhaust, tires, and everything in between. One shop. One call. Done right.</p>
+    <div class="hero-actions">
+      <a href="tel:7345283667" class="btn-green">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        Call Now
+      </a>
+      <a href="#services" class="btn-ghost">Our Services</a>
+    </div>
+  </div>
+</section>
+
+<div class="marquee">
+  <div class="marquee-track">
+    <span class="marquee-item">Brakes</span>
+    <span class="marquee-item highlight">Electrical</span>
+    <span class="marquee-item">AC & Heating</span>
+    <span class="marquee-item highlight">Suspension</span>
+    <span class="marquee-item">Exhaust</span>
+    <span class="marquee-item highlight">Tires</span>
+    <span class="marquee-item">Diagnostics</span>
+    <span class="marquee-item highlight">Oil Change</span>
+    <span class="marquee-item">Transmission</span>
+    <span class="marquee-item highlight">Engine Repair</span>
+    <span class="marquee-item">Brakes</span>
+    <span class="marquee-item highlight">Electrical</span>
+    <span class="marquee-item">AC & Heating</span>
+    <span class="marquee-item highlight">Suspension</span>
+    <span class="marquee-item">Exhaust</span>
+    <span class="marquee-item highlight">Tires</span>
+    <span class="marquee-item">Diagnostics</span>
+    <span class="marquee-item highlight">Oil Change</span>
+    <span class="marquee-item">Transmission</span>
+    <span class="marquee-item highlight">Engine Repair</span>
+  </div>
+</div>
+
+<section class="services" id="services">
+  <div class="sec-label reveal">Full Service</div>
+  <h2 class="sec-title reveal">Everything Your Car Needs</h2>
+  <p class="sec-desc reveal">We handle it all under one roof. No need to drive across town for different specialists.</p>
+  <div class="svc-grid reveal">
+    <div class="svc-item"><h3><span class="icon">🔧</span> Engine Repair</h3><p>Complete engine diagnostics, repair, and rebuilds for all makes and models.</p></div>
+    <div class="svc-item"><h3><span class="icon">⚙️</span> Transmission</h3><p>Manual and automatic transmission service, fluid changes, and full rebuilds.</p></div>
+    <div class="svc-item"><h3><span class="icon">🛞</span> Brakes</h3><p>Pads, rotors, calipers, and complete brake system overhauls for safe stopping.</p></div>
+    <div class="svc-item"><h3><span class="icon">❄️</span> AC & Heating</h3><p>Full climate system service. Recharge, compressor, heater core, and blower.</p></div>
+    <div class="svc-item"><h3><span class="icon">⚡</span> Electrical</h3><p>Battery, alternator, starter, wiring, and computer system diagnostics.</p></div>
+    <div class="svc-item"><h3><span class="icon">🔩</span> Suspension</h3><p>Shocks, struts, ball joints, tie rods, and alignment for a smooth ride.</p></div>
+    <div class="svc-item"><h3><span class="icon">💨</span> Exhaust</h3><p>Muffler, catalytic converter, exhaust manifold, and emissions work.</p></div>
+    <div class="svc-item"><h3><span class="icon">🏎️</span> Tires</h3><p>Tire sales, mounting, balancing, rotation, and flat repair. All brands.</p></div>
+    <div class="svc-item"><h3><span class="icon">🛢️</span> Oil & Maintenance</h3><p>Oil changes, tune-ups, filters, belts, hoses, and routine fluid services.</p></div>
+  </div>
+</section>
+
+<section class="why" id="why">
+  <div class="sec-label reveal">Why Auto-One</div>
+  <h2 class="sec-title reveal">The Ypsilanti Standard</h2>
+  <p class="sec-desc reveal">BBB accredited and community trusted. Here's why customers keep coming back.</p>
+  <div class="why-grid">
+    <div class="why-card reveal">
+      <div class="num">01</div>
+      <h3>BBB Accredited</h3>
+      <p>We meet the Better Business Bureau's standards for trust, transparency, and customer satisfaction.</p>
+    </div>
+    <div class="why-card reveal">
+      <div class="num">02</div>
+      <h3>Full Service Facility</h3>
+      <p>From oil changes to engine rebuilds, everything happens under one roof. One shop, one relationship.</p>
+    </div>
+    <div class="why-card reveal">
+      <div class="num">03</div>
+      <h3>Fair & Transparent</h3>
+      <p>We explain the problem, show you the options, and let you decide. No pressure upselling.</p>
+    </div>
+    <div class="why-card reveal">
+      <div class="num">04</div>
+      <h3>All Makes & Models</h3>
+      <p>Domestic, import, truck, or SUV. We work on everything that rolls through the door.</p>
+    </div>
+  </div>
+</section>
+
+<section class="location" id="location">
+  <div class="loc-card reveal">
+    <div class="loc-info">
+      <div class="sec-label">Find Us</div>
+      <h2>Ypsilanti, Michigan</h2>
+      <p>Conveniently located and serving the Ann Arbor, Ypsilanti, and greater Washtenaw County community.</p>
+      <div class="loc-details">
+        <div class="loc-detail"><span class="dot"></span>Ypsilanti, MI</div>
+        <div class="loc-detail"><span class="dot"></span>Serving Ann Arbor & Washtenaw County</div>
+        <div class="loc-detail"><span class="dot"></span>Near Eastern Michigan University</div>
+        <div class="loc-detail"><span class="dot"></span>Walk-ins Welcome</div>
+      </div>
+    </div>
+    <div class="loc-map">
+      <div style="text-align:center">
+        <div class="pin">📍</div>
+        <div class="city">YPSILANTI</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta" id="contact">
+  <div class="cta-wrap">
+    <div class="sec-label">Ready?</div>
+    <h2>BRING IT IN</h2>
+    <p class="sub">No appointment needed. Drive in or call ahead.</p>
+    <a href="tel:7345283667" class="cta-phone">(734) 528-3667</a>
+    <a href="tel:7345283667" class="btn-green">Schedule Service</a>
+    <p class="cta-hours" style="margin-top:1.5rem">Monday - Friday: 8:00 AM - 6:00 PM | Saturday: 9:00 AM - 2:00 PM</p>
+  </div>
+</section>
+
+<footer>
+  <div class="nav-brand">AUTO<span>-ONE</span></div>
+  <span class="bbb">BBB ACCREDITED</span>
+  <p>&copy; 2026 Auto-One | Ypsilanti, MI | Full Service Auto Repair</p>
+</footer>
+
+<script>
+const o=new IntersectionObserver(e=>{e.forEach(i=>{if(i.isIntersecting){i.target.classList.add('show');o.unobserve(i.target)}})},{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>o.observe(el));
+</script>
+</body>
+</html>

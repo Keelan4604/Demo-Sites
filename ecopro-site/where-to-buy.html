@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Where to Buy — EcoPro USA</title>
+  <meta name="description" content="Find out where to buy EcoPro products — buy direct, through Caterpillar dealers, or other heavy equipment dealers nationwide.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* ========== WHERE TO BUY PAGE STYLES ========== */
+
+    .wtb-hero {
+      position: relative;
+      padding: calc(var(--header-height) + var(--space-3xl)) 0 var(--space-3xl);
+      background: linear-gradient(135deg, var(--color-navy) 0%, var(--color-navy-mid) 100%);
+      color: var(--color-white);
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .wtb-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url('https://ecoprousa.com/wp-content/uploads/2022/06/our-products.jpg') center/cover no-repeat;
+      opacity: 0.12;
+    }
+
+    .wtb-hero .container {
+      position: relative;
+      z-index: 1;
+    }
+
+    .wtb-hero .section-eyebrow {
+      color: var(--color-accent);
+    }
+
+    .wtb-hero-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2.2rem, 5vw, 3.4rem);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: var(--space-md);
+    }
+
+    .wtb-hero-sub {
+      font-size: 1.15rem;
+      color: rgba(255,255,255,0.75);
+      max-width: 620px;
+      margin: 0 auto;
+      line-height: 1.65;
+    }
+
+    /* --- Channel Cards --- */
+    .channels {
+      padding: var(--space-3xl) 0;
+      background: var(--color-off-white);
+    }
+
+    .channels-grid {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xl);
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .channel-card {
+      background: var(--color-white);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
+      padding: var(--space-xl) var(--space-xl) var(--space-xl) var(--space-xl);
+      display: grid;
+      grid-template-columns: 64px 1fr;
+      gap: var(--space-lg);
+      align-items: start;
+      transition: box-shadow var(--transition), transform var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .channel-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: var(--color-accent);
+      border-radius: 4px 0 0 4px;
+    }
+
+    .channel-card:hover {
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-2px);
+    }
+
+    .channel-card.card-featured::before {
+      background: var(--color-success);
+    }
+
+    .channel-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: var(--radius-md);
+      background: var(--color-navy);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-white);
+      flex-shrink: 0;
+    }
+
+    .channel-icon svg {
+      width: 28px;
+      height: 28px;
+    }
+
+    .channel-icon.icon-direct { background: var(--color-success); }
+    .channel-icon.icon-fleet { background: var(--color-navy-mid); }
+    .channel-icon.icon-cat { background: #FFCD11; color: var(--color-gray-900); }
+    .channel-icon.icon-oem { background: var(--color-navy-light); }
+    .channel-icon.icon-help { background: var(--color-accent); }
+
+    .channel-body h3 {
+      font-family: var(--font-sans);
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--color-navy);
+      margin-bottom: var(--space-xs);
+    }
+
+    .channel-tag {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 3px 10px;
+      border-radius: 100px;
+      margin-bottom: var(--space-sm);
+    }
+
+    .channel-tag.tag-recommended {
+      background: rgba(34,197,94,0.12);
+      color: var(--color-success);
+    }
+
+    .channel-tag.tag-dealer {
+      background: rgba(59,156,255,0.12);
+      color: var(--color-accent);
+    }
+
+    .channel-body p {
+      font-size: 0.95rem;
+      color: var(--color-gray-700);
+      line-height: 1.65;
+      margin-bottom: var(--space-md);
+    }
+
+    .channel-body .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .channel-body .btn svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    /* --- How It Works --- */
+    .how-it-works {
+      padding: var(--space-3xl) 0;
+      background: var(--color-white);
+    }
+
+    .steps-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-xl);
+      max-width: 900px;
+      margin: var(--space-2xl) auto 0;
+    }
+
+    .step-item {
+      text-align: center;
+    }
+
+    .step-number {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--color-navy);
+      color: var(--color-white);
+      font-weight: 800;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto var(--space-md);
+    }
+
+    .step-item h4 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--color-navy);
+      margin-bottom: var(--space-xs);
+    }
+
+    .step-item p {
+      font-size: 0.88rem;
+      color: var(--color-gray-500);
+      line-height: 1.55;
+    }
+
+    /* --- Responsive --- */
+    @media (max-width: 768px) {
+      .channel-card {
+        grid-template-columns: 1fr;
+        padding: var(--space-lg);
+      }
+
+      .channel-icon {
+        width: 48px;
+        height: 48px;
+      }
+
+      .steps-row {
+        grid-template-columns: 1fr;
+        gap: var(--space-lg);
+      }
+
+      .step-item {
+        display: grid;
+        grid-template-columns: 48px 1fr;
+        gap: var(--space-md);
+        text-align: left;
+      }
+
+      .step-number {
+        margin: 0;
+      }
+
+      .step-text {
+        display: flex;
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========== HEADER ========== -->
+  <header class="site-header" id="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo" aria-label="EcoPro USA Home">
+        <img src="images/eco-pro-logo-300x73.png" alt="EcoPro USA" width="180" height="44">
+      </a>
+      <nav class="main-nav" id="main-nav" aria-label="Main navigation">
+        <ul class="nav-list">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="about.html" class="nav-link">About</a></li>
+          <li><a href="products.html" class="nav-link">Products</a></li>
+          <li><a href="where-to-buy.html" class="nav-link active">Where to Buy</a></li>
+          <li><a href="results.html" class="nav-link">Results</a></li>
+          <li><a href="techcorner.html" class="nav-link">Tech Corner</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="header-actions">
+        <a href="contact.html" class="btn btn-primary btn-sm">Get a Quote</a>
+        <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle menu" aria-expanded="false">
+          <span class="hamburger"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========== HERO ========== -->
+  <section class="wtb-hero">
+    <div class="container">
+      <p class="section-eyebrow reveal">Purchasing Options</p>
+      <h1 class="wtb-hero-title reveal">Where to Buy<br>EcoPro Products</h1>
+      <p class="wtb-hero-sub reveal">Great news — there are multiple ways to get EcoPro products for your fleet. Whether you buy direct or through a dealer near you, we'll make it easy.</p>
+    </div>
+  </section>
+
+  <!-- ========== CHANNELS ========== -->
+  <section class="channels">
+    <div class="container">
+      <div class="channels-grid">
+
+        <!-- 1. Buy Direct -->
+        <div class="channel-card card-featured reveal">
+          <div class="channel-icon icon-direct">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+          </div>
+          <div class="channel-body">
+            <span class="channel-tag tag-recommended">Recommended</span>
+            <h3>Buy Direct from EcoPro</h3>
+            <p>The fastest way to get what you need. Fill out a quick quote request and we'll put together pricing tailored to your fleet and equipment. Direct purchasing means direct support — from product selection through installation.</p>
+            <a href="contact.html" class="btn btn-primary">
+              Request a Quote
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- 2. Large Fleets / CCAP -->
+        <div class="channel-card reveal">
+          <div class="channel-icon icon-fleet">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="2"/><polygon points="16 8 20 12 20 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+          </div>
+          <div class="channel-body">
+            <h3>Large Fleets &amp; Existing CCAP Customers</h3>
+            <p>If you're already using our Cabin Air Pressurizer (CCAP), there's a great chance we already have a parts contact set up for your operation. Search <strong>"EcoPro"</strong> or <strong>"Eco Pro"</strong> in your online procurement system — you may already have us as an approved vendor. If not, contact us and we'll send you our machine-number list so you can get a quote fast.</p>
+            <a href="contact.html" class="btn btn-secondary">
+              Contact Us for Your Machine List
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- 3. Caterpillar Dealers -->
+        <div class="channel-card reveal">
+          <div class="channel-icon icon-cat">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          </div>
+          <div class="channel-body">
+            <span class="channel-tag tag-dealer">50%+ of Cat Dealers</span>
+            <h3>Caterpillar Dealers</h3>
+            <p>Over 50% of Caterpillar dealers across the country carry or resell EcoPro products — and some even keep them in stock. Ask your local Cat dealer about EcoPro filtration and protection products, or contact us and we'll help you find a dealer near you.</p>
+            <a href="contact.html" class="btn btn-secondary">
+              Find a Cat Dealer with EcoPro
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- 4. Komatsu, Volvo, Deere -->
+        <div class="channel-card reveal">
+          <div class="channel-icon icon-oem">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+          </div>
+          <div class="channel-body">
+            <h3>Komatsu, Volvo &amp; John Deere Dealers</h3>
+            <p>A growing number of dealers serving Komatsu, Volvo, and John Deere equipment also resell EcoPro products. Contact us to find out if there's a dealer near you carrying our lineup for your specific equipment brand.</p>
+            <a href="contact.html" class="btn btn-secondary">
+              Find a Dealer Near You
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- 5. Need Anything Else -->
+        <div class="channel-card reveal">
+          <div class="channel-icon icon-help">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+          </div>
+          <div class="channel-body">
+            <h3>Need Something Else?</h3>
+            <p>Can't find what you're looking for, or not sure which purchasing option is right for your operation? Reach out — we're here to help and we'll get you pointed in the right direction.</p>
+            <a href="contact.html" class="btn btn-secondary">
+              Contact EcoPro
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== HOW IT WORKS ========== -->
+  <section class="how-it-works">
+    <div class="container">
+      <div class="section-header reveal" style="text-align:center">
+        <p class="section-eyebrow">How It Works</p>
+        <h2 class="section-title">Three Steps to Getting Started</h2>
+      </div>
+      <div class="steps-row">
+        <div class="step-item reveal">
+          <div class="step-number">1</div>
+          <div class="step-text">
+            <h4>Tell Us About Your Equipment</h4>
+            <p>Share your machine type, model, and what you're looking to solve. We'll match you with the right products.</p>
+          </div>
+        </div>
+        <div class="step-item reveal">
+          <div class="step-number">2</div>
+          <div class="step-text">
+            <h4>Get a Custom Quote</h4>
+            <p>We'll put together pricing based on your fleet size and needs — no cookie-cutter proposals.</p>
+          </div>
+        </div>
+        <div class="step-item reveal">
+          <div class="step-number">3</div>
+          <div class="step-text">
+            <h4>We Handle the Rest</h4>
+            <p>From product selection to installation support, we're with you start to finish.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CTA BAND ========== -->
+  <section class="section cta-band" id="contact">
+    <div class="container cta-inner">
+      <div class="cta-text reveal">
+        <h2 class="cta-headline">Ready to Get Started?</h2>
+        <p class="cta-sub">Talk to our team about the right products for your equipment. We're here to help — every step of the way.</p>
+      </div>
+      <div class="cta-actions reveal">
+        <a href="mailto:controller@ecoprousa.com" class="btn btn-primary btn-lg">Get a Quote</a>
+        <a href="tel:8553267762" class="btn btn-outline-light btn-lg">Call 855-ECO-PRO2</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <img src="images/eco-pro-logo-300x73.png" alt="EcoPro USA" width="160" height="39" class="footer-logo">
+        <p class="footer-tagline">Independently owned and operated. Proven products for heavy equipment — made in the USA.</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4 class="footer-heading">Products</h4>
+          <ul>
+            <li><a href="products.html#turbo">Turbo II HD PreCleaner</a></li>
+            <li><a href="products.html#cabin">Cabin Air Pressurizer</a></li>
+            <li><a href="products.html#led">LED HD Lights</a></li>
+            <li><a href="products.html#desiccant">Desiccant Breathers</a></li>
+            <li><a href="products.html#adapters">Metal Adapters</a></li>
+            <li><a href="products.html#jump-starters">Jump Starters</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-heading">Company</h4>
+          <ul>
+            <li><a href="about.html">About</a></li>
+            <li><a href="where-to-buy.html">Where to Buy</a></li>
+            <li><a href="results.html">Results</a></li>
+            <li><a href="techcorner.html">Tech Corner</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-heading">Contact</h4>
+          <ul>
+            <li><a href="tel:8553267762">855-ECO-PRO2</a></li>
+            <li><a href="mailto:controller@ecoprousa.com">controller@ecoprousa.com</a></li>
+            <li>2443 W 12th St<br>Tempe, AZ 85281</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container footer-bottom-inner">
+        <p>&copy; 2026 EcoPro USA. All rights reserved.</p>
+        <p>Independently owned &amp; operated &bull; Made in the USA</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

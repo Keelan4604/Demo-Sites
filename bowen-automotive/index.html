@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bowen Automotive | Full Service Auto Repair | Huntsville, AL</title>
+  <meta name="description" content="Bowen Automotive — Owner-operated full service auto repair in Huntsville, AL. Tires, diagnostics, brakes, suspension, engine, and transmission. Honest work since 2016." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@400;500;700;800&family=Literata:ital,wght@0,400;0,500;0,700;1,400&family=Gambetta:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'bw-navy':     '#0f172a',
+            'bw-blue':     '#1e40af',
+            'bw-blue-lt':  '#3b82f6',
+            'bw-blue-dk':  '#1e3a8a',
+            'bw-sky':      '#dbeafe',
+            'bw-ice':      '#eff6ff',
+            'bw-white':    '#fafcff',
+            'bw-slate':    '#475569',
+            'bw-steel':    '#64748b',
+            'bw-dark':     '#1e293b',
+            'bw-teal':     '#0d9488',
+            'bw-teal-lt':  '#14b8a6',
+            'bw-amber':    '#f59e0b',
+            'bw-green':    '#16a34a',
+          },
+          fontFamily: {
+            heading: ['"Cabinet Grotesk"', 'sans-serif'],
+            body:    ['Literata', 'serif'],
+            accent:  ['Gambetta', 'serif'],
+          },
+        },
+      },
+    }
+  </script>
+  <style>
+    * { font-family: 'Literata', serif; }
+    h1, h2, h3, h4, .font-heading { font-family: 'Cabinet Grotesk', sans-serif; }
+
+    .fade-up {
+      opacity: 0; transform: translateY(40px);
+      transition: opacity 0.8s cubic-bezier(.22,1,.36,1), transform 0.8s cubic-bezier(.22,1,.36,1);
+    }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    .slide-left {
+      opacity: 0; transform: translateX(-50px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+    .slide-left.visible { opacity: 1; transform: translateX(0); }
+
+    .slide-right {
+      opacity: 0; transform: translateX(50px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+    .slide-right.visible { opacity: 1; transform: translateX(0); }
+
+    .scale-in {
+      opacity: 0; transform: scale(0.92);
+      transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+    }
+    .scale-in.visible { opacity: 1; transform: scale(1); }
+
+    .hero-split {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 1024px) {
+      .hero-split {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .hero-left {
+      background: #0f172a;
+    }
+    .hero-right {
+      background: linear-gradient(135deg, rgba(15,23,42,0.75), rgba(15,23,42,0.5)),
+                  url('https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=1200&q=85') center/cover no-repeat;
+    }
+
+    .grid-pattern {
+      background-image: linear-gradient(rgba(59,130,246,0.04) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(59,130,246,0.04) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+
+    .check-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+      border: 1px solid transparent;
+    }
+    .check-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+      border-color: #3b82f6;
+    }
+
+    .nav-bar {
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      background: rgba(15,23,42,0.85);
+      transition: all 0.3s ease;
+    }
+    .nav-scrolled { background: rgba(15,23,42,0.97); box-shadow: 0 4px 30px rgba(0,0,0,0.3); }
+
+    @keyframes pulse-blue {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(30,64,175,0.5); }
+      50% { box-shadow: 0 0 0 12px rgba(30,64,175,0); }
+    }
+    .pulse-cta { animation: pulse-blue 2.5s infinite; }
+
+    .mobile-menu { transform: translateX(100%); transition: transform 0.4s cubic-bezier(.22,1,.36,1); }
+    .mobile-menu.open { transform: translateX(0); }
+
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #0f172a; }
+    ::-webkit-scrollbar-thumb { background: #1e40af; border-radius: 4px; }
+
+    .stagger > *:nth-child(1) { transition-delay: 0.05s; }
+    .stagger > *:nth-child(2) { transition-delay: 0.12s; }
+    .stagger > *:nth-child(3) { transition-delay: 0.19s; }
+    .stagger > *:nth-child(4) { transition-delay: 0.26s; }
+    .stagger > *:nth-child(5) { transition-delay: 0.33s; }
+    .stagger > *:nth-child(6) { transition-delay: 0.40s; }
+    .stagger > *:nth-child(7) { transition-delay: 0.47s; }
+    .stagger > *:nth-child(8) { transition-delay: 0.54s; }
+
+    .trust-badge {
+      background: linear-gradient(135deg, #1e40af, #3b82f6);
+    }
+
+    .timeline-dot {
+      width: 16px; height: 16px; border-radius: 50%;
+      background: #1e40af;
+      border: 3px solid #dbeafe;
+    }
+
+    .owner-story {
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+    }
+  </style>
+</head>
+<body class="bg-bw-white text-bw-navy overflow-x-hidden">
+
+  <!-- Navigation -->
+  <nav id="navbar" class="nav-bar fixed top-0 left-0 w-full z-50 py-4 px-4 md:px-8">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      <a href="#" class="flex items-center gap-3">
+        <div class="trust-badge w-11 h-11 rounded-lg flex items-center justify-center shadow-lg">
+          <span class="text-white font-heading font-bold text-lg">BA</span>
+        </div>
+        <div>
+          <span class="text-white font-heading font-bold text-lg tracking-tight">Bowen Automotive</span>
+          <span class="hidden sm:block text-bw-blue-lt text-xs tracking-widest uppercase">Huntsville, AL</span>
+        </div>
+      </a>
+
+      <div class="hidden lg:flex items-center gap-8">
+        <a href="#services" class="text-white/80 hover:text-bw-blue-lt transition-colors text-sm font-medium tracking-wide">Services</a>
+        <a href="#about" class="text-white/80 hover:text-bw-blue-lt transition-colors text-sm font-medium tracking-wide">About</a>
+        <a href="#reviews" class="text-white/80 hover:text-bw-blue-lt transition-colors text-sm font-medium tracking-wide">Reviews</a>
+        <a href="#contact" class="text-white/80 hover:text-bw-blue-lt transition-colors text-sm font-medium tracking-wide">Contact</a>
+        <a href="tel:2567150096" class="bg-bw-blue hover:bg-bw-blue-lt text-white font-heading font-bold py-2.5 px-6 rounded-lg text-sm transition-all hover:scale-105 shadow-lg">
+          Book Now
+        </a>
+      </div>
+
+      <button id="menu-toggle" class="lg:hidden text-white p-2" aria-label="Toggle menu">
+        <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="mobile-menu fixed top-0 right-0 w-80 h-full bg-bw-navy z-[55] flex flex-col p-8 pt-20">
+    <button id="menu-close" class="absolute top-6 right-6 text-white">
+      <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+      </svg>
+    </button>
+    <a href="#services" class="text-white text-xl font-heading py-3 border-b border-white/10 hover:text-bw-blue-lt transition-colors mobile-link">Services</a>
+    <a href="#about" class="text-white text-xl font-heading py-3 border-b border-white/10 hover:text-bw-blue-lt transition-colors mobile-link">About</a>
+    <a href="#reviews" class="text-white text-xl font-heading py-3 border-b border-white/10 hover:text-bw-blue-lt transition-colors mobile-link">Reviews</a>
+    <a href="#contact" class="text-white text-xl font-heading py-3 border-b border-white/10 hover:text-bw-blue-lt transition-colors mobile-link">Contact</a>
+    <a href="tel:2567150096" class="mt-6 bg-bw-blue text-white font-heading font-bold py-3 px-8 rounded-lg text-center text-lg hover:bg-bw-blue-lt transition-all mobile-link">Book Now</a>
+  </div>
+  <div id="menu-overlay" class="fixed inset-0 bg-black/50 z-[54] hidden"></div>
+
+  <!-- HERO — Split layout -->
+  <section class="hero-split">
+    <div class="hero-left flex items-center justify-center px-6 md:px-12 py-32 lg:py-20 relative">
+      <div class="absolute inset-0 grid-pattern"></div>
+      <div class="relative z-10 max-w-lg">
+        <div class="inline-flex items-center gap-2 bg-bw-blue/20 border border-bw-blue/30 rounded-full px-4 py-1.5 mb-6 fade-up">
+          <div class="w-2 h-2 rounded-full bg-bw-green animate-pulse"></div>
+          <span class="text-bw-blue-lt text-sm font-medium">Owner-Operated Since 2016</span>
+        </div>
+
+        <h1 class="font-heading text-white text-4xl sm:text-5xl md:text-6xl font-extrabold leading-[1.1] mb-6 fade-up">
+          Your car<br>deserves<br>
+          <span class="text-bw-blue-lt">better.</span>
+        </h1>
+
+        <p class="text-bw-steel text-lg leading-relaxed mb-8 fade-up">
+          Full-service auto repair by someone who actually cares. Owner on-site every day. No corporate upselling. Just honest diagnostics and quality work at fair prices.
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-4 fade-up">
+          <a href="#contact" class="bg-bw-blue hover:bg-bw-blue-lt text-white font-heading font-bold py-4 px-8 rounded-lg text-lg transition-all hover:scale-105 shadow-xl pulse-cta text-center">
+            Schedule Service
+          </a>
+          <a href="tel:2567150096" class="border-2 border-bw-steel/30 hover:border-bw-blue text-white hover:text-bw-blue-lt font-heading font-bold py-4 px-8 rounded-lg text-lg transition-all hover:scale-105 text-center flex items-center justify-center gap-2">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+            (256) 715-0096
+          </a>
+        </div>
+
+        <div class="flex items-center gap-6 mt-10 fade-up">
+          <div class="text-center">
+            <span class="font-heading text-bw-blue-lt text-3xl font-bold block">8+</span>
+            <span class="text-bw-steel text-xs uppercase tracking-wide">Years</span>
+          </div>
+          <div class="w-px h-10 bg-bw-steel/20"></div>
+          <div class="text-center">
+            <span class="font-heading text-bw-blue-lt text-3xl font-bold block">1000+</span>
+            <span class="text-bw-steel text-xs uppercase tracking-wide">Cars Fixed</span>
+          </div>
+          <div class="w-px h-10 bg-bw-steel/20"></div>
+          <div class="text-center">
+            <span class="font-heading text-bw-blue-lt text-3xl font-bold block">5&#9733;</span>
+            <span class="text-bw-steel text-xs uppercase tracking-wide">Rated</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-right hidden lg:flex items-center justify-center">
+      <div class="text-center text-white/30 p-12">
+        <svg class="w-24 h-24 mx-auto mb-4 opacity-30" fill="none" stroke="currentColor" stroke-width="0.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17l-5.384-3.076A1 1 0 015 11.207V7.793a1 1 0 011.036-.887l5.384.308a1 1 0 01.964.887v6.182a1 1 0 01-.964.887z"/></svg>
+        <p class="font-heading text-lg opacity-50">Shop Photo</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services" class="py-20 md:py-28 bg-bw-white grid-pattern">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="text-center mb-16 fade-up">
+        <span class="text-bw-blue font-heading font-bold text-sm tracking-widest uppercase">Full Service</span>
+        <h2 class="font-heading text-4xl md:text-5xl font-extrabold mt-3 mb-4">What We Fix</h2>
+        <p class="text-bw-slate max-w-2xl mx-auto text-lg">From routine maintenance to major repairs, we handle it all under one roof. No need to shop around.</p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 stagger">
+        <div class="check-card bg-bw-ice rounded-xl p-6 text-center fade-up">
+          <div class="w-14 h-14 rounded-xl bg-bw-blue/10 flex items-center justify-center mx-auto mb-4">
+            <svg class="w-7 h-7 text-bw-blue" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M9 9.563C9 9.252 9.252 9 9.563 9h4.874c.311 0 .563.252.563.563v4.874c0 .311-.252.563-.563.563H9.564A.562.562 0 019 14.437V9.564z"/></svg>
+          </div>
+          <h3 class="font-heading font-bold text-lg mb-2">Tires</h3>
+          <p class="text-bw-slate text-sm leading-relaxed">New tires, rotations, balancing, patches. All major brands available.</p>
+        </div>
+
+        <div class="check-card bg-bw-ice rounded-xl p-6 text-center fade-up">
+          <div class="w-14 h-14 rounded-xl bg-bw-blue/10 flex items-center justify-center mx-auto mb-4">
+            <svg class="w-7 h-7 text-bw-blue" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19 14.5M14.25 3.104c.251.023.501.05.75.082M19 14.5l-2.47 7.411a.75.75 0 01-.712.519H8.182a.75.75 0 01-.712-.52L5 14.5m14 0H5"/></svg>
+          </div>
+          <h3 class="font-heading font-bold text-lg mb-2">Diagnostics</h3>
+          <p class="text-bw-slate text-sm leading-relaxed">Advanced scan tools to pinpoint the problem fast. Check engine lights decoded.</p>
+        </div>
+
+        <div class="check-card bg-bw-ice rounded-xl p-6 text-center fade-up">
+          <div class="w-14 h-14 rounded-xl bg-bw-blue/10 flex items-center justify-center mx-auto mb-4">
+            <svg class="w-7 h-7 text-bw-blue" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+          </div>
+          <h3 class="font-heading font-bold text-lg mb-2">Brakes</h3>
+          <p class="text-bw-slate text-sm leading-relaxed">Pads, rotors, calipers, brake lines. Your safety is our priority.</p>
+        </div>
+
+        <div class="check-card bg-bw-ice rounded-xl p-6 text-center fade-up">
+          <div class="w-14 h-14 rounded-xl bg-bw-blue/10 flex items-center justify-center mx-auto mb-4">
+            <svg class="w-7 h-7 text-bw-blue" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/></svg>
+          </div>
+          <h3 class="font-heading font-bold text-lg mb-2">Suspension</h3>
+          <p class="text-bw-slate text-sm leading-relaxed">Shocks, struts, ball joints, alignment. Smooth ride guaranteed.</p>
+        </div>
+
+        <div class="check-card bg-bw-ice rounded-xl p-6 text-center fade-up">
+          <div class="w-14 h-14 rounded-xl bg-bw-blue/10 flex items-center justify-center mx-auto mb-4">
+            <svg class="w-7 h-7 text-bw-blue" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/></svg>
+          </div>
+          <h3 class="font-heading font-bold text-lg mb-2">Engine</h3>
+          <p class="text-bw-slate text-sm leading-relaxed">From tune-ups to complete rebuilds. We know engines inside and out.</p>
+        </div>
+
+        <div class="check-card bg-bw-ice rounded-xl p-6 text-center fade-up">
+          <div class="w-14 h-14 rounded-xl bg-bw-blue/10 flex items-center justify-center mx-auto mb-4">
+            <svg class="w-7 h-7 text-bw-blue" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/></svg>
+          </div>
+          <h3 class="font-heading font-bold text-lg mb-2">Transmission</h3>
+          <p class="text-bw-slate text-sm leading-relaxed">Manual & automatic transmission service, repair, and rebuild.</p>
+        </div>
+
+        <div class="check-card bg-bw-ice rounded-xl p-6 text-center fade-up">
+          <div class="w-14 h-14 rounded-xl bg-bw-blue/10 flex items-center justify-center mx-auto mb-4">
+            <svg class="w-7 h-7 text-bw-blue" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v17.25m0 0c-1.472 0-2.882.265-4.185.75M12 20.25c1.472 0 2.882.265 4.185.75M18.75 4.97A48.416 48.416 0 0012 4.5c-2.291 0-4.545.16-6.75.47m13.5 0c1.01.143 2.01.317 3 .52m-3-.52l2.62 10.726c.122.499-.106 1.028-.589 1.202a5.988 5.988 0 01-2.031.352 5.988 5.988 0 01-2.031-.352c-.483-.174-.711-.703-.589-1.202L18.75 4.971zm-16.5.52c.99-.203 1.99-.377 3-.52m0 0l2.62 10.726c.122.499-.106 1.028-.589 1.202a5.989 5.989 0 01-2.031.352 5.989 5.989 0 01-2.031-.352c-.483-.174-.711-.703-.589-1.202L5.25 4.971z"/></svg>
+          </div>
+          <h3 class="font-heading font-bold text-lg mb-2">Oil & Fluids</h3>
+          <p class="text-bw-slate text-sm leading-relaxed">Oil changes, coolant, power steering, brake fluid. Keep your car healthy.</p>
+        </div>
+
+        <div class="check-card bg-bw-ice rounded-xl p-6 text-center fade-up">
+          <div class="w-14 h-14 rounded-xl bg-bw-blue/10 flex items-center justify-center mx-auto mb-4">
+            <svg class="w-7 h-7 text-bw-blue" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+          </div>
+          <h3 class="font-heading font-bold text-lg mb-2">Electrical</h3>
+          <p class="text-bw-slate text-sm leading-relaxed">Batteries, alternators, starters, wiring. Electrical problems solved.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OWNER STORY -->
+  <section id="about" class="py-20 md:py-28 bg-bw-ice">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid grid-cols-1 lg:grid-cols-5 gap-12 items-center">
+        <div class="lg:col-span-2 slide-left">
+          <div class="owner-story rounded-2xl p-8 md:p-10 text-center">
+            <div class="w-24 h-24 rounded-full bg-bw-blue/30 border-4 border-bw-blue flex items-center justify-center mx-auto mb-6">
+              <span class="font-heading text-white text-3xl font-bold">B</span>
+            </div>
+            <h3 class="font-heading text-white text-2xl font-bold mb-2">The Owner</h3>
+            <p class="text-bw-blue-lt text-sm font-medium uppercase tracking-wider mb-4">On-Site Every Day</p>
+            <div class="w-16 h-0.5 bg-bw-blue mx-auto mb-4"></div>
+            <p class="text-bw-steel text-sm leading-relaxed">
+              "I opened Bowen Automotive in 2016 because I believed Huntsville deserved a shop that puts the customer first. When you bring your car here, you're talking to the owner — not a service writer reading a script."
+            </p>
+
+            <div class="mt-8 grid grid-cols-2 gap-4">
+              <div class="bg-white/5 rounded-lg p-3">
+                <span class="text-bw-blue-lt font-heading font-bold text-2xl block">2016</span>
+                <span class="text-bw-steel text-xs">Established</span>
+              </div>
+              <div class="bg-white/5 rounded-lg p-3">
+                <span class="text-bw-blue-lt font-heading font-bold text-2xl block">100%</span>
+                <span class="text-bw-steel text-xs">Owner Operated</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-3 slide-right">
+          <span class="text-bw-blue font-heading font-bold text-sm tracking-widest uppercase">Why Bowen</span>
+          <h2 class="font-heading text-4xl md:text-5xl font-extrabold mt-3 mb-6">The Bowen<br>Difference</h2>
+
+          <div class="space-y-6">
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-lg bg-bw-blue/10 flex items-center justify-center flex-shrink-0 mt-1">
+                <span class="text-bw-blue font-heading font-bold">01</span>
+              </div>
+              <div>
+                <h4 class="font-heading font-bold text-lg mb-1">Owner On-Site Daily</h4>
+                <p class="text-bw-slate leading-relaxed">You deal directly with the owner. No middlemen, no miscommunication. Real accountability.</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-lg bg-bw-blue/10 flex items-center justify-center flex-shrink-0 mt-1">
+                <span class="text-bw-blue font-heading font-bold">02</span>
+              </div>
+              <div>
+                <h4 class="font-heading font-bold text-lg mb-1">Honest Diagnostics</h4>
+                <p class="text-bw-slate leading-relaxed">We tell you exactly what's wrong and what it costs. No surprise charges. No unnecessary work.</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-lg bg-bw-blue/10 flex items-center justify-center flex-shrink-0 mt-1">
+                <span class="text-bw-blue font-heading font-bold">03</span>
+              </div>
+              <div>
+                <h4 class="font-heading font-bold text-lg mb-1">All Makes & Models</h4>
+                <p class="text-bw-slate leading-relaxed">Domestic, import, truck, SUV — we work on everything. One shop for all your vehicles.</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-lg bg-bw-blue/10 flex items-center justify-center flex-shrink-0 mt-1">
+                <span class="text-bw-blue font-heading font-bold">04</span>
+              </div>
+              <div>
+                <h4 class="font-heading font-bold text-lg mb-1">Fair, Upfront Pricing</h4>
+                <p class="text-bw-slate leading-relaxed">You'll know the cost before we start. We believe in earning trust, not squeezing wallets.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section id="reviews" class="py-20 md:py-28 bg-bw-white">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="text-center mb-16 fade-up">
+        <span class="text-bw-blue font-heading font-bold text-sm tracking-widest uppercase">Testimonials</span>
+        <h2 class="font-heading text-4xl md:text-5xl font-extrabold mt-3 mb-4">Huntsville Trusts Bowen</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="bg-bw-ice rounded-2xl p-8 fade-up relative">
+          <div class="absolute top-6 right-6">
+            <span class="text-bw-amber text-lg">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          </div>
+          <svg class="w-10 h-10 text-bw-blue/20 mb-4" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10H14.017zM0 21v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151C7.563 6.068 6 8.789 6 11h4v10H0z"/></svg>
+          <p class="text-bw-slate leading-relaxed mb-6">"Finally found a mechanic I can trust. The owner himself looked at my car and explained everything in plain English. Fixed the issue same day. Fair price, great work."</p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-bw-blue flex items-center justify-center text-white font-heading font-bold text-sm">JM</div>
+            <div>
+              <span class="font-heading font-bold text-sm">Jason M.</span>
+              <span class="block text-bw-steel text-xs">Google Review</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-bw-ice rounded-2xl p-8 fade-up relative">
+          <div class="absolute top-6 right-6">
+            <span class="text-bw-amber text-lg">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          </div>
+          <svg class="w-10 h-10 text-bw-blue/20 mb-4" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10H14.017zM0 21v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151C7.563 6.068 6 8.789 6 11h4v10H0z"/></svg>
+          <p class="text-bw-slate leading-relaxed mb-6">"My transmission was slipping and I was dreading the bill. Bowen gave me an honest quote that was $800 less than the dealer. Fixed perfectly. I won't go anywhere else."</p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-bw-blue flex items-center justify-center text-white font-heading font-bold text-sm">LP</div>
+            <div>
+              <span class="font-heading font-bold text-sm">Lisa P.</span>
+              <span class="block text-bw-steel text-xs">Google Review</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-bw-ice rounded-2xl p-8 fade-up relative">
+          <div class="absolute top-6 right-6">
+            <span class="text-bw-amber text-lg">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          </div>
+          <svg class="w-10 h-10 text-bw-blue/20 mb-4" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10H14.017zM0 21v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151C7.563 6.068 6 8.789 6 11h4v10H0z"/></svg>
+          <p class="text-bw-slate leading-relaxed mb-6">"Brought both my trucks here for brake work and suspension. Owner is hands-on, knows his stuff, and gets the job done quick. This is the real deal."</p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-bw-blue flex items-center justify-center text-white font-heading font-bold text-sm">CT</div>
+            <div>
+              <span class="font-heading font-bold text-sm">Carlos T.</span>
+              <span class="block text-bw-steel text-xs">Google Review</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="py-20 md:py-28 bg-bw-navy relative overflow-hidden">
+    <div class="absolute inset-0 grid-pattern opacity-50"></div>
+    <div class="max-w-7xl mx-auto px-4 relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div class="fade-up">
+          <span class="text-bw-blue-lt font-heading font-bold text-sm tracking-widest uppercase">Schedule Service</span>
+          <h2 class="font-heading text-white text-4xl md:text-5xl font-extrabold mt-3 mb-6">Let's Get Your<br>Car Fixed</h2>
+          <p class="text-bw-steel text-lg leading-relaxed mb-10">Call us, walk in, or fill out the form. We'll get back to you quickly with an honest assessment and fair quote.</p>
+
+          <div class="space-y-6">
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 rounded-lg bg-bw-blue/20 flex items-center justify-center flex-shrink-0">
+                <svg class="w-6 h-6 text-bw-blue-lt" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+              </div>
+              <div>
+                <h4 class="text-white font-heading font-bold text-lg">Phone</h4>
+                <a href="tel:2567150096" class="text-bw-blue-lt hover:text-white text-lg transition-colors">(256) 715-0096</a>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 rounded-lg bg-bw-blue/20 flex items-center justify-center flex-shrink-0">
+                <svg class="w-6 h-6 text-bw-blue-lt" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+              </div>
+              <div>
+                <h4 class="text-white font-heading font-bold text-lg">Location</h4>
+                <p class="text-bw-steel">Huntsville, Alabama</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 rounded-lg bg-bw-blue/20 flex items-center justify-center flex-shrink-0">
+                <svg class="w-6 h-6 text-bw-blue-lt" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              </div>
+              <div>
+                <h4 class="text-white font-heading font-bold text-lg">Hours</h4>
+                <p class="text-bw-steel">Mon-Fri: 8:00am - 5:30pm</p>
+                <p class="text-bw-steel">Sat: By Appointment</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="fade-up">
+          <form class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8">
+            <h3 class="font-heading text-white text-2xl font-bold mb-6">Request an Appointment</h3>
+            <div class="space-y-4">
+              <input type="text" placeholder="Your Name" class="w-full bg-white/10 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-white/40 focus:outline-none focus:border-bw-blue transition-colors" />
+              <input type="tel" placeholder="Phone Number" class="w-full bg-white/10 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-white/40 focus:outline-none focus:border-bw-blue transition-colors" />
+              <input type="text" placeholder="Vehicle (Year, Make, Model)" class="w-full bg-white/10 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-white/40 focus:outline-none focus:border-bw-blue transition-colors" />
+              <select class="w-full bg-white/10 border border-white/10 rounded-lg px-4 py-3 text-white/60 focus:outline-none focus:border-bw-blue transition-colors">
+                <option value="">Service Needed</option>
+                <option>Tires</option>
+                <option>Diagnostics / Check Engine</option>
+                <option>Brakes</option>
+                <option>Suspension / Alignment</option>
+                <option>Engine Repair</option>
+                <option>Transmission</option>
+                <option>Oil Change / Maintenance</option>
+                <option>Electrical</option>
+                <option>Other</option>
+              </select>
+              <textarea placeholder="Describe the issue..." rows="4" class="w-full bg-white/10 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-white/40 focus:outline-none focus:border-bw-blue transition-colors resize-none"></textarea>
+              <button type="submit" class="w-full bg-bw-blue hover:bg-bw-blue-lt text-white font-heading font-bold py-4 rounded-lg text-lg transition-all hover:scale-[1.02] shadow-lg">
+                Request Appointment
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Chat widget -->
+  <div class="bg-bw-dark py-5 text-center">
+    <p class="text-bw-steel text-sm">
+      <span class="text-bw-blue-lt font-medium">Live Chat</span> — Have a quick question? Chat with us right from the website.
+    </p>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-bw-navy py-10 border-t border-white/5">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-6">
+      <div class="flex items-center gap-3">
+        <div class="trust-badge w-10 h-10 rounded-lg flex items-center justify-center">
+          <span class="text-white font-heading font-bold">BA</span>
+        </div>
+        <span class="text-white font-heading font-bold">Bowen Automotive</span>
+      </div>
+      <p class="text-bw-steel text-sm">&copy; 2025 Bowen Automotive. Owner-operated since 2016. Huntsville, AL.</p>
+      <a href="tel:2567150096" class="text-bw-blue-lt hover:text-white font-heading font-medium transition-colors">(256) 715-0096</a>
+    </div>
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.fade-up,.slide-left,.slide-right,.scale-in').forEach(el => observer.observe(el));
+
+    const nav = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('nav-scrolled', window.scrollY > 50);
+    });
+
+    const toggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuClose = document.getElementById('menu-close');
+    const menuOverlay = document.getElementById('menu-overlay');
+    const mobileLinks = document.querySelectorAll('.mobile-link');
+
+    function openMenu() { mobileMenu.classList.add('open'); menuOverlay.classList.remove('hidden'); document.body.style.overflow = 'hidden'; }
+    function closeMenu() { mobileMenu.classList.remove('open'); menuOverlay.classList.add('hidden'); document.body.style.overflow = ''; }
+
+    toggle.addEventListener('click', openMenu);
+    menuClose.addEventListener('click', closeMenu);
+    menuOverlay.addEventListener('click', closeMenu);
+    mobileLinks.forEach(l => l.addEventListener('click', closeMenu));
+
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        e.preventDefault();
+        const target = document.querySelector(a.getAttribute('href'));
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+  </script>
+</body>
+</html>

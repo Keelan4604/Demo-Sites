@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>N&K Auto Repair Shop | Birmingham, AL</title>
+  <meta name="description" content="N&K Auto Repair Shop — Birmingham's trusted family-owned auto repair, towing, and car sales. Fast, honest service you can count on." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&family=Bebas+Neue&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'nk-navy':    '#0a1628',
+            'nk-navy-lt': '#162544',
+            'nk-orange':  '#ff6b1a',
+            'nk-orange-dk':'#cc5514',
+            'nk-orange-lt':'#ff8a4c',
+            'nk-steel':   '#2a3a52',
+            'nk-silver':  '#c8d1dc',
+            'nk-smoke':   '#f0f2f5',
+            'nk-white':   '#fafbfc',
+            'nk-yellow':  '#ffc107',
+            'nk-red':     '#dc2626',
+          },
+          fontFamily: {
+            heading: ['"Bricolage Grotesque"', 'sans-serif'],
+            body:    ['"Space Grotesk"', 'sans-serif'],
+            display: ['"Bebas Neue"', 'sans-serif'],
+          },
+        },
+      },
+    }
+  </script>
+  <style>
+    * { font-family: 'Space Grotesk', sans-serif; }
+    h1, h2, h3, h4, .font-heading { font-family: 'Bricolage Grotesque', sans-serif; }
+
+    .fade-up {
+      opacity: 0; transform: translateY(40px);
+      transition: opacity 0.8s cubic-bezier(.22,1,.36,1), transform 0.8s cubic-bezier(.22,1,.36,1);
+    }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    .slide-left {
+      opacity: 0; transform: translateX(-60px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+    .slide-left.visible { opacity: 1; transform: translateX(0); }
+
+    .slide-right {
+      opacity: 0; transform: translateX(60px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+    .slide-right.visible { opacity: 1; transform: translateX(0); }
+
+    .scale-in {
+      opacity: 0; transform: scale(0.9);
+      transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+    }
+    .scale-in.visible { opacity: 1; transform: scale(1); }
+
+    .hero-bg {
+      background: linear-gradient(160deg, rgba(10,22,40,0.92) 0%, rgba(10,22,40,0.7) 50%, rgba(10,22,40,0.85) 100%),
+                  url('https://images.unsplash.com/photo-1487754180451-c456f719a1fc?w=1920&q=85') center/cover no-repeat;
+      min-height: 100vh;
+    }
+
+    .gear-pattern {
+      background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='40' cy='40' r='15' fill='none' stroke='%23ff6b1a' stroke-width='0.5' opacity='0.06'/%3E%3Ccircle cx='40' cy='40' r='25' fill='none' stroke='%23ff6b1a' stroke-width='0.3' opacity='0.04'/%3E%3C/svg%3E");
+    }
+
+    .stripe-accent {
+      background: repeating-linear-gradient(
+        -45deg, transparent, transparent 8px,
+        rgba(255,107,26,0.04) 8px, rgba(255,107,26,0.04) 16px
+      );
+    }
+
+    .service-card {
+      transition: transform 0.4s cubic-bezier(.22,1,.36,1), box-shadow 0.4s ease;
+      border-left: 4px solid transparent;
+    }
+    .service-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.12);
+      border-left-color: #ff6b1a;
+    }
+
+    .nav-glass {
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      background: rgba(10,22,40,0.85);
+      transition: all 0.3s ease;
+    }
+    .nav-scrolled { background: rgba(10,22,40,0.97); box-shadow: 0 4px 30px rgba(0,0,0,0.4); }
+
+    @keyframes pulse-orange {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(255,107,26,0.5); }
+      50% { box-shadow: 0 0 0 14px rgba(255,107,26,0); }
+    }
+    .pulse-cta { animation: pulse-orange 2.5s infinite; }
+
+    @keyframes rev-engine {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-2px); }
+      75% { transform: translateX(2px); }
+    }
+
+    .emergency-banner {
+      background: linear-gradient(90deg, #dc2626 0%, #ff6b1a 100%);
+      animation: pulse-orange 3s infinite;
+    }
+
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #0a1628; }
+    ::-webkit-scrollbar-thumb { background: #ff6b1a; border-radius: 4px; }
+
+    .mobile-menu { transform: translateX(100%); transition: transform 0.4s cubic-bezier(.22,1,.36,1); }
+    .mobile-menu.open { transform: translateX(0); }
+
+    .counter { font-family: 'Bebas Neue', sans-serif; }
+
+    .stagger > *:nth-child(1) { transition-delay: 0.05s; }
+    .stagger > *:nth-child(2) { transition-delay: 0.12s; }
+    .stagger > *:nth-child(3) { transition-delay: 0.19s; }
+    .stagger > *:nth-child(4) { transition-delay: 0.26s; }
+    .stagger > *:nth-child(5) { transition-delay: 0.33s; }
+    .stagger > *:nth-child(6) { transition-delay: 0.40s; }
+
+    .inventory-card {
+      transition: transform 0.4s cubic-bezier(.22,1,.36,1), box-shadow 0.4s ease;
+    }
+    .inventory-card:hover {
+      transform: translateY(-4px) scale(1.02);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.15);
+    }
+    .inventory-card:hover .car-img {
+      transform: scale(1.05);
+    }
+    .car-img { transition: transform 0.6s cubic-bezier(.22,1,.36,1); }
+
+    .orange-line {
+      height: 4px;
+      background: linear-gradient(90deg, #ff6b1a, #ffc107);
+    }
+  </style>
+</head>
+<body class="bg-nk-white text-nk-navy overflow-x-hidden">
+
+  <!-- Emergency Towing Banner -->
+  <div class="emergency-banner fixed top-0 left-0 w-full z-[60] py-2 px-4 text-center">
+    <a href="tel:2052245077" class="text-white font-bold text-sm md:text-base tracking-wide flex items-center justify-center gap-2">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+      24/7 EMERGENCY TOWING — CALL (205) 224-5077
+    </a>
+  </div>
+
+  <!-- Navigation -->
+  <nav id="navbar" class="nav-glass fixed top-[36px] left-0 w-full z-50 py-3 px-4 md:px-8">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      <a href="#" class="flex items-center gap-3">
+        <div class="w-12 h-12 rounded-lg bg-nk-orange flex items-center justify-center shadow-lg">
+          <span class="text-white font-display text-2xl tracking-wider">N&K</span>
+        </div>
+        <div>
+          <span class="text-white font-heading font-bold text-lg">N&K Auto Repair</span>
+          <span class="hidden sm:block text-nk-orange text-xs tracking-widest uppercase font-medium">Birmingham, AL</span>
+        </div>
+      </a>
+
+      <div class="hidden lg:flex items-center gap-8">
+        <a href="#services" class="text-white/80 hover:text-nk-orange transition-colors text-sm font-medium tracking-wide uppercase">Services</a>
+        <a href="#inventory" class="text-white/80 hover:text-nk-orange transition-colors text-sm font-medium tracking-wide uppercase">Inventory</a>
+        <a href="#about" class="text-white/80 hover:text-nk-orange transition-colors text-sm font-medium tracking-wide uppercase">About</a>
+        <a href="#reviews" class="text-white/80 hover:text-nk-orange transition-colors text-sm font-medium tracking-wide uppercase">Reviews</a>
+        <a href="#contact" class="text-white/80 hover:text-nk-orange transition-colors text-sm font-medium tracking-wide uppercase">Contact</a>
+        <a href="tel:2052245077" class="bg-nk-orange hover:bg-nk-orange-lt text-white font-bold py-2.5 px-6 rounded-lg text-sm transition-all hover:scale-105 shadow-lg">
+          Call Now
+        </a>
+      </div>
+
+      <button id="menu-toggle" class="lg:hidden text-white p-2" aria-label="Toggle menu">
+        <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="mobile-menu fixed top-0 right-0 w-80 h-full bg-nk-navy z-[55] flex flex-col p-8 pt-20">
+    <button id="menu-close" class="absolute top-6 right-6 text-white">
+      <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+      </svg>
+    </button>
+    <a href="#services" class="text-white text-xl font-heading py-3 border-b border-white/10 hover:text-nk-orange transition-colors mobile-link">Services</a>
+    <a href="#inventory" class="text-white text-xl font-heading py-3 border-b border-white/10 hover:text-nk-orange transition-colors mobile-link">Inventory</a>
+    <a href="#about" class="text-white text-xl font-heading py-3 border-b border-white/10 hover:text-nk-orange transition-colors mobile-link">About</a>
+    <a href="#reviews" class="text-white text-xl font-heading py-3 border-b border-white/10 hover:text-nk-orange transition-colors mobile-link">Reviews</a>
+    <a href="#contact" class="text-white text-xl font-heading py-3 border-b border-white/10 hover:text-nk-orange transition-colors mobile-link">Contact</a>
+    <a href="tel:2052245077" class="mt-6 bg-nk-orange text-white font-bold py-3 px-8 rounded-lg text-center text-lg hover:bg-nk-orange-lt transition-all mobile-link">Call Now</a>
+  </div>
+  <div id="menu-overlay" class="fixed inset-0 bg-black/50 z-[54] hidden"></div>
+
+  <!-- HERO -->
+  <section class="hero-bg flex items-center justify-center relative">
+    <div class="absolute inset-0 gear-pattern"></div>
+    <div class="relative z-10 text-center px-4 max-w-5xl mx-auto py-32 md:py-40">
+      <div class="inline-block bg-nk-orange/20 border border-nk-orange/40 rounded-full px-5 py-1.5 mb-6 fade-up">
+        <span class="text-nk-orange font-medium text-sm tracking-wide uppercase">Family Owned & Operated</span>
+      </div>
+      <h1 class="font-heading text-white text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold leading-[0.95] mb-6 fade-up">
+        YOUR CAR.<br>
+        <span class="text-nk-orange">OUR MISSION.</span>
+      </h1>
+      <p class="text-white/80 text-lg md:text-xl max-w-2xl mx-auto mb-10 font-light leading-relaxed fade-up">
+        Birmingham's trusted family auto shop. From routine maintenance to emergency towing, we keep your vehicle running right — every time.
+      </p>
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 fade-up">
+        <a href="tel:2052245077" class="bg-nk-orange hover:bg-nk-orange-lt text-white font-bold py-4 px-10 rounded-lg text-lg transition-all hover:scale-105 shadow-xl pulse-cta flex items-center gap-2">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+          (205) 224-5077
+        </a>
+        <a href="#services" class="border-2 border-white/30 hover:border-nk-orange text-white hover:text-nk-orange font-semibold py-4 px-10 rounded-lg text-lg transition-all hover:scale-105">
+          Our Services
+        </a>
+      </div>
+    </div>
+    <!-- Angled bottom edge -->
+    <div class="absolute bottom-0 left-0 w-full overflow-hidden">
+      <svg viewBox="0 0 1440 80" class="w-full h-16 md:h-20" preserveAspectRatio="none">
+        <path d="M0,80 L1440,0 L1440,80 Z" fill="#fafbfc"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- Stats bar -->
+  <section class="bg-nk-white py-8">
+    <div class="max-w-6xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+      <div class="fade-up">
+        <span class="counter text-nk-orange text-5xl md:text-6xl">15+</span>
+        <p class="text-nk-steel text-sm mt-1 font-medium uppercase tracking-wide">Years Experience</p>
+      </div>
+      <div class="fade-up">
+        <span class="counter text-nk-orange text-5xl md:text-6xl">4.0</span>
+        <p class="text-nk-steel text-sm mt-1 font-medium uppercase tracking-wide">Star Rating</p>
+      </div>
+      <div class="fade-up">
+        <span class="counter text-nk-orange text-5xl md:text-6xl">24/7</span>
+        <p class="text-nk-steel text-sm mt-1 font-medium uppercase tracking-wide">Towing Available</p>
+      </div>
+      <div class="fade-up">
+        <span class="counter text-nk-orange text-5xl md:text-6xl">100%</span>
+        <p class="text-nk-steel text-sm mt-1 font-medium uppercase tracking-wide">Family Owned</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="orange-line w-full"></div>
+
+  <!-- SERVICES -->
+  <section id="services" class="py-20 md:py-28 bg-nk-smoke stripe-accent">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="text-center mb-16 fade-up">
+        <span class="text-nk-orange font-medium text-sm tracking-widest uppercase">What We Do</span>
+        <h2 class="font-heading text-4xl md:text-5xl font-bold mt-3 mb-4">Full-Service Auto Shop</h2>
+        <p class="text-nk-steel max-w-2xl mx-auto text-lg">From a simple oil change to a complete engine overhaul, N&K has the expertise and equipment to get it done right.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 stagger">
+        <!-- Service Cards -->
+        <div class="service-card bg-white rounded-xl p-8 fade-up">
+          <div class="w-14 h-14 rounded-lg bg-nk-orange/10 flex items-center justify-center mb-5">
+            <svg class="w-7 h-7 text-nk-orange" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17l-5.384-3.076A1 1 0 015 11.207V7.793a1 1 0 011.036-.887l5.384.308a1 1 0 01.964.887v6.182a1 1 0 01-.964.887zM20 7l-5 3v4l5 3V7z"/></svg>
+          </div>
+          <h3 class="font-heading font-bold text-xl mb-3">Engine Repair</h3>
+          <p class="text-nk-steel leading-relaxed">Complete diagnostics and engine work. We fix what others can't — from minor tune-ups to major rebuilds.</p>
+        </div>
+
+        <div class="service-card bg-white rounded-xl p-8 fade-up">
+          <div class="w-14 h-14 rounded-lg bg-nk-orange/10 flex items-center justify-center mb-5">
+            <svg class="w-7 h-7 text-nk-orange" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/></svg>
+          </div>
+          <h3 class="font-heading font-bold text-xl mb-3">Transmission</h3>
+          <p class="text-nk-steel leading-relaxed">Manual or automatic, we service and rebuild transmissions to factory spec. Smooth shifting guaranteed.</p>
+        </div>
+
+        <div class="service-card bg-white rounded-xl p-8 fade-up">
+          <div class="w-14 h-14 rounded-lg bg-nk-orange/10 flex items-center justify-center mb-5">
+            <svg class="w-7 h-7 text-nk-orange" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+          </div>
+          <h3 class="font-heading font-bold text-xl mb-3">Brakes & Safety</h3>
+          <p class="text-nk-steel leading-relaxed">Pads, rotors, calipers, lines — your family's safety is our top priority. Free brake inspections.</p>
+        </div>
+
+        <div class="service-card bg-white rounded-xl p-8 fade-up">
+          <div class="w-14 h-14 rounded-lg bg-nk-orange/10 flex items-center justify-center mb-5">
+            <svg class="w-7 h-7 text-nk-orange" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+          </div>
+          <h3 class="font-heading font-bold text-xl mb-3">Electrical & Diagnostics</h3>
+          <p class="text-nk-steel leading-relaxed">State-of-the-art scan tools and experienced hands to trace any electrical issue or check engine light.</p>
+        </div>
+
+        <div class="service-card bg-white rounded-xl p-8 fade-up">
+          <div class="w-14 h-14 rounded-lg bg-nk-orange/10 flex items-center justify-center mb-5">
+            <svg class="w-7 h-7 text-nk-orange" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/></svg>
+          </div>
+          <h3 class="font-heading font-bold text-xl mb-3">24/7 Towing</h3>
+          <p class="text-nk-steel leading-relaxed">Stranded? We'll come get you. Fast, affordable towing anywhere in the Birmingham metro area, day or night.</p>
+        </div>
+
+        <div class="service-card bg-white rounded-xl p-8 fade-up">
+          <div class="w-14 h-14 rounded-lg bg-nk-orange/10 flex items-center justify-center mb-5">
+            <svg class="w-7 h-7 text-nk-orange" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <h3 class="font-heading font-bold text-xl mb-3">Oil Changes & Maintenance</h3>
+          <p class="text-nk-steel leading-relaxed">Quick, affordable routine maintenance to keep your vehicle healthy. No appointment needed for oil changes.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TOWING CTA -->
+  <section class="bg-nk-navy py-16 relative overflow-hidden">
+    <div class="absolute inset-0 gear-pattern opacity-50"></div>
+    <div class="max-w-5xl mx-auto px-4 text-center relative z-10 fade-up">
+      <h2 class="font-display text-5xl md:text-7xl text-white tracking-wider mb-4">NEED A TOW?</h2>
+      <p class="text-nk-silver text-lg mb-8 max-w-xl mx-auto">We're on call 24/7. Fast response times across Birmingham and surrounding areas. One call, we handle it all.</p>
+      <a href="tel:2052245077" class="inline-flex items-center gap-3 bg-nk-red hover:bg-red-700 text-white font-bold py-5 px-12 rounded-lg text-xl transition-all hover:scale-105 shadow-2xl pulse-cta">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+        CALL (205) 224-5077 NOW
+      </a>
+    </div>
+  </section>
+
+  <!-- INVENTORY -->
+  <section id="inventory" class="py-20 md:py-28 bg-nk-white">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="text-center mb-16 fade-up">
+        <span class="text-nk-orange font-medium text-sm tracking-widest uppercase">Pre-Owned Vehicles</span>
+        <h2 class="font-heading text-4xl md:text-5xl font-bold mt-3 mb-4">Cars For Sale</h2>
+        <p class="text-nk-steel max-w-2xl mx-auto text-lg">Every vehicle inspected and serviced by our own mechanics before it hits the lot. Buy with confidence from a shop that stands behind what they sell.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="inventory-card bg-nk-smoke rounded-xl overflow-hidden fade-up">
+          <div class="h-48 bg-nk-steel/20 overflow-hidden flex items-center justify-center">
+            <div class="text-center text-nk-steel/60">
+              <svg class="w-16 h-16 mx-auto mb-2" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 17h.01M16 17h.01M3 11l1.5-5A2 2 0 016.4 4.5h11.2a2 2 0 011.9 1.5L21 11M3 11v6a1 1 0 001 1h1a2 2 0 004 0h6a2 2 0 004 0h1a1 1 0 001-1v-6M3 11h18"/></svg>
+              <span class="text-sm font-medium">Photo Coming Soon</span>
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="font-heading font-bold text-lg">Available Vehicles</h3>
+            <p class="text-nk-steel mt-2">Call for current inventory. New vehicles added weekly.</p>
+            <a href="tel:2052245077" class="mt-4 inline-block text-nk-orange font-semibold hover:underline">Call for Details &rarr;</a>
+          </div>
+        </div>
+
+        <div class="inventory-card bg-nk-smoke rounded-xl overflow-hidden fade-up">
+          <div class="h-48 bg-nk-steel/20 overflow-hidden flex items-center justify-center">
+            <div class="text-center text-nk-steel/60">
+              <svg class="w-16 h-16 mx-auto mb-2" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              <span class="text-sm font-medium">Inspected & Ready</span>
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="font-heading font-bold text-lg">Shop-Certified Quality</h3>
+            <p class="text-nk-steel mt-2">Every car goes through a full inspection in our own shop before sale.</p>
+            <a href="tel:2052245077" class="mt-4 inline-block text-nk-orange font-semibold hover:underline">Learn More &rarr;</a>
+          </div>
+        </div>
+
+        <div class="inventory-card bg-nk-smoke rounded-xl overflow-hidden fade-up">
+          <div class="h-48 bg-nk-steel/20 overflow-hidden flex items-center justify-center">
+            <div class="text-center text-nk-steel/60">
+              <svg class="w-16 h-16 mx-auto mb-2" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              <span class="text-sm font-medium">Affordable Prices</span>
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="font-heading font-bold text-lg">Financing Available</h3>
+            <p class="text-nk-steel mt-2">Flexible payment options. We work with all credit situations.</p>
+            <a href="tel:2052245077" class="mt-4 inline-block text-nk-orange font-semibold hover:underline">Ask About Financing &rarr;</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="py-20 md:py-28 bg-nk-smoke">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div class="slide-left">
+          <div class="bg-nk-navy rounded-2xl p-8 md:p-12 relative overflow-hidden">
+            <div class="absolute inset-0 gear-pattern opacity-30"></div>
+            <div class="relative z-10">
+              <div class="w-24 h-24 rounded-xl bg-nk-orange/20 border-2 border-nk-orange flex items-center justify-center mb-6">
+                <span class="font-display text-nk-orange text-4xl">N&K</span>
+              </div>
+              <h3 class="font-heading text-white text-2xl font-bold mb-4">Family Values.<br>Professional Results.</h3>
+              <p class="text-nk-silver leading-relaxed">Since opening our doors, we've treated every customer like family. That means honest pricing, clear communication, and work we're proud to put our name on.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="slide-right">
+          <span class="text-nk-orange font-medium text-sm tracking-widest uppercase">Our Story</span>
+          <h2 class="font-heading text-4xl md:text-5xl font-bold mt-3 mb-6">Built on Trust,<br>Driven by Family</h2>
+          <p class="text-nk-steel text-lg leading-relaxed mb-6">
+            N&K Auto Repair isn't just a business — it's a family. We started this shop because we believed Birmingham deserved an auto shop that treats people right. No upselling, no surprises, just honest work at fair prices.
+          </p>
+          <p class="text-nk-steel text-lg leading-relaxed mb-8">
+            Whether you need a quick fix, a full overhaul, or a reliable used car, we're here. We stand behind every repair and every vehicle we sell.
+          </p>
+          <div class="flex flex-wrap gap-4">
+            <div class="bg-white rounded-lg px-5 py-3 shadow-sm">
+              <span class="text-nk-orange font-bold text-lg">&#10003;</span>
+              <span class="ml-2 font-medium">ASE Certified</span>
+            </div>
+            <div class="bg-white rounded-lg px-5 py-3 shadow-sm">
+              <span class="text-nk-orange font-bold text-lg">&#10003;</span>
+              <span class="ml-2 font-medium">All Makes & Models</span>
+            </div>
+            <div class="bg-white rounded-lg px-5 py-3 shadow-sm">
+              <span class="text-nk-orange font-bold text-lg">&#10003;</span>
+              <span class="ml-2 font-medium">Honest Pricing</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section id="reviews" class="py-20 md:py-28 bg-nk-white">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="text-center mb-16 fade-up">
+        <span class="text-nk-orange font-medium text-sm tracking-widest uppercase">Customer Reviews</span>
+        <h2 class="font-heading text-4xl md:text-5xl font-bold mt-3 mb-4">What Birmingham Says</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="bg-nk-smoke rounded-xl p-8 border-l-4 border-nk-orange fade-up">
+          <div class="flex items-center gap-1 mb-4">
+            <span class="text-nk-yellow text-xl">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          </div>
+          <p class="text-nk-steel leading-relaxed mb-6">"Best auto shop in Birmingham hands down. They fixed my transmission when two other shops said it couldn't be done. Fair price, fast turnaround."</p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-nk-navy flex items-center justify-center text-white font-bold text-sm">MJ</div>
+            <div>
+              <span class="font-heading font-bold text-sm">Marcus J.</span>
+              <span class="block text-nk-steel text-xs">Google Review</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-nk-smoke rounded-xl p-8 border-l-4 border-nk-orange fade-up">
+          <div class="flex items-center gap-1 mb-4">
+            <span class="text-nk-yellow text-xl">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          </div>
+          <p class="text-nk-steel leading-relaxed mb-6">"They towed my car at 2am and had it fixed by noon the next day. The whole family is so kind and professional. This is my shop for life."</p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-nk-navy flex items-center justify-center text-white font-bold text-sm">TS</div>
+            <div>
+              <span class="font-heading font-bold text-sm">Tamika S.</span>
+              <span class="block text-nk-steel text-xs">Google Review</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-nk-smoke rounded-xl p-8 border-l-4 border-nk-orange fade-up">
+          <div class="flex items-center gap-1 mb-4">
+            <span class="text-nk-yellow text-xl">&#9733;&#9733;&#9733;&#9733;</span>
+          </div>
+          <p class="text-nk-steel leading-relaxed mb-6">"Bought a car from them and it's been running great. They really do inspect everything before selling. No regrets at all."</p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-nk-navy flex items-center justify-center text-white font-bold text-sm">DW</div>
+            <div>
+              <span class="font-heading font-bold text-sm">DeAndre W.</span>
+              <span class="block text-nk-steel text-xs">Google Review</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="py-20 md:py-28 bg-nk-navy relative overflow-hidden">
+    <div class="absolute inset-0 gear-pattern opacity-30"></div>
+    <div class="max-w-7xl mx-auto px-4 relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div class="fade-up">
+          <span class="text-nk-orange font-medium text-sm tracking-widest uppercase">Get In Touch</span>
+          <h2 class="font-heading text-4xl md:text-5xl font-bold text-white mt-3 mb-6">Let's Get Your<br>Car Right</h2>
+          <p class="text-nk-silver text-lg leading-relaxed mb-10">Drop by the shop, give us a call, or send a message. We'll get back to you fast.</p>
+
+          <div class="space-y-6">
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 rounded-lg bg-nk-orange/20 flex items-center justify-center flex-shrink-0">
+                <svg class="w-6 h-6 text-nk-orange" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+              </div>
+              <div>
+                <h4 class="text-white font-heading font-bold text-lg">Phone</h4>
+                <a href="tel:2052245077" class="text-nk-orange hover:text-nk-orange-lt text-lg transition-colors">(205) 224-5077</a>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 rounded-lg bg-nk-orange/20 flex items-center justify-center flex-shrink-0">
+                <svg class="w-6 h-6 text-nk-orange" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+              </div>
+              <div>
+                <h4 class="text-white font-heading font-bold text-lg">Location</h4>
+                <p class="text-nk-silver">Birmingham, Alabama</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 rounded-lg bg-nk-orange/20 flex items-center justify-center flex-shrink-0">
+                <svg class="w-6 h-6 text-nk-orange" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              </div>
+              <div>
+                <h4 class="text-white font-heading font-bold text-lg">Hours</h4>
+                <p class="text-nk-silver">Mon-Fri: 8am - 6pm</p>
+                <p class="text-nk-silver">Sat: 8am - 2pm</p>
+                <p class="text-nk-orange font-medium">Towing: 24/7</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="fade-up">
+          <form class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8">
+            <h3 class="font-heading text-white text-2xl font-bold mb-6">Request a Quote</h3>
+            <div class="space-y-4">
+              <div>
+                <input type="text" placeholder="Your Name" class="w-full bg-white/10 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-white/40 focus:outline-none focus:border-nk-orange transition-colors" />
+              </div>
+              <div>
+                <input type="tel" placeholder="Phone Number" class="w-full bg-white/10 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-white/40 focus:outline-none focus:border-nk-orange transition-colors" />
+              </div>
+              <div>
+                <input type="text" placeholder="Vehicle (Year, Make, Model)" class="w-full bg-white/10 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-white/40 focus:outline-none focus:border-nk-orange transition-colors" />
+              </div>
+              <div>
+                <select class="w-full bg-white/10 border border-white/10 rounded-lg px-4 py-3 text-white/60 focus:outline-none focus:border-nk-orange transition-colors">
+                  <option value="">Service Needed</option>
+                  <option>Engine Repair</option>
+                  <option>Transmission</option>
+                  <option>Brakes</option>
+                  <option>Diagnostics</option>
+                  <option>Towing</option>
+                  <option>Oil Change</option>
+                  <option>Car Sales Inquiry</option>
+                  <option>Other</option>
+                </select>
+              </div>
+              <div>
+                <textarea placeholder="Describe the issue..." rows="4" class="w-full bg-white/10 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-white/40 focus:outline-none focus:border-nk-orange transition-colors resize-none"></textarea>
+              </div>
+              <button type="submit" class="w-full bg-nk-orange hover:bg-nk-orange-lt text-white font-bold py-4 rounded-lg text-lg transition-all hover:scale-[1.02] shadow-lg">
+                Get My Quote
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Chat widget mention -->
+  <div class="bg-nk-navy-lt py-6 text-center">
+    <p class="text-nk-silver text-sm">
+      <span class="text-nk-orange font-medium">Live Chat</span> — Questions? Chat with us directly through our website messenger.
+    </p>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-nk-navy py-10 border-t border-white/5">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-6">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-lg bg-nk-orange flex items-center justify-center">
+          <span class="text-white font-display text-xl">N&K</span>
+        </div>
+        <span class="text-white font-heading font-bold">N&K Auto Repair Shop</span>
+      </div>
+      <p class="text-nk-steel text-sm">&copy; 2025 N&K Auto Repair Shop. All rights reserved. Birmingham, AL.</p>
+      <a href="tel:2052245077" class="text-nk-orange hover:text-nk-orange-lt font-medium transition-colors">(205) 224-5077</a>
+    </div>
+  </footer>
+
+  <script>
+    // Scroll animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.fade-up,.slide-left,.slide-right,.scale-in').forEach(el => observer.observe(el));
+
+    // Nav scroll effect
+    const nav = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('nav-scrolled', window.scrollY > 50);
+    });
+
+    // Mobile menu
+    const toggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuClose = document.getElementById('menu-close');
+    const menuOverlay = document.getElementById('menu-overlay');
+    const mobileLinks = document.querySelectorAll('.mobile-link');
+
+    function openMenu() { mobileMenu.classList.add('open'); menuOverlay.classList.remove('hidden'); document.body.style.overflow = 'hidden'; }
+    function closeMenu() { mobileMenu.classList.remove('open'); menuOverlay.classList.add('hidden'); document.body.style.overflow = ''; }
+
+    toggle.addEventListener('click', openMenu);
+    menuClose.addEventListener('click', closeMenu);
+    menuOverlay.addEventListener('click', closeMenu);
+    mobileLinks.forEach(l => l.addEventListener('click', closeMenu));
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        e.preventDefault();
+        const target = document.querySelector(a.getAttribute('href'));
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+  </script>
+</body>
+</html>

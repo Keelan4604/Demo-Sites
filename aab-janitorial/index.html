@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AA&B Janitorial Cleaning Co | Certified Commercial Cleaning | Marietta, GA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=Lexend:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --navy:#0a1628;--teal:#0d9488;--teal-light:#5eead4;--gold:#f59e0b;
+  --slate:#1e293b;--gray:#94a3b8;--white:#f8fafc;--bg:#020617;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Lexend',sans-serif;background:var(--bg);color:var(--white);overflow-x:hidden}
+h1,h2,h3,h4{font-family:'Sora',sans-serif}
+
+/* NAV */
+nav{position:fixed;top:0;width:100%;z-index:100;padding:1rem 2rem;display:flex;justify-content:space-between;align-items:center;backdrop-filter:blur(20px);background:rgba(10,22,40,0.85);border-bottom:1px solid rgba(13,148,136,0.2);transition:all .3s}
+.nav-logo{font-family:'Sora',sans-serif;font-weight:800;font-size:1.1rem;letter-spacing:-0.5px}
+.nav-logo span{color:var(--teal)}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{color:var(--gray);text-decoration:none;font-size:.85rem;font-weight:400;transition:color .3s;letter-spacing:.5px}
+.nav-links a:hover{color:var(--teal-light)}
+.nav-cta{background:var(--teal);color:var(--white);padding:.6rem 1.5rem;border-radius:50px;text-decoration:none;font-weight:600;font-size:.85rem;transition:all .3s;border:2px solid var(--teal)}
+.nav-cta:hover{background:transparent;color:var(--teal-light)}
+.nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.5rem}
+.nav-hamburger span{width:24px;height:2px;background:var(--gray);border-radius:2px;transition:all .3s}
+.nav-hamburger.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+.nav-hamburger.active span:nth-child(2){opacity:0}
+.nav-hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+
+/* HERO */
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:8rem 5% 4rem;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-50%;right:-20%;width:800px;height:800px;background:radial-gradient(circle,rgba(13,148,136,0.15),transparent 70%);border-radius:50%;pointer-events:none}
+.hero::after{content:'';position:absolute;bottom:-30%;left:-10%;width:600px;height:600px;background:radial-gradient(circle,rgba(245,158,11,0.08),transparent 70%);border-radius:50%;pointer-events:none}
+.hero-text{position:relative;z-index:2}
+.hero-badge{display:inline-flex;align-items:center;gap:.5rem;background:rgba(13,148,136,0.15);border:1px solid rgba(13,148,136,0.3);padding:.4rem 1rem;border-radius:50px;font-size:.75rem;color:var(--teal-light);margin-bottom:1.5rem;letter-spacing:1px;text-transform:uppercase}
+.hero-badge::before{content:'';width:8px;height:8px;background:var(--teal);border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.hero h1{font-size:clamp(2.5rem,5vw,4.5rem);line-height:1.05;font-weight:800;letter-spacing:-2px;margin-bottom:1.5rem}
+.hero h1 .highlight{background:linear-gradient(135deg,var(--teal-light),var(--teal));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero-sub{font-size:1.1rem;color:var(--gray);line-height:1.7;max-width:520px;margin-bottom:2rem;font-weight:300}
+.hero-actions{display:flex;gap:1rem;flex-wrap:wrap}
+.btn-primary{background:linear-gradient(135deg,var(--teal),#0f766e);color:var(--white);padding:.9rem 2rem;border-radius:50px;text-decoration:none;font-weight:600;font-size:.95rem;transition:all .3s;display:inline-flex;align-items:center;gap:.5rem;border:none;cursor:pointer}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(13,148,136,0.4)}
+.btn-secondary{background:transparent;color:var(--white);padding:.9rem 2rem;border-radius:50px;text-decoration:none;font-weight:500;font-size:.95rem;border:2px solid rgba(148,163,184,0.3);transition:all .3s}
+.btn-secondary:hover{border-color:var(--teal);color:var(--teal-light)}
+.hero-visual{position:relative;z-index:2;display:flex;justify-content:center;align-items:center}
+.hero-card{background:linear-gradient(145deg,rgba(30,41,59,0.8),rgba(10,22,40,0.9));border:1px solid rgba(13,148,136,0.2);border-radius:24px;padding:2.5rem;width:400px;backdrop-filter:blur(10px)}
+.hero-card-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:2rem}
+.hero-card-title{font-family:'Sora',sans-serif;font-size:1rem;font-weight:600;color:var(--teal-light)}
+.cert-badge{background:rgba(245,158,11,0.15);border:1px solid rgba(245,158,11,0.3);padding:.3rem .8rem;border-radius:50px;font-size:.7rem;color:var(--gold);font-weight:600;text-transform:uppercase;letter-spacing:1px}
+.stat-row{display:flex;justify-content:space-between;margin-bottom:1.5rem;padding-bottom:1.5rem;border-bottom:1px solid rgba(148,163,184,0.1)}
+.stat-row:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.stat-label{color:var(--gray);font-size:.8rem;font-weight:300}
+.stat-value{font-family:'Sora',sans-serif;font-weight:700;font-size:1.3rem}
+.stat-value.teal{color:var(--teal-light)}
+.stat-value.gold{color:var(--gold)}
+
+/* CERTIFICATIONS */
+.certs{padding:4rem 5%;background:linear-gradient(180deg,transparent,rgba(13,148,136,0.05))}
+.certs-inner{display:flex;justify-content:center;align-items:center;gap:3rem;flex-wrap:wrap;opacity:.7}
+.cert-item{display:flex;align-items:center;gap:.5rem;color:var(--gray);font-size:.85rem;font-weight:400}
+.cert-dot{width:6px;height:6px;background:var(--teal);border-radius:50%}
+
+/* SERVICES */
+.services{padding:6rem 5%}
+.section-label{font-size:.75rem;letter-spacing:3px;text-transform:uppercase;color:var(--teal);font-weight:600;margin-bottom:1rem}
+.section-title{font-size:clamp(2rem,3.5vw,3rem);font-weight:800;letter-spacing:-1px;margin-bottom:1rem}
+.section-sub{color:var(--gray);font-size:1rem;max-width:600px;margin-bottom:3rem;font-weight:300;line-height:1.7}
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem}
+.service-card{background:linear-gradient(145deg,rgba(30,41,59,0.5),rgba(10,22,40,0.7));border:1px solid rgba(148,163,184,0.1);border-radius:16px;padding:2rem;transition:all .4s;position:relative;overflow:hidden}
+.service-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--teal),var(--teal-light));transform:scaleX(0);transform-origin:left;transition:transform .4s}
+.service-card:hover::before{transform:scaleX(1)}
+.service-card:hover{border-color:rgba(13,148,136,0.3);transform:translateY(-4px)}
+.service-icon{width:48px;height:48px;background:rgba(13,148,136,0.15);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;margin-bottom:1rem}
+.service-card h3{font-size:1.1rem;font-weight:700;margin-bottom:.5rem}
+.service-card p{color:var(--gray);font-size:.85rem;line-height:1.6;font-weight:300}
+
+/* WHY US */
+.why{padding:6rem 5%;background:linear-gradient(180deg,transparent,rgba(13,148,136,0.03),transparent)}
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+.why-features{display:flex;flex-direction:column;gap:1.5rem}
+.why-feature{display:flex;gap:1rem;padding:1.5rem;border-radius:16px;transition:all .3s;border:1px solid transparent}
+.why-feature:hover{background:rgba(30,41,59,0.5);border-color:rgba(13,148,136,0.2)}
+.why-num{font-family:'Sora',sans-serif;font-size:2rem;font-weight:800;color:var(--teal);line-height:1;min-width:50px}
+.why-feature h4{font-size:1rem;font-weight:600;margin-bottom:.3rem}
+.why-feature p{color:var(--gray);font-size:.85rem;line-height:1.6;font-weight:300}
+.why-visual{display:flex;flex-direction:column;gap:1rem}
+.why-stat-card{background:linear-gradient(145deg,rgba(30,41,59,0.6),rgba(10,22,40,0.8));border:1px solid rgba(148,163,184,0.1);border-radius:16px;padding:2rem;text-align:center}
+.why-stat-num{font-family:'Sora',sans-serif;font-size:3rem;font-weight:800;background:linear-gradient(135deg,var(--teal-light),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.why-stat-label{color:var(--gray);font-size:.85rem;margin-top:.3rem}
+
+/* CTA */
+.cta{padding:6rem 5%;text-align:center}
+.cta-box{background:linear-gradient(145deg,rgba(13,148,136,0.15),rgba(10,22,40,0.9));border:1px solid rgba(13,148,136,0.3);border-radius:32px;padding:4rem 3rem;position:relative;overflow:hidden}
+.cta-box::before{content:'';position:absolute;top:-50%;right:-30%;width:500px;height:500px;background:radial-gradient(circle,rgba(13,148,136,0.2),transparent 70%);pointer-events:none}
+.cta h2{font-size:clamp(1.8rem,3vw,2.8rem);font-weight:800;letter-spacing:-1px;margin-bottom:1rem;position:relative;z-index:2}
+.cta p{color:var(--gray);font-size:1rem;max-width:500px;margin:0 auto 2rem;font-weight:300;line-height:1.7;position:relative;z-index:2}
+.cta-phone{font-family:'Sora',sans-serif;font-size:clamp(1.5rem,3vw,2.5rem);font-weight:800;color:var(--teal-light);text-decoration:none;display:inline-block;margin-bottom:1.5rem;position:relative;z-index:2;transition:all .3s}
+.cta-phone:hover{color:var(--gold);transform:scale(1.05)}
+
+/* FOOTER */
+footer{padding:3rem 5%;border-top:1px solid rgba(148,163,184,0.1);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+footer p{color:var(--gray);font-size:.8rem;font-weight:300}
+
+/* MOBILE */
+@media(max-width:768px){
+  .hero{grid-template-columns:1fr;gap:3rem;padding:7rem 5% 3rem}
+  .hero-card{width:100%;max-width:400px}
+  .nav-hamburger{display:flex}
+  .nav-links{display:none;position:absolute;top:100%;left:0;width:100%;background:rgba(10,22,40,0.95);backdrop-filter:blur(20px);flex-direction:column;padding:1.5rem 2rem;gap:1rem;border-bottom:1px solid rgba(13,148,136,0.2)}
+  .nav-links.open{display:flex}
+  .why-grid{grid-template-columns:1fr;gap:2rem}
+  .services-grid{grid-template-columns:1fr}
+  .cta-box{padding:3rem 1.5rem}
+  footer{flex-direction:column;text-align:center}
+}
+
+/* ANIMATIONS */
+.fade-up{opacity:0;transform:translateY(30px);transition:all .6s ease-out}
+.fade-up.visible{opacity:1;transform:translateY(0)}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">AA<span>&</span>B</div>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#why">Why Us</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="nav-hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open');this.classList.toggle('active')" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+  <a href="tel:4049010435" class="nav-cta">Call Now</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-text">
+    <div class="hero-badge">Certified & Insured Since 2016</div>
+    <h1>Commercial Cleaning <span class="highlight">Done Right</span></h1>
+    <p class="hero-sub">AA&B Janitorial Cleaning Co delivers certified, professional cleaning and building maintenance for commercial properties across the Atlanta metro area.</p>
+    <div class="hero-actions">
+      <a href="tel:4049010435" class="btn-primary">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        (404) 901-0435
+      </a>
+      <a href="#services" class="btn-secondary">View Services</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-card">
+      <div class="hero-card-header">
+        <span class="hero-card-title">Company Profile</span>
+        <span class="cert-badge">Certified</span>
+      </div>
+      <div class="stat-row">
+        <span class="stat-label">Years in Business</span>
+        <span class="stat-value teal">10+</span>
+      </div>
+      <div class="stat-row">
+        <span class="stat-label">Certified By</span>
+        <span class="stat-value gold">City of Atlanta</span>
+      </div>
+      <div class="stat-row">
+        <span class="stat-label">Also Certified By</span>
+        <span class="stat-value gold">GA DOT</span>
+      </div>
+      <div class="stat-row">
+        <span class="stat-label">Service Area</span>
+        <span class="stat-value">Atlanta Metro</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="certs">
+  <div class="certs-inner">
+    <div class="cert-item"><span class="cert-dot"></span>City of Atlanta Certified</div>
+    <div class="cert-item"><span class="cert-dot"></span>GA DOT Certified</div>
+    <div class="cert-item"><span class="cert-dot"></span>Fully Insured</div>
+    <div class="cert-item"><span class="cert-dot"></span>Serving Since 2016</div>
+    <div class="cert-item"><span class="cert-dot"></span>Commercial & Industrial</div>
+  </div>
+</section>
+
+<section class="services" id="services">
+  <div class="section-label fade-up">What We Do</div>
+  <h2 class="section-title fade-up">Full-Service Commercial Cleaning</h2>
+  <p class="section-sub fade-up">From daily janitorial to deep-clean building maintenance, we keep your facility spotless and inspection-ready.</p>
+
+  <div class="services-grid">
+    <div class="service-card fade-up">
+      <div class="service-icon">🏢</div>
+      <h3>Office Cleaning</h3>
+      <p>Daily, weekly, or custom schedules for office spaces. Desks, floors, restrooms, break rooms, and common areas maintained to professional standards.</p>
+    </div>
+    <div class="service-card fade-up">
+      <div class="service-icon">🏭</div>
+      <h3>Industrial & Warehouse</h3>
+      <p>Heavy-duty cleaning for warehouses, manufacturing floors, and industrial facilities. Equipment degreasing, floor scrubbing, and debris removal.</p>
+    </div>
+    <div class="service-card fade-up">
+      <div class="service-icon">🪟</div>
+      <h3>Building Maintenance</h3>
+      <p>Comprehensive building upkeep including window cleaning, pressure washing, parking lot sweeping, and exterior maintenance.</p>
+    </div>
+    <div class="service-card fade-up">
+      <div class="service-icon">🧹</div>
+      <h3>Floor Care</h3>
+      <p>VCT stripping and waxing, carpet cleaning, tile and grout restoration, concrete polishing. We handle every floor type professionally.</p>
+    </div>
+    <div class="service-card fade-up">
+      <div class="service-icon">🏥</div>
+      <h3>Medical & Specialty</h3>
+      <p>Sanitization-focused cleaning for medical offices, clinics, and facilities requiring strict hygiene protocols and compliance standards.</p>
+    </div>
+    <div class="service-card fade-up">
+      <div class="service-icon">✨</div>
+      <h3>Post-Construction</h3>
+      <p>Thorough post-construction cleanup for new builds and renovations. Dust removal, window cleaning, debris hauling, and final polish.</p>
+    </div>
+  </div>
+</section>
+
+<section class="why" id="why">
+  <div class="section-label fade-up">Why AA&B</div>
+  <h2 class="section-title fade-up">Built on Trust, Backed by Certifications</h2>
+  <div class="why-grid">
+    <div class="why-features">
+      <div class="why-feature fade-up">
+        <span class="why-num">01</span>
+        <div>
+          <h4>Government Certified</h4>
+          <p>Certified by the City of Atlanta and GA Department of Transportation. We meet the standards that major institutions require.</p>
+        </div>
+      </div>
+      <div class="why-feature fade-up">
+        <span class="why-num">02</span>
+        <div>
+          <h4>Consistent & Reliable</h4>
+          <p>Same crew, same quality, every visit. We assign dedicated teams to your facility so nothing gets missed.</p>
+        </div>
+      </div>
+      <div class="why-feature fade-up">
+        <span class="why-num">03</span>
+        <div>
+          <h4>Fully Insured</h4>
+          <p>Complete liability coverage gives you peace of mind. Your facility and our team are protected on every job.</p>
+        </div>
+      </div>
+      <div class="why-feature fade-up">
+        <span class="why-num">04</span>
+        <div>
+          <h4>Custom Cleaning Plans</h4>
+          <p>Every facility is different. We build a cleaning schedule and scope around your specific needs, not a one-size-fits-all package.</p>
+        </div>
+      </div>
+    </div>
+    <div class="why-visual">
+      <div class="why-stat-card fade-up">
+        <div class="why-stat-num">2016</div>
+        <div class="why-stat-label">Established</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+        <div class="why-stat-card fade-up">
+          <div class="why-stat-num">2</div>
+          <div class="why-stat-label">Government Certifications</div>
+        </div>
+        <div class="why-stat-card fade-up">
+          <div class="why-stat-num">ATL</div>
+          <div class="why-stat-label">Metro Service Area</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta" id="contact">
+  <div class="cta-box">
+    <div class="section-label">Get a Free Quote</div>
+    <h2>Ready for a Cleaner Facility?</h2>
+    <p>Call us today for a free walkthrough and custom quote. We'll assess your space and build a plan that fits your schedule and budget.</p>
+    <a href="tel:4049010435" class="cta-phone">(404) 901-0435</a>
+    <br>
+    <a href="tel:4049010435" class="btn-primary" style="margin-top:1rem">
+      <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+      Schedule a Walkthrough
+    </a>
+  </div>
+</section>
+
+<footer>
+  <div class="nav-logo">AA<span>&</span>B Janitorial</div>
+  <p>Marietta, GA | Serving the Greater Atlanta Metropolitan Area</p>
+  <p>&copy; 2026 AA&B Janitorial Cleaning Co. All rights reserved.</p>
+</footer>
+
+<script>
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)} });
+}, {threshold:0.1});
+document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>

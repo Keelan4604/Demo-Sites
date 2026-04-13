@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Santa Fe Nashville Food Truck | Mexican Street Food & Catering</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --terracotta:#c2410c;--terra-light:#fb923c;--cream:#fef7ed;--warm-white:#fffbf5;
+  --dark:#1c1007;--brown:#3b1f05;--sand:#d4a574;--sage:#4d7c0f;--sage-light:#84cc16;
+  --text:#2d1a05;--gray:#8b7355;
+}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);overflow-x:hidden}
+h1,h2,h3,.display{font-family:'Playfair Display',serif}
+
+nav{position:fixed;top:0;width:100%;z-index:100;padding:1rem 5%;display:flex;justify-content:space-between;align-items:center;backdrop-filter:blur(16px);background:rgba(254,247,237,0.92);border-bottom:1px solid rgba(194,65,12,0.1);transition:all .3s}
+.nav-logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.2rem;color:var(--terracotta)}
+.nav-logo span{color:var(--sage)}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{color:var(--gray);text-decoration:none;font-size:.82rem;font-weight:500;transition:color .3s;letter-spacing:.5px}
+.nav-links a:hover{color:var(--terracotta)}
+.nav-cta{background:var(--terracotta);color:var(--cream);padding:.6rem 1.4rem;border-radius:50px;text-decoration:none;font-weight:700;font-size:.82rem;transition:all .3s}
+.nav-cta:hover{background:var(--brown);transform:translateY(-1px)}
+@media(max-width:768px){.nav-links{display:none}}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;background:linear-gradient(135deg,var(--cream) 40%,rgba(194,65,12,0.05) 100%)}
+.hero-decor{position:absolute;top:-100px;right:-100px;width:500px;height:500px;background:radial-gradient(circle,rgba(194,65,12,0.08),transparent 70%);pointer-events:none}
+.hero-decor2{position:absolute;bottom:-150px;left:-100px;width:400px;height:400px;background:radial-gradient(circle,rgba(77,124,15,0.06),transparent 70%);pointer-events:none}
+.hero-content{padding:8rem 5% 4rem;display:grid;grid-template-columns:1.3fr 1fr;gap:4rem;align-items:center;width:100%}
+.hero-left{position:relative;z-index:2}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:.5rem;font-size:.75rem;letter-spacing:3px;text-transform:uppercase;color:var(--terracotta);font-weight:600;margin-bottom:1.5rem;padding:.4rem 1rem;border:1px solid rgba(194,65,12,0.2);border-radius:50px;background:rgba(194,65,12,0.05)}
+.hero h1{font-size:clamp(3rem,6vw,5rem);line-height:1;font-weight:900;margin-bottom:1rem;letter-spacing:-2px}
+.hero h1 .accent{color:var(--terracotta);font-style:italic;font-weight:400}
+.hero-sub{font-size:1.05rem;color:var(--gray);line-height:1.7;max-width:480px;margin-bottom:2rem}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap}
+.btn-terra{background:var(--terracotta);color:var(--cream);padding:1rem 2.2rem;border-radius:50px;text-decoration:none;font-weight:700;font-size:.95rem;transition:all .3s;display:inline-flex;align-items:center;gap:.5rem}
+.btn-terra:hover{background:var(--brown);transform:translateY(-2px);box-shadow:0 8px 25px rgba(194,65,12,0.2)}
+.btn-outline-terra{border:2px solid var(--terracotta);color:var(--terracotta);padding:1rem 2.2rem;border-radius:50px;text-decoration:none;font-weight:600;font-size:.95rem;transition:all .3s}
+.btn-outline-terra:hover{background:var(--terracotta);color:var(--cream)}
+.hero-right{position:relative;z-index:2;display:flex;flex-direction:column;gap:1rem}
+.hero-card{background:white;border-radius:20px;padding:2rem;box-shadow:0 4px 20px rgba(0,0,0,0.06);border:1px solid rgba(194,65,12,0.08)}
+.hero-card-title{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;margin-bottom:1rem;color:var(--terracotta)}
+.menu-preview{display:flex;flex-direction:column;gap:.8rem}
+.menu-item{display:flex;justify-content:space-between;align-items:center;padding-bottom:.8rem;border-bottom:1px dashed rgba(0,0,0,0.08)}
+.menu-item:last-child{border:none;padding-bottom:0}
+.menu-item .name{font-weight:600;font-size:.9rem}
+.menu-item .desc{color:var(--gray);font-size:.75rem}
+.menu-item .price{font-weight:700;color:var(--terracotta);font-size:.95rem}
+
+/* ABOUT STRIP */
+.about-strip{padding:3rem 5%;background:var(--dark);color:var(--cream);display:flex;justify-content:center;gap:4rem;flex-wrap:wrap}
+.about-stat{text-align:center}
+.about-stat .val{font-family:'Playfair Display',serif;font-size:2rem;font-weight:900;color:var(--terra-light)}
+.about-stat .label{font-size:.8rem;color:var(--sand);margin-top:.2rem;letter-spacing:1px;text-transform:uppercase}
+
+/* CATERING */
+.catering{padding:6rem 5%}
+.sec-tag{font-size:.7rem;letter-spacing:4px;text-transform:uppercase;color:var(--terracotta);font-weight:600;margin-bottom:.8rem}
+.sec-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,3.5vw,3rem);font-weight:900;margin-bottom:.5rem;letter-spacing:-1px}
+.sec-desc{color:var(--gray);font-size:.95rem;max-width:550px;margin-bottom:3rem;line-height:1.7}
+.catering-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem}
+.catering-card{background:white;border-radius:16px;padding:2rem;border:1px solid rgba(0,0,0,0.05);transition:all .4s;position:relative;overflow:hidden}
+.catering-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--terracotta),var(--terra-light));transform:scaleX(0);transform-origin:left;transition:transform .4s}
+.catering-card:hover::before{transform:scaleX(1)}
+.catering-card:hover{transform:translateY(-4px);box-shadow:0 8px 30px rgba(0,0,0,0.08)}
+.catering-icon{font-size:2rem;margin-bottom:1rem}
+.catering-card h3{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;margin-bottom:.4rem}
+.catering-card p{color:var(--gray);font-size:.85rem;line-height:1.6}
+
+/* EVENTS */
+.events{padding:6rem 5%;background:rgba(194,65,12,0.03)}
+.events-content{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+.event-list{display:flex;flex-direction:column;gap:1.2rem}
+.event-type{display:flex;align-items:center;gap:1rem;background:white;padding:1.2rem 1.5rem;border-radius:12px;border:1px solid rgba(0,0,0,0.05);transition:all .3s}
+.event-type:hover{border-color:rgba(194,65,12,0.2);transform:translateX(4px)}
+.event-dot{width:12px;height:12px;border-radius:50%;flex-shrink:0}
+.event-type h4{font-size:.95rem;font-weight:600}
+.event-type p{color:var(--gray);font-size:.8rem}
+.events-visual{display:flex;flex-direction:column;gap:1rem}
+.event-stat{background:var(--dark);color:var(--cream);border-radius:16px;padding:2rem;text-align:center}
+.event-stat .num{font-family:'Playfair Display',serif;font-size:3rem;font-weight:900;color:var(--terra-light)}
+.event-stat .txt{color:var(--sand);font-size:.85rem;margin-top:.3rem}
+
+/* SERVICE AREA */
+.area{padding:6rem 5%}
+.area-card{background:var(--dark);color:var(--cream);border-radius:24px;padding:4rem;display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
+.area h2{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3vw,2.5rem);font-weight:900;margin-bottom:1rem}
+.area p{color:var(--sand);font-size:.95rem;line-height:1.7;margin-bottom:1.5rem}
+.area-cities{display:flex;flex-wrap:wrap;gap:.6rem}
+.area-chip{background:rgba(194,65,12,0.15);border:1px solid rgba(194,65,12,0.3);padding:.4rem 1rem;border-radius:50px;font-size:.8rem;color:var(--terra-light);font-weight:500}
+.area-right{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5rem}
+.area-big{font-family:'Playfair Display',serif;font-size:5rem;font-weight:900;color:var(--terra-light);line-height:1}
+.area-label{color:var(--sand);font-size:.85rem;letter-spacing:2px;text-transform:uppercase}
+
+/* CTA */
+.cta{padding:6rem 5%;text-align:center}
+.cta-box{background:linear-gradient(135deg,var(--terracotta),var(--brown));color:var(--cream);border-radius:24px;padding:4rem 3rem;position:relative;overflow:hidden}
+.cta-box::before{content:'';position:absolute;top:-80px;right:-80px;width:300px;height:300px;background:radial-gradient(circle,rgba(255,255,255,0.08),transparent);pointer-events:none}
+.cta h2{font-family:'Playfair Display',serif;font-size:clamp(2rem,3.5vw,3rem);font-weight:900;margin-bottom:.5rem;position:relative;z-index:2}
+.cta .sub{color:var(--sand);font-size:1rem;margin-bottom:2rem;position:relative;z-index:2}
+.cta-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;position:relative;z-index:2}
+.btn-white{background:var(--cream);color:var(--terracotta);padding:1rem 2.2rem;border-radius:50px;text-decoration:none;font-weight:700;font-size:.95rem;transition:all .3s}
+.btn-white:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,0.2)}
+.btn-outline-white{border:2px solid rgba(255,255,255,0.4);color:var(--cream);padding:1rem 2.2rem;border-radius:50px;text-decoration:none;font-weight:600;font-size:.95rem;transition:all .3s}
+.btn-outline-white:hover{border-color:white;background:rgba(255,255,255,0.1)}
+
+footer{padding:3rem 5%;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;border-top:1px solid rgba(0,0,0,0.06)}
+footer p{color:var(--gray);font-size:.8rem}
+.footer-brand{font-family:'Playfair Display',serif;font-weight:900;font-size:1rem;color:var(--terracotta)}
+
+@media(max-width:768px){
+  .hero-content{grid-template-columns:1fr;gap:2rem;padding:7rem 5% 4rem}
+  .events-content{grid-template-columns:1fr;gap:2rem}
+  .area-card{grid-template-columns:1fr;padding:2.5rem}
+  .cta-box{padding:2.5rem 1.5rem}
+  footer{flex-direction:column;text-align:center}
+}
+
+.fade-in{opacity:0;transform:translateY(25px);transition:all .6s ease-out}
+.fade-in.vis{opacity:1;transform:translateY(0)}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Santa Fe <span>Nashville</span></div>
+  <ul class="nav-links">
+    <li><a href="#catering">Catering</a></li>
+    <li><a href="#events">Events</a></li>
+    <li><a href="#area">Service Area</a></li>
+    <li><a href="#contact">Book Us</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Book Catering</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-decor"></div>
+  <div class="hero-decor2"></div>
+  <div class="hero-content">
+    <div class="hero-left">
+      <div class="hero-eyebrow">Nashville Food Truck</div>
+      <h1>Real Mexican <span class="accent">Street Food</span></h1>
+      <p class="hero-sub">Authentic flavors served fresh from our truck to your event. Weddings, corporate lunches, private parties, and festivals across Nashville and Middle Tennessee.</p>
+      <div class="hero-btns">
+        <a href="#contact" class="btn-terra">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>
+          Book Your Event
+        </a>
+        <a href="#catering" class="btn-outline-terra">See Our Menu</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-card">
+        <div class="hero-card-title">Popular Items</div>
+        <div class="menu-preview">
+          <div class="menu-item"><div><div class="name">Street Tacos</div><div class="desc">Carne asada, al pastor, or carnitas</div></div><div class="price">$3.50</div></div>
+          <div class="menu-item"><div><div class="name">Loaded Nachos</div><div class="desc">Fresh chips, queso, beans, pico</div></div><div class="price">$9</div></div>
+          <div class="menu-item"><div><div class="name">Burrito Bowl</div><div class="desc">Rice, beans, protein, fresh toppings</div></div><div class="price">$11</div></div>
+          <div class="menu-item"><div><div class="name">Elote</div><div class="desc">Grilled street corn, cotija, lime</div></div><div class="price">$5</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="about-strip">
+  <div class="about-stat"><div class="val">Nashville</div><div class="label">Home Base</div></div>
+  <div class="about-stat"><div class="val">Middle TN</div><div class="label">Service Area</div></div>
+  <div class="about-stat"><div class="val">Weddings</div><div class="label">& All Events</div></div>
+  <div class="about-stat"><div class="val">Fresh</div><div class="label">Made to Order</div></div>
+</div>
+
+<section class="catering" id="catering">
+  <div class="sec-tag fade-in">Catering</div>
+  <h2 class="sec-title fade-in">Feed Your Whole Event</h2>
+  <p class="sec-desc fade-in">From intimate gatherings to 500+ guests. We bring the full kitchen, fresh ingredients, and the energy of a street food experience to your event.</p>
+  <div class="catering-grid">
+    <div class="catering-card fade-in">
+      <div class="catering-icon">🌮</div>
+      <h3>Taco Bar</h3>
+      <p>Build-your-own taco station with multiple proteins, fresh salsas, and all the fixings. The crowd favorite for any event.</p>
+    </div>
+    <div class="catering-card fade-in">
+      <div class="catering-icon">🫔</div>
+      <h3>Burrito Station</h3>
+      <p>Custom burritos and bowls made to order. Rice, beans, protein, and toppings built right in front of your guests.</p>
+    </div>
+    <div class="catering-card fade-in">
+      <div class="catering-icon">🌶️</div>
+      <h3>Appetizer Spread</h3>
+      <p>Loaded nachos, elote, queso fundido, fresh guacamole, and chips. Perfect for cocktail hours and mingling.</p>
+    </div>
+    <div class="catering-card fade-in">
+      <div class="catering-icon">🎉</div>
+      <h3>Full Service Package</h3>
+      <p>The complete experience. Appetizers, mains, sides, and dessert. We handle setup, service, and cleanup so you can enjoy.</p>
+    </div>
+  </div>
+</section>
+
+<section class="events" id="events">
+  <div class="events-content">
+    <div>
+      <div class="sec-tag fade-in">We Cater It All</div>
+      <h2 class="sec-title fade-in">Your Event, Our Flavor</h2>
+      <p class="sec-desc fade-in">Every celebration deserves great food. We bring the same energy whether it's 20 guests or 500.</p>
+      <div class="event-list">
+        <div class="event-type fade-in"><div class="event-dot" style="background:var(--terracotta)"></div><div><h4>Weddings & Receptions</h4><p>Unique, memorable food your guests will talk about</p></div></div>
+        <div class="event-type fade-in"><div class="event-dot" style="background:var(--sage)"></div><div><h4>Corporate Events</h4><p>Lunch meetings, team celebrations, office parties</p></div></div>
+        <div class="event-type fade-in"><div class="event-dot" style="background:var(--terra-light)"></div><div><h4>Private Parties</h4><p>Birthdays, graduations, family reunions, holidays</p></div></div>
+        <div class="event-type fade-in"><div class="event-dot" style="background:var(--sand)"></div><div><h4>Festivals & Markets</h4><p>Community events, farmers markets, food truck rallies</p></div></div>
+        <div class="event-type fade-in"><div class="event-dot" style="background:var(--sage-light)"></div><div><h4>Fundraisers</h4><p>School events, charity galas, community gatherings</p></div></div>
+      </div>
+    </div>
+    <div class="events-visual">
+      <div class="event-stat fade-in">
+        <div class="num">500+</div>
+        <div class="txt">Guest Capacity</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+        <div class="event-stat fade-in">
+          <div class="num" style="font-size:2rem">Full</div>
+          <div class="txt">Kitchen on Wheels</div>
+        </div>
+        <div class="event-stat fade-in">
+          <div class="num" style="font-size:2rem">Fresh</div>
+          <div class="txt">Made to Order</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="area" id="area">
+  <div class="area-card fade-in">
+    <div>
+      <div class="sec-tag" style="color:var(--terra-light)">Service Area</div>
+      <h2>We Come to You</h2>
+      <p>Based in Springfield and serving Nashville and all of Middle Tennessee. If you've got a party, we'll bring the food.</p>
+      <div class="area-cities">
+        <span class="area-chip">Nashville</span>
+        <span class="area-chip">Springfield</span>
+        <span class="area-chip">Hendersonville</span>
+        <span class="area-chip">Gallatin</span>
+        <span class="area-chip">Lebanon</span>
+        <span class="area-chip">Murfreesboro</span>
+        <span class="area-chip">Franklin</span>
+        <span class="area-chip">Clarksville</span>
+        <span class="area-chip">+ All Middle TN</span>
+      </div>
+    </div>
+    <div class="area-right">
+      <div class="area-big">TN</div>
+      <div class="area-label">Middle Tennessee</div>
+    </div>
+  </div>
+</section>
+
+<section class="cta" id="contact">
+  <div class="cta-box">
+    <h2>Book Santa Fe for Your Next Event</h2>
+    <p class="sub">Tell us your date, guest count, and vibe. We'll handle the rest.</p>
+    <div class="cta-actions">
+      <a href="https://www.facebook.com/santafenashfoodtruck/" class="btn-white">Message Us on Facebook</a>
+      <a href="#" class="btn-outline-white">Request a Quote</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-brand">Santa Fe Nashville</div>
+  <p>Springfield, TN | Serving Nashville & Middle Tennessee</p>
+  <p>&copy; 2026 Santa Fe Nashville Food Truck. All rights reserved.</p>
+</footer>
+
+<script>
+const o=new IntersectionObserver(e=>{e.forEach(i=>{if(i.isIntersecting){i.target.classList.add('vis');o.unobserve(i.target)}})},{threshold:.1});
+document.querySelectorAll('.fade-in').forEach(el=>o.observe(el));
+</script>
+</body>
+</html>

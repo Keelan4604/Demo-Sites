@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Deon's Style and Barbershop | Tuscaloosa, AL | Premier Cuts & Styles</title>
+  <meta name="description" content="Deon's Style and Barbershop — Tuscaloosa's premier barber and salon. 4.9 stars, 31 reviews. Full service cuts, fades, styles, and color. Book now." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=Clash+Display:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'ds-black':    '#0d0d0d',
+            'ds-dark':     '#161616',
+            'ds-charcoal': '#1f1f1f',
+            'ds-steel':    '#2b2b2b',
+            'ds-gold':     '#c9a84c',
+            'ds-gold-lt':  '#e8c869',
+            'ds-gold-dk':  '#a68a3e',
+            'ds-cream':    '#f5f0e3',
+            'ds-silver':   '#9a9a9a',
+            'ds-white':    '#f2f2f2',
+          },
+          fontFamily: {
+            heading: ['"Clash Display"', 'sans-serif'],
+            body:    ['Sora', 'sans-serif'],
+            accent:  ['"Cormorant Garamond"', 'serif'],
+          },
+        },
+      },
+    }
+  </script>
+  <style>
+    @font-face {
+      font-family: 'Clash Display';
+      src: url('https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&display=swap');
+    }
+    * { font-family: 'Sora', sans-serif; }
+    h1, h2, h3, .font-heading { font-family: 'Clash Display', 'Sora', sans-serif; }
+    .font-accent { font-family: 'Cormorant Garamond', serif; }
+
+    /* Animations */
+    .fade-up {
+      opacity: 0; transform: translateY(40px);
+      transition: opacity 0.8s cubic-bezier(.22,1,.36,1), transform 0.8s cubic-bezier(.22,1,.36,1);
+    }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    .fade-in { opacity: 0; transition: opacity 0.9s ease-out; }
+    .fade-in.visible { opacity: 1; }
+
+    .slide-left {
+      opacity: 0; transform: translateX(-60px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+    .slide-left.visible { opacity: 1; transform: translateX(0); }
+
+    .slide-right {
+      opacity: 0; transform: translateX(60px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+    .slide-right.visible { opacity: 1; transform: translateX(0); }
+
+    .scale-in {
+      opacity: 0; transform: scale(0.9);
+      transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+    }
+    .scale-in.visible { opacity: 1; transform: scale(1); }
+
+    /* Hero */
+    .hero-bg {
+      background: linear-gradient(170deg, rgba(13,13,13,0.95) 0%, rgba(13,13,13,0.7) 40%, rgba(13,13,13,0.92) 100%),
+                  url('https://images.unsplash.com/photo-1621605815971-fbc98d665033?w=1920&q=85') center/cover no-repeat;
+      min-height: 100vh;
+    }
+
+    /* Gold line pattern */
+    .gold-lines {
+      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cline x1='0' y1='60' x2='60' y2='0' stroke='%23c9a84c' stroke-width='0.3' opacity='0.05'/%3E%3C/svg%3E");
+    }
+
+    /* Service card */
+    .service-card {
+      transition: transform 0.4s cubic-bezier(.22,1,.36,1), box-shadow 0.4s ease, border-color 0.3s ease;
+      border: 1px solid rgba(201,168,76,0.1);
+    }
+    .service-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 25px 60px rgba(201,168,76,0.1);
+      border-color: rgba(201,168,76,0.3);
+    }
+
+    /* Nav */
+    .nav-glass {
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      background: rgba(13,13,13,0.85);
+      transition: all 0.3s ease;
+    }
+    .nav-scrolled { background: rgba(13,13,13,0.97); box-shadow: 0 4px 30px rgba(0,0,0,0.5); }
+
+    /* Pulse CTA */
+    @keyframes pulse-gold {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(201,168,76,0.5); }
+      50% { box-shadow: 0 0 0 14px rgba(201,168,76,0); }
+    }
+    .pulse-cta { animation: pulse-gold 2.5s infinite; }
+
+    /* Gold shimmer */
+    @keyframes shimmer {
+      0% { background-position: -200% center; }
+      100% { background-position: 200% center; }
+    }
+    .gold-shimmer {
+      background: linear-gradient(90deg, #c9a84c 0%, #e8c869 25%, #c9a84c 50%, #e8c869 75%, #c9a84c 100%);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shimmer 4s linear infinite;
+    }
+
+    /* Gallery card */
+    .gallery-card {
+      transition: transform 0.5s cubic-bezier(.22,1,.36,1);
+      overflow: hidden;
+    }
+    .gallery-card:hover {
+      transform: scale(1.03);
+    }
+    .gallery-card img {
+      transition: transform 0.5s ease;
+    }
+    .gallery-card:hover img {
+      transform: scale(1.1);
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #0d0d0d; }
+    ::-webkit-scrollbar-thumb { background: #c9a84c; border-radius: 4px; }
+
+    /* Gold glow */
+    .gold-glow {
+      box-shadow: 0 0 40px rgba(201,168,76,0.15), 0 0 80px rgba(201,168,76,0.05);
+    }
+
+    /* Marquee */
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .marquee-track {
+      animation: marquee 25s linear infinite;
+    }
+
+    /* Razor line */
+    .razor-line {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #c9a84c, transparent);
+    }
+
+    /* Mobile menu */
+    .mobile-menu {
+      transform: translateX(100%);
+      transition: transform 0.3s ease;
+    }
+    .mobile-menu.open { transform: translateX(0); }
+  </style>
+</head>
+<body class="bg-ds-black text-ds-white">
+
+  <!-- Gold accent line -->
+  <div class="w-full h-0.5 bg-gradient-to-r from-transparent via-ds-gold to-transparent fixed top-0 z-[60]"></div>
+
+  <!-- Navigation -->
+  <nav class="nav-glass fixed top-[2px] w-full z-50 px-4 lg:px-8">
+    <div class="max-w-7xl mx-auto flex items-center justify-between h-16">
+      <a href="#" class="flex items-center gap-3">
+        <div class="w-10 h-10 border-2 border-ds-gold rounded-full flex items-center justify-center">
+          <span class="font-heading text-ds-gold font-bold text-lg">D</span>
+        </div>
+        <div>
+          <span class="font-heading text-white text-lg font-semibold tracking-wide">Deon's</span>
+          <span class="block text-ds-gold text-[10px] font-accent italic tracking-widest -mt-1">Style & Barbershop</span>
+        </div>
+      </a>
+      <div class="hidden md:flex items-center gap-8">
+        <a href="#services" class="text-ds-silver hover:text-ds-gold text-sm font-medium transition">Services</a>
+        <a href="#gallery" class="text-ds-silver hover:text-ds-gold text-sm font-medium transition">Gallery</a>
+        <a href="#reviews" class="text-ds-silver hover:text-ds-gold text-sm font-medium transition">Reviews</a>
+        <a href="#contact" class="text-ds-silver hover:text-ds-gold text-sm font-medium transition">Contact</a>
+        <a href="tel:2058867771" class="bg-ds-gold text-ds-black px-6 py-2.5 rounded-full text-sm font-bold hover:bg-ds-gold-lt transition pulse-cta">Book Now</a>
+      </div>
+      <button id="menuBtn" class="md:hidden text-white">
+        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div id="mobileMenu" class="mobile-menu fixed inset-0 z-[55] bg-ds-black/98 flex flex-col items-center justify-center gap-8 md:hidden">
+    <button id="closeMenu" class="absolute top-6 right-6 text-white"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg></button>
+    <a href="#services" class="text-white text-2xl font-heading mobile-link">Services</a>
+    <a href="#gallery" class="text-white text-2xl font-heading mobile-link">Gallery</a>
+    <a href="#reviews" class="text-white text-2xl font-heading mobile-link">Reviews</a>
+    <a href="#contact" class="text-white text-2xl font-heading mobile-link">Contact</a>
+    <a href="tel:2058867771" class="bg-ds-gold text-ds-black px-8 py-3 rounded-full text-lg font-bold mobile-link">Book Now</a>
+  </div>
+
+  <!-- Hero -->
+  <section class="hero-bg relative flex items-center min-h-screen">
+    <div class="max-w-7xl mx-auto px-4 lg:px-8 py-32 w-full grid lg:grid-cols-2 gap-12 items-center">
+      <div class="fade-up">
+        <div class="inline-flex items-center gap-2 bg-ds-gold/10 border border-ds-gold/20 text-ds-gold px-4 py-2 rounded-full mb-8">
+          <div class="flex gap-0.5">
+            <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <span class="text-sm font-medium">4.9 Rating &bull; 31 Reviews</span>
+        </div>
+
+        <p class="font-accent text-ds-gold italic text-xl lg:text-2xl mb-3">Tuscaloosa's Premier</p>
+        <h1 class="font-heading text-white text-5xl lg:text-7xl xl:text-8xl leading-[1.0] mb-6 font-bold tracking-tight">
+          Style &<br/>
+          <span class="gold-shimmer">Barbershop</span>
+        </h1>
+
+        <p class="text-ds-silver text-lg max-w-lg mb-10 leading-relaxed">
+          Where precision meets personality. Full-service cuts, fades, styles, and grooming by Deon Trone &mdash; the barber Tuscaloosa trusts.
+        </p>
+
+        <div class="flex flex-wrap gap-4">
+          <a href="tel:2058867771" class="bg-ds-gold text-ds-black px-8 py-4 rounded-full font-bold text-lg hover:bg-ds-gold-lt transition pulse-cta">
+            Book Your Cut
+          </a>
+          <a href="#gallery" class="border border-ds-gold/30 text-ds-gold px-8 py-4 rounded-full font-bold text-lg hover:bg-ds-gold/10 transition">
+            See Our Work
+          </a>
+        </div>
+      </div>
+
+      <!-- Hero right side - floating card -->
+      <div class="hidden lg:flex justify-center fade-in" style="transition-delay:0.4s">
+        <div class="relative">
+          <div class="absolute -top-10 -left-10 w-40 h-40 border border-ds-gold/10 rounded-full"></div>
+          <div class="absolute -bottom-8 -right-8 w-32 h-32 border border-ds-gold/10 rounded-full"></div>
+          <div class="relative bg-ds-charcoal rounded-3xl p-8 border border-ds-gold/10 gold-glow">
+            <div class="text-center">
+              <div class="w-20 h-20 bg-ds-gold/10 rounded-full flex items-center justify-center mx-auto mb-4 border border-ds-gold/20">
+                <svg class="w-10 h-10 text-ds-gold" fill="currentColor" viewBox="0 0 24 24"><path d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"/></svg>
+              </div>
+              <p class="font-accent text-ds-gold italic text-lg mb-1">Walk-ins Welcome</p>
+              <p class="font-heading text-white text-2xl font-bold mb-3">Mon - Sat</p>
+              <p class="text-ds-silver text-sm">Book on Booksy or walk in</p>
+              <div class="razor-line w-full my-4"></div>
+              <p class="text-ds-gold font-heading text-3xl font-bold">(205) 886-7771</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Marquee -->
+  <section class="bg-ds-dark py-4 overflow-hidden border-y border-ds-gold/10">
+    <div class="flex whitespace-nowrap">
+      <div class="marquee-track flex gap-8 items-center">
+        <span class="text-ds-gold/40 font-heading text-sm tracking-[0.3em] uppercase">Fresh Fades</span>
+        <span class="text-ds-gold/20">&diams;</span>
+        <span class="text-ds-gold/40 font-heading text-sm tracking-[0.3em] uppercase">Precision Cuts</span>
+        <span class="text-ds-gold/20">&diams;</span>
+        <span class="text-ds-gold/40 font-heading text-sm tracking-[0.3em] uppercase">Hot Towel Shaves</span>
+        <span class="text-ds-gold/20">&diams;</span>
+        <span class="text-ds-gold/40 font-heading text-sm tracking-[0.3em] uppercase">Beard Sculpting</span>
+        <span class="text-ds-gold/20">&diams;</span>
+        <span class="text-ds-gold/40 font-heading text-sm tracking-[0.3em] uppercase">Color & Highlights</span>
+        <span class="text-ds-gold/20">&diams;</span>
+        <span class="text-ds-gold/40 font-heading text-sm tracking-[0.3em] uppercase">Kids Cuts</span>
+        <span class="text-ds-gold/20">&diams;</span>
+        <span class="text-ds-gold/40 font-heading text-sm tracking-[0.3em] uppercase">Full Salon Service</span>
+        <span class="text-ds-gold/20">&diams;</span>
+        <!-- Duplicate for seamless loop -->
+        <span class="text-ds-gold/40 font-heading text-sm tracking-[0.3em] uppercase">Fresh Fades</span>
+        <span class="text-ds-gold/20">&diams;</span>
+        <span class="text-ds-gold/40 font-heading text-sm tracking-[0.3em] uppercase">Precision Cuts</span>
+        <span class="text-ds-gold/20">&diams;</span>
+        <span class="text-ds-gold/40 font-heading text-sm tracking-[0.3em] uppercase">Hot Towel Shaves</span>
+        <span class="text-ds-gold/20">&diams;</span>
+        <span class="text-ds-gold/40 font-heading text-sm tracking-[0.3em] uppercase">Beard Sculpting</span>
+        <span class="text-ds-gold/20">&diams;</span>
+        <span class="text-ds-gold/40 font-heading text-sm tracking-[0.3em] uppercase">Color & Highlights</span>
+        <span class="text-ds-gold/20">&diams;</span>
+        <span class="text-ds-gold/40 font-heading text-sm tracking-[0.3em] uppercase">Kids Cuts</span>
+        <span class="text-ds-gold/20">&diams;</span>
+        <span class="text-ds-gold/40 font-heading text-sm tracking-[0.3em] uppercase">Full Salon Service</span>
+        <span class="text-ds-gold/20">&diams;</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section id="services" class="bg-ds-black gold-lines py-20 lg:py-28">
+    <div class="max-w-7xl mx-auto px-4 lg:px-8">
+      <div class="text-center mb-16 fade-up">
+        <p class="font-accent text-ds-gold italic text-xl mb-2">What We Offer</p>
+        <h2 class="font-heading text-white text-4xl lg:text-5xl font-bold">Services & Pricing</h2>
+        <div class="razor-line w-24 mx-auto mt-5"></div>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="service-card bg-ds-charcoal rounded-2xl p-8 fade-up">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="font-heading text-white text-xl font-semibold">Classic Haircut</h3>
+            <span class="text-ds-gold font-heading text-2xl font-bold">$25</span>
+          </div>
+          <div class="razor-line w-full mb-4"></div>
+          <p class="text-ds-silver text-sm leading-relaxed">Precision cut with hot lather neck shave, straight razor line-up, and styling. The signature Deon's experience.</p>
+        </div>
+        <div class="service-card bg-ds-charcoal rounded-2xl p-8 fade-up" style="transition-delay:0.1s">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="font-heading text-white text-xl font-semibold">Skin Fade</h3>
+            <span class="text-ds-gold font-heading text-2xl font-bold">$30</span>
+          </div>
+          <div class="razor-line w-full mb-4"></div>
+          <p class="text-ds-silver text-sm leading-relaxed">Flawless skin fade with razor-sharp edges. Low, mid, or high &mdash; your call. Finished with a hot towel.</p>
+        </div>
+        <div class="service-card bg-ds-charcoal rounded-2xl p-8 fade-up" style="transition-delay:0.2s">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="font-heading text-white text-xl font-semibold">Beard Trim</h3>
+            <span class="text-ds-gold font-heading text-2xl font-bold">$15</span>
+          </div>
+          <div class="razor-line w-full mb-4"></div>
+          <p class="text-ds-silver text-sm leading-relaxed">Sculpted beard shaping with razor-defined edges. Includes hot towel and beard oil treatment.</p>
+        </div>
+        <div class="service-card bg-ds-charcoal rounded-2xl p-8 fade-up" style="transition-delay:0.3s">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="font-heading text-white text-xl font-semibold">Cut + Beard</h3>
+            <span class="text-ds-gold font-heading text-2xl font-bold">$40</span>
+          </div>
+          <div class="razor-line w-full mb-4"></div>
+          <p class="text-ds-silver text-sm leading-relaxed">The full package. Haircut of your choice plus a complete beard sculpt and lineup. Walk out sharp.</p>
+        </div>
+        <div class="service-card bg-ds-charcoal rounded-2xl p-8 fade-up" style="transition-delay:0.4s">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="font-heading text-white text-xl font-semibold">Kids Cut</h3>
+            <span class="text-ds-gold font-heading text-2xl font-bold">$20</span>
+          </div>
+          <div class="razor-line w-full mb-4"></div>
+          <p class="text-ds-silver text-sm leading-relaxed">Patient, fun atmosphere for the little ones. Any style they want. Ages 12 and under.</p>
+        </div>
+        <div class="service-card bg-gradient-to-br from-ds-gold/10 to-ds-gold/5 rounded-2xl p-8 border border-ds-gold/20 fade-up" style="transition-delay:0.5s">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="font-heading text-ds-gold text-xl font-semibold">Full Salon</h3>
+            <span class="text-ds-gold font-heading text-lg font-bold">Call</span>
+          </div>
+          <div class="razor-line w-full mb-4"></div>
+          <p class="text-ds-silver text-sm leading-relaxed">Color, highlights, relaxers, braids, and more. Full salon services available. Call for consultation and pricing.</p>
+        </div>
+      </div>
+
+      <div class="text-center mt-12 fade-up">
+        <p class="text-ds-silver text-sm italic font-accent">Prices may vary for specialty styles. Walk-ins welcome, appointments preferred.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery (Instagram-style grid) -->
+  <section id="gallery" class="bg-ds-dark py-20 lg:py-28">
+    <div class="max-w-7xl mx-auto px-4 lg:px-8">
+      <div class="text-center mb-16 fade-up">
+        <p class="font-accent text-ds-gold italic text-xl mb-2">Our Work</p>
+        <h2 class="font-heading text-white text-4xl lg:text-5xl font-bold">The Gallery</h2>
+        <div class="razor-line w-24 mx-auto mt-5"></div>
+      </div>
+
+      <!-- Instagram-style grid -->
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-3 lg:gap-4">
+        <div class="gallery-card rounded-xl overflow-hidden aspect-square fade-up">
+          <img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?w=500&q=80" alt="Fresh fade" class="w-full h-full object-cover" />
+        </div>
+        <div class="gallery-card rounded-xl overflow-hidden aspect-square fade-up" style="transition-delay:0.05s">
+          <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=500&q=80" alt="Classic cut" class="w-full h-full object-cover" />
+        </div>
+        <div class="gallery-card rounded-xl overflow-hidden aspect-square fade-up" style="transition-delay:0.1s">
+          <img src="https://images.unsplash.com/photo-1622286342621-4bd786c2447c?w=500&q=80" alt="Beard work" class="w-full h-full object-cover" />
+        </div>
+        <div class="gallery-card rounded-xl overflow-hidden aspect-square fade-up" style="transition-delay:0.15s">
+          <img src="https://images.unsplash.com/photo-1605497788044-5a32c7078486?w=500&q=80" alt="Barbershop vibe" class="w-full h-full object-cover" />
+        </div>
+        <div class="gallery-card rounded-xl overflow-hidden aspect-square fade-up" style="transition-delay:0.2s">
+          <img src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?w=500&q=80" alt="Styling" class="w-full h-full object-cover" />
+        </div>
+        <div class="gallery-card rounded-xl overflow-hidden aspect-square bg-gradient-to-br from-ds-gold/20 to-ds-gold/5 flex items-center justify-center border border-ds-gold/20 fade-up" style="transition-delay:0.25s">
+          <div class="text-center p-6">
+            <p class="font-heading text-ds-gold text-2xl font-bold mb-2">Follow Us</p>
+            <p class="text-ds-silver text-sm">See more cuts and styles on social media</p>
+            <div class="flex gap-4 justify-center mt-4">
+              <svg class="w-6 h-6 text-ds-gold" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+              <svg class="w-6 h-6 text-ds-gold" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Deon -->
+  <section class="bg-ds-black gold-lines py-20 lg:py-28">
+    <div class="max-w-7xl mx-auto px-4 lg:px-8 grid lg:grid-cols-2 gap-16 items-center">
+      <div class="slide-left">
+        <div class="relative">
+          <div class="absolute -top-4 -left-4 w-full h-full border border-ds-gold/20 rounded-2xl"></div>
+          <div class="relative bg-ds-charcoal rounded-2xl overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1585747860019-8bfb0c087d68?w=700&q=80" alt="Deon at the barbershop" class="w-full h-80 lg:h-[24rem] object-cover" />
+            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-ds-black via-ds-black/60 to-transparent p-6">
+              <p class="font-heading text-white text-xl font-bold">Deon Trone</p>
+              <p class="font-accent text-ds-gold italic">Owner & Master Barber</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="slide-right">
+        <p class="font-accent text-ds-gold italic text-xl mb-2">Meet Deon</p>
+        <h2 class="font-heading text-white text-4xl lg:text-5xl font-bold mb-6">More Than<br/>a Barbershop.</h2>
+        <p class="text-ds-silver text-lg leading-relaxed mb-6">
+          Deon's isn't just a place to get a cut &mdash; it's a place to feel right. Whether you need a sharp fade for a job interview, a fresh style for Saturday night, or just a trim to keep things tight, we've got you.
+        </p>
+        <p class="text-ds-silver text-lg leading-relaxed mb-8">
+          With 4.9 stars on Booksy and a loyal client base that keeps coming back, we let our work speak for itself. Every chair is a conversation, every cut is a craft.
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <div class="flex items-center gap-2 bg-ds-gold/10 border border-ds-gold/20 rounded-full px-4 py-2">
+            <svg class="w-4 h-4 text-ds-gold" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <span class="text-ds-gold text-sm font-medium">4.9 Stars</span>
+          </div>
+          <div class="flex items-center gap-2 bg-ds-gold/10 border border-ds-gold/20 rounded-full px-4 py-2">
+            <span class="text-ds-gold text-sm font-medium">31+ Reviews</span>
+          </div>
+          <div class="flex items-center gap-2 bg-ds-gold/10 border border-ds-gold/20 rounded-full px-4 py-2">
+            <span class="text-ds-gold text-sm font-medium">Full Salon + Barber</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reviews -->
+  <section id="reviews" class="bg-ds-dark py-20 lg:py-28">
+    <div class="max-w-7xl mx-auto px-4 lg:px-8">
+      <div class="text-center mb-16 fade-up">
+        <p class="font-accent text-ds-gold italic text-xl mb-2">What Clients Say</p>
+        <h2 class="font-heading text-white text-4xl lg:text-5xl font-bold">The Reviews</h2>
+        <div class="razor-line w-24 mx-auto mt-5"></div>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="bg-ds-charcoal rounded-2xl p-8 border border-ds-gold/10 fade-up">
+          <div class="flex gap-1 mb-4">
+            <svg class="w-5 h-5 text-ds-gold" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="w-5 h-5 text-ds-gold" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="w-5 h-5 text-ds-gold" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="w-5 h-5 text-ds-gold" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="w-5 h-5 text-ds-gold" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <p class="text-ds-silver leading-relaxed mb-4 text-sm">"Been going to Deon for two years now. Hands down the best barber in Tuscaloosa. He takes his time and the fade is always perfect. Don't go anywhere else."</p>
+          <p class="font-heading text-ds-gold text-sm font-medium">- Marcus J.</p>
+          <p class="text-ds-silver/50 text-xs mt-1 font-accent italic">via Booksy</p>
+        </div>
+        <div class="bg-ds-charcoal rounded-2xl p-8 border border-ds-gold/10 fade-up" style="transition-delay:0.1s">
+          <div class="flex gap-1 mb-4">
+            <svg class="w-5 h-5 text-ds-gold" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="w-5 h-5 text-ds-gold" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="w-5 h-5 text-ds-gold" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="w-5 h-5 text-ds-gold" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="w-5 h-5 text-ds-gold" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <p class="text-ds-silver leading-relaxed mb-4 text-sm">"Brought my son for his first real haircut. Deon was so patient with him and made it a great experience. Kid looked fresh and felt like a million bucks. We'll be back every month."</p>
+          <p class="font-heading text-ds-gold text-sm font-medium">- Keisha W.</p>
+          <p class="text-ds-silver/50 text-xs mt-1 font-accent italic">via Google</p>
+        </div>
+        <div class="bg-ds-charcoal rounded-2xl p-8 border border-ds-gold/10 fade-up" style="transition-delay:0.2s">
+          <div class="flex gap-1 mb-4">
+            <svg class="w-5 h-5 text-ds-gold" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="w-5 h-5 text-ds-gold" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="w-5 h-5 text-ds-gold" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="w-5 h-5 text-ds-gold" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="w-5 h-5 text-ds-gold" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <p class="text-ds-silver leading-relaxed mb-4 text-sm">"The vibe is unmatched. Good music, great conversation, and the best lineup in town. Deon knows what he's doing. My go-to spot since I moved to Tuscaloosa."</p>
+          <p class="font-heading text-ds-gold text-sm font-medium">- Tyler R.</p>
+          <p class="text-ds-silver/50 text-xs mt-1 font-accent italic">via Booksy</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Smart Chat Feature -->
+  <section class="bg-ds-charcoal py-16 border-y border-ds-gold/10">
+    <div class="max-w-4xl mx-auto px-4 text-center fade-up">
+      <div class="inline-flex items-center gap-2 bg-ds-gold/10 border border-ds-gold/20 rounded-full px-5 py-2 mb-6">
+        <svg class="w-5 h-5 text-ds-gold" fill="currentColor" viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/></svg>
+        <span class="text-ds-gold font-heading text-sm">Coming Soon</span>
+      </div>
+      <h2 class="font-heading text-white text-3xl lg:text-4xl mb-4 font-bold">Book by Chat</h2>
+      <p class="text-ds-silver text-lg max-w-2xl mx-auto font-accent italic">
+        Soon you'll be able to check availability, book appointments, and ask about services &mdash; all through our website chat. No app downloads needed.
+      </p>
+    </div>
+  </section>
+
+  <!-- CTA / Book Section -->
+  <section class="relative bg-ds-black py-20 overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-r from-ds-gold/5 via-transparent to-ds-gold/5"></div>
+    <div class="max-w-4xl mx-auto px-4 text-center relative z-10 fade-up">
+      <p class="font-accent text-ds-gold italic text-xl mb-3">Ready?</p>
+      <h2 class="font-heading text-white text-4xl lg:text-6xl font-bold mb-6">Get Fresh Today.</h2>
+      <p class="text-ds-silver text-lg mb-10 max-w-xl mx-auto">Walk-ins welcome. Or call ahead and we'll have a chair ready when you arrive.</p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="tel:2058867771" class="bg-ds-gold text-ds-black px-10 py-5 rounded-full font-bold text-xl hover:bg-ds-gold-lt transition pulse-cta flex items-center gap-3">
+          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+          (205) 886-7771
+        </a>
+        <a href="mailto:icutdakid@gmail.com" class="border-2 border-ds-gold/30 text-ds-gold px-10 py-5 rounded-full font-bold text-xl hover:bg-ds-gold/10 transition">
+          Email Us
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="bg-ds-dark py-20 lg:py-28">
+    <div class="max-w-7xl mx-auto px-4 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-16">
+        <div class="fade-up">
+          <p class="font-accent text-ds-gold italic text-xl mb-2">Find Us</p>
+          <h2 class="font-heading text-white text-4xl lg:text-5xl font-bold mb-6">Visit the<br/><span class="text-ds-gold">Shop</span></h2>
+          <div class="space-y-6">
+            <a href="tel:2058867771" class="flex items-center gap-4 group">
+              <div class="w-14 h-14 bg-ds-gold/10 rounded-xl flex items-center justify-center group-hover:bg-ds-gold/20 transition border border-ds-gold/10">
+                <svg class="w-6 h-6 text-ds-gold" fill="currentColor" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+              </div>
+              <div>
+                <p class="text-ds-silver text-sm">Call or Text</p>
+                <p class="font-heading text-white text-xl font-bold">(205) 886-7771</p>
+              </div>
+            </a>
+            <a href="mailto:icutdakid@gmail.com" class="flex items-center gap-4 group">
+              <div class="w-14 h-14 bg-ds-gold/10 rounded-xl flex items-center justify-center group-hover:bg-ds-gold/20 transition border border-ds-gold/10">
+                <svg class="w-6 h-6 text-ds-gold" fill="currentColor" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+              </div>
+              <div>
+                <p class="text-ds-silver text-sm">Email</p>
+                <p class="font-heading text-white font-bold">icutdakid@gmail.com</p>
+              </div>
+            </a>
+            <div class="flex items-center gap-4">
+              <div class="w-14 h-14 bg-ds-gold/10 rounded-xl flex items-center justify-center border border-ds-gold/10">
+                <svg class="w-6 h-6 text-ds-gold" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+              </div>
+              <div>
+                <p class="text-ds-silver text-sm">Location</p>
+                <p class="font-heading text-white font-bold">Tuscaloosa, Alabama</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-4">
+              <div class="w-14 h-14 bg-ds-gold/10 rounded-xl flex items-center justify-center border border-ds-gold/10">
+                <svg class="w-6 h-6 text-ds-gold" fill="currentColor" viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+              </div>
+              <div>
+                <p class="text-ds-silver text-sm">Hours</p>
+                <p class="font-heading text-white font-bold">Mon-Sat: 9 AM - 7 PM</p>
+                <p class="text-ds-gold text-sm font-accent italic">Walk-ins welcome, appointments preferred</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="fade-up" style="transition-delay:0.2s">
+          <form action="https://formspree.io/f/placeholder" method="POST" class="bg-ds-charcoal rounded-2xl p-8 lg:p-10 border border-ds-gold/10">
+            <h3 class="font-heading text-white text-2xl mb-6 font-bold">Send a Message</h3>
+            <div class="space-y-5">
+              <div>
+                <label class="block text-ds-silver text-sm font-medium mb-2">Name</label>
+                <input type="text" name="name" required class="w-full bg-ds-steel border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-ds-gold focus:ring-2 focus:ring-ds-gold/20 transition placeholder-ds-silver/50" placeholder="Your name" />
+              </div>
+              <div>
+                <label class="block text-ds-silver text-sm font-medium mb-2">Phone</label>
+                <input type="tel" name="phone" required class="w-full bg-ds-steel border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-ds-gold focus:ring-2 focus:ring-ds-gold/20 transition placeholder-ds-silver/50" placeholder="(205) 555-0000" />
+              </div>
+              <div>
+                <label class="block text-ds-silver text-sm font-medium mb-2">What do you need?</label>
+                <select name="service" class="w-full bg-ds-steel border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-ds-gold focus:ring-2 focus:ring-ds-gold/20 transition">
+                  <option value="" class="text-ds-silver">Select a service...</option>
+                  <option>Haircut</option>
+                  <option>Skin Fade</option>
+                  <option>Beard Trim</option>
+                  <option>Cut + Beard Combo</option>
+                  <option>Kids Cut</option>
+                  <option>Salon Service (Color/Braids/etc.)</option>
+                  <option>Other</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-ds-silver text-sm font-medium mb-2">Message</label>
+                <textarea name="message" rows="3" class="w-full bg-ds-steel border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-ds-gold focus:ring-2 focus:ring-ds-gold/20 transition placeholder-ds-silver/50 resize-none" placeholder="Anything else we should know?"></textarea>
+              </div>
+              <button type="submit" class="w-full bg-ds-gold text-ds-black py-4 rounded-xl font-bold text-lg hover:bg-ds-gold-lt transition">
+                Send Message
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-ds-black py-12 border-t border-ds-gold/10">
+    <div class="max-w-7xl mx-auto px-4 lg:px-8">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-8 mb-8">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 border-2 border-ds-gold rounded-full flex items-center justify-center">
+            <span class="font-heading text-ds-gold font-bold text-lg">D</span>
+          </div>
+          <div>
+            <span class="font-heading text-white text-lg font-semibold">Deon's Style & Barbershop</span>
+            <p class="text-ds-silver text-xs font-accent italic">Tuscaloosa, Alabama</p>
+          </div>
+        </div>
+        <div class="flex gap-6">
+          <a href="#services" class="text-ds-silver hover:text-ds-gold text-sm transition">Services</a>
+          <a href="#gallery" class="text-ds-silver hover:text-ds-gold text-sm transition">Gallery</a>
+          <a href="#reviews" class="text-ds-silver hover:text-ds-gold text-sm transition">Reviews</a>
+          <a href="#contact" class="text-ds-silver hover:text-ds-gold text-sm transition">Contact</a>
+        </div>
+      </div>
+      <div class="razor-line w-full mb-6"></div>
+      <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+        <p class="text-ds-silver/40 text-sm">&copy; 2025 Deon's Style and Barbershop. All rights reserved.</p>
+        <p class="text-ds-silver/40 text-sm">(205) 886-7771 &bull; icutdakid@gmail.com</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Intersection Observer
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+    document.querySelectorAll('.fade-up, .fade-in, .slide-left, .slide-right, .scale-in').forEach(el => observer.observe(el));
+
+    // Nav scroll
+    window.addEventListener('scroll', () => {
+      document.querySelector('nav').classList.toggle('nav-scrolled', window.scrollY > 50);
+    });
+
+    // Mobile menu
+    document.getElementById('menuBtn').addEventListener('click', () => document.getElementById('mobileMenu').classList.add('open'));
+    document.getElementById('closeMenu').addEventListener('click', () => document.getElementById('mobileMenu').classList.remove('open'));
+    document.querySelectorAll('.mobile-link').forEach(l => l.addEventListener('click', () => document.getElementById('mobileMenu').classList.remove('open')));
+  </script>
+</body>
+</html>

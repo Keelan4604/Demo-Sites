@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reggae Fusion | Authentic Jamaican Cuisine | Tuscaloosa, AL</title>
+  <meta name="description" content="Reggae Fusion — Veteran-owned Jamaican food truck and catering in Tuscaloosa, AL. Jerk chicken, curry goat, oxtail, and Caribbean favorites. Featured in Alabama News Center." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=General+Sans:wght@300;400;500;600;700&family=Satisfy&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'rf-black':    '#1a1a1a',
+            'rf-green':    '#1b8a2e',
+            'rf-green-dk': '#0f6b1e',
+            'rf-green-lt': '#2cb843',
+            'rf-gold':     '#f5c518',
+            'rf-gold-dk':  '#c9a010',
+            'rf-gold-lt':  '#ffe066',
+            'rf-red':      '#c4201e',
+            'rf-red-lt':   '#e63b39',
+            'rf-cream':    '#fef9eb',
+            'rf-warm':     '#fff4d6',
+            'rf-brown':    '#3e2415',
+            'rf-sand':     '#e8d5b5',
+          },
+          fontFamily: {
+            heading: ['"Instrument Serif"', 'serif'],
+            body:    ['"General Sans"', 'sans-serif'],
+            accent:  ['"Satisfy"', 'cursive'],
+          },
+        },
+      },
+    }
+  </script>
+  <style>
+    * { font-family: 'General Sans', sans-serif; }
+    h1, h2, h3, h4, .font-heading { font-family: 'Instrument Serif', serif; }
+
+    .fade-up {
+      opacity: 0; transform: translateY(40px);
+      transition: opacity 0.8s cubic-bezier(.22,1,.36,1), transform 0.8s cubic-bezier(.22,1,.36,1);
+    }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    .fade-in { opacity: 0; transition: opacity 0.9s ease-out; }
+    .fade-in.visible { opacity: 1; }
+
+    .slide-left {
+      opacity: 0; transform: translateX(-50px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+    .slide-left.visible { opacity: 1; transform: translateX(0); }
+
+    .slide-right {
+      opacity: 0; transform: translateX(50px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+    .slide-right.visible { opacity: 1; transform: translateX(0); }
+
+    .scale-in {
+      opacity: 0; transform: scale(0.92);
+      transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+    }
+    .scale-in.visible { opacity: 1; transform: scale(1); }
+
+    .hero-bg {
+      background: linear-gradient(170deg, rgba(30,30,30,0.75) 0%, rgba(30,30,30,0.5) 40%, rgba(30,30,30,0.8) 100%),
+                  url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1920&q=85') center/cover no-repeat;
+      min-height: 100vh;
+    }
+
+    .rasta-bar {
+      height: 6px;
+      background: linear-gradient(90deg, #1b8a2e 0%, #1b8a2e 33%, #f5c518 33%, #f5c518 67%, #c4201e 67%, #c4201e 100%);
+    }
+
+    .rasta-bar-v {
+      width: 6px;
+      background: linear-gradient(180deg, #1b8a2e 0%, #1b8a2e 33%, #f5c518 33%, #f5c518 67%, #c4201e 67%, #c4201e 100%);
+    }
+
+    .tropical-dots {
+      background-image: radial-gradient(circle, rgba(245,197,24,0.08) 1px, transparent 1px);
+      background-size: 20px 20px;
+    }
+
+    .leaf-pattern {
+      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 10 Q20 25 30 40 Q40 25 30 10Z' fill='none' stroke='%231b8a2e' stroke-width='0.5' opacity='0.06'/%3E%3C/svg%3E");
+    }
+
+    .menu-item {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .menu-item:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+    }
+
+    .nav-glass {
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      background: rgba(26,26,26,0.82);
+      transition: all 0.3s ease;
+    }
+    .nav-scrolled { background: rgba(26,26,26,0.97); box-shadow: 0 4px 30px rgba(0,0,0,0.3); }
+
+    @keyframes sway {
+      0%, 100% { transform: rotate(-2deg); }
+      50% { transform: rotate(2deg); }
+    }
+    .sway { animation: sway 4s ease-in-out infinite; transform-origin: bottom center; }
+
+    @keyframes pulse-green {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(27,138,46,0.5); }
+      50% { box-shadow: 0 0 0 12px rgba(27,138,46,0); }
+    }
+    .pulse-cta { animation: pulse-green 2.5s infinite; }
+
+    .mobile-menu { transform: translateX(100%); transition: transform 0.4s cubic-bezier(.22,1,.36,1); }
+    .mobile-menu.open { transform: translateX(0); }
+
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #1a1a1a; }
+    ::-webkit-scrollbar-thumb { background: #1b8a2e; border-radius: 4px; }
+
+    .stagger > *:nth-child(1) { transition-delay: 0.05s; }
+    .stagger > *:nth-child(2) { transition-delay: 0.12s; }
+    .stagger > *:nth-child(3) { transition-delay: 0.19s; }
+    .stagger > *:nth-child(4) { transition-delay: 0.26s; }
+    .stagger > *:nth-child(5) { transition-delay: 0.33s; }
+    .stagger > *:nth-child(6) { transition-delay: 0.40s; }
+
+    .featured-badge {
+      background: linear-gradient(135deg, #f5c518, #c9a010);
+      box-shadow: 0 4px 20px rgba(245,197,24,0.4);
+    }
+
+    .food-photo {
+      overflow: hidden; border-radius: 16px;
+    }
+    .food-photo img {
+      transition: transform 0.6s cubic-bezier(.22,1,.36,1);
+    }
+    .food-photo:hover img {
+      transform: scale(1.06);
+    }
+
+    .wavy-bottom {
+      position: relative;
+    }
+    .wavy-bottom::after {
+      content: ''; position: absolute; bottom: -1px; left: 0; width: 100%; height: 60px;
+      background: url("data:image/svg+xml,%3Csvg viewBox='0 0 1440 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,40 C240,60 480,10 720,35 C960,60 1200,15 1440,40 L1440,60 L0,60Z' fill='%23fef9eb'/%3E%3C/svg%3E") center/cover no-repeat;
+    }
+  </style>
+</head>
+<body class="bg-rf-cream text-rf-black overflow-x-hidden">
+
+  <!-- Rasta bar top -->
+  <div class="rasta-bar w-full fixed top-0 left-0 z-[60]"></div>
+
+  <!-- Navigation -->
+  <nav id="navbar" class="nav-glass fixed top-[6px] left-0 w-full z-50 py-3 px-4 md:px-8">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      <a href="#" class="flex items-center gap-3">
+        <div class="w-11 h-11 rounded-full bg-rf-green flex items-center justify-center shadow-lg">
+          <span class="text-white font-bold text-lg">RF</span>
+        </div>
+        <div>
+          <span class="text-white font-heading text-2xl">Reggae Fusion</span>
+          <span class="hidden sm:block text-rf-gold text-xs tracking-widest uppercase font-medium">Jamaican Cuisine</span>
+        </div>
+      </a>
+
+      <div class="hidden lg:flex items-center gap-8">
+        <a href="#menu" class="text-white/80 hover:text-rf-gold transition-colors text-sm font-medium tracking-wide uppercase">Menu</a>
+        <a href="#about" class="text-white/80 hover:text-rf-gold transition-colors text-sm font-medium tracking-wide uppercase">About</a>
+        <a href="#catering" class="text-white/80 hover:text-rf-gold transition-colors text-sm font-medium tracking-wide uppercase">Catering</a>
+        <a href="#press" class="text-white/80 hover:text-rf-gold transition-colors text-sm font-medium tracking-wide uppercase">Press</a>
+        <a href="#contact" class="text-white/80 hover:text-rf-gold transition-colors text-sm font-medium tracking-wide uppercase">Contact</a>
+        <a href="#order" class="bg-rf-green hover:bg-rf-green-lt text-white font-bold py-2.5 px-6 rounded-full text-sm transition-all hover:scale-105 shadow-lg">
+          Order Now
+        </a>
+      </div>
+
+      <button id="menu-toggle" class="lg:hidden text-white p-2" aria-label="Toggle menu">
+        <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="mobile-menu fixed top-0 right-0 w-80 h-full bg-rf-black z-[55] flex flex-col p-8 pt-20">
+    <button id="menu-close" class="absolute top-6 right-6 text-white">
+      <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+      </svg>
+    </button>
+    <a href="#menu" class="text-white text-xl font-heading py-3 border-b border-white/10 hover:text-rf-gold transition-colors mobile-link">Menu</a>
+    <a href="#about" class="text-white text-xl font-heading py-3 border-b border-white/10 hover:text-rf-gold transition-colors mobile-link">About</a>
+    <a href="#catering" class="text-white text-xl font-heading py-3 border-b border-white/10 hover:text-rf-gold transition-colors mobile-link">Catering</a>
+    <a href="#press" class="text-white text-xl font-heading py-3 border-b border-white/10 hover:text-rf-gold transition-colors mobile-link">Press</a>
+    <a href="#contact" class="text-white text-xl font-heading py-3 border-b border-white/10 hover:text-rf-gold transition-colors mobile-link">Contact</a>
+    <a href="#order" class="mt-6 bg-rf-green text-white font-bold py-3 px-8 rounded-full text-center text-lg hover:bg-rf-green-lt transition-all mobile-link">Order Now</a>
+  </div>
+  <div id="menu-overlay" class="fixed inset-0 bg-black/50 z-[54] hidden"></div>
+
+  <!-- HERO -->
+  <section class="hero-bg flex items-center justify-center relative wavy-bottom">
+    <div class="absolute inset-0 leaf-pattern"></div>
+    <div class="relative z-10 text-center px-4 max-w-5xl mx-auto py-36 md:py-44">
+      <div class="inline-block mb-6 fade-up">
+        <span class="featured-badge text-rf-black font-bold text-xs tracking-widest uppercase px-5 py-2 rounded-full inline-flex items-center gap-2">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          Featured in Alabama News Center
+        </span>
+      </div>
+      <p class="font-accent text-rf-gold text-3xl md:text-4xl mb-4 fade-up sway">Taste the Islands</p>
+      <h1 class="font-heading text-white text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] leading-[1.05] mb-6 fade-up">
+        Reggae<br>
+        <span class="text-rf-gold italic">Fusion</span>
+      </h1>
+      <div class="flex items-center justify-center gap-4 mb-6 fade-up">
+        <div class="w-8 h-1 bg-rf-green rounded"></div>
+        <div class="w-8 h-1 bg-rf-gold rounded"></div>
+        <div class="w-8 h-1 bg-rf-red rounded"></div>
+      </div>
+      <p class="text-white/85 text-lg md:text-xl max-w-2xl mx-auto mb-10 font-light leading-relaxed fade-up">
+        Veteran-owned. Jamaican soul. Bringing authentic Caribbean flavors to Tuscaloosa through our food truck and catering. Every bite tells a story.
+      </p>
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 fade-up">
+        <a href="#order" class="bg-rf-green hover:bg-rf-green-lt text-white font-bold py-4 px-10 rounded-full text-lg transition-all hover:scale-105 shadow-xl pulse-cta">
+          Order Now
+        </a>
+        <a href="#menu" class="border-2 border-white/30 hover:border-rf-gold text-white hover:text-rf-gold font-semibold py-4 px-10 rounded-full text-lg transition-all hover:scale-105">
+          See the Menu
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Veteran badge bar -->
+  <section class="bg-rf-cream py-10">
+    <div class="max-w-5xl mx-auto px-4 flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16 text-center">
+      <div class="flex items-center gap-3 fade-up">
+        <div class="w-12 h-12 rounded-full bg-rf-green/10 flex items-center justify-center">
+          <svg class="w-6 h-6 text-rf-green" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+        </div>
+        <span class="font-heading text-xl text-rf-black">Veteran Owned</span>
+      </div>
+      <div class="flex items-center gap-3 fade-up">
+        <div class="w-12 h-12 rounded-full bg-rf-gold/20 flex items-center justify-center">
+          <svg class="w-6 h-6 text-rf-gold-dk" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <span class="font-heading text-xl text-rf-black">5-Star Reviews</span>
+      </div>
+      <div class="flex items-center gap-3 fade-up">
+        <div class="w-12 h-12 rounded-full bg-rf-red/10 flex items-center justify-center">
+          <svg class="w-6 h-6 text-rf-red" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.362 5.214A8.252 8.252 0 0112 21 8.25 8.25 0 016.038 7.048 8.287 8.287 0 009 9.6a8.983 8.983 0 013.361-6.867 8.21 8.21 0 003 2.48z"/></svg>
+        </div>
+        <span class="font-heading text-xl text-rf-black">Authentic Recipes</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- MENU -->
+  <section id="menu" class="py-20 md:py-28 bg-rf-warm tropical-dots">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="text-center mb-16 fade-up">
+        <span class="font-accent text-rf-green text-2xl">From our Kitchen</span>
+        <h2 class="font-heading text-5xl md:text-6xl mt-2 mb-4">The Menu</h2>
+        <p class="text-rf-brown/70 max-w-xl mx-auto text-lg">Every dish made fresh with traditional Jamaican spices and techniques passed down through generations.</p>
+      </div>
+
+      <!-- Menu Categories -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-5xl mx-auto">
+        <!-- Entrees -->
+        <div class="fade-up">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="rasta-bar-v h-8 rounded-full"></div>
+            <h3 class="font-heading text-3xl">Entrees</h3>
+          </div>
+          <div class="space-y-4">
+            <div class="menu-item bg-white rounded-xl p-5 flex justify-between items-start">
+              <div>
+                <h4 class="font-bold text-lg">Jerk Chicken</h4>
+                <p class="text-rf-brown/60 text-sm mt-1">Slow-marinated, charcoal-grilled to perfection. Our signature dish.</p>
+              </div>
+              <span class="text-rf-green font-bold text-lg whitespace-nowrap ml-4">$14</span>
+            </div>
+            <div class="menu-item bg-white rounded-xl p-5 flex justify-between items-start">
+              <div>
+                <h4 class="font-bold text-lg">Curry Goat</h4>
+                <p class="text-rf-brown/60 text-sm mt-1">Tender goat in rich Caribbean curry sauce, slow-cooked for hours.</p>
+              </div>
+              <span class="text-rf-green font-bold text-lg whitespace-nowrap ml-4">$16</span>
+            </div>
+            <div class="menu-item bg-white rounded-xl p-5 flex justify-between items-start">
+              <div>
+                <h4 class="font-bold text-lg">Oxtail Stew</h4>
+                <p class="text-rf-brown/60 text-sm mt-1">Fall-off-the-bone oxtail braised with butter beans and island spices.</p>
+              </div>
+              <span class="text-rf-green font-bold text-lg whitespace-nowrap ml-4">$18</span>
+            </div>
+            <div class="menu-item bg-white rounded-xl p-5 flex justify-between items-start">
+              <div>
+                <h4 class="font-bold text-lg">Brown Stew Chicken</h4>
+                <p class="text-rf-brown/60 text-sm mt-1">Seasoned, fried, and simmered in a savory brown gravy.</p>
+              </div>
+              <span class="text-rf-green font-bold text-lg whitespace-nowrap ml-4">$13</span>
+            </div>
+            <div class="menu-item bg-white rounded-xl p-5 flex justify-between items-start">
+              <div>
+                <h4 class="font-bold text-lg">Escovitch Fish</h4>
+                <p class="text-rf-brown/60 text-sm mt-1">Crispy fried fish topped with tangy pickled vegetables.</p>
+              </div>
+              <span class="text-rf-green font-bold text-lg whitespace-nowrap ml-4">$15</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sides & Drinks -->
+        <div class="fade-up">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="rasta-bar-v h-8 rounded-full"></div>
+            <h3 class="font-heading text-3xl">Sides & Drinks</h3>
+          </div>
+          <div class="space-y-4">
+            <div class="menu-item bg-white rounded-xl p-5 flex justify-between items-start">
+              <div>
+                <h4 class="font-bold text-lg">Rice & Peas</h4>
+                <p class="text-rf-brown/60 text-sm mt-1">Coconut rice with kidney beans — the essential island side.</p>
+              </div>
+              <span class="text-rf-green font-bold text-lg whitespace-nowrap ml-4">$4</span>
+            </div>
+            <div class="menu-item bg-white rounded-xl p-5 flex justify-between items-start">
+              <div>
+                <h4 class="font-bold text-lg">Fried Plantains</h4>
+                <p class="text-rf-brown/60 text-sm mt-1">Sweet, caramelized plantains fried golden.</p>
+              </div>
+              <span class="text-rf-green font-bold text-lg whitespace-nowrap ml-4">$5</span>
+            </div>
+            <div class="menu-item bg-white rounded-xl p-5 flex justify-between items-start">
+              <div>
+                <h4 class="font-bold text-lg">Festival</h4>
+                <p class="text-rf-brown/60 text-sm mt-1">Sweet fried dumplings — the perfect jerk chicken companion.</p>
+              </div>
+              <span class="text-rf-green font-bold text-lg whitespace-nowrap ml-4">$4</span>
+            </div>
+            <div class="menu-item bg-white rounded-xl p-5 flex justify-between items-start">
+              <div>
+                <h4 class="font-bold text-lg">Jamaican Patties</h4>
+                <p class="text-rf-brown/60 text-sm mt-1">Flaky pastry filled with seasoned beef or chicken.</p>
+              </div>
+              <span class="text-rf-green font-bold text-lg whitespace-nowrap ml-4">$5</span>
+            </div>
+            <div class="menu-item bg-white rounded-xl p-5 flex justify-between items-start">
+              <div>
+                <h4 class="font-bold text-lg">Sorrel / Ginger Beer</h4>
+                <p class="text-rf-brown/60 text-sm mt-1">Traditional homemade Jamaican beverages.</p>
+              </div>
+              <span class="text-rf-green font-bold text-lg whitespace-nowrap ml-4">$4</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center mt-12 fade-up">
+        <p class="text-rf-brown/50 text-sm italic">Prices may vary. Follow us on Facebook for daily specials and truck location.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="rasta-bar w-full"></div>
+
+  <!-- ABOUT -->
+  <section id="about" class="py-20 md:py-28 bg-rf-cream leaf-pattern">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div class="slide-left">
+          <div class="relative">
+            <div class="bg-rf-black rounded-2xl overflow-hidden shadow-2xl">
+              <div class="aspect-[4/3] bg-gradient-to-br from-rf-green/30 via-rf-gold/20 to-rf-red/20 flex items-center justify-center">
+                <div class="text-center p-8">
+                  <span class="font-accent text-rf-gold text-5xl block mb-4">Reggae Fusion</span>
+                  <div class="flex items-center justify-center gap-2 mb-4">
+                    <div class="w-6 h-1 bg-rf-green rounded"></div>
+                    <div class="w-6 h-1 bg-rf-gold rounded"></div>
+                    <div class="w-6 h-1 bg-rf-red rounded"></div>
+                  </div>
+                  <p class="text-white/70 italic">Food Truck Photo</p>
+                </div>
+              </div>
+            </div>
+            <!-- Floating badge -->
+            <div class="absolute -bottom-6 -right-4 md:-right-8 bg-white rounded-xl shadow-xl p-4 border-l-4 border-rf-green">
+              <div class="flex items-center gap-2">
+                <svg class="w-8 h-8 text-rf-green" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                <div>
+                  <span class="font-bold text-sm block">Veteran Owned</span>
+                  <span class="text-rf-brown/50 text-xs">& Operated</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="slide-right">
+          <span class="font-accent text-rf-green text-2xl">Our Story</span>
+          <h2 class="font-heading text-4xl md:text-5xl mt-2 mb-6">From Service to<br><span class="italic text-rf-green">Serving Flavor</span></h2>
+          <p class="text-rf-brown/80 text-lg leading-relaxed mb-6">
+            Reggae Fusion was born from a love for authentic Jamaican cooking and a desire to bring those bold, unforgettable flavors to Tuscaloosa. As a veteran-owned business, we bring the same discipline and dedication to our kitchen that we brought to our service.
+          </p>
+          <p class="text-rf-brown/80 text-lg leading-relaxed mb-8">
+            Every recipe comes from the heart of Jamaica — traditional spice blends, slow-cooked meats, and homemade sides that taste like they came from grandma's kitchen on the island.
+          </p>
+          <div class="flex flex-wrap gap-3">
+            <span class="bg-rf-green/10 text-rf-green px-4 py-2 rounded-full text-sm font-medium">Veteran Owned</span>
+            <span class="bg-rf-gold/20 text-rf-gold-dk px-4 py-2 rounded-full text-sm font-medium">Family Recipes</span>
+            <span class="bg-rf-red/10 text-rf-red px-4 py-2 rounded-full text-sm font-medium">Made Fresh Daily</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CATERING -->
+  <section id="catering" class="py-20 md:py-28 bg-rf-black relative overflow-hidden">
+    <div class="absolute inset-0 leaf-pattern opacity-50"></div>
+    <div class="max-w-7xl mx-auto px-4 relative z-10">
+      <div class="text-center mb-16 fade-up">
+        <span class="font-accent text-rf-gold text-2xl">Big Events, Bold Flavors</span>
+        <h2 class="font-heading text-white text-4xl md:text-6xl mt-2 mb-4">Catering</h2>
+        <p class="text-white/60 max-w-xl mx-auto text-lg">From weddings to corporate events, our food truck and full-service catering brings the island party to you.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 stagger">
+        <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 text-center fade-up hover:border-rf-gold/30 transition-colors">
+          <div class="w-16 h-16 rounded-full bg-rf-green/20 flex items-center justify-center mx-auto mb-6">
+            <svg class="w-8 h-8 text-rf-green" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z"/></svg>
+          </div>
+          <h3 class="font-heading text-white text-2xl mb-3">Private Events</h3>
+          <p class="text-white/50 leading-relaxed">Birthdays, graduations, family reunions — we make your special day unforgettable with authentic Caribbean cuisine.</p>
+        </div>
+
+        <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 text-center fade-up hover:border-rf-gold/30 transition-colors">
+          <div class="w-16 h-16 rounded-full bg-rf-gold/20 flex items-center justify-center mx-auto mb-6">
+            <svg class="w-8 h-8 text-rf-gold" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 6.75h1.5m-1.5 3h1.5m-1.5 3h1.5m3-6H15m-1.5 3H15m-1.5 3H15M9 21v-3.375c0-.621.504-1.125 1.125-1.125h3.75c.621 0 1.125.504 1.125 1.125V21"/></svg>
+          </div>
+          <h3 class="font-heading text-white text-2xl mb-3">Corporate Catering</h3>
+          <p class="text-white/50 leading-relaxed">Office lunches, company picnics, team events. We serve groups of any size with our full catering setup.</p>
+        </div>
+
+        <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 text-center fade-up hover:border-rf-gold/30 transition-colors">
+          <div class="w-16 h-16 rounded-full bg-rf-red/20 flex items-center justify-center mx-auto mb-6">
+            <svg class="w-8 h-8 text-rf-red-lt" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0H21M3.375 14.25h17.25M3.375 14.25V3.375c0-.621.504-1.125 1.125-1.125h11.25c.621 0 1.125.504 1.125 1.125v8.25M16.875 14.25h3.75c.621 0 1.125-.504 1.125-1.125v-3.375c0-.621-.504-1.125-1.125-1.125h-1.5L16.875 14.25z"/></svg>
+          </div>
+          <h3 class="font-heading text-white text-2xl mb-3">Food Truck</h3>
+          <p class="text-white/50 leading-relaxed">Book our truck for your event. We bring the full kitchen to you — fresh jerk off the grill, right on site.</p>
+        </div>
+      </div>
+
+      <div class="text-center mt-12 fade-up">
+        <a href="#contact" class="inline-flex items-center gap-2 bg-rf-gold hover:bg-rf-gold-lt text-rf-black font-bold py-4 px-10 rounded-full text-lg transition-all hover:scale-105 shadow-xl">
+          Book Catering
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRESS / FEATURED -->
+  <section id="press" class="py-20 md:py-28 bg-rf-cream">
+    <div class="max-w-5xl mx-auto px-4 text-center">
+      <div class="fade-up">
+        <span class="font-accent text-rf-red text-2xl">In the News</span>
+        <h2 class="font-heading text-4xl md:text-5xl mt-2 mb-12">As Featured In</h2>
+      </div>
+
+      <div class="bg-white rounded-2xl shadow-xl p-8 md:p-12 border border-rf-gold/20 max-w-3xl mx-auto fade-up">
+        <div class="featured-badge text-rf-black font-bold text-sm tracking-wider uppercase px-6 py-2 rounded-full inline-flex items-center gap-2 mb-6">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          Featured Story
+        </div>
+        <h3 class="font-heading text-3xl md:text-4xl mb-4">Alabama News Center</h3>
+        <p class="text-rf-brown/70 text-lg leading-relaxed mb-6">
+          "Reggae Fusion brings authentic Jamaican flavors to Tuscaloosa with bold spices, fresh ingredients, and a passion for sharing Caribbean culture through food."
+        </p>
+        <div class="flex items-center justify-center gap-2">
+          <div class="w-3 h-3 rounded-full bg-rf-green"></div>
+          <div class="w-3 h-3 rounded-full bg-rf-gold"></div>
+          <div class="w-3 h-3 rounded-full bg-rf-red"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section id="reviews" class="py-20 md:py-28 bg-rf-warm tropical-dots">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="text-center mb-16 fade-up">
+        <span class="font-accent text-rf-green text-2xl">Word of Mouth</span>
+        <h2 class="font-heading text-4xl md:text-5xl mt-2 mb-4">What People Say</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="bg-white rounded-2xl p-8 shadow-md border-t-4 border-rf-green fade-up">
+          <div class="flex gap-1 mb-4">
+            <span class="text-rf-gold text-xl">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          </div>
+          <p class="text-rf-brown/70 leading-relaxed mb-6">"The jerk chicken is the best I've ever had outside of Jamaica. The flavors are so authentic, it brought me right back to Kingston. A must-try in Tuscaloosa!"</p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-rf-green flex items-center justify-center text-white font-bold text-sm">AB</div>
+            <div>
+              <span class="font-bold text-sm">Alicia B.</span>
+              <span class="block text-rf-brown/40 text-xs">Facebook Review</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl p-8 shadow-md border-t-4 border-rf-gold fade-up">
+          <div class="flex gap-1 mb-4">
+            <span class="text-rf-gold text-xl">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          </div>
+          <p class="text-rf-brown/70 leading-relaxed mb-6">"Had them cater our company event and everyone was blown away. The oxtail stew was gone in 20 minutes! Professional, on time, and incredible food."</p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-rf-gold flex items-center justify-center text-rf-black font-bold text-sm">RH</div>
+            <div>
+              <span class="font-bold text-sm">Robert H.</span>
+              <span class="block text-rf-brown/40 text-xs">Google Review</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl p-8 shadow-md border-t-4 border-rf-red fade-up">
+          <div class="flex gap-1 mb-4">
+            <span class="text-rf-gold text-xl">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          </div>
+          <p class="text-rf-brown/70 leading-relaxed mb-6">"Found them at the food truck park and now I'm addicted. The curry goat plate with rice and peas is my go-to. Support this veteran-owned gem!"</p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-rf-red flex items-center justify-center text-white font-bold text-sm">KD</div>
+            <div>
+              <span class="font-bold text-sm">Keisha D.</span>
+              <span class="block text-rf-brown/40 text-xs">Facebook Review</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="py-20 md:py-28 bg-rf-black relative overflow-hidden">
+    <div class="absolute inset-0 leaf-pattern opacity-30"></div>
+    <div class="max-w-7xl mx-auto px-4 relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div class="fade-up">
+          <span class="font-accent text-rf-gold text-2xl">Get in Touch</span>
+          <h2 class="font-heading text-white text-4xl md:text-5xl mt-2 mb-6">Let's Talk Food</h2>
+          <p class="text-white/60 text-lg leading-relaxed mb-10">Want to book catering, find our truck location, or just tell us how much you loved the food? Reach out!</p>
+
+          <div class="space-y-6">
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 rounded-full bg-rf-green/20 flex items-center justify-center flex-shrink-0">
+                <svg class="w-6 h-6 text-rf-green" fill="currentColor" viewBox="0 0 24 24"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/></svg>
+              </div>
+              <div>
+                <h4 class="text-white font-bold text-lg">Facebook</h4>
+                <a href="https://facebook.com/ReggaeFlavaLLC" target="_blank" class="text-rf-gold hover:text-rf-gold-lt transition-colors">@ReggaeFlavaLLC</a>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 rounded-full bg-rf-gold/20 flex items-center justify-center flex-shrink-0">
+                <svg class="w-6 h-6 text-rf-gold" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+              </div>
+              <div>
+                <h4 class="text-white font-bold text-lg">Location</h4>
+                <p class="text-white/50">Tuscaloosa, Alabama</p>
+                <p class="text-rf-gold text-sm">Check Facebook for daily truck location</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="fade-up" id="order">
+          <form class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8">
+            <h3 class="font-heading text-white text-2xl mb-6">Place an Order or Book Catering</h3>
+            <div class="space-y-4">
+              <input type="text" placeholder="Your Name" class="w-full bg-white/10 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/40 focus:outline-none focus:border-rf-gold transition-colors" />
+              <input type="tel" placeholder="Phone Number" class="w-full bg-white/10 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/40 focus:outline-none focus:border-rf-gold transition-colors" />
+              <input type="email" placeholder="Email Address" class="w-full bg-white/10 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/40 focus:outline-none focus:border-rf-gold transition-colors" />
+              <select class="w-full bg-white/10 border border-white/10 rounded-xl px-4 py-3 text-white/60 focus:outline-none focus:border-rf-gold transition-colors">
+                <option value="">What are you looking for?</option>
+                <option>Food Truck Order</option>
+                <option>Catering Inquiry</option>
+                <option>Private Event Booking</option>
+                <option>Corporate Catering</option>
+                <option>General Question</option>
+              </select>
+              <textarea placeholder="Tell us more..." rows="4" class="w-full bg-white/10 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/40 focus:outline-none focus:border-rf-gold transition-colors resize-none"></textarea>
+              <button type="submit" class="w-full bg-rf-green hover:bg-rf-green-lt text-white font-bold py-4 rounded-xl text-lg transition-all hover:scale-[1.02] shadow-lg">
+                Send Message
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Chat widget -->
+  <div class="bg-rf-green py-5 text-center">
+    <p class="text-white text-sm">
+      <span class="text-rf-gold font-medium">Live Chat</span> — Have a question? Send us a message through our website chat anytime.
+    </p>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-rf-black py-10 border-t border-white/5">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-6">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-full bg-rf-green flex items-center justify-center">
+          <span class="text-white font-bold text-lg">RF</span>
+        </div>
+        <span class="text-white font-heading text-xl">Reggae Fusion</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <div class="w-3 h-0.5 bg-rf-green"></div>
+        <div class="w-3 h-0.5 bg-rf-gold"></div>
+        <div class="w-3 h-0.5 bg-rf-red"></div>
+      </div>
+      <p class="text-white/30 text-sm">&copy; 2025 Reggae Fusion. Veteran-Owned. Tuscaloosa, AL.</p>
+    </div>
+  </footer>
+
+  <div class="rasta-bar w-full"></div>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.fade-up,.slide-left,.slide-right,.scale-in,.fade-in').forEach(el => observer.observe(el));
+
+    const nav = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('nav-scrolled', window.scrollY > 50);
+    });
+
+    const toggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuClose = document.getElementById('menu-close');
+    const menuOverlay = document.getElementById('menu-overlay');
+    const mobileLinks = document.querySelectorAll('.mobile-link');
+
+    function openMenu() { mobileMenu.classList.add('open'); menuOverlay.classList.remove('hidden'); document.body.style.overflow = 'hidden'; }
+    function closeMenu() { mobileMenu.classList.remove('open'); menuOverlay.classList.add('hidden'); document.body.style.overflow = ''; }
+
+    toggle.addEventListener('click', openMenu);
+    menuClose.addEventListener('click', closeMenu);
+    menuOverlay.addEventListener('click', closeMenu);
+    mobileLinks.forEach(l => l.addEventListener('click', closeMenu));
+
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        e.preventDefault();
+        const target = document.querySelector(a.getAttribute('href'));
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+  </script>
+</body>
+</html>

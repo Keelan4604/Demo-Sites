@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Demo Portfolio | Keelan O'Doherty Web Design</title>
+  <meta name="description" content="Live demo sites built by Keelan O'Doherty — modern, mobile-first websites for local businesses.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #0a0a0f;
+      --surface: #12121a;
+      --surface-hover: #1a1a26;
+      --border: rgba(255,255,255,0.06);
+      --border-hover: rgba(255,255,255,0.12);
+      --text: #e4e4e7;
+      --text-muted: #71717a;
+      --accent: #6366f1;
+      --accent-glow: rgba(99,102,241,0.15);
+      --green: #22c55e;
+      --amber: #f59e0b;
+      --radius: 16px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Gradient orbs */
+    .orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(120px);
+      opacity: 0.4;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .orb-1 { width: 600px; height: 600px; background: #6366f1; top: -200px; left: -100px; }
+    .orb-2 { width: 500px; height: 500px; background: #8b5cf6; bottom: -150px; right: -100px; opacity: 0.25; }
+    .orb-3 { width: 400px; height: 400px; background: #3b82f6; top: 40%; left: 50%; opacity: 0.15; }
+
+    /* Nav */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      backdrop-filter: blur(20px) saturate(1.5);
+      -webkit-backdrop-filter: blur(20px) saturate(1.5);
+      background: rgba(10,10,15,0.7);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+      transition: background 0.3s;
+    }
+    .nav-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px;
+    }
+    .nav-logo {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700; font-size: 1.15rem;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+    .nav-logo span { color: var(--accent); }
+    .nav-stats {
+      display: flex; gap: 1.5rem; font-size: 0.8rem; color: var(--text-muted);
+    }
+    .nav-stats strong { color: var(--text); font-weight: 600; }
+
+    /* Hero */
+    .hero {
+      position: relative; z-index: 1;
+      padding: 10rem 2rem 4rem;
+      text-align: center;
+      max-width: 800px; margin: 0 auto;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.4rem 1rem;
+      background: var(--accent-glow);
+      border: 1px solid rgba(99,102,241,0.3);
+      border-radius: 100px;
+      font-size: 0.78rem; font-weight: 500;
+      color: #a5b4fc;
+      margin-bottom: 1.5rem;
+    }
+    .hero-badge .dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--green);
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.8); }
+    }
+    .hero h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, #fff 0%, #a5b4fc 50%, #818cf8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero p {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      max-width: 550px; margin: 0 auto 2rem;
+    }
+
+    /* Filter bar */
+    .filter-bar {
+      position: relative; z-index: 1;
+      max-width: 1200px; margin: 0 auto 2rem;
+      padding: 0 2rem;
+      display: flex; flex-wrap: wrap; gap: 0.5rem;
+      align-items: center;
+    }
+    .filter-btn {
+      padding: 0.45rem 1rem;
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      background: transparent;
+      color: var(--text-muted);
+      font-size: 0.8rem; font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: inherit;
+    }
+    .filter-btn:hover { border-color: var(--border-hover); color: var(--text); }
+    .filter-btn.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+    .search-box {
+      margin-left: auto;
+      padding: 0.45rem 1rem;
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      background: var(--surface);
+      color: var(--text);
+      font-size: 0.8rem;
+      font-family: inherit;
+      width: 220px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .search-box::placeholder { color: var(--text-muted); }
+    .search-box:focus { border-color: var(--accent); }
+
+    /* Grid */
+    .grid {
+      position: relative; z-index: 1;
+      max-width: 1200px; margin: 0 auto;
+      padding: 0 2rem 6rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 1.25rem;
+    }
+
+    /* Card */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+    }
+    .card:hover {
+      border-color: var(--border-hover);
+      background: var(--surface-hover);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px -12px rgba(0,0,0,0.5), 0 0 0 1px var(--border-hover);
+    }
+
+    .card-preview {
+      position: relative;
+      height: 200px;
+      background: linear-gradient(135deg, #1e1b4b, #312e81);
+      overflow: hidden;
+    }
+    .card-preview iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 200%;
+      height: 200%;
+      transform: scale(0.5);
+      transform-origin: top left;
+      border: none;
+      pointer-events: none;
+    }
+    .card-preview-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 60%, var(--surface) 100%);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .card:hover .card-preview-overlay { opacity: 1; }
+
+    .card-body {
+      padding: 1.25rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .card-name {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600;
+      font-size: 1.05rem;
+      margin-bottom: 0.35rem;
+      letter-spacing: -0.01em;
+    }
+    .card-location {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-bottom: 0.75rem;
+    }
+    .card-tags {
+      display: flex;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+      margin-top: auto;
+    }
+    .tag {
+      padding: 0.2rem 0.6rem;
+      border-radius: 6px;
+      font-size: 0.7rem;
+      font-weight: 500;
+      background: rgba(99,102,241,0.1);
+      color: #a5b4fc;
+      border: 1px solid rgba(99,102,241,0.15);
+    }
+    .tag-green { background: rgba(34,197,94,0.1); color: #86efac; border-color: rgba(34,197,94,0.15); }
+    .tag-amber { background: rgba(245,158,11,0.1); color: #fcd34d; border-color: rgba(245,158,11,0.15); }
+
+    /* Footer */
+    .footer {
+      position: relative; z-index: 1;
+      text-align: center;
+      padding: 3rem 2rem;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.8rem;
+    }
+    .footer a { color: var(--accent); text-decoration: none; }
+    .footer a:hover { text-decoration: underline; }
+
+    /* Hidden */
+    .hidden { display: none !important; }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .grid { grid-template-columns: 1fr; }
+      .nav-stats { display: none; }
+      .filter-bar { justify-content: center; }
+      .search-box { margin-left: 0; width: 100%; margin-top: 0.5rem; }
+    }
+
+    /* Animate in */
+    .card {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 0.5s ease forwards;
+    }
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+<div class="orb orb-3"></div>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">Keelan<span>.</span>dev</a>
+    <div class="nav-stats">
+      <span><strong>27</strong> demos</span>
+      <span><strong>4</strong> states</span>
+      <span><strong>12+</strong> industries</span>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-badge">
+    <span class="dot"></span>
+    Available for new projects
+  </div>
+  <h1>Demo Site Portfolio</h1>
+  <p>Modern, mobile-first websites built for local businesses. Each demo is a fully functional site ready for deployment.</p>
+</section>
+
+<div class="filter-bar">
+  <button class="filter-btn active" data-filter="all">All</button>
+  <button class="filter-btn" data-filter="auto">Auto / Mechanic</button>
+  <button class="filter-btn" data-filter="food">Food & Restaurant</button>
+  <button class="filter-btn" data-filter="home">Home Services</button>
+  <button class="filter-btn" data-filter="cleaning">Cleaning</button>
+  <button class="filter-btn" data-filter="other">Other</button>
+  <input type="text" class="search-box" placeholder="Search demos..." id="search">
+</div>
+
+<div class="grid" id="grid"></div>
+
+<footer class="footer">
+  <p>Keelan O'Doherty &middot; Web Designer &middot; Tuscaloosa, AL</p>
+  <p style="margin-top:0.5rem"><a href="mailto:keelan4604@gmail.com">keelan4604@gmail.com</a> &middot; <a href="https://keelanodoherty.org">keelanodoherty.org</a></p>
+</footer>
+
+<script>
+const demos = [
+  {
+    slug: "west-alabama-fence-redesign",
+    name: "West Alabama Fence",
+    location: "Tuscaloosa, AL",
+    category: "home",
+    tags: ["Fencing", "BBB Accredited"],
+    flagship: true
+  },
+  {
+    slug: "jamaican-spice-redesign",
+    name: "Jamaican Spice LLC",
+    location: "Ypsilanti, MI",
+    category: "food",
+    tags: ["Restaurant", "Caribbean"]
+  },
+  {
+    slug: "huntsville-defense-demo",
+    name: "Apex Systems Engineering",
+    location: "Huntsville, AL",
+    category: "other",
+    tags: ["Defense", "Aerospace"],
+    premium: true
+  },
+  {
+    slug: "ecopro-site",
+    name: "EcoPro USA",
+    location: "National",
+    category: "other",
+    tags: ["Industrial", "Equipment Protection"]
+  },
+  {
+    slug: "ttown-garage-doors-redesign",
+    name: "T-Town Garage Doors",
+    location: "Tuscaloosa, AL",
+    category: "home",
+    tags: ["Garage Doors", "Home Service"]
+  },
+  {
+    slug: "holifield-electrical-redesign",
+    name: "Holifield Electrical LLC",
+    location: "Northport & Tuscaloosa, AL",
+    category: "home",
+    tags: ["Electrical", "Licensed Contractor"]
+  },
+  {
+    slug: "edwards-flooring-redesign",
+    name: "Edwards Flooring LLC",
+    location: "Tuscaloosa, AL",
+    category: "home",
+    tags: ["Flooring", "Installation"]
+  },
+  {
+    slug: "magnolia-concrete",
+    name: "Magnolia Concrete LLC",
+    location: "Tuscaloosa & West Alabama",
+    category: "home",
+    tags: ["Concrete", "Construction"]
+  },
+  {
+    slug: "ohana-lawn-care-redesign",
+    name: "Ohana Lawn Care & Delivery",
+    location: "Huntsville, AL",
+    category: "home",
+    tags: ["Lawn Care", "Veteran-Owned"]
+  },
+  {
+    slug: "deons-barbershop-redesign",
+    name: "Deon's Style & Barbershop",
+    location: "Tuscaloosa, AL",
+    category: "other",
+    tags: ["Barbershop"]
+  },
+  {
+    slug: "sweet-olive-eats-redesign",
+    name: "Sweet Olive Eats",
+    location: "Tuscaloosa, AL",
+    category: "food",
+    tags: ["Food Truck", "Catering"]
+  },
+  {
+    slug: "reggae-fusion",
+    name: "Reggae Fusion",
+    location: "Tuscaloosa, AL",
+    category: "food",
+    tags: ["Jamaican Cuisine", "Restaurant"]
+  },
+  {
+    slug: "santa-fe-nashville",
+    name: "Santa Fe Nashville",
+    location: "Nashville, TN",
+    category: "food",
+    tags: ["Food Truck", "Mexican"]
+  },
+  {
+    slug: "premium-auto-repair",
+    name: "Premium Auto Repair",
+    location: "Nashville, TN",
+    category: "auto",
+    tags: ["Auto Repair", "Est. 1994"]
+  },
+  {
+    slug: "bowen-automotive",
+    name: "Bowen Automotive",
+    location: "Huntsville, AL",
+    category: "auto",
+    tags: ["Auto Repair", "Full Service"]
+  },
+  {
+    slug: "hh-repair-redesign",
+    name: "H & H Repair Service",
+    location: "Huntsville, AL",
+    category: "auto",
+    tags: ["Mobile Mechanic", "24/7"]
+  },
+  {
+    slug: "ars-mobile-mechanic",
+    name: "A.R.S Mobile Mechanic",
+    location: "Atlanta & Decatur, GA",
+    category: "auto",
+    tags: ["Mobile Mechanic"]
+  },
+  {
+    slug: "nk-auto-repair",
+    name: "N&K Auto Repair Shop",
+    location: "Birmingham, AL",
+    category: "auto",
+    tags: ["Auto Repair"]
+  },
+  {
+    slug: "white-raven-mechanic-redesign",
+    name: "White Raven Mobile Mechanic",
+    location: "Charlotte, NC",
+    category: "auto",
+    tags: ["Mobile Mechanic"]
+  },
+  {
+    slug: "rj-auto-repair",
+    name: "R&J Auto Repair",
+    location: "Ypsilanti, MI",
+    category: "auto",
+    tags: ["Auto Repair", "Est. 2004"]
+  },
+  {
+    slug: "auto-one-ypsilanti",
+    name: "Auto-One",
+    location: "Ypsilanti, MI",
+    category: "auto",
+    tags: ["Auto Repair", "Full Service"]
+  },
+  {
+    slug: "aab-janitorial",
+    name: "AA&B Janitorial Cleaning",
+    location: "Marietta, GA",
+    category: "cleaning",
+    tags: ["Commercial Cleaning", "Certified"]
+  },
+  {
+    slug: "unique-maid-ypsilanti",
+    name: "Unique Maid & Janitorial",
+    location: "Ypsilanti, MI",
+    category: "cleaning",
+    tags: ["Cleaning", "Professional"]
+  },
+  {
+    slug: "chatbot-demo-hvac",
+    name: "SmartChat HVAC Demo",
+    location: "Demo",
+    category: "other",
+    tags: ["Chatbot", "HVAC"]
+  },
+  {
+    slug: "beer-830-challenge",
+    name: "8:30 Beer Challenge",
+    location: "Social",
+    category: "other",
+    tags: ["Entertainment", "Social"]
+  },
+  {
+    slug: "ballot-binge",
+    name: "Ballot Binge",
+    location: "National",
+    category: "other",
+    tags: ["Civic", "Next.js"],
+    framework: true
+  },
+  {
+    slug: "portfolio-site",
+    name: "Keelan O'Doherty Portfolio",
+    location: "Personal",
+    category: "other",
+    tags: ["Portfolio", "Personal"]
+  }
+];
+
+const grid = document.getElementById('grid');
+const searchInput = document.getElementById('search');
+
+function renderCards(filter = 'all', query = '') {
+  grid.innerHTML = '';
+  const q = query.toLowerCase();
+  let filtered = demos.filter(d => {
+    const matchFilter = filter === 'all' || d.category === filter;
+    const matchQuery = !q || d.name.toLowerCase().includes(q) ||
+      d.location.toLowerCase().includes(q) ||
+      d.tags.some(t => t.toLowerCase().includes(q));
+    return matchFilter && matchQuery;
+  });
+
+  filtered.forEach((d, i) => {
+    const card = document.createElement('a');
+    card.className = 'card';
+    card.href = `/${d.slug}/`;
+    card.style.animationDelay = `${i * 0.04}s`;
+
+    const tagsHTML = d.tags.map(t => {
+      let cls = 'tag';
+      if (d.flagship) cls += ' tag-green';
+      if (d.premium) cls += ' tag-amber';
+      return `<span class="${cls}">${t}</span>`;
+    }).join('');
+
+    card.innerHTML = `
+      <div class="card-preview">
+        <div class="card-preview-overlay"></div>
+      </div>
+      <div class="card-body">
+        <div class="card-name">${d.name}</div>
+        <div class="card-location">${d.location}</div>
+        <div class="card-tags">${tagsHTML}</div>
+      </div>
+    `;
+
+    // Lazy load iframe preview
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const preview = card.querySelector('.card-preview');
+          const iframe = document.createElement('iframe');
+          iframe.src = `/${d.slug}/`;
+          iframe.loading = 'lazy';
+          iframe.setAttribute('sandbox', 'allow-same-origin');
+          iframe.setAttribute('tabindex', '-1');
+          preview.insertBefore(iframe, preview.firstChild);
+          observer.disconnect();
+        }
+      });
+    }, { rootMargin: '200px' });
+    observer.observe(card);
+
+    grid.appendChild(card);
+  });
+
+  if (filtered.length === 0) {
+    grid.innerHTML = '<p style="color:var(--text-muted);text-align:center;grid-column:1/-1;padding:4rem 0">No demos match your search.</p>';
+  }
+}
+
+// Filters
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderCards(btn.dataset.filter, searchInput.value);
+  });
+});
+
+// Search
+searchInput.addEventListener('input', () => {
+  const activeFilter = document.querySelector('.filter-btn.active').dataset.filter;
+  renderCards(activeFilter, searchInput.value);
+});
+
+// Initial render
+renderCards();
+</script>
+
+</body>
+</html>

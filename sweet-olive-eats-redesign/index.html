@@ -1,0 +1,1185 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sweet Olive Eats | Tuscaloosa Food Truck &amp; Catering</title>
+  <meta name="description" content="Sweet Olive Eats — Tuscaloosa's favorite food truck and catering company. Farm-to-table inspired dishes for weddings, corporate events, and private parties. Book us today!" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=Lato:wght@300;400;500;600;700&family=Dancing+Script:wght@500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'olive':       '#5c6b3c',
+            'olive-dark':  '#3d4a25',
+            'olive-light': '#8fa660',
+            'gold':        '#c8a951',
+            'gold-light':  '#e0c96e',
+            'gold-warm':   '#d4a937',
+            'cream':       '#faf6ee',
+            'cream-dark':  '#f0e8d4',
+            'warm':        '#f5efe3',
+            'charcoal':    '#2c2c2c',
+            'brown':       '#6b4e37',
+            'brown-light': '#8b6b4f',
+            'terra':       '#c17f59',
+          },
+          fontFamily: {
+            heading: ['"Playfair Display"', 'serif'],
+            body:    ['Lato', 'sans-serif'],
+            script:  ['"Dancing Script"', 'cursive'],
+          },
+        },
+      },
+    }
+  </script>
+  <style>
+    * { font-family: 'Lato', sans-serif; }
+    h1, h2, h3, h4, .font-heading { font-family: 'Playfair Display', serif; }
+
+    /* Scroll animations */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s cubic-bezier(.22,1,.36,1), transform 0.8s cubic-bezier(.22,1,.36,1);
+    }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    .fade-in {
+      opacity: 0;
+      transition: opacity 0.9s ease-out;
+    }
+    .fade-in.visible { opacity: 1; }
+
+    .slide-left {
+      opacity: 0;
+      transform: translateX(-50px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+    .slide-left.visible { opacity: 1; transform: translateX(0); }
+
+    .slide-right {
+      opacity: 0;
+      transform: translateX(50px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+    .slide-right.visible { opacity: 1; transform: translateX(0); }
+
+    .scale-in {
+      opacity: 0;
+      transform: scale(0.9);
+      transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+    }
+    .scale-in.visible { opacity: 1; transform: scale(1); }
+
+    /* Parallax hero */
+    .parallax-hero {
+      background-attachment: fixed;
+      background-size: cover;
+      background-position: center;
+    }
+    @media (max-width: 768px) {
+      .parallax-hero { background-attachment: scroll; }
+    }
+
+    /* Gold underline accent */
+    .gold-line::after {
+      content: '';
+      display: block;
+      width: 80px;
+      height: 3px;
+      background: linear-gradient(90deg, #c8a951, #e0c96e);
+      margin-top: 12px;
+    }
+    .gold-line-center::after {
+      content: '';
+      display: block;
+      width: 80px;
+      height: 3px;
+      background: linear-gradient(90deg, #c8a951, #e0c96e);
+      margin: 16px auto 0;
+    }
+
+    /* Hover lift */
+    .hover-lift {
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+    }
+    .hover-lift:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+    }
+
+    /* Warm glow button */
+    .btn-glow {
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    .btn-glow::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%; width: 100%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s ease;
+    }
+    .btn-glow:hover::before { left: 100%; }
+    .btn-glow:hover {
+      box-shadow: 0 8px 30px rgba(200,169,81,0.4);
+      transform: translateY(-2px);
+    }
+
+    /* Leaf decoration */
+    .leaf-divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      padding: 20px 0;
+    }
+    .leaf-divider::before,
+    .leaf-divider::after {
+      content: '';
+      width: 60px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #c8a951, transparent);
+    }
+
+    /* Subtle texture overlay */
+    .texture-overlay {
+      position: relative;
+    }
+    .texture-overlay::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='0.02'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Gallery hover */
+    .gallery-item {
+      overflow: hidden;
+      border-radius: 12px;
+    }
+    .gallery-item .gallery-inner {
+      transition: transform 0.6s ease;
+    }
+    .gallery-item:hover .gallery-inner {
+      transform: scale(1.08);
+    }
+
+    /* Counter animation */
+    .counter { transition: all 0.3s ease; }
+
+    /* Smooth nav */
+    .nav-glass {
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+
+    /* Menu card hover */
+    .menu-card {
+      transition: all 0.3s ease;
+      border: 1px solid transparent;
+    }
+    .menu-card:hover {
+      border-color: rgba(200,169,81,0.3);
+      background: rgba(200,169,81,0.05);
+    }
+
+    /* Testimonial card */
+    .testimonial-card {
+      position: relative;
+    }
+    .testimonial-card::before {
+      content: '\201C';
+      font-family: 'Playfair Display', serif;
+      font-size: 120px;
+      color: rgba(200,169,81,0.12);
+      position: absolute;
+      top: -20px;
+      left: 16px;
+      line-height: 1;
+    }
+
+    /* Floating animation */
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    .animate-float { animation: float 4s ease-in-out infinite; }
+
+    @keyframes float-delay {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+    .animate-float-delay { animation: float-delay 5s ease-in-out 1s infinite; }
+
+    /* Mobile menu */
+    .mobile-menu {
+      transform: translateX(100%);
+      transition: transform 0.35s cubic-bezier(.22,1,.36,1);
+    }
+    .mobile-menu.open { transform: translateX(0); }
+
+    /* Stagger children */
+    .stagger-children > *:nth-child(1) { transition-delay: 0.05s; }
+    .stagger-children > *:nth-child(2) { transition-delay: 0.12s; }
+    .stagger-children > *:nth-child(3) { transition-delay: 0.19s; }
+    .stagger-children > *:nth-child(4) { transition-delay: 0.26s; }
+    .stagger-children > *:nth-child(5) { transition-delay: 0.33s; }
+    .stagger-children > *:nth-child(6) { transition-delay: 0.40s; }
+
+    /* Scroll progress */
+    #scroll-progress {
+      transform-origin: left;
+      transform: scaleX(0);
+      transition: transform 0.1s linear;
+    }
+  </style>
+</head>
+<body class="bg-cream text-charcoal overflow-x-hidden">
+
+  <!-- Scroll Progress Bar -->
+  <div id="scroll-progress" class="fixed top-0 left-0 w-full h-[3px] bg-gradient-to-r from-olive via-gold to-olive-light z-[60]"></div>
+
+  <!-- Navigation -->
+  <nav id="navbar" class="fixed top-0 w-full z-50 transition-all duration-500">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        <!-- Logo -->
+        <a href="#" class="flex items-center gap-3 group">
+          <div class="w-10 h-10 rounded-full bg-olive flex items-center justify-center">
+            <svg class="w-6 h-6 text-gold" fill="currentColor" viewBox="0 0 24 24"><path d="M17.8 2.8C16 2.09 13.86 2 12 2c-1.86 0-4 .09-5.8.8C3 4 2 6.5 2 8.5c0 3.5 3.5 6.5 6 8l1 .7c.4.3.7.7.9 1.1.3.6.6 1.7 1.1 2.7.3.5.6 1 1 1 .4 0 .7-.5 1-1 .5-1 .8-2.1 1.1-2.7.2-.4.5-.8.9-1.1l1-.7c2.5-1.5 6-4.5 6-8 0-2-1-4.5-4.2-5.7zM12 12c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z"/></svg>
+          </div>
+          <div>
+            <span class="font-heading text-xl font-bold tracking-wide text-white group-hover:text-gold transition-colors">Sweet Olive</span>
+            <span class="block text-xs tracking-[0.2em] uppercase text-cream/70 font-medium">Eats</span>
+          </div>
+        </a>
+
+        <!-- Desktop Nav -->
+        <div class="hidden lg:flex items-center gap-8">
+          <a href="#menu" class="text-white/80 hover:text-gold transition-colors text-sm font-medium tracking-wide uppercase">Menu</a>
+          <a href="#catering" class="text-white/80 hover:text-gold transition-colors text-sm font-medium tracking-wide uppercase">Catering</a>
+          <a href="#about" class="text-white/80 hover:text-gold transition-colors text-sm font-medium tracking-wide uppercase">About</a>
+          <a href="#gallery" class="text-white/80 hover:text-gold transition-colors text-sm font-medium tracking-wide uppercase">Gallery</a>
+          <a href="#find-us" class="text-white/80 hover:text-gold transition-colors text-sm font-medium tracking-wide uppercase">Find Us</a>
+          <a href="#booking" class="btn-glow inline-flex items-center gap-2 bg-gold text-charcoal px-6 py-2.5 rounded-full text-sm font-bold tracking-wide uppercase hover:bg-gold-light">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+            Book Now
+          </a>
+        </div>
+
+        <!-- Mobile Hamburger -->
+        <button id="menu-toggle" class="lg:hidden text-white p-2" aria-label="Open menu">
+          <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="mobile-menu fixed inset-0 z-[55] bg-olive-dark/98 flex flex-col items-center justify-center gap-8">
+    <button id="menu-close" class="absolute top-6 right-6 text-white p-2" aria-label="Close menu">
+      <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+    <a href="#menu" class="mobile-link text-white text-2xl font-heading tracking-wide hover:text-gold transition-colors">Menu</a>
+    <a href="#catering" class="mobile-link text-white text-2xl font-heading tracking-wide hover:text-gold transition-colors">Catering</a>
+    <a href="#about" class="mobile-link text-white text-2xl font-heading tracking-wide hover:text-gold transition-colors">About</a>
+    <a href="#gallery" class="mobile-link text-white text-2xl font-heading tracking-wide hover:text-gold transition-colors">Gallery</a>
+    <a href="#find-us" class="mobile-link text-white text-2xl font-heading tracking-wide hover:text-gold transition-colors">Find Us</a>
+    <a href="#booking" class="mobile-link btn-glow inline-flex items-center gap-2 bg-gold text-charcoal px-8 py-3 rounded-full text-lg font-bold tracking-wide uppercase mt-4">Book Now</a>
+  </div>
+
+  <!-- ============ HERO ============ -->
+  <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <!-- Background with overlay -->
+    <div class="absolute inset-0 bg-gradient-to-br from-olive-dark via-[#2d3a1a] to-[#1a2210]"></div>
+    <!-- Warm gradient overlay -->
+    <div class="absolute inset-0 bg-gradient-to-t from-charcoal/60 via-transparent to-olive-dark/30"></div>
+    <!-- Decorative circles -->
+    <div class="absolute top-20 right-10 w-72 h-72 bg-gold/5 rounded-full blur-3xl animate-float"></div>
+    <div class="absolute bottom-20 left-10 w-96 h-96 bg-olive-light/8 rounded-full blur-3xl animate-float-delay"></div>
+    <!-- Subtle pattern -->
+    <div class="absolute inset-0 opacity-[0.03]" style="background-image: url('data:image/svg+xml,%3Csvg width=&quot;40&quot; height=&quot;40&quot; viewBox=&quot;0 0 40 40&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;%3E%3Cg fill=&quot;%23ffffff&quot; fill-opacity=&quot;1&quot;%3E%3Ccircle cx=&quot;20&quot; cy=&quot;20&quot; r=&quot;1.5&quot;/%3E%3C/g%3E%3C/svg%3E');"></div>
+
+    <div class="relative z-10 max-w-5xl mx-auto px-4 text-center">
+      <!-- Top accent -->
+      <div class="fade-up mb-6">
+        <span class="font-script text-gold-light text-2xl md:text-3xl">Tuscaloosa's Favorite</span>
+      </div>
+
+      <h1 class="fade-up font-heading text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white leading-[1.05] mb-6">
+        Farm-Fresh Flavors,<br/>
+        <span class="text-gold">Rolled Right<br/>to You</span>
+      </h1>
+
+      <p class="fade-up text-lg md:text-xl text-cream/80 max-w-2xl mx-auto mb-10 font-light leading-relaxed">
+        From our kitchen on wheels to your most unforgettable events. Locally sourced,
+        passionately prepared, and made with love in the heart of Alabama.
+      </p>
+
+      <div class="fade-up flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href="#booking" class="btn-glow inline-flex items-center gap-3 bg-gold text-charcoal px-8 py-4 rounded-full text-lg font-bold tracking-wide uppercase">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+          Book Us For Your Next Event
+        </a>
+        <a href="#menu" class="inline-flex items-center gap-2 text-white/90 hover:text-gold transition-colors px-6 py-4 text-lg font-medium group">
+          Explore Our Menu
+          <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+        </a>
+      </div>
+
+      <!-- Stats -->
+      <div class="fade-up mt-16 flex items-center justify-center gap-8 md:gap-16">
+        <div class="text-center">
+          <div class="text-3xl md:text-4xl font-heading font-bold text-gold">500+</div>
+          <div class="text-xs md:text-sm text-cream/60 uppercase tracking-wider mt-1">Events Catered</div>
+        </div>
+        <div class="w-px h-12 bg-white/10"></div>
+        <div class="text-center">
+          <div class="text-3xl md:text-4xl font-heading font-bold text-gold">5.0</div>
+          <div class="text-xs md:text-sm text-cream/60 uppercase tracking-wider mt-1">Star Rating</div>
+        </div>
+        <div class="w-px h-12 bg-white/10"></div>
+        <div class="text-center">
+          <div class="text-3xl md:text-4xl font-heading font-bold text-gold">7+</div>
+          <div class="text-xs md:text-sm text-cream/60 uppercase tracking-wider mt-1">Years Serving</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/40">
+      <span class="text-xs uppercase tracking-widest">Scroll</span>
+      <div class="w-5 h-8 border-2 border-white/20 rounded-full flex items-start justify-center p-1">
+        <div class="w-1 h-2 bg-gold rounded-full animate-bounce"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MENU ============ -->
+  <section id="menu" class="py-24 md:py-32 bg-cream texture-overlay relative">
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Section Header -->
+      <div class="text-center mb-16">
+        <span class="fade-up font-script text-gold text-xl md:text-2xl">What We're Serving</span>
+        <h2 class="fade-up font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-charcoal mt-2 gold-line-center">Our Menu</h2>
+        <p class="fade-up text-brown-light mt-6 max-w-2xl mx-auto text-lg leading-relaxed">
+          Every dish starts with the freshest local ingredients. Our rotating menu draws from
+          Southern tradition and bold, modern flavors.
+        </p>
+      </div>
+
+      <!-- Menu Tabs -->
+      <div class="fade-up flex flex-wrap justify-center gap-3 mb-12">
+        <button class="menu-tab active bg-olive text-white px-6 py-2.5 rounded-full text-sm font-semibold tracking-wide uppercase transition-all" data-tab="signatures">Signature Dishes</button>
+        <button class="menu-tab bg-cream-dark text-brown px-6 py-2.5 rounded-full text-sm font-semibold tracking-wide uppercase transition-all hover:bg-olive hover:text-white" data-tab="sides">Sides &amp; Starters</button>
+        <button class="menu-tab bg-cream-dark text-brown px-6 py-2.5 rounded-full text-sm font-semibold tracking-wide uppercase transition-all hover:bg-olive hover:text-white" data-tab="desserts">Desserts</button>
+        <button class="menu-tab bg-cream-dark text-brown px-6 py-2.5 rounded-full text-sm font-semibold tracking-wide uppercase transition-all hover:bg-olive hover:text-white" data-tab="drinks">Drinks</button>
+      </div>
+
+      <!-- Signature Dishes -->
+      <div id="tab-signatures" class="menu-panel grid md:grid-cols-2 gap-6 stagger-children">
+        <div class="menu-card fade-up rounded-xl bg-white p-6 flex gap-5">
+          <div class="w-20 h-20 flex-shrink-0 rounded-lg bg-gradient-to-br from-olive/20 to-gold/20 flex items-center justify-center text-3xl">🍖</div>
+          <div class="flex-1">
+            <div class="flex items-start justify-between">
+              <h3 class="font-heading text-xl font-semibold text-charcoal">Smoked Brisket Plate</h3>
+              <span class="text-gold font-bold text-lg">$16</span>
+            </div>
+            <p class="text-brown-light text-sm mt-1.5 leading-relaxed">14-hour oak-smoked brisket with house-made sweet olive sauce, pickled onions, and jalape&ntilde;o cornbread</p>
+            <div class="mt-2 flex gap-2">
+              <span class="text-xs bg-olive/10 text-olive px-2 py-0.5 rounded-full font-medium">Fan Favorite</span>
+            </div>
+          </div>
+        </div>
+        <div class="menu-card fade-up rounded-xl bg-white p-6 flex gap-5">
+          <div class="w-20 h-20 flex-shrink-0 rounded-lg bg-gradient-to-br from-olive/20 to-gold/20 flex items-center justify-center text-3xl">🌮</div>
+          <div class="flex-1">
+            <div class="flex items-start justify-between">
+              <h3 class="font-heading text-xl font-semibold text-charcoal">Blackened Shrimp Tacos</h3>
+              <span class="text-gold font-bold text-lg">$14</span>
+            </div>
+            <p class="text-brown-light text-sm mt-1.5 leading-relaxed">Gulf shrimp with cilantro-lime slaw, avocado crema, and house-pickled peppers on flour tortillas</p>
+            <div class="mt-2 flex gap-2">
+              <span class="text-xs bg-gold/15 text-gold-warm px-2 py-0.5 rounded-full font-medium">Seasonal</span>
+            </div>
+          </div>
+        </div>
+        <div class="menu-card fade-up rounded-xl bg-white p-6 flex gap-5">
+          <div class="w-20 h-20 flex-shrink-0 rounded-lg bg-gradient-to-br from-olive/20 to-gold/20 flex items-center justify-center text-3xl">🍗</div>
+          <div class="flex-1">
+            <div class="flex items-start justify-between">
+              <h3 class="font-heading text-xl font-semibold text-charcoal">Buttermilk Fried Chicken</h3>
+              <span class="text-gold font-bold text-lg">$13</span>
+            </div>
+            <p class="text-brown-light text-sm mt-1.5 leading-relaxed">Double-dipped, golden-fried with honey-hot drizzle, served with collard greens and mac &amp; cheese</p>
+          </div>
+        </div>
+        <div class="menu-card fade-up rounded-xl bg-white p-6 flex gap-5">
+          <div class="w-20 h-20 flex-shrink-0 rounded-lg bg-gradient-to-br from-olive/20 to-gold/20 flex items-center justify-center text-3xl">🥩</div>
+          <div class="flex-1">
+            <div class="flex items-start justify-between">
+              <h3 class="font-heading text-xl font-semibold text-charcoal">Herb-Crusted Pork Chop</h3>
+              <span class="text-gold font-bold text-lg">$17</span>
+            </div>
+            <p class="text-brown-light text-sm mt-1.5 leading-relaxed">Thick-cut, rosemary-brined chop with bourbon-peach glaze, sweet potato mash, and crispy onion strings</p>
+            <div class="mt-2 flex gap-2">
+              <span class="text-xs bg-terra/15 text-terra px-2 py-0.5 rounded-full font-medium">Chef's Pick</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sides -->
+      <div id="tab-sides" class="menu-panel hidden grid md:grid-cols-2 gap-6 stagger-children">
+        <div class="menu-card fade-up visible rounded-xl bg-white p-6 flex gap-5">
+          <div class="w-20 h-20 flex-shrink-0 rounded-lg bg-gradient-to-br from-olive/20 to-gold/20 flex items-center justify-center text-3xl">🧀</div>
+          <div class="flex-1">
+            <div class="flex items-start justify-between">
+              <h3 class="font-heading text-xl font-semibold text-charcoal">Smoked Gouda Mac &amp; Cheese</h3>
+              <span class="text-gold font-bold text-lg">$7</span>
+            </div>
+            <p class="text-brown-light text-sm mt-1.5 leading-relaxed">Creamy three-cheese blend with smoked gouda, toasted breadcrumb crust</p>
+          </div>
+        </div>
+        <div class="menu-card fade-up visible rounded-xl bg-white p-6 flex gap-5">
+          <div class="w-20 h-20 flex-shrink-0 rounded-lg bg-gradient-to-br from-olive/20 to-gold/20 flex items-center justify-center text-3xl">🥗</div>
+          <div class="flex-1">
+            <div class="flex items-start justify-between">
+              <h3 class="font-heading text-xl font-semibold text-charcoal">Sweet Olive Garden Salad</h3>
+              <span class="text-gold font-bold text-lg">$8</span>
+            </div>
+            <p class="text-brown-light text-sm mt-1.5 leading-relaxed">Local greens, candied pecans, dried cranberries, goat cheese, honey-olive vinaigrette</p>
+          </div>
+        </div>
+        <div class="menu-card fade-up visible rounded-xl bg-white p-6 flex gap-5">
+          <div class="w-20 h-20 flex-shrink-0 rounded-lg bg-gradient-to-br from-olive/20 to-gold/20 flex items-center justify-center text-3xl">🌽</div>
+          <div class="flex-1">
+            <div class="flex items-start justify-between">
+              <h3 class="font-heading text-xl font-semibold text-charcoal">Charred Street Corn</h3>
+              <span class="text-gold font-bold text-lg">$6</span>
+            </div>
+            <p class="text-brown-light text-sm mt-1.5 leading-relaxed">Fire-roasted corn with chipotle aioli, cotija cheese, and fresh lime</p>
+          </div>
+        </div>
+        <div class="menu-card fade-up visible rounded-xl bg-white p-6 flex gap-5">
+          <div class="w-20 h-20 flex-shrink-0 rounded-lg bg-gradient-to-br from-olive/20 to-gold/20 flex items-center justify-center text-3xl">🫘</div>
+          <div class="flex-1">
+            <div class="flex items-start justify-between">
+              <h3 class="font-heading text-xl font-semibold text-charcoal">Southern Collard Greens</h3>
+              <span class="text-gold font-bold text-lg">$5</span>
+            </div>
+            <p class="text-brown-light text-sm mt-1.5 leading-relaxed">Slow-braised with smoked ham hock, apple cider vinegar, a touch of heat</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Desserts -->
+      <div id="tab-desserts" class="menu-panel hidden grid md:grid-cols-2 gap-6 stagger-children">
+        <div class="menu-card fade-up visible rounded-xl bg-white p-6 flex gap-5">
+          <div class="w-20 h-20 flex-shrink-0 rounded-lg bg-gradient-to-br from-olive/20 to-gold/20 flex items-center justify-center text-3xl">🍰</div>
+          <div class="flex-1">
+            <div class="flex items-start justify-between">
+              <h3 class="font-heading text-xl font-semibold text-charcoal">Bourbon Pecan Pie Bars</h3>
+              <span class="text-gold font-bold text-lg">$6</span>
+            </div>
+            <p class="text-brown-light text-sm mt-1.5 leading-relaxed">Buttery shortbread crust with caramelized pecans and a bourbon-vanilla drizzle</p>
+          </div>
+        </div>
+        <div class="menu-card fade-up visible rounded-xl bg-white p-6 flex gap-5">
+          <div class="w-20 h-20 flex-shrink-0 rounded-lg bg-gradient-to-br from-olive/20 to-gold/20 flex items-center justify-center text-3xl">🍓</div>
+          <div class="flex-1">
+            <div class="flex items-start justify-between">
+              <h3 class="font-heading text-xl font-semibold text-charcoal">Strawberry Sweet Tea Cake</h3>
+              <span class="text-gold font-bold text-lg">$7</span>
+            </div>
+            <p class="text-brown-light text-sm mt-1.5 leading-relaxed">Moist sweet tea-infused cake layered with fresh strawberry compote and cream cheese frosting</p>
+          </div>
+        </div>
+        <div class="menu-card fade-up visible rounded-xl bg-white p-6 flex gap-5">
+          <div class="w-20 h-20 flex-shrink-0 rounded-lg bg-gradient-to-br from-olive/20 to-gold/20 flex items-center justify-center text-3xl">🍮</div>
+          <div class="flex-1">
+            <div class="flex items-start justify-between">
+              <h3 class="font-heading text-xl font-semibold text-charcoal">Salted Caramel Banana Pudding</h3>
+              <span class="text-gold font-bold text-lg">$5</span>
+            </div>
+            <p class="text-brown-light text-sm mt-1.5 leading-relaxed">Classic Southern banana pudding with a salted caramel twist and vanilla wafer crumble</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Drinks -->
+      <div id="tab-drinks" class="menu-panel hidden grid md:grid-cols-2 gap-6 stagger-children">
+        <div class="menu-card fade-up visible rounded-xl bg-white p-6 flex gap-5">
+          <div class="w-20 h-20 flex-shrink-0 rounded-lg bg-gradient-to-br from-olive/20 to-gold/20 flex items-center justify-center text-3xl">🍋</div>
+          <div class="flex-1">
+            <div class="flex items-start justify-between">
+              <h3 class="font-heading text-xl font-semibold text-charcoal">Sweet Olive Lemonade</h3>
+              <span class="text-gold font-bold text-lg">$4</span>
+            </div>
+            <p class="text-brown-light text-sm mt-1.5 leading-relaxed">House-squeezed lemonade with a hint of olive leaf and raw honey</p>
+          </div>
+        </div>
+        <div class="menu-card fade-up visible rounded-xl bg-white p-6 flex gap-5">
+          <div class="w-20 h-20 flex-shrink-0 rounded-lg bg-gradient-to-br from-olive/20 to-gold/20 flex items-center justify-center text-3xl">🫖</div>
+          <div class="flex-1">
+            <div class="flex items-start justify-between">
+              <h3 class="font-heading text-xl font-semibold text-charcoal">Alabama Sweet Tea</h3>
+              <span class="text-gold font-bold text-lg">$3</span>
+            </div>
+            <p class="text-brown-light text-sm mt-1.5 leading-relaxed">Slow-steeped black tea, cane sugar, served ice-cold with fresh mint</p>
+          </div>
+        </div>
+        <div class="menu-card fade-up visible rounded-xl bg-white p-6 flex gap-5">
+          <div class="w-20 h-20 flex-shrink-0 rounded-lg bg-gradient-to-br from-olive/20 to-gold/20 flex items-center justify-center text-3xl">🥤</div>
+          <div class="flex-1">
+            <div class="flex items-start justify-between">
+              <h3 class="font-heading text-xl font-semibold text-charcoal">Peach Ginger Spritzer</h3>
+              <span class="text-gold font-bold text-lg">$5</span>
+            </div>
+            <p class="text-brown-light text-sm mt-1.5 leading-relaxed">Fresh peach puree with ginger syrup and sparkling water, garnished with fresh rosemary</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="fade-up text-center mt-10">
+        <p class="text-brown-light italic text-sm">Menu rotates seasonally. Ask about today's specials at the truck!</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CATERING PACKAGES ============ -->
+  <section id="catering" class="py-24 md:py-32 bg-olive-dark relative overflow-hidden">
+    <!-- Decorative -->
+    <div class="absolute top-0 right-0 w-80 h-80 bg-gold/5 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-0 left-0 w-96 h-96 bg-olive-light/5 rounded-full blur-3xl"></div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <span class="fade-up font-script text-gold-light text-xl md:text-2xl">Let Us Come to You</span>
+        <h2 class="fade-up font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-white mt-2 gold-line-center">Catering Packages</h2>
+        <p class="fade-up text-cream/70 mt-6 max-w-2xl mx-auto text-lg leading-relaxed">
+          From intimate gatherings to grand celebrations, we bring the full Sweet Olive experience
+          to your event. Every package is customizable.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8 stagger-children">
+        <!-- Intimate -->
+        <div class="fade-up hover-lift bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
+          <div class="w-14 h-14 rounded-xl bg-gold/15 flex items-center justify-center mb-5">
+            <svg class="w-7 h-7 text-gold" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z"/></svg>
+          </div>
+          <h3 class="font-heading text-2xl font-bold text-white mb-2">The Gathering</h3>
+          <p class="text-gold font-semibold text-sm uppercase tracking-wider mb-4">Up to 50 Guests</p>
+          <p class="text-cream/70 text-sm leading-relaxed mb-6">Perfect for birthday parties, small corporate lunches, rehearsal dinners, and neighborhood block parties.</p>
+          <ul class="space-y-3 mb-8">
+            <li class="flex items-start gap-3 text-cream/80 text-sm"><svg class="w-5 h-5 text-gold flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Choice of 2 entrees + 3 sides</li>
+            <li class="flex items-start gap-3 text-cream/80 text-sm"><svg class="w-5 h-5 text-gold flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Fresh lemonade &amp; sweet tea</li>
+            <li class="flex items-start gap-3 text-cream/80 text-sm"><svg class="w-5 h-5 text-gold flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Setup &amp; cleanup included</li>
+            <li class="flex items-start gap-3 text-cream/80 text-sm"><svg class="w-5 h-5 text-gold flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Eco-friendly servingware</li>
+          </ul>
+          <div class="flex items-end gap-1 mb-6">
+            <span class="text-sm text-cream/50">Starting at</span>
+            <span class="text-3xl font-heading font-bold text-gold ml-2">$18</span>
+            <span class="text-cream/50 text-sm">/person</span>
+          </div>
+          <a href="#booking" class="block text-center bg-white/10 hover:bg-gold hover:text-charcoal text-white px-6 py-3 rounded-full font-semibold text-sm uppercase tracking-wide transition-all duration-300">Get a Quote</a>
+        </div>
+
+        <!-- Wedding - Featured -->
+        <div class="fade-up hover-lift bg-gradient-to-b from-gold/15 to-gold/5 backdrop-blur-sm rounded-2xl p-8 border border-gold/30 relative">
+          <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-gold text-charcoal px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider">Most Popular</div>
+          <div class="w-14 h-14 rounded-xl bg-gold/20 flex items-center justify-center mb-5">
+            <svg class="w-7 h-7 text-gold" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"/></svg>
+          </div>
+          <h3 class="font-heading text-2xl font-bold text-white mb-2">The Celebration</h3>
+          <p class="text-gold font-semibold text-sm uppercase tracking-wider mb-4">50 - 200 Guests</p>
+          <p class="text-cream/70 text-sm leading-relaxed mb-6">Weddings, galas, milestone celebrations. Full-service catering with a dedicated event coordinator.</p>
+          <ul class="space-y-3 mb-8">
+            <li class="flex items-start gap-3 text-cream/80 text-sm"><svg class="w-5 h-5 text-gold flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Custom menu tasting session</li>
+            <li class="flex items-start gap-3 text-cream/80 text-sm"><svg class="w-5 h-5 text-gold flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Choice of 3 entrees + 5 sides</li>
+            <li class="flex items-start gap-3 text-cream/80 text-sm"><svg class="w-5 h-5 text-gold flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Dessert bar + signature drinks</li>
+            <li class="flex items-start gap-3 text-cream/80 text-sm"><svg class="w-5 h-5 text-gold flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Dedicated event coordinator</li>
+            <li class="flex items-start gap-3 text-cream/80 text-sm"><svg class="w-5 h-5 text-gold flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Premium servingware &amp; linens</li>
+          </ul>
+          <div class="flex items-end gap-1 mb-6">
+            <span class="text-sm text-cream/50">Starting at</span>
+            <span class="text-3xl font-heading font-bold text-gold ml-2">$28</span>
+            <span class="text-cream/50 text-sm">/person</span>
+          </div>
+          <a href="#booking" class="btn-glow block text-center bg-gold text-charcoal px-6 py-3 rounded-full font-bold text-sm uppercase tracking-wide">Get a Quote</a>
+        </div>
+
+        <!-- Corporate -->
+        <div class="fade-up hover-lift bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
+          <div class="w-14 h-14 rounded-xl bg-gold/15 flex items-center justify-center mb-5">
+            <svg class="w-7 h-7 text-gold" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 6.75h1.5m-1.5 3h1.5m-1.5 3h1.5m3-6H15m-1.5 3H15m-1.5 3H15M9 21v-3.375c0-.621.504-1.125 1.125-1.125h3.75c.621 0 1.125.504 1.125 1.125V21"/></svg>
+          </div>
+          <h3 class="font-heading text-2xl font-bold text-white mb-2">The Corporate</h3>
+          <p class="text-gold font-semibold text-sm uppercase tracking-wider mb-4">Any Size</p>
+          <p class="text-cream/70 text-sm leading-relaxed mb-6">Office lunches, team building events, company picnics, and holiday parties. Recurring packages available.</p>
+          <ul class="space-y-3 mb-8">
+            <li class="flex items-start gap-3 text-cream/80 text-sm"><svg class="w-5 h-5 text-gold flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Flexible menu options</li>
+            <li class="flex items-start gap-3 text-cream/80 text-sm"><svg class="w-5 h-5 text-gold flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Dietary accommodations</li>
+            <li class="flex items-start gap-3 text-cream/80 text-sm"><svg class="w-5 h-5 text-gold flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Recurring event discounts</li>
+            <li class="flex items-start gap-3 text-cream/80 text-sm"><svg class="w-5 h-5 text-gold flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Branded packaging available</li>
+          </ul>
+          <div class="flex items-end gap-1 mb-6">
+            <span class="text-sm text-cream/50">Starting at</span>
+            <span class="text-3xl font-heading font-bold text-gold ml-2">$15</span>
+            <span class="text-cream/50 text-sm">/person</span>
+          </div>
+          <a href="#booking" class="block text-center bg-white/10 hover:bg-gold hover:text-charcoal text-white px-6 py-3 rounded-full font-semibold text-sm uppercase tracking-wide transition-all duration-300">Get a Quote</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ABOUT ============ -->
+  <section id="about" class="py-24 md:py-32 bg-warm relative overflow-hidden">
+    <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gold/30 to-transparent"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+        <!-- Image placeholder -->
+        <div class="slide-left relative">
+          <div class="aspect-[4/5] rounded-2xl bg-gradient-to-br from-olive/30 via-olive/20 to-gold/20 relative overflow-hidden">
+            <div class="absolute inset-0 flex flex-col items-center justify-center text-olive/40">
+              <svg class="w-24 h-24 mb-4" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6.827 6.175A2.31 2.31 0 015.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 00-1.134-.175 2.31 2.31 0 01-1.64-1.055l-.822-1.316a2.192 2.192 0 00-1.736-1.039 48.774 48.774 0 00-5.232 0 2.192 2.192 0 00-1.736 1.039l-.821 1.316z"/><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 12.75a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0z"/></svg>
+              <span class="text-sm font-medium">Photo: The Crew at Work</span>
+            </div>
+            <!-- Decorative frame -->
+            <div class="absolute inset-4 border-2 border-gold/20 rounded-xl pointer-events-none"></div>
+          </div>
+          <!-- Floating badge -->
+          <div class="absolute -bottom-6 -right-6 bg-gold text-charcoal p-5 rounded-2xl shadow-xl animate-float">
+            <div class="text-center">
+              <div class="font-heading text-3xl font-bold">7+</div>
+              <div class="text-xs font-semibold uppercase tracking-wider">Years of Love</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Content -->
+        <div class="slide-right">
+          <span class="font-script text-gold text-xl md:text-2xl">Our Story</span>
+          <h2 class="font-heading text-4xl md:text-5xl font-bold text-charcoal mt-2 mb-6 gold-line">About Sweet Olive</h2>
+          <div class="space-y-5 text-brown leading-relaxed">
+            <p>
+              Sweet Olive Eats started with a simple dream: bring honest, farm-to-table food to
+              the streets of Tuscaloosa. What began as a passion project at local farmers markets
+              has grown into one of the most beloved food trucks in West Alabama.
+            </p>
+            <p>
+              We source our ingredients from local farms whenever possible, building relationships
+              with the people who grow our food. Every recipe is crafted to honor Southern tradition
+              while bringing something fresh and unexpected to the table.
+            </p>
+            <p>
+              From wedding receptions under the oaks to game day tailgates at Bryant-Denny,
+              we've had the privilege of being part of thousands of special moments.
+              <strong class="text-charcoal">Your event deserves food that people remember.</strong>
+            </p>
+          </div>
+
+          <!-- Values -->
+          <div class="grid grid-cols-2 gap-4 mt-10">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-olive/10 flex items-center justify-center flex-shrink-0">
+                <svg class="w-5 h-5 text-olive" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"/></svg>
+              </div>
+              <span class="text-sm font-semibold text-charcoal">Farm to Table</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-olive/10 flex items-center justify-center flex-shrink-0">
+                <svg class="w-5 h-5 text-olive" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg>
+              </div>
+              <span class="text-sm font-semibold text-charcoal">Locally Owned</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-olive/10 flex items-center justify-center flex-shrink-0">
+                <svg class="w-5 h-5 text-olive" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"/></svg>
+              </div>
+              <span class="text-sm font-semibold text-charcoal">Made with Love</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-olive/10 flex items-center justify-center flex-shrink-0">
+                <svg class="w-5 h-5 text-olive" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456z"/></svg>
+              </div>
+              <span class="text-sm font-semibold text-charcoal">5-Star Quality</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TESTIMONIALS ============ -->
+  <section class="py-24 md:py-32 bg-cream texture-overlay relative">
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <span class="fade-up font-script text-gold text-xl md:text-2xl">What People Say</span>
+        <h2 class="fade-up font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-charcoal mt-2 gold-line-center">Happy Guests</h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8 stagger-children">
+        <div class="fade-up testimonial-card bg-white rounded-2xl p-8 shadow-sm hover-lift">
+          <div class="flex items-center gap-1 mb-4">
+            <svg class="w-5 h-5 text-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-5 h-5 text-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-5 h-5 text-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-5 h-5 text-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-5 h-5 text-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          </div>
+          <p class="text-brown leading-relaxed mb-6 relative z-10">"Sweet Olive catered our wedding reception and it was INCREDIBLE. Guests are still talking about the brisket and that banana pudding. Absolute perfection."</p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-olive/15 flex items-center justify-center font-heading font-bold text-olive text-sm">JM</div>
+            <div>
+              <div class="font-semibold text-charcoal text-sm">Jessica M.</div>
+              <div class="text-xs text-brown-light">Wedding Reception, October 2025</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="fade-up testimonial-card bg-white rounded-2xl p-8 shadow-sm hover-lift">
+          <div class="flex items-center gap-1 mb-4">
+            <svg class="w-5 h-5 text-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-5 h-5 text-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-5 h-5 text-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-5 h-5 text-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-5 h-5 text-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          </div>
+          <p class="text-brown leading-relaxed mb-6 relative z-10">"We book Sweet Olive for our office every month. The team looks forward to it more than payday. The blackened shrimp tacos are something else."</p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-olive/15 flex items-center justify-center font-heading font-bold text-olive text-sm">DK</div>
+            <div>
+              <div class="font-semibold text-charcoal text-sm">David K.</div>
+              <div class="text-xs text-brown-light">Corporate Lunches, Recurring</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="fade-up testimonial-card bg-white rounded-2xl p-8 shadow-sm hover-lift">
+          <div class="flex items-center gap-1 mb-4">
+            <svg class="w-5 h-5 text-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-5 h-5 text-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-5 h-5 text-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-5 h-5 text-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-5 h-5 text-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          </div>
+          <p class="text-brown leading-relaxed mb-6 relative z-10">"Had them at our neighborhood crawfish boil and they completely stole the show. Everyone wanted their card. Best food truck in Tuscaloosa, hands down."</p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-olive/15 flex items-center justify-center font-heading font-bold text-olive text-sm">RB</div>
+            <div>
+              <div class="font-semibold text-charcoal text-sm">Rachel B.</div>
+              <div class="text-xs text-brown-light">Neighborhood Party, March 2026</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PHOTO GALLERY ============ -->
+  <section id="gallery" class="py-24 md:py-32 bg-charcoal relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <span class="fade-up font-script text-gold-light text-xl md:text-2xl">See the Goodness</span>
+        <h2 class="fade-up font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-white mt-2 gold-line-center">Gallery</h2>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 stagger-children">
+        <div class="scale-in gallery-item aspect-square bg-gradient-to-br from-olive/40 to-gold/20 flex items-center justify-center"><div class="gallery-inner w-full h-full flex items-center justify-center text-white/30"><svg class="w-10 h-10" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5a2.25 2.25 0 002.25-2.25V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg></div></div>
+        <div class="scale-in gallery-item aspect-square bg-gradient-to-br from-gold/30 to-terra/20 flex items-center justify-center"><div class="gallery-inner w-full h-full flex items-center justify-center text-white/30"><svg class="w-10 h-10" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5a2.25 2.25 0 002.25-2.25V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg></div></div>
+        <div class="scale-in gallery-item aspect-square bg-gradient-to-br from-olive-dark/50 to-olive/30 flex items-center justify-center"><div class="gallery-inner w-full h-full flex items-center justify-center text-white/30"><svg class="w-10 h-10" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5a2.25 2.25 0 002.25-2.25V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg></div></div>
+        <div class="scale-in gallery-item aspect-square bg-gradient-to-br from-brown/30 to-gold/20 flex items-center justify-center"><div class="gallery-inner w-full h-full flex items-center justify-center text-white/30"><svg class="w-10 h-10" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5a2.25 2.25 0 002.25-2.25V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg></div></div>
+        <div class="scale-in gallery-item col-span-2 aspect-[2/1] bg-gradient-to-br from-olive/30 to-olive-light/20 rounded-xl flex items-center justify-center"><div class="gallery-inner w-full h-full flex items-center justify-center text-white/30"><svg class="w-10 h-10" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5a2.25 2.25 0 002.25-2.25V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg></div></div>
+        <div class="scale-in gallery-item aspect-square bg-gradient-to-br from-gold/25 to-olive/20 flex items-center justify-center"><div class="gallery-inner w-full h-full flex items-center justify-center text-white/30"><svg class="w-10 h-10" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5a2.25 2.25 0 002.25-2.25V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg></div></div>
+        <div class="scale-in gallery-item aspect-square bg-gradient-to-br from-terra/30 to-brown/20 flex items-center justify-center"><div class="gallery-inner w-full h-full flex items-center justify-center text-white/30"><svg class="w-10 h-10" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5a2.25 2.25 0 002.25-2.25V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z"/></svg></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FIND OUR TRUCK ============ -->
+  <section id="find-us" class="py-24 md:py-32 bg-warm relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <span class="fade-up font-script text-gold text-xl md:text-2xl">Come Find Us</span>
+        <h2 class="fade-up font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-charcoal mt-2 gold-line-center">Truck Schedule</h2>
+        <p class="fade-up text-brown-light mt-6 max-w-xl mx-auto text-lg">Catch us around Tuscaloosa every week. Follow us on social for real-time location updates!</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8 items-start">
+        <!-- Schedule -->
+        <div class="fade-up space-y-4">
+          <div class="bg-white rounded-xl p-5 flex items-center gap-5 hover-lift">
+            <div class="w-14 h-14 rounded-xl bg-olive/10 flex flex-col items-center justify-center flex-shrink-0">
+              <span class="text-olive font-bold text-sm leading-none">TUE</span>
+            </div>
+            <div class="flex-1">
+              <h4 class="font-semibold text-charcoal">Downtown Farmers Market</h4>
+              <p class="text-brown-light text-sm">11:00 AM - 2:00 PM &middot; Government Plaza</p>
+            </div>
+          </div>
+          <div class="bg-white rounded-xl p-5 flex items-center gap-5 hover-lift">
+            <div class="w-14 h-14 rounded-xl bg-olive/10 flex flex-col items-center justify-center flex-shrink-0">
+              <span class="text-olive font-bold text-sm leading-none">WED</span>
+            </div>
+            <div class="flex-1">
+              <h4 class="font-semibold text-charcoal">Midtown Village</h4>
+              <p class="text-brown-light text-sm">11:30 AM - 2:00 PM &middot; McFarland Blvd</p>
+            </div>
+          </div>
+          <div class="bg-white rounded-xl p-5 flex items-center gap-5 hover-lift">
+            <div class="w-14 h-14 rounded-xl bg-olive/10 flex flex-col items-center justify-center flex-shrink-0">
+              <span class="text-olive font-bold text-sm leading-none">THU</span>
+            </div>
+            <div class="flex-1">
+              <h4 class="font-semibold text-charcoal">The Strip</h4>
+              <p class="text-brown-light text-sm">5:00 PM - 9:00 PM &middot; University Blvd</p>
+            </div>
+          </div>
+          <div class="bg-white rounded-xl p-5 flex items-center gap-5 hover-lift">
+            <div class="w-14 h-14 rounded-xl bg-olive/10 flex flex-col items-center justify-center flex-shrink-0">
+              <span class="text-olive font-bold text-sm leading-none">FRI</span>
+            </div>
+            <div class="flex-1">
+              <h4 class="font-semibold text-charcoal">Northport Riverwalk</h4>
+              <p class="text-brown-light text-sm">5:00 PM - 9:00 PM &middot; Riverwalk Park</p>
+            </div>
+          </div>
+          <div class="bg-white rounded-xl p-5 flex items-center gap-5 hover-lift">
+            <div class="w-14 h-14 rounded-xl bg-gold/10 flex flex-col items-center justify-center flex-shrink-0">
+              <span class="text-gold-warm font-bold text-sm leading-none">SAT</span>
+            </div>
+            <div class="flex-1">
+              <h4 class="font-semibold text-charcoal">Game Day Specials</h4>
+              <p class="text-brown-light text-sm">Varies &middot; Near Bryant-Denny Stadium (Fall season)</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Map Placeholder -->
+        <div class="fade-up">
+          <div class="aspect-[4/3] rounded-2xl bg-gradient-to-br from-olive/20 to-cream-dark overflow-hidden relative">
+            <div class="absolute inset-0 flex flex-col items-center justify-center text-olive/40">
+              <svg class="w-16 h-16 mb-3" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg>
+              <span class="font-medium text-sm">Interactive Map Coming Soon</span>
+              <span class="text-xs mt-1">Tuscaloosa, Alabama</span>
+            </div>
+            <div class="absolute inset-4 border-2 border-olive/10 rounded-xl pointer-events-none"></div>
+          </div>
+          <div class="mt-4 text-center">
+            <a href="#" class="inline-flex items-center gap-2 text-olive hover:text-gold-warm font-semibold transition-colors">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg>
+              Get Directions on Google Maps
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ INSTAGRAM FEED ============ -->
+  <section class="py-20 md:py-24 bg-cream">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <span class="fade-up font-script text-gold text-xl md:text-2xl">Follow the Flavor</span>
+        <h2 class="fade-up font-heading text-3xl md:text-4xl font-bold text-charcoal mt-2">
+          <a href="#" class="hover:text-olive transition-colors">@sweetoliveeats</a>
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3 stagger-children">
+        <a href="#" class="scale-in group block aspect-square rounded-xl bg-gradient-to-br from-olive/25 to-gold/15 overflow-hidden relative">
+          <div class="absolute inset-0 bg-olive-dark/0 group-hover:bg-olive-dark/50 transition-all duration-300 flex items-center justify-center">
+            <svg class="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          </div>
+        </a>
+        <a href="#" class="scale-in group block aspect-square rounded-xl bg-gradient-to-br from-gold/20 to-terra/15 overflow-hidden relative">
+          <div class="absolute inset-0 bg-olive-dark/0 group-hover:bg-olive-dark/50 transition-all duration-300 flex items-center justify-center">
+            <svg class="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          </div>
+        </a>
+        <a href="#" class="scale-in group block aspect-square rounded-xl bg-gradient-to-br from-olive/30 to-olive-light/15 overflow-hidden relative">
+          <div class="absolute inset-0 bg-olive-dark/0 group-hover:bg-olive-dark/50 transition-all duration-300 flex items-center justify-center">
+            <svg class="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          </div>
+        </a>
+        <a href="#" class="scale-in group block aspect-square rounded-xl bg-gradient-to-br from-brown/20 to-gold/15 overflow-hidden relative">
+          <div class="absolute inset-0 bg-olive-dark/0 group-hover:bg-olive-dark/50 transition-all duration-300 flex items-center justify-center">
+            <svg class="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          </div>
+        </a>
+        <a href="#" class="scale-in group block aspect-square rounded-xl bg-gradient-to-br from-olive-light/20 to-gold/15 overflow-hidden relative">
+          <div class="absolute inset-0 bg-olive-dark/0 group-hover:bg-olive-dark/50 transition-all duration-300 flex items-center justify-center">
+            <svg class="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          </div>
+        </a>
+        <a href="#" class="scale-in group block aspect-square rounded-xl bg-gradient-to-br from-terra/20 to-olive/15 overflow-hidden relative">
+          <div class="absolute inset-0 bg-olive-dark/0 group-hover:bg-olive-dark/50 transition-all duration-300 flex items-center justify-center">
+            <svg class="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ BOOKING / CONTACT FORM ============ -->
+  <section id="booking" class="py-24 md:py-32 bg-olive-dark relative overflow-hidden">
+    <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gold/30 to-transparent"></div>
+    <div class="absolute top-20 left-10 w-64 h-64 bg-gold/5 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-20 right-10 w-80 h-80 bg-olive-light/5 rounded-full blur-3xl"></div>
+
+    <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <span class="fade-up font-script text-gold-light text-xl md:text-2xl">Let's Make It Happen</span>
+        <h2 class="fade-up font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-white mt-2 gold-line-center">Book Your Event</h2>
+        <p class="fade-up text-cream/70 mt-6 max-w-xl mx-auto text-lg leading-relaxed">
+          Tell us about your event and we'll put together a custom proposal.
+          We typically respond within 24 hours.
+        </p>
+      </div>
+
+      <form class="fade-up bg-white/5 backdrop-blur-sm rounded-2xl p-8 md:p-12 border border-white/10" onsubmit="event.preventDefault(); document.getElementById('form-success').classList.remove('hidden'); this.reset();">
+        <div class="grid md:grid-cols-2 gap-6 mb-6">
+          <div>
+            <label class="block text-cream/80 text-sm font-medium mb-2">Your Name *</label>
+            <input type="text" required placeholder="Full name" class="w-full bg-white/10 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/30 focus:outline-none focus:border-gold/50 focus:ring-1 focus:ring-gold/30 transition-all" />
+          </div>
+          <div>
+            <label class="block text-cream/80 text-sm font-medium mb-2">Email Address *</label>
+            <input type="email" required placeholder="you@email.com" class="w-full bg-white/10 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/30 focus:outline-none focus:border-gold/50 focus:ring-1 focus:ring-gold/30 transition-all" />
+          </div>
+          <div>
+            <label class="block text-cream/80 text-sm font-medium mb-2">Phone Number</label>
+            <input type="tel" placeholder="(205) 555-0123" class="w-full bg-white/10 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/30 focus:outline-none focus:border-gold/50 focus:ring-1 focus:ring-gold/30 transition-all" />
+          </div>
+          <div>
+            <label class="block text-cream/80 text-sm font-medium mb-2">Event Date *</label>
+            <input type="date" required class="w-full bg-white/10 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-gold/50 focus:ring-1 focus:ring-gold/30 transition-all" />
+          </div>
+          <div>
+            <label class="block text-cream/80 text-sm font-medium mb-2">Event Type *</label>
+            <select required class="w-full bg-white/10 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-gold/50 focus:ring-1 focus:ring-gold/30 transition-all">
+              <option value="" class="text-charcoal">Select event type</option>
+              <option value="wedding" class="text-charcoal">Wedding / Reception</option>
+              <option value="corporate" class="text-charcoal">Corporate Event</option>
+              <option value="birthday" class="text-charcoal">Birthday / Anniversary</option>
+              <option value="graduation" class="text-charcoal">Graduation Party</option>
+              <option value="tailgate" class="text-charcoal">Tailgate / Game Day</option>
+              <option value="fundraiser" class="text-charcoal">Fundraiser / Charity</option>
+              <option value="neighborhood" class="text-charcoal">Block Party / Neighborhood</option>
+              <option value="other" class="text-charcoal">Other</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-cream/80 text-sm font-medium mb-2">Estimated Guests</label>
+            <select class="w-full bg-white/10 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-gold/50 focus:ring-1 focus:ring-gold/30 transition-all">
+              <option value="" class="text-charcoal">How many people?</option>
+              <option value="1-25" class="text-charcoal">1 - 25</option>
+              <option value="26-50" class="text-charcoal">26 - 50</option>
+              <option value="51-100" class="text-charcoal">51 - 100</option>
+              <option value="101-200" class="text-charcoal">101 - 200</option>
+              <option value="200+" class="text-charcoal">200+</option>
+            </select>
+          </div>
+        </div>
+        <div class="mb-8">
+          <label class="block text-cream/80 text-sm font-medium mb-2">Tell Us About Your Event</label>
+          <textarea rows="4" placeholder="Location, vibe, dietary needs, any details that help us plan the perfect menu..." class="w-full bg-white/10 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/30 focus:outline-none focus:border-gold/50 focus:ring-1 focus:ring-gold/30 transition-all resize-none"></textarea>
+        </div>
+        <button type="submit" class="btn-glow w-full bg-gold text-charcoal py-4 rounded-full font-bold text-lg uppercase tracking-wide">
+          Request a Quote
+        </button>
+        <div id="form-success" class="hidden mt-6 text-center">
+          <div class="bg-olive/20 border border-olive/30 rounded-xl p-4">
+            <p class="text-gold font-semibold">Thank you! We'll be in touch within 24 hours.</p>
+          </div>
+        </div>
+      </form>
+
+      <!-- Quick contact -->
+      <div class="fade-up mt-12 flex flex-wrap items-center justify-center gap-8 text-cream/60 text-sm">
+        <a href="tel:+12055551234" class="flex items-center gap-2 hover:text-gold transition-colors">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"/></svg>
+          (205) 555-1234
+        </a>
+        <a href="mailto:hello@sweetoliveeats.com" class="flex items-center gap-2 hover:text-gold transition-colors">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg>
+          hello@sweetoliveeats.com
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="bg-charcoal py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-4 gap-10 mb-12">
+        <!-- Brand -->
+        <div class="md:col-span-2">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 rounded-full bg-olive flex items-center justify-center">
+              <svg class="w-6 h-6 text-gold" fill="currentColor" viewBox="0 0 24 24"><path d="M17.8 2.8C16 2.09 13.86 2 12 2c-1.86 0-4 .09-5.8.8C3 4 2 6.5 2 8.5c0 3.5 3.5 6.5 6 8l1 .7c.4.3.7.7.9 1.1.3.6.6 1.7 1.1 2.7.3.5.6 1 1 1 .4 0 .7-.5 1-1 .5-1 .8-2.1 1.1-2.7.2-.4.5-.8.9-1.1l1-.7c2.5-1.5 6-4.5 6-8 0-2-1-4.5-4.2-5.7zM12 12c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z"/></svg>
+            </div>
+            <div>
+              <span class="font-heading text-xl font-bold text-white">Sweet Olive Eats</span>
+            </div>
+          </div>
+          <p class="text-white/50 text-sm leading-relaxed max-w-md">
+            Tuscaloosa's favorite food truck and catering company. Farm-to-table inspired Southern cuisine
+            for every occasion. Locally owned and operated with love.
+          </p>
+          <div class="flex items-center gap-4 mt-6">
+            <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white/50 hover:bg-gold hover:text-charcoal transition-all">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white/50 hover:bg-gold hover:text-charcoal transition-all">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white/50 hover:bg-gold hover:text-charcoal transition-all">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 0010.86 4.46c1.68-1.68 2.63-3.96 2.63-6.34V7.5a8.16 8.16 0 004.95 1.68V5.73a4.83 4.83 0 01-2-.97v1.93z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+          <h4 class="font-heading text-lg font-bold text-white mb-4">Quick Links</h4>
+          <ul class="space-y-2.5">
+            <li><a href="#menu" class="text-white/50 hover:text-gold transition-colors text-sm">Our Menu</a></li>
+            <li><a href="#catering" class="text-white/50 hover:text-gold transition-colors text-sm">Catering Packages</a></li>
+            <li><a href="#about" class="text-white/50 hover:text-gold transition-colors text-sm">About Us</a></li>
+            <li><a href="#gallery" class="text-white/50 hover:text-gold transition-colors text-sm">Photo Gallery</a></li>
+            <li><a href="#find-us" class="text-white/50 hover:text-gold transition-colors text-sm">Truck Schedule</a></li>
+            <li><a href="#booking" class="text-white/50 hover:text-gold transition-colors text-sm">Book an Event</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact -->
+        <div>
+          <h4 class="font-heading text-lg font-bold text-white mb-4">Contact</h4>
+          <ul class="space-y-2.5 text-white/50 text-sm">
+            <li class="flex items-center gap-2">
+              <svg class="w-4 h-4 text-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg>
+              Tuscaloosa, Alabama
+            </li>
+            <li class="flex items-center gap-2">
+              <svg class="w-4 h-4 text-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"/></svg>
+              (205) 555-1234
+            </li>
+            <li class="flex items-center gap-2">
+              <svg class="w-4 h-4 text-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg>
+              hello@sweetoliveeats.com
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+        <p class="text-white/30 text-xs">&copy; 2026 Sweet Olive Eats. All rights reserved.</p>
+        <p class="text-white/30 text-xs">Proudly serving Tuscaloosa &amp; West Alabama</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============ JAVASCRIPT ============ -->
+  <script>
+    // ---- Intersection Observer for scroll animations ----
+    const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -40px 0px' };
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.fade-up, .fade-in, .slide-left, .slide-right, .scale-in').forEach(el => {
+      observer.observe(el);
+    });
+
+    // ---- Navbar scroll effect ----
+    const navbar = document.getElementById('navbar');
+    let lastScroll = 0;
+    window.addEventListener('scroll', () => {
+      const scrollY = window.scrollY;
+      if (scrollY > 80) {
+        navbar.classList.add('nav-glass', 'bg-olive-dark/90', 'shadow-lg');
+      } else {
+        navbar.classList.remove('nav-glass', 'bg-olive-dark/90', 'shadow-lg');
+      }
+      lastScroll = scrollY;
+    });
+
+    // ---- Scroll progress bar ----
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = scrollTop / docHeight;
+      document.getElementById('scroll-progress').style.transform = `scaleX(${progress})`;
+    });
+
+    // ---- Mobile menu ----
+    const mobileMenu = document.getElementById('mobile-menu');
+    document.getElementById('menu-toggle').addEventListener('click', () => {
+      mobileMenu.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    });
+    document.getElementById('menu-close').addEventListener('click', () => {
+      mobileMenu.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+    document.querySelectorAll('.mobile-link').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+
+    // ---- Menu tabs ----
+    const tabs = document.querySelectorAll('.menu-tab');
+    const panels = document.querySelectorAll('.menu-panel');
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const target = tab.dataset.tab;
+        // Update tabs
+        tabs.forEach(t => {
+          t.classList.remove('bg-olive', 'text-white', 'active');
+          t.classList.add('bg-cream-dark', 'text-brown');
+        });
+        tab.classList.add('bg-olive', 'text-white', 'active');
+        tab.classList.remove('bg-cream-dark', 'text-brown');
+        // Update panels
+        panels.forEach(p => p.classList.add('hidden'));
+        document.getElementById('tab-' + target).classList.remove('hidden');
+      });
+    });
+
+    // ---- Smooth scroll for anchor links ----
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        e.preventDefault();
+        const target = document.querySelector(targetId);
+        if (target) {
+          const offset = 80;
+          const top = target.getBoundingClientRect().top + window.scrollY - offset;
+          window.scrollTo({ top, behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>

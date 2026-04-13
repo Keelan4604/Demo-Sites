@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>White Raven Mobile Mechanic | Charlotte, NC | We Come To You</title>
+  <meta name="description" content="White Raven Mobile Mechanic — Charlotte's most trusted mobile mechanic. 4.7 stars, 170+ reviews. We come to you. Honest diagnostics, fair prices. Call (980) 226-1676." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Fraunces:ital,wght@0,400;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'wr-black':    '#0a0a0a',
+            'wr-dark':     '#141414',
+            'wr-charcoal': '#1e1e1e',
+            'wr-steel':    '#2a2a2a',
+            'wr-silver':   '#a0a0a0',
+            'wr-white':    '#f5f5f5',
+            'wr-red':      '#dc2626',
+            'wr-red-dk':   '#991b1b',
+            'wr-red-lt':   '#ef4444',
+            'wr-amber':    '#f59e0b',
+            'wr-blue':     '#3b82f6',
+            'wr-ice':      '#e0f2fe',
+          },
+          fontFamily: {
+            heading: ['Fraunces', 'serif'],
+            body:    ['"Space Grotesk"', 'sans-serif'],
+            mono:    ['"JetBrains Mono"', 'monospace'],
+          },
+        },
+      },
+    }
+  </script>
+  <style>
+    * { font-family: 'Space Grotesk', sans-serif; }
+    h1, h2, h3, .font-heading { font-family: 'Fraunces', serif; }
+    .font-mono { font-family: 'JetBrains Mono', monospace; }
+
+    /* Animations */
+    .fade-up {
+      opacity: 0; transform: translateY(40px);
+      transition: opacity 0.8s cubic-bezier(.22,1,.36,1), transform 0.8s cubic-bezier(.22,1,.36,1);
+    }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    .fade-in { opacity: 0; transition: opacity 0.9s ease-out; }
+    .fade-in.visible { opacity: 1; }
+
+    .slide-left {
+      opacity: 0; transform: translateX(-60px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+    .slide-left.visible { opacity: 1; transform: translateX(0); }
+
+    .slide-right {
+      opacity: 0; transform: translateX(60px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+    .slide-right.visible { opacity: 1; transform: translateX(0); }
+
+    .scale-in {
+      opacity: 0; transform: scale(0.9);
+      transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+    }
+    .scale-in.visible { opacity: 1; transform: scale(1); }
+
+    /* Hero */
+    .hero-bg {
+      background: linear-gradient(170deg, rgba(10,10,10,0.92) 0%, rgba(20,20,20,0.85) 50%, rgba(10,10,10,0.95) 100%),
+                  url('https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=1920&q=85') center/cover no-repeat;
+      min-height: 100vh;
+    }
+
+    /* Mechanical crosshatch pattern */
+    .mech-pattern {
+      background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0L40 40M40 0L0 40' fill='none' stroke='%23ffffff' stroke-width='0.3' opacity='0.03'/%3E%3C/svg%3E");
+    }
+
+    /* Service card */
+    .service-card {
+      transition: transform 0.4s cubic-bezier(.22,1,.36,1), box-shadow 0.4s ease, border-color 0.3s ease;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+    .service-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 25px 60px rgba(220,38,38,0.15);
+      border-color: rgba(220,38,38,0.3);
+    }
+
+    /* Diagonal cut */
+    .diagonal-cut {
+      clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+    }
+
+    /* Nav */
+    .nav-glass {
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      background: rgba(10,10,10,0.85);
+      transition: all 0.3s ease;
+    }
+    .nav-scrolled { background: rgba(10,10,10,0.97); box-shadow: 0 4px 30px rgba(0,0,0,0.5); }
+
+    /* Pulse CTA */
+    @keyframes pulse-red {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(220,38,38,0.5); }
+      50% { box-shadow: 0 0 0 14px rgba(220,38,38,0); }
+    }
+    .pulse-cta { animation: pulse-red 2.5s infinite; }
+
+    /* Emergency flash */
+    @keyframes emergency-flash {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+    .emergency-flash { animation: emergency-flash 2s ease-in-out infinite; }
+
+    /* Red glow */
+    .red-glow {
+      box-shadow: 0 0 40px rgba(220,38,38,0.2), 0 0 80px rgba(220,38,38,0.1);
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #0a0a0a; }
+    ::-webkit-scrollbar-thumb { background: #dc2626; border-radius: 4px; }
+
+    /* Review stars */
+    .star-filled { color: #f59e0b; }
+
+    /* Counter */
+    .counter-card {
+      background: linear-gradient(135deg, #1e1e1e, #141414);
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    /* Trust badge */
+    .trust-badge {
+      background: linear-gradient(135deg, rgba(220,38,38,0.1), rgba(220,38,38,0.05));
+      border: 1px solid rgba(220,38,38,0.2);
+    }
+
+    /* Wrench divider */
+    .wrench-border { border-top: 2px dashed rgba(255,255,255,0.06); }
+
+    /* Mobile menu */
+    .mobile-menu {
+      transform: translateX(100%);
+      transition: transform 0.3s ease;
+    }
+    .mobile-menu.open { transform: translateX(0); }
+
+    /* Typing effect for tagline */
+    .type-cursor::after {
+      content: '|';
+      animation: blink 1s step-end infinite;
+      color: #dc2626;
+    }
+    @keyframes blink { 50% { opacity: 0; } }
+  </style>
+</head>
+<body class="bg-wr-black text-wr-white">
+
+  <!-- Red accent line -->
+  <div class="w-full h-1 bg-gradient-to-r from-wr-red-dk via-wr-red to-wr-red-dk fixed top-0 z-[60]"></div>
+
+  <!-- Navigation -->
+  <nav class="nav-glass fixed top-1 w-full z-50 px-4 lg:px-8">
+    <div class="max-w-7xl mx-auto flex items-center justify-between h-16">
+      <a href="#" class="flex items-center gap-3">
+        <div class="w-10 h-10 bg-wr-red rounded-lg flex items-center justify-center">
+          <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M22.7 19l-9.1-9.1c.9-2.3.4-5-1.5-6.9-2-2-5-2.4-7.4-1.3L9 6 6 9 1.6 4.7C.4 7.1.9 10.1 2.9 12.1c1.9 1.9 4.6 2.4 6.9 1.5l9.1 9.1c.4.4 1 .4 1.4 0l2.3-2.3c.5-.4.5-1.1.1-1.4z"/></svg>
+        </div>
+        <div>
+          <span class="font-heading text-white text-lg font-bold">White Raven</span>
+          <span class="block text-wr-silver text-[10px] font-mono tracking-widest uppercase -mt-1">Mobile Mechanic</span>
+        </div>
+      </a>
+      <div class="hidden md:flex items-center gap-8">
+        <a href="#services" class="text-wr-silver hover:text-white text-sm font-medium transition">Services</a>
+        <a href="#why-us" class="text-wr-silver hover:text-white text-sm font-medium transition">Why Us</a>
+        <a href="#reviews" class="text-wr-silver hover:text-white text-sm font-medium transition">Reviews</a>
+        <a href="#contact" class="text-wr-silver hover:text-white text-sm font-medium transition">Contact</a>
+        <a href="tel:9802261676" class="bg-wr-red text-white px-6 py-2.5 rounded-lg text-sm font-bold hover:bg-wr-red-lt transition pulse-cta flex items-center gap-2">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+          Call Now
+        </a>
+      </div>
+      <button id="menuBtn" class="md:hidden text-white">
+        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div id="mobileMenu" class="mobile-menu fixed inset-0 z-[55] bg-wr-black/98 flex flex-col items-center justify-center gap-8 md:hidden">
+    <button id="closeMenu" class="absolute top-6 right-6 text-white"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg></button>
+    <a href="#services" class="text-white text-2xl font-heading mobile-link">Services</a>
+    <a href="#why-us" class="text-white text-2xl font-heading mobile-link">Why Us</a>
+    <a href="#reviews" class="text-white text-2xl font-heading mobile-link">Reviews</a>
+    <a href="#contact" class="text-white text-2xl font-heading mobile-link">Contact</a>
+    <a href="tel:9802261676" class="bg-wr-red text-white px-8 py-3 rounded-lg text-lg font-bold mobile-link">(980) 226-1676</a>
+  </div>
+
+  <!-- Hero -->
+  <section class="hero-bg relative flex items-center min-h-screen">
+    <div class="max-w-7xl mx-auto px-4 lg:px-8 py-32 w-full">
+      <div class="max-w-3xl fade-up">
+        <!-- Emergency banner -->
+        <div class="inline-flex items-center gap-2 bg-wr-red/20 border border-wr-red/40 text-wr-red-lt px-4 py-2 rounded-lg mb-8 emergency-flash">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>
+          <span class="text-sm font-mono font-medium">MOBILE SERVICE &bull; WE COME TO YOU</span>
+        </div>
+
+        <h1 class="font-heading text-white text-5xl lg:text-7xl xl:text-8xl leading-[1.05] mb-6 font-bold">
+          Your Mechanic,<br/>
+          <span class="text-wr-red">At Your Door.</span>
+        </h1>
+
+        <p class="text-wr-silver text-lg lg:text-xl max-w-xl mb-10 leading-relaxed">
+          Charlotte's most trusted mobile mechanic. We bring the shop to you &mdash; honest diagnostics, fair prices, zero runaround.
+        </p>
+
+        <!-- Trust badges inline -->
+        <div class="flex flex-wrap gap-3 mb-10">
+          <div class="trust-badge rounded-lg px-4 py-2 flex items-center gap-2">
+            <div class="flex gap-0.5">
+              <svg class="w-4 h-4 star-filled" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg class="w-4 h-4 star-filled" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg class="w-4 h-4 star-filled" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg class="w-4 h-4 star-filled" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg class="w-4 h-4 star-filled" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77z" opacity="0.7"/></svg>
+            </div>
+            <span class="text-white text-sm font-medium">4.7 Stars</span>
+          </div>
+          <div class="trust-badge rounded-lg px-4 py-2">
+            <span class="text-white text-sm font-medium">170+ Reviews</span>
+          </div>
+          <div class="trust-badge rounded-lg px-4 py-2">
+            <span class="text-white text-sm font-medium">Charlotte, NC</span>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap gap-4">
+          <a href="tel:9802261676" class="bg-wr-red text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-wr-red-lt transition pulse-cta flex items-center gap-3">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+            (980) 226-1676
+          </a>
+          <a href="#contact" class="border-2 border-wr-silver/30 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-white/5 transition">
+            Get a Quote
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 fade-in" style="transition-delay:1s">
+      <div class="w-6 h-10 border-2 border-wr-silver/30 rounded-full flex justify-center pt-2">
+        <div class="w-1.5 h-3 bg-wr-red rounded-full" style="animation: float 2s ease-in-out infinite"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="bg-wr-dark py-12 border-y border-white/5">
+    <div class="max-w-6xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-6">
+      <div class="counter-card rounded-xl p-6 text-center scale-in red-glow">
+        <div class="text-3xl lg:text-4xl font-heading font-bold text-wr-red counter" data-target="170">0</div>
+        <div class="text-wr-silver text-sm font-mono mt-1">5-Star Reviews</div>
+      </div>
+      <div class="counter-card rounded-xl p-6 text-center scale-in" style="transition-delay:0.1s">
+        <div class="text-3xl lg:text-4xl font-heading font-bold text-white flex items-center justify-center gap-1">
+          <svg class="w-6 h-6 star-filled" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          4.7
+        </div>
+        <div class="text-wr-silver text-sm font-mono mt-1">Rating</div>
+      </div>
+      <div class="counter-card rounded-xl p-6 text-center scale-in" style="transition-delay:0.2s">
+        <div class="text-3xl lg:text-4xl font-heading font-bold text-white">24/7</div>
+        <div class="text-wr-silver text-sm font-mono mt-1">Available</div>
+      </div>
+      <div class="counter-card rounded-xl p-6 text-center scale-in" style="transition-delay:0.3s">
+        <div class="text-3xl lg:text-4xl font-heading font-bold text-white">$0</div>
+        <div class="text-wr-silver text-sm font-mono mt-1">Travel Fee*</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section id="services" class="bg-wr-black mech-pattern py-20 lg:py-28">
+    <div class="max-w-7xl mx-auto px-4 lg:px-8">
+      <div class="text-center mb-16 fade-up">
+        <span class="font-mono text-wr-red tracking-widest uppercase text-sm">// What We Fix</span>
+        <h2 class="font-heading text-white text-4xl lg:text-5xl mt-3 font-bold">Our Services</h2>
+        <div class="w-20 h-0.5 bg-wr-red mx-auto mt-4"></div>
+      </div>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="service-card bg-wr-charcoal rounded-xl p-8 fade-up">
+          <div class="w-12 h-12 bg-wr-red/10 rounded-lg flex items-center justify-center mb-5">
+            <svg class="w-6 h-6 text-wr-red" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+          </div>
+          <h3 class="font-heading text-white text-xl mb-3 font-semibold">Brake Service</h3>
+          <p class="text-wr-silver leading-relaxed text-sm">Pads, rotors, calipers, and brake fluid. We handle it all at your location. No towing required.</p>
+        </div>
+        <div class="service-card bg-wr-charcoal rounded-xl p-8 fade-up" style="transition-delay:0.1s">
+          <div class="w-12 h-12 bg-wr-red/10 rounded-lg flex items-center justify-center mb-5">
+            <svg class="w-6 h-6 text-wr-red" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <h3 class="font-heading text-white text-xl mb-3 font-semibold">Oil Changes</h3>
+          <p class="text-wr-silver leading-relaxed text-sm">Conventional, synthetic, and high-mileage oil changes done in your driveway. Quick, clean, right.</p>
+        </div>
+        <div class="service-card bg-wr-charcoal rounded-xl p-8 fade-up" style="transition-delay:0.2s">
+          <div class="w-12 h-12 bg-wr-red/10 rounded-lg flex items-center justify-center mb-5">
+            <svg class="w-6 h-6 text-wr-red" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+          </div>
+          <h3 class="font-heading text-white text-xl mb-3 font-semibold">Diagnostics</h3>
+          <p class="text-wr-silver leading-relaxed text-sm">Check engine light on? We'll read codes, diagnose the issue, and give you an honest assessment on the spot.</p>
+        </div>
+        <div class="service-card bg-wr-charcoal rounded-xl p-8 fade-up" style="transition-delay:0.3s">
+          <div class="w-12 h-12 bg-wr-red/10 rounded-lg flex items-center justify-center mb-5">
+            <svg class="w-6 h-6 text-wr-red" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+          </div>
+          <h3 class="font-heading text-white text-xl mb-3 font-semibold">Tune-Ups</h3>
+          <p class="text-wr-silver leading-relaxed text-sm">Spark plugs, filters, belts, and fluid top-offs. Keep your engine running at peak performance.</p>
+        </div>
+        <div class="service-card bg-wr-charcoal rounded-xl p-8 fade-up" style="transition-delay:0.4s">
+          <div class="w-12 h-12 bg-wr-red/10 rounded-lg flex items-center justify-center mb-5">
+            <svg class="w-6 h-6 text-wr-red" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>
+          </div>
+          <h3 class="font-heading text-white text-xl mb-3 font-semibold">Cooling System</h3>
+          <p class="text-wr-silver leading-relaxed text-sm">Radiator repairs, thermostat replacement, coolant flush. Don't get stranded in Charlotte heat.</p>
+        </div>
+        <div class="service-card bg-wr-charcoal rounded-xl p-8 fade-up" style="transition-delay:0.5s">
+          <div class="w-12 h-12 bg-wr-red/10 rounded-lg flex items-center justify-center mb-5">
+            <svg class="w-6 h-6 text-wr-red" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"/></svg>
+          </div>
+          <h3 class="font-heading text-white text-xl mb-3 font-semibold">Electrical</h3>
+          <p class="text-wr-silver leading-relaxed text-sm">Battery replacement, alternator, starter, wiring issues. We bring the tools and parts to you.</p>
+        </div>
+      </div>
+      <div class="text-center mt-12 fade-up">
+        <p class="text-wr-silver text-sm font-mono">Don't see your issue? <a href="tel:9802261676" class="text-wr-red hover:text-wr-red-lt transition font-semibold">Call us</a> &mdash; we fix most things.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose Us -->
+  <section id="why-us" class="bg-wr-dark py-20 lg:py-28 relative overflow-hidden">
+    <div class="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-wr-red/5 to-transparent"></div>
+    <div class="max-w-7xl mx-auto px-4 lg:px-8 grid lg:grid-cols-2 gap-16 items-center relative z-10">
+      <div class="slide-left">
+        <span class="font-mono text-wr-red tracking-widest uppercase text-sm">// Why White Raven</span>
+        <h2 class="font-heading text-white text-4xl lg:text-5xl mt-3 mb-8 font-bold">Honest Work.<br/><span class="text-wr-red">No Shop Needed.</span></h2>
+        <div class="space-y-6">
+          <div class="flex gap-4">
+            <div class="w-10 h-10 bg-wr-red/10 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+              <svg class="w-5 h-5 text-wr-red" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+            </div>
+            <div>
+              <h4 class="font-heading text-white text-lg font-semibold">We Come to You</h4>
+              <p class="text-wr-silver text-sm mt-1 leading-relaxed">Home, work, side of the road &mdash; wherever your car is, that's our shop. No towing, no hassle.</p>
+            </div>
+          </div>
+          <div class="flex gap-4">
+            <div class="w-10 h-10 bg-wr-red/10 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+              <svg class="w-5 h-5 text-wr-red" fill="currentColor" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+            </div>
+            <div>
+              <h4 class="font-heading text-white text-lg font-semibold">Brutally Honest</h4>
+              <p class="text-wr-silver text-sm mt-1 leading-relaxed">We'll never sell you something you don't need. 170+ customers trust us because we tell it straight.</p>
+            </div>
+          </div>
+          <div class="flex gap-4">
+            <div class="w-10 h-10 bg-wr-red/10 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+              <svg class="w-5 h-5 text-wr-red" fill="currentColor" viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+            </div>
+            <div>
+              <h4 class="font-heading text-white text-lg font-semibold">Fast Response</h4>
+              <p class="text-wr-silver text-sm mt-1 leading-relaxed">Same-day service in most cases. Emergency calls welcome. We know being stuck is stressful.</p>
+            </div>
+          </div>
+          <div class="flex gap-4">
+            <div class="w-10 h-10 bg-wr-red/10 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+              <svg class="w-5 h-5 text-wr-red" fill="currentColor" viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
+            </div>
+            <div>
+              <h4 class="font-heading text-white text-lg font-semibold">Transparent Pricing</h4>
+              <p class="text-wr-silver text-sm mt-1 leading-relaxed">You'll know the price before we start. No hidden fees, no surprises, no shop markup.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="slide-right">
+        <div class="relative">
+          <div class="bg-wr-charcoal rounded-2xl p-1 overflow-hidden red-glow">
+            <img src="https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=700&q=80" alt="Mobile mechanic working" class="rounded-2xl w-full h-80 lg:h-[28rem] object-cover" />
+          </div>
+          <div class="absolute -bottom-6 -left-6 bg-wr-red text-white rounded-xl p-5 shadow-2xl">
+            <div class="flex items-center gap-3">
+              <div class="text-3xl font-heading font-bold">170+</div>
+              <div class="text-sm leading-tight">Verified<br/>Reviews</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reviews -->
+  <section id="reviews" class="bg-wr-black mech-pattern py-20 lg:py-28">
+    <div class="max-w-7xl mx-auto px-4 lg:px-8">
+      <div class="text-center mb-16 fade-up">
+        <span class="font-mono text-wr-red tracking-widest uppercase text-sm">// Real Reviews</span>
+        <h2 class="font-heading text-white text-4xl lg:text-5xl mt-3 font-bold">What Charlotte Says</h2>
+        <div class="w-20 h-0.5 bg-wr-red mx-auto mt-4"></div>
+        <p class="text-wr-silver mt-4 text-lg">4.7 stars from 170+ reviews. Here's why people keep coming back.</p>
+      </div>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="bg-wr-charcoal rounded-xl p-8 border border-white/5 fade-up">
+          <div class="flex gap-1 mb-4">
+            <svg class="w-5 h-5 star-filled" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="w-5 h-5 star-filled" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="w-5 h-5 star-filled" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="w-5 h-5 star-filled" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="w-5 h-5 star-filled" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <p class="text-wr-silver leading-relaxed mb-4 text-sm">"Most honest mechanic I've ever dealt with. He told me what I actually needed instead of trying to upsell me. Saved me hundreds compared to the dealer quote."</p>
+          <p class="font-mono text-wr-red text-sm font-medium">- Marcus T.</p>
+        </div>
+        <div class="bg-wr-charcoal rounded-xl p-8 border border-white/5 fade-up" style="transition-delay:0.1s">
+          <div class="flex gap-1 mb-4">
+            <svg class="w-5 h-5 star-filled" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="w-5 h-5 star-filled" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="w-5 h-5 star-filled" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="w-5 h-5 star-filled" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="w-5 h-5 star-filled" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <p class="text-wr-silver leading-relaxed mb-4 text-sm">"My car broke down in a parking lot and James came out within an hour. Fixed the alternator on site. This is how car repair should work. Never going back to a shop."</p>
+          <p class="font-mono text-wr-red text-sm font-medium">- Ashley R.</p>
+        </div>
+        <div class="bg-wr-charcoal rounded-xl p-8 border border-white/5 fade-up" style="transition-delay:0.2s">
+          <div class="flex gap-1 mb-4">
+            <svg class="w-5 h-5 star-filled" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="w-5 h-5 star-filled" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="w-5 h-5 star-filled" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="w-5 h-5 star-filled" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="w-5 h-5 star-filled" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <p class="text-wr-silver leading-relaxed mb-4 text-sm">"I've been using White Raven for two years now. Oil changes, brakes, even a water pump replacement &mdash; all done in my driveway. James is the real deal."</p>
+          <p class="font-mono text-wr-red text-sm font-medium">- David K.</p>
+        </div>
+        <div class="bg-wr-charcoal rounded-xl p-8 border border-white/5 fade-up" style="transition-delay:0.3s">
+          <div class="flex gap-1 mb-4">
+            <svg class="w-5 h-5 star-filled" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="w-5 h-5 star-filled" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="w-5 h-5 star-filled" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="w-5 h-5 star-filled" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="w-5 h-5 star-filled" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <p class="text-wr-silver leading-relaxed mb-4 text-sm">"Single mom with two kids &mdash; I can't just drop my car off at a shop for days. White Raven fixed my brakes while the kids played in the yard. Lifesaver."</p>
+          <p class="font-mono text-wr-red text-sm font-medium">- Jennifer W.</p>
+        </div>
+        <div class="bg-wr-charcoal rounded-xl p-8 border border-white/5 fade-up" style="transition-delay:0.4s">
+          <div class="flex gap-1 mb-4">
+            <svg class="w-5 h-5 star-filled" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="w-5 h-5 star-filled" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="w-5 h-5 star-filled" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="w-5 h-5 star-filled" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="w-5 h-5 star-filled" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <p class="text-wr-silver leading-relaxed mb-4 text-sm">"Quoted $1,200 at the dealership. White Raven did it for $450 in my parking lot at work. Same parts, same quality. Just no overhead markup."</p>
+          <p class="font-mono text-wr-red text-sm font-medium">- Kevin L.</p>
+        </div>
+        <div class="bg-gradient-to-br from-wr-red/20 to-wr-red/5 rounded-xl p-8 border border-wr-red/20 flex flex-col items-center justify-center text-center fade-up" style="transition-delay:0.5s">
+          <div class="text-5xl font-heading font-bold text-white mb-2">170+</div>
+          <div class="text-wr-silver mb-4">Verified Reviews</div>
+          <div class="flex gap-1 mb-4">
+            <svg class="w-6 h-6 star-filled" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="w-6 h-6 star-filled" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="w-6 h-6 star-filled" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="w-6 h-6 star-filled" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="w-6 h-6 star-filled" fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77z" opacity="0.7"/></svg>
+          </div>
+          <p class="text-wr-silver text-sm">on Google, Facebook & Yelp</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Smart Chat Feature -->
+  <section class="bg-wr-charcoal py-16 border-y border-white/5">
+    <div class="max-w-4xl mx-auto px-4 text-center fade-up">
+      <div class="inline-flex items-center gap-2 bg-wr-red/10 border border-wr-red/20 rounded-lg px-5 py-2 mb-6">
+        <svg class="w-5 h-5 text-wr-red" fill="currentColor" viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/></svg>
+        <span class="text-wr-silver font-mono text-sm">Coming Soon</span>
+      </div>
+      <h2 class="font-heading text-white text-3xl lg:text-4xl mb-4 font-bold">Instant Chat Quotes</h2>
+      <p class="text-wr-silver text-lg max-w-2xl mx-auto">
+        Soon you'll be able to describe your car issue and get a ballpark quote instantly through our smart website chat. No phone tag &mdash; just answers.
+      </p>
+    </div>
+  </section>
+
+  <!-- Emergency CTA -->
+  <section class="bg-wr-red py-16 relative overflow-hidden">
+    <div class="absolute inset-0">
+      <div class="absolute inset-0 bg-[repeating-linear-gradient(45deg,transparent,transparent_20px,rgba(0,0,0,0.05)_20px,rgba(0,0,0,0.05)_40px)]"></div>
+    </div>
+    <div class="max-w-4xl mx-auto px-4 text-center relative z-10 fade-up">
+      <h2 class="font-heading text-white text-3xl lg:text-5xl mb-4 font-bold">Stuck on the Side of the Road?</h2>
+      <p class="text-white/80 text-lg mb-8 max-w-xl mx-auto">Don't stress. Call us now and we'll get to you fast. Emergency service available across Charlotte.</p>
+      <a href="tel:9802261676" class="inline-flex items-center gap-3 bg-white text-wr-red px-10 py-5 rounded-lg font-bold text-xl hover:bg-wr-ice transition">
+        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+        (980) 226-1676
+      </a>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="bg-wr-dark py-20 lg:py-28">
+    <div class="max-w-7xl mx-auto px-4 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-16">
+        <div class="fade-up">
+          <span class="font-mono text-wr-red tracking-widest uppercase text-sm">// Get In Touch</span>
+          <h2 class="font-heading text-white text-4xl lg:text-5xl mt-3 mb-6 font-bold">Need a<br/><span class="text-wr-red">Mechanic?</span></h2>
+          <p class="text-wr-silver text-lg leading-relaxed mb-8">Tell us what's going on with your vehicle. We'll give you an honest assessment and fair quote &mdash; usually within minutes.</p>
+          <div class="space-y-6">
+            <a href="tel:9802261676" class="flex items-center gap-4 group">
+              <div class="w-14 h-14 bg-wr-red/10 rounded-xl flex items-center justify-center group-hover:bg-wr-red/20 transition">
+                <svg class="w-6 h-6 text-wr-red" fill="currentColor" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+              </div>
+              <div>
+                <p class="text-wr-silver text-sm">Call or Text</p>
+                <p class="font-heading text-white text-xl font-bold">(980) 226-1676</p>
+              </div>
+            </a>
+            <div class="flex items-center gap-4">
+              <div class="w-14 h-14 bg-wr-red/10 rounded-xl flex items-center justify-center">
+                <svg class="w-6 h-6 text-wr-red" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+              </div>
+              <div>
+                <p class="text-wr-silver text-sm">Service Area</p>
+                <p class="font-heading text-white font-bold">Charlotte, NC & Surrounding Areas</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-4">
+              <div class="w-14 h-14 bg-wr-red/10 rounded-xl flex items-center justify-center">
+                <svg class="w-6 h-6 text-wr-red" fill="currentColor" viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+              </div>
+              <div>
+                <p class="text-wr-silver text-sm">Hours</p>
+                <p class="font-heading text-white font-bold">Mon-Sun: 7 AM - 9 PM</p>
+                <p class="text-wr-red text-sm font-mono">Emergency calls welcome 24/7</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="fade-up" style="transition-delay:0.2s">
+          <form action="https://formspree.io/f/placeholder" method="POST" class="bg-wr-charcoal rounded-2xl p-8 lg:p-10 border border-white/5">
+            <h3 class="font-heading text-white text-2xl mb-6 font-bold">Describe Your Issue</h3>
+            <div class="space-y-5">
+              <div>
+                <label class="block text-wr-silver text-sm font-medium mb-2">Name</label>
+                <input type="text" name="name" required class="w-full bg-wr-steel border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-wr-red focus:ring-2 focus:ring-wr-red/20 transition placeholder-wr-silver/50" placeholder="Your name" />
+              </div>
+              <div>
+                <label class="block text-wr-silver text-sm font-medium mb-2">Phone</label>
+                <input type="tel" name="phone" required class="w-full bg-wr-steel border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-wr-red focus:ring-2 focus:ring-wr-red/20 transition placeholder-wr-silver/50" placeholder="(980) 555-0000" />
+              </div>
+              <div class="grid grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-wr-silver text-sm font-medium mb-2">Vehicle Make</label>
+                  <input type="text" name="make" class="w-full bg-wr-steel border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-wr-red focus:ring-2 focus:ring-wr-red/20 transition placeholder-wr-silver/50" placeholder="e.g. Honda" />
+                </div>
+                <div>
+                  <label class="block text-wr-silver text-sm font-medium mb-2">Model / Year</label>
+                  <input type="text" name="model" class="w-full bg-wr-steel border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-wr-red focus:ring-2 focus:ring-wr-red/20 transition placeholder-wr-silver/50" placeholder="e.g. Accord 2019" />
+                </div>
+              </div>
+              <div>
+                <label class="block text-wr-silver text-sm font-medium mb-2">What's Going On?</label>
+                <textarea name="issue" rows="4" required class="w-full bg-wr-steel border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-wr-red focus:ring-2 focus:ring-wr-red/20 transition placeholder-wr-silver/50 resize-none" placeholder="Describe the symptoms, noises, warning lights, etc."></textarea>
+              </div>
+              <div>
+                <label class="block text-wr-silver text-sm font-medium mb-2">Location (where's the car?)</label>
+                <input type="text" name="location" class="w-full bg-wr-steel border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-wr-red focus:ring-2 focus:ring-wr-red/20 transition placeholder-wr-silver/50" placeholder="Address or general area" />
+              </div>
+              <button type="submit" class="w-full bg-wr-red text-white py-4 rounded-lg font-bold text-lg hover:bg-wr-red-lt transition">
+                Get My Quote
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-wr-black py-12 border-t border-white/5">
+    <div class="max-w-7xl mx-auto px-4 lg:px-8">
+      <div class="grid md:grid-cols-3 gap-8 mb-8">
+        <div>
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 bg-wr-red rounded-lg flex items-center justify-center">
+              <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M22.7 19l-9.1-9.1c.9-2.3.4-5-1.5-6.9-2-2-5-2.4-7.4-1.3L9 6 6 9 1.6 4.7C.4 7.1.9 10.1 2.9 12.1c1.9 1.9 4.6 2.4 6.9 1.5l9.1 9.1c.4.4 1 .4 1.4 0l2.3-2.3c.5-.4.5-1.1.1-1.4z"/></svg>
+            </div>
+            <div>
+              <span class="font-heading text-white font-bold">White Raven</span>
+              <span class="block text-wr-silver text-xs font-mono">Mobile Mechanic</span>
+            </div>
+          </div>
+          <p class="text-wr-silver text-sm leading-relaxed">Charlotte's most trusted mobile mechanic. Honest work, fair prices, at your location.</p>
+        </div>
+        <div>
+          <h4 class="font-heading font-bold text-white mb-4">Services</h4>
+          <div class="space-y-2 text-sm">
+            <p class="text-wr-silver">Brake Service</p>
+            <p class="text-wr-silver">Oil Changes</p>
+            <p class="text-wr-silver">Diagnostics</p>
+            <p class="text-wr-silver">Electrical</p>
+          </div>
+        </div>
+        <div>
+          <h4 class="font-heading font-bold text-white mb-4">Contact</h4>
+          <p class="text-wr-silver text-sm">(980) 226-1676</p>
+          <p class="text-wr-silver text-sm mt-1">Charlotte, NC</p>
+          <p class="text-wr-silver text-sm mt-1">Mon-Sun: 7 AM - 9 PM</p>
+          <p class="text-wr-red text-sm mt-1 font-mono">Emergency: 24/7</p>
+        </div>
+      </div>
+      <div class="h-px bg-white/5 mb-6"></div>
+      <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+        <p class="text-wr-silver/40 text-sm">&copy; 2025 White Raven Mobile Mechanic. All rights reserved.</p>
+        <p class="text-wr-silver/30 text-xs font-mono">*Travel fee may apply for locations 30+ miles from Charlotte</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Intersection Observer
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+    document.querySelectorAll('.fade-up, .fade-in, .slide-left, .slide-right, .scale-in').forEach(el => observer.observe(el));
+
+    // Counter animation
+    function animateCounters() {
+      document.querySelectorAll('.counter').forEach(counter => {
+        const target = parseInt(counter.dataset.target);
+        const duration = 2000;
+        const start = performance.now();
+        function update(now) {
+          const elapsed = now - start;
+          const progress = Math.min(elapsed / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          counter.textContent = Math.floor(target * eased) + '+';
+          if (progress < 1) requestAnimationFrame(update);
+        }
+        requestAnimationFrame(update);
+      });
+    }
+
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) { animateCounters(); counterObserver.disconnect(); }
+      });
+    }, { threshold: 0.3 });
+    document.querySelectorAll('.counter').forEach(el => counterObserver.observe(el));
+
+    // Nav scroll
+    window.addEventListener('scroll', () => {
+      document.querySelector('nav').classList.toggle('nav-scrolled', window.scrollY > 50);
+    });
+
+    // Mobile menu
+    document.getElementById('menuBtn').addEventListener('click', () => document.getElementById('mobileMenu').classList.add('open'));
+    document.getElementById('closeMenu').addEventListener('click', () => document.getElementById('mobileMenu').classList.remove('open'));
+    document.querySelectorAll('.mobile-link').forEach(l => l.addEventListener('click', () => document.getElementById('mobileMenu').classList.remove('open')));
+
+    // Float animation for scroll indicator
+    const style = document.createElement('style');
+    style.textContent = '@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}';
+    document.head.appendChild(style);
+  </script>
+</body>
+</html>
