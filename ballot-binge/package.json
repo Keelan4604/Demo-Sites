@@ -1,0 +1,42 @@
+{
+  "name": "ballot-binge",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "build:cloudflare": "node_modules/.bin/opennextjs-cloudflare build",
+    "start": "next start",
+    "lint": "eslint",
+    "db:migrate": "npx prisma migrate dev",
+    "db:seed": "npx tsx scripts/seed.ts",
+    "db:reset": "npx prisma migrate reset --force && npx tsx scripts/seed.ts",
+    "db:studio": "npx prisma studio"
+  },
+  "dependencies": {
+    "@neondatabase/serverless": "^0.10.4",
+    "@prisma/adapter-neon": "^5.22.0",
+    "@prisma/client": "^5.22.0",
+    "dotenv": "^17.4.1",
+    "framer-motion": "^12.38.0",
+    "next": "16.2.3",
+    "prisma": "^5.22.0",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
+    "tsx": "^4.21.0",
+    "ws": "^8.20.0",
+    "zustand": "^5.0.12"
+  },
+  "devDependencies": {
+    "@opennextjs/cloudflare": "^1.18.1",
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.2.3",
+    "tailwindcss": "^4",
+    "typescript": "^5",
+    "wrangler": "^4.81.0"
+  }
+}
