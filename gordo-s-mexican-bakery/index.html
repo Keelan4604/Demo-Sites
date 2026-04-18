@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Gordo&#x27;s Mexican bakery | Cafe in Homewood, AL</title>
+<meta name="description" content="Gordo&#x27;s Mexican bakery is Homewood, AL's small-batch cafe. Espresso, pour-over, scratch-baked pastries, free WiFi, dog-friendly patio.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>body{font-family:'Inter',system-ui,sans-serif;}</style>
+<style>
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+  .reveal.is-visible { opacity: 1; transform: translateY(0); }
+  details > summary { list-style: none; cursor: pointer; }
+  details > summary::-webkit-details-marker { display: none; }
+  details[open] .faq-chev { transform: rotate(180deg); }
+  .faq-chev { transition: transform .25s ease; }
+</style>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
+    <link rel="apple-touch-icon" href="favicon.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"LocalBusiness","name":"Gordo&#x27;s Mexican bakery","aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","reviewCount":"127"},"review":[{"@type":"Review","author":{"@type":"Person","name":"Hannah W."},"reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5"},"reviewBody":"My neighborhood spot. Gordo&#x27;s Mexican bakery pulls the best espresso in Homewood and the baristas know my drink. The lavender latte is unreal."},{"@type":"Review","author":{"@type":"Person","name":"Diego R."},"reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5"},"reviewBody":"I work from here three days a week. Strong WiFi, real food, friendly staff who never rush you. The almond croissant is dangerous."},{"@type":"Review","author":{"@type":"Person","name":"Megan T."},"reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5"},"reviewBody":"Got a punch card on my second visit and they remembered my dog&#x27;s name on my third. This is what a coffee shop should feel like."}]}</script>
+</head>
+<body class="bg-white text-slate-800 antialiased">
+
+<!-- Sticky topbar with Keelan's phone CTA -->
+<div class="text-white text-sm font-semibold sticky top-0 z-50 shadow-md" style="background:#7c3a1d">
+  <div class="max-w-7xl mx-auto px-4 py-2 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
+    <span class="flex items-center gap-2">&#9749; Want this site live on your domain?</span>
+    <a href="tel:+16023762533" class="bg-white text-amber-900 px-4 py-1.5 rounded-full font-bold hover:bg-amber-50 transition inline-flex items-center gap-2">
+      &#9742; Call (602) 376-2533
+    </a>
+  </div>
+</div>
+
+<!-- Brand bar -->
+<nav class="bg-white border-b border-amber-100 sticky top-[72px] sm:top-[40px] z-40">
+  <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+    <a href="#top" class="flex items-center gap-2">
+      <div class="w-10 h-10 text-white rounded-full flex items-center justify-center font-black text-lg" style="background:#7c3a1d">G</div>
+      <div>
+        <div class="font-black text-slate-900 leading-none" style="font-family:'Playfair Display',serif">Gordo&#x27;s Mexican bakery</div>
+        <div class="text-xs text-slate-500">Homewood, AL</div>
+      </div>
+    </a>
+    <div class="hidden md:flex gap-6 text-sm font-semibold text-slate-700">
+      <a href="#menu" class="hover:text-amber-800">Menu</a>
+      <a href="#order" class="hover:text-amber-800">Order</a>
+      <a href="#loyalty" class="hover:text-amber-800">Loyalty</a>
+      <a href="#story" class="hover:text-amber-800">Our Roaster</a>
+      <a href="#visit" class="hover:text-amber-800">Visit</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero with live Open Now badge -->
+<header id="top" class="relative min-h-[640px] flex items-center"
+        style="background: linear-gradient(rgba(40,20,10,0.55), rgba(40,20,10,0.65)), url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1920&q=85') center/cover;">
+  <div class="max-w-7xl mx-auto px-4 py-20 text-white reveal text-center md:text-left">
+    <span id="open-status-badge" class="inline-flex items-center gap-2 bg-white/15 backdrop-blur px-3 py-1 rounded-full text-xs font-bold tracking-wider mb-5">
+      <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+      <span data-status>Checking hours...</span>
+    </span>
+    <h1 class="text-5xl sm:text-6xl md:text-7xl font-bold leading-tight mb-3 max-w-3xl" style="font-family:'Playfair Display',serif">
+      Gordo&#x27;s Mexican bakery
+    </h1>
+    <p class="text-lg sm:text-xl text-amber-100 max-w-2xl mb-8">Small-batch coffee, slow-laminated pastries, and a counter where your name gets remembered. Right here in Homewood, AL.</p>
+    <div class="flex flex-col sm:flex-row gap-3 justify-center md:justify-start">
+      <a href="#order" class="px-7 py-4 rounded-xl font-bold text-lg shadow-lg transition inline-flex items-center justify-center gap-2 text-slate-900" style="background:#fbbf24">
+        Order Pickup
+      </a>
+      <a href="#menu" class="bg-white/10 hover:bg-white/20 border border-white/30 text-white px-7 py-4 rounded-xl font-bold text-lg transition inline-flex items-center justify-center gap-2">
+        See the Menu
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- Today's drink specials -->
+<section class="py-16" style="background:#fffaf0">
+  <div class="max-w-6xl mx-auto px-4">
+    <div class="text-center mb-10 reveal">
+      <span class="font-bold text-sm tracking-wider" style="color:#7c3a1d">TODAY ON THE BOARD</span>
+      <h2 class="text-3xl sm:text-4xl font-black text-slate-900 mt-2" style="font-family:'Playfair Display',serif">Three drinks worth a trip.</h2>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+<div class="reveal bg-white rounded-2xl shadow-md hover:shadow-xl transition p-6 border border-amber-100">
+  <div class="flex justify-between items-baseline mb-2">
+    <h3 class="text-xl font-bold text-slate-900" style="font-family:'Playfair Display',serif">Honey Lavender Latte</h3>
+    <span class="text-lg font-black" style="color:#7c3a1d">$5.75</span>
+  </div>
+  <p class="text-slate-600 text-sm leading-relaxed">Local wildflower honey, organic lavender, double shot.</p>
+</div>
+<div class="reveal bg-white rounded-2xl shadow-md hover:shadow-xl transition p-6 border border-amber-100">
+  <div class="flex justify-between items-baseline mb-2">
+    <h3 class="text-xl font-bold text-slate-900" style="font-family:'Playfair Display',serif">Brown Butter Cold Brew</h3>
+    <span class="text-lg font-black" style="color:#7c3a1d">$5.50</span>
+  </div>
+  <p class="text-slate-600 text-sm leading-relaxed">16-hour cold brew, brown butter syrup, oat milk float.</p>
+</div>
+<div class="reveal bg-white rounded-2xl shadow-md hover:shadow-xl transition p-6 border border-amber-100">
+  <div class="flex justify-between items-baseline mb-2">
+    <h3 class="text-xl font-bold text-slate-900" style="font-family:'Playfair Display',serif">Maple Pecan Croissant</h3>
+    <span class="text-lg font-black" style="color:#7c3a1d">$4.95</span>
+  </div>
+  <p class="text-slate-600 text-sm leading-relaxed">House-laminated, salted maple glaze, candied pecans.</p>
+</div>
+    </div>
+  </div>
+</section>
+
+<!-- Full menu -->
+<section id="menu" class="py-20 bg-white">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="text-center mb-12 reveal">
+      <span class="font-bold text-sm tracking-wider" style="color:#7c3a1d">MENU</span>
+      <h2 class="text-3xl sm:text-4xl font-black text-slate-900 mt-2" style="font-family:'Playfair Display',serif">Espresso, brew, tea, and bakes.</h2>
+      <p class="text-slate-600 max-w-2xl mx-auto mt-3">Menu rotates seasonally. Ask your barista what's on the bar today.</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+<div class="reveal bg-white rounded-2xl border border-amber-100 p-6 shadow-sm">
+  <h3 class="text-2xl font-bold text-slate-900 mb-4 pb-3 border-b-2" style="font-family:'Playfair Display',serif;border-color:#d97706">Espresso</h3>
+  <div class="flex justify-between items-baseline border-b border-amber-100 pb-3 mb-3 last:border-0 last:pb-0 last:mb-0">
+  <div class="pr-3">
+    <div class="font-bold text-slate-900">Espresso</div>
+    <div class="text-xs text-slate-500 mt-0.5">Single origin, double shot.</div>
+  </div>
+  <span class="font-black whitespace-nowrap" style="color:#7c3a1d">$3.25</span>
+</div>
+<div class="flex justify-between items-baseline border-b border-amber-100 pb-3 mb-3 last:border-0 last:pb-0 last:mb-0">
+  <div class="pr-3">
+    <div class="font-bold text-slate-900">Macchiato</div>
+    <div class="text-xs text-slate-500 mt-0.5">Espresso, dollop of microfoam.</div>
+  </div>
+  <span class="font-black whitespace-nowrap" style="color:#7c3a1d">$3.75</span>
+</div>
+<div class="flex justify-between items-baseline border-b border-amber-100 pb-3 mb-3 last:border-0 last:pb-0 last:mb-0">
+  <div class="pr-3">
+    <div class="font-bold text-slate-900">Cortado</div>
+    <div class="text-xs text-slate-500 mt-0.5">Equal parts espresso + steamed milk.</div>
+  </div>
+  <span class="font-black whitespace-nowrap" style="color:#7c3a1d">$4.25</span>
+</div>
+<div class="flex justify-between items-baseline border-b border-amber-100 pb-3 mb-3 last:border-0 last:pb-0 last:mb-0">
+  <div class="pr-3">
+    <div class="font-bold text-slate-900">Latte</div>
+    <div class="text-xs text-slate-500 mt-0.5">Espresso, steamed milk, light foam.</div>
+  </div>
+  <span class="font-black whitespace-nowrap" style="color:#7c3a1d">$4.75</span>
+</div>
+<div class="flex justify-between items-baseline border-b border-amber-100 pb-3 mb-3 last:border-0 last:pb-0 last:mb-0">
+  <div class="pr-3">
+    <div class="font-bold text-slate-900">Cappuccino</div>
+    <div class="text-xs text-slate-500 mt-0.5">Espresso, equal milk + foam.</div>
+  </div>
+  <span class="font-black whitespace-nowrap" style="color:#7c3a1d">$4.50</span>
+</div>
+<div class="flex justify-between items-baseline border-b border-amber-100 pb-3 mb-3 last:border-0 last:pb-0 last:mb-0">
+  <div class="pr-3">
+    <div class="font-bold text-slate-900">Mocha</div>
+    <div class="text-xs text-slate-500 mt-0.5">Espresso, ganache, steamed milk.</div>
+  </div>
+  <span class="font-black whitespace-nowrap" style="color:#7c3a1d">$5.25</span>
+</div>
+</div>
+<div class="reveal bg-white rounded-2xl border border-amber-100 p-6 shadow-sm">
+  <h3 class="text-2xl font-bold text-slate-900 mb-4 pb-3 border-b-2" style="font-family:'Playfair Display',serif;border-color:#d97706">Coffee + Brunch</h3>
+  <div class="flex justify-between items-baseline border-b border-amber-100 pb-3 mb-3 last:border-0 last:pb-0 last:mb-0">
+  <div class="pr-3">
+    <div class="font-bold text-slate-900">Drip (12 oz)</div>
+    <div class="text-xs text-slate-500 mt-0.5">Daily roast rotation.</div>
+  </div>
+  <span class="font-black whitespace-nowrap" style="color:#7c3a1d">$3.00</span>
+</div>
+<div class="flex justify-between items-baseline border-b border-amber-100 pb-3 mb-3 last:border-0 last:pb-0 last:mb-0">
+  <div class="pr-3">
+    <div class="font-bold text-slate-900">Pour-over</div>
+    <div class="text-xs text-slate-500 mt-0.5">Hand-poured Chemex or V60.</div>
+  </div>
+  <span class="font-black whitespace-nowrap" style="color:#7c3a1d">$4.50</span>
+</div>
+<div class="flex justify-between items-baseline border-b border-amber-100 pb-3 mb-3 last:border-0 last:pb-0 last:mb-0">
+  <div class="pr-3">
+    <div class="font-bold text-slate-900">Cold Brew</div>
+    <div class="text-xs text-slate-500 mt-0.5">16-hour steeped, served over ice.</div>
+  </div>
+  <span class="font-black whitespace-nowrap" style="color:#7c3a1d">$4.75</span>
+</div>
+<div class="flex justify-between items-baseline border-b border-amber-100 pb-3 mb-3 last:border-0 last:pb-0 last:mb-0">
+  <div class="pr-3">
+    <div class="font-bold text-slate-900">Nitro Cold Brew</div>
+    <div class="text-xs text-slate-500 mt-0.5">Cascading nitrogen pour.</div>
+  </div>
+  <span class="font-black whitespace-nowrap" style="color:#7c3a1d">$5.25</span>
+</div>
+<div class="flex justify-between items-baseline border-b border-amber-100 pb-3 mb-3 last:border-0 last:pb-0 last:mb-0">
+  <div class="pr-3">
+    <div class="font-bold text-slate-900">French Press</div>
+    <div class="text-xs text-slate-500 mt-0.5">Two-cup press, full-bodied.</div>
+  </div>
+  <span class="font-black whitespace-nowrap" style="color:#7c3a1d">$4.75</span>
+</div>
+<div class="flex justify-between items-baseline border-b border-amber-100 pb-3 mb-3 last:border-0 last:pb-0 last:mb-0">
+  <div class="pr-3">
+    <div class="font-bold text-slate-900">Affogato</div>
+    <div class="text-xs text-slate-500 mt-0.5">Single shot over vanilla bean ice cream.</div>
+  </div>
+  <span class="font-black whitespace-nowrap" style="color:#7c3a1d">$5.50</span>
+</div>
+</div>
+<div class="reveal bg-white rounded-2xl border border-amber-100 p-6 shadow-sm">
+  <h3 class="text-2xl font-bold text-slate-900 mb-4 pb-3 border-b-2" style="font-family:'Playfair Display',serif;border-color:#d97706">Tea</h3>
+  <div class="flex justify-between items-baseline border-b border-amber-100 pb-3 mb-3 last:border-0 last:pb-0 last:mb-0">
+  <div class="pr-3">
+    <div class="font-bold text-slate-900">English Breakfast</div>
+    <div class="text-xs text-slate-500 mt-0.5">Robust black blend.</div>
+  </div>
+  <span class="font-black whitespace-nowrap" style="color:#7c3a1d">$3.25</span>
+</div>
+<div class="flex justify-between items-baseline border-b border-amber-100 pb-3 mb-3 last:border-0 last:pb-0 last:mb-0">
+  <div class="pr-3">
+    <div class="font-bold text-slate-900">Earl Grey</div>
+    <div class="text-xs text-slate-500 mt-0.5">Bergamot, citrus.</div>
+  </div>
+  <span class="font-black whitespace-nowrap" style="color:#7c3a1d">$3.25</span>
+</div>
+<div class="flex justify-between items-baseline border-b border-amber-100 pb-3 mb-3 last:border-0 last:pb-0 last:mb-0">
+  <div class="pr-3">
+    <div class="font-bold text-slate-900">Matcha Latte</div>
+    <div class="text-xs text-slate-500 mt-0.5">Ceremonial-grade matcha, oat milk.</div>
+  </div>
+  <span class="font-black whitespace-nowrap" style="color:#7c3a1d">$5.50</span>
+</div>
+<div class="flex justify-between items-baseline border-b border-amber-100 pb-3 mb-3 last:border-0 last:pb-0 last:mb-0">
+  <div class="pr-3">
+    <div class="font-bold text-slate-900">Chai Latte</div>
+    <div class="text-xs text-slate-500 mt-0.5">House-spiced, steamed milk.</div>
+  </div>
+  <span class="font-black whitespace-nowrap" style="color:#7c3a1d">$4.95</span>
+</div>
+<div class="flex justify-between items-baseline border-b border-amber-100 pb-3 mb-3 last:border-0 last:pb-0 last:mb-0">
+  <div class="pr-3">
+    <div class="font-bold text-slate-900">Genmaicha</div>
+    <div class="text-xs text-slate-500 mt-0.5">Toasted rice green tea.</div>
+  </div>
+  <span class="font-black whitespace-nowrap" style="color:#7c3a1d">$3.50</span>
+</div>
+<div class="flex justify-between items-baseline border-b border-amber-100 pb-3 mb-3 last:border-0 last:pb-0 last:mb-0">
+  <div class="pr-3">
+    <div class="font-bold text-slate-900">Hibiscus Iced</div>
+    <div class="text-xs text-slate-500 mt-0.5">Caffeine-free, refreshing.</div>
+  </div>
+  <span class="font-black whitespace-nowrap" style="color:#7c3a1d">$3.75</span>
+</div>
+</div>
+<div class="reveal bg-white rounded-2xl border border-amber-100 p-6 shadow-sm">
+  <h3 class="text-2xl font-bold text-slate-900 mb-4 pb-3 border-b-2" style="font-family:'Playfair Display',serif;border-color:#d97706">Pastries</h3>
+  <div class="flex justify-between items-baseline border-b border-amber-100 pb-3 mb-3 last:border-0 last:pb-0 last:mb-0">
+  <div class="pr-3">
+    <div class="font-bold text-slate-900">Butter Croissant</div>
+    <div class="text-xs text-slate-500 mt-0.5">Classic laminated, golden flake.</div>
+  </div>
+  <span class="font-black whitespace-nowrap" style="color:#7c3a1d">$3.75</span>
+</div>
+<div class="flex justify-between items-baseline border-b border-amber-100 pb-3 mb-3 last:border-0 last:pb-0 last:mb-0">
+  <div class="pr-3">
+    <div class="font-bold text-slate-900">Almond Croissant</div>
+    <div class="text-xs text-slate-500 mt-0.5">Twice-baked, almond cream filled.</div>
+  </div>
+  <span class="font-black whitespace-nowrap" style="color:#7c3a1d">$4.95</span>
+</div>
+<div class="flex justify-between items-baseline border-b border-amber-100 pb-3 mb-3 last:border-0 last:pb-0 last:mb-0">
+  <div class="pr-3">
+    <div class="font-bold text-slate-900">Blueberry Muffin</div>
+    <div class="text-xs text-slate-500 mt-0.5">Wild Maine blueberries.</div>
+  </div>
+  <span class="font-black whitespace-nowrap" style="color:#7c3a1d">$3.95</span>
+</div>
+<div class="flex justify-between items-baseline border-b border-amber-100 pb-3 mb-3 last:border-0 last:pb-0 last:mb-0">
+  <div class="pr-3">
+    <div class="font-bold text-slate-900">Avocado Toast</div>
+    <div class="text-xs text-slate-500 mt-0.5">Seeded sourdough, lemon, chili.</div>
+  </div>
+  <span class="font-black whitespace-nowrap" style="color:#7c3a1d">$8.95</span>
+</div>
+<div class="flex justify-between items-baseline border-b border-amber-100 pb-3 mb-3 last:border-0 last:pb-0 last:mb-0">
+  <div class="pr-3">
+    <div class="font-bold text-slate-900">Breakfast Burrito</div>
+    <div class="text-xs text-slate-500 mt-0.5">Eggs, cheddar, potato, salsa.</div>
+  </div>
+  <span class="font-black whitespace-nowrap" style="color:#7c3a1d">$9.50</span>
+</div>
+<div class="flex justify-between items-baseline border-b border-amber-100 pb-3 mb-3 last:border-0 last:pb-0 last:mb-0">
+  <div class="pr-3">
+    <div class="font-bold text-slate-900">Quiche Slice</div>
+    <div class="text-xs text-slate-500 mt-0.5">Daily rotation. Ask your barista.</div>
+  </div>
+  <span class="font-black whitespace-nowrap" style="color:#7c3a1d">$6.50</span>
+</div>
+</div>
+    </div>
+  </div>
+</section>
+
+<!-- Mobile order CTA buttons -->
+<section id="order" class="py-16 bg-slate-900 text-white">
+  <div class="max-w-5xl mx-auto px-4 text-center reveal">
+    <span class="text-amber-400 font-bold text-sm tracking-wider">ORDER AHEAD</span>
+    <h2 class="text-3xl sm:text-4xl font-black mt-2 mb-4" style="font-family:'Playfair Display',serif">Skip the line.</h2>
+    <p class="text-slate-300 mb-8 max-w-2xl mx-auto">Order in the app of your choice and we'll have it on the pickup shelf when you walk in.</p>
+    <!-- TODO(Keelan): swap each placeholder href with the client's real Toast/Square/website ordering link. -->
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+      <a href="#" class="bg-orange-500 hover:bg-orange-600 transition rounded-xl p-6 font-bold shadow-lg">
+        <div class="text-3xl mb-2">&#127869;</div>Order on Toast
+      </a>
+      <a href="#" class="bg-emerald-600 hover:bg-emerald-700 transition rounded-xl p-6 font-bold shadow-lg">
+        <div class="text-3xl mb-2">&#128190;</div>Order on Square
+      </a>
+      <a href="#" class="transition rounded-xl p-6 font-bold shadow-lg" style="background:#d97706;color:#1e1b18">
+        <div class="text-3xl mb-2">&#128722;</div>Order Online
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Loyalty program -->
+<section id="loyalty" class="py-20" style="background:#fffaf0">
+  <div class="max-w-5xl mx-auto px-4 grid md:grid-cols-2 gap-10 items-center">
+    <div class="reveal">
+      <span class="font-bold text-sm tracking-wider" style="color:#7c3a1d">LOYALTY PROGRAM</span>
+      <h2 class="text-3xl sm:text-4xl font-black text-slate-900 mt-2 mb-4" style="font-family:'Playfair Display',serif">Ten drinks. One on us.</h2>
+      <p class="text-slate-700 mb-5">Old-school punch card, no app, no email signup, no tracking. Get one stamp per drink. Eleventh drink is on the house, every time.</p>
+      <ul class="text-slate-700 space-y-2 text-sm mb-6">
+        <li class="flex gap-2"><span style="color:#7c3a1d">&#10004;</span> No app, no signup, no spam</li>
+        <li class="flex gap-2"><span style="color:#7c3a1d">&#10004;</span> Stamps stack across all drink sizes</li>
+        <li class="flex gap-2"><span style="color:#7c3a1d">&#10004;</span> Never expires (we mean it)</li>
+        <li class="flex gap-2"><span style="color:#7c3a1d">&#10004;</span> Birthday drink free, just show ID</li>
+      </ul>
+      <a href="#visit" class="inline-block px-6 py-3 rounded-xl font-bold text-white transition" style="background:#7c3a1d">Pick Up Your Card</a>
+    </div>
+    <div class="reveal bg-white rounded-2xl p-6 shadow-lg border border-amber-100">
+      <div class="text-xs uppercase tracking-widest text-slate-500 mb-3">Punch Card Preview</div>
+      <div class="grid grid-cols-5 gap-3">
+        <div class="aspect-square rounded-full border-2 flex items-center justify-center font-bold text-white" style="border-color:#d97706;background:#7c3a1d">1</div>
+        <div class="aspect-square rounded-full border-2 flex items-center justify-center font-bold text-white" style="border-color:#d97706;background:#7c3a1d">2</div>
+        <div class="aspect-square rounded-full border-2 flex items-center justify-center font-bold text-white" style="border-color:#d97706;background:#7c3a1d">3</div>
+        <div class="aspect-square rounded-full border-2 flex items-center justify-center font-bold text-slate-300" style="border-color:#d97706;"></div>
+        <div class="aspect-square rounded-full border-2 flex items-center justify-center font-bold text-slate-300" style="border-color:#d97706;"></div>
+        <div class="aspect-square rounded-full border-2 flex items-center justify-center font-bold text-slate-300" style="border-color:#d97706;"></div>
+        <div class="aspect-square rounded-full border-2 flex items-center justify-center font-bold text-slate-300" style="border-color:#d97706;"></div>
+        <div class="aspect-square rounded-full border-2 flex items-center justify-center font-bold text-slate-300" style="border-color:#d97706;"></div>
+        <div class="aspect-square rounded-full border-2 flex items-center justify-center font-bold text-slate-300" style="border-color:#d97706;"></div>
+        <div class="aspect-square rounded-full border-2 flex items-center justify-center font-bold text-slate-300" style="border-color:#d97706;"></div>
+      </div>
+      <p class="text-xs text-slate-500 text-center mt-4">Three down, seven to go. Eleventh is on us.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Meet the roaster story -->
+<section id="story" class="py-20 bg-white">
+  <div class="max-w-7xl mx-auto px-4 grid md:grid-cols-2 gap-10 items-center">
+    <div class="reveal">
+      <span class="font-bold text-sm tracking-wider" style="color:#7c3a1d">MEET THE ROASTER</span>
+      <h2 class="text-3xl sm:text-4xl font-black text-slate-900 mt-2 mb-4" style="font-family:'Playfair Display',serif">From farm gate to your cup.</h2>
+      <p class="text-slate-700 mb-4 leading-relaxed">Our beans come from a small roastery a short drive from Homewood, AL, run by a husband-and-wife team who source direct from farms in Ethiopia, Guatemala, and Colombia. They roast in small batches twice a week, so the beans you sip today were green coffee beans seven days ago.</p>
+      <p class="text-slate-700 mb-6 leading-relaxed">No middlemen. No mystery blends. Every bag tells you the farm, the elevation, the roast date, and the cupping notes. We pick the lots that taste like a place, and we change the menu when the seasons change.</p>
+      <a href="#menu" class="inline-block px-6 py-3 rounded-xl font-bold text-white transition" style="background:#7c3a1d">See What's on the Bar</a>
+    </div>
+    <figure class="reveal aspect-[4/3] rounded-2xl overflow-hidden shadow-lg">
+      <img src="https://images.unsplash.com/photo-1559056199-641a0ac8b55e?auto=format&fit=crop&w=1200&q=85" alt="Roaster at work" loading="lazy" class="w-full h-full object-cover" />
+    </figure>
+  </div>
+</section>
+
+<!-- Gallery -->
+<section class="py-20" style="background:#fffaf0">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="text-center mb-10 reveal">
+      <span class="font-bold text-sm tracking-wider" style="color:#7c3a1d">INSIDE THE SHOP</span>
+      <h2 class="text-3xl sm:text-4xl font-black text-slate-900 mt-2" style="font-family:'Playfair Display',serif">A look around.</h2>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+<figure class="reveal aspect-square rounded-xl overflow-hidden shadow-sm">
+  <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=800&q=80" alt="Gordo&#x27;s Mexican bakery cafe photo 1" loading="lazy" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+</figure>
+<figure class="reveal aspect-square rounded-xl overflow-hidden shadow-sm">
+  <img src="https://images.unsplash.com/photo-1559056199-641a0ac8b55e?auto=format&fit=crop&w=800&q=80" alt="Gordo&#x27;s Mexican bakery cafe photo 2" loading="lazy" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+</figure>
+<figure class="reveal aspect-square rounded-xl overflow-hidden shadow-sm">
+  <img src="https://images.unsplash.com/photo-1453614512568-c4024d13c247?auto=format&fit=crop&w=800&q=80" alt="Gordo&#x27;s Mexican bakery cafe photo 3" loading="lazy" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+</figure>
+<figure class="reveal aspect-square rounded-xl overflow-hidden shadow-sm">
+  <img src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&fit=crop&w=800&q=80" alt="Gordo&#x27;s Mexican bakery cafe photo 4" loading="lazy" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+</figure>
+<figure class="reveal aspect-square rounded-xl overflow-hidden shadow-sm">
+  <img src="https://images.unsplash.com/photo-1521017432531-fbd92d768814?auto=format&fit=crop&w=800&q=80" alt="Gordo&#x27;s Mexican bakery cafe photo 5" loading="lazy" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+</figure>
+<figure class="reveal aspect-square rounded-xl overflow-hidden shadow-sm">
+  <img src="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?auto=format&fit=crop&w=800&q=80" alt="Gordo&#x27;s Mexican bakery cafe photo 6" loading="lazy" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+</figure>
+    </div>
+  </div>
+</section>
+
+<!-- Parking + WiFi info strip -->
+<section class="py-12 bg-white border-y border-amber-100">
+  <div class="max-w-6xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
+    <div class="reveal p-4">
+      <div class="text-3xl mb-2">&#128663;</div>
+      <h4 class="font-bold text-slate-900">Free parking</h4>
+      <p class="text-sm text-slate-600 mt-1">Lot in front + street parking on the side. Two-hour limit posted.</p>
+    </div>
+    <div class="reveal p-4">
+      <div class="text-3xl mb-2">&#128246;</div>
+      <h4 class="font-bold text-slate-900">Strong WiFi</h4>
+      <p class="text-sm text-slate-600 mt-1">Gigabit fiber, multiple access points, password posted at the bar.</p>
+    </div>
+    <div class="reveal p-4">
+      <div class="text-3xl mb-2">&#128054;</div>
+      <h4 class="font-bold text-slate-900">Dog friendly patio</h4>
+      <p class="text-sm text-slate-600 mt-1">Water bowls and treats by the door. Leashed pups always welcome.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Hours table + Visit + map -->
+<section id="visit" class="py-20" style="background:#fffaf0">
+  <div class="max-w-7xl mx-auto px-4 grid md:grid-cols-2 gap-10 items-start">
+    <div class="reveal">
+      <span class="font-bold text-sm tracking-wider" style="color:#7c3a1d">VISIT US</span>
+      <h2 class="text-3xl sm:text-4xl font-black text-slate-900 mt-2 mb-4" style="font-family:'Playfair Display',serif">See you at the bar.</h2>
+      <p class="text-slate-700 mb-4">Homewood, AL</p>
+      <table class="w-full text-sm text-slate-700 mb-6 border-t border-amber-100">
+        <tbody>
+          <tr class="border-b border-amber-100"><td class="py-2 font-semibold">Mon - Fri</td><td class="py-2 text-right">6:30am - 6:00pm</td></tr>
+          <tr class="border-b border-amber-100"><td class="py-2 font-semibold">Saturday</td><td class="py-2 text-right">7:00am - 5:00pm</td></tr>
+          <tr class="border-b border-amber-100"><td class="py-2 font-semibold">Sunday</td><td class="py-2 text-right">7:00am - 5:00pm</td></tr>
+          <tr><td class="py-2 font-semibold">Holidays</td><td class="py-2 text-right text-slate-500">Posted on Instagram</td></tr>
+        </tbody>
+      </table>
+      <a href="tel:+16023762533" class="inline-block px-6 py-3 rounded-xl font-bold text-white transition" style="background:#7c3a1d">Call: (602) 376-2533</a>
+    </div>
+    <div class="reveal h-96 rounded-2xl overflow-hidden shadow-lg">
+      <iframe src="https://www.google.com/maps?q=Homewood,+AL&output=embed" class="w-full h-full border-0" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Service area map for Homewood, AL"></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- Instagram embed placeholder -->
+<section class="py-16 bg-white">
+  <div class="max-w-5xl mx-auto px-4 text-center">
+    <span class="font-bold text-sm tracking-wider" style="color:#7c3a1d">FOLLOW ALONG</span>
+    <h2 class="text-3xl font-black text-slate-900 mt-2 mb-6" style="font-family:'Playfair Display',serif">@gordo-s-mexican-bakery</h2>
+    <!-- TODO(Keelan): replace this Instagram placeholder with a real embed (LightWidget free, or Elfsight Instagram Feed). -->
+    <div class="reveal bg-gradient-to-br from-amber-50 to-orange-100 rounded-2xl p-12 border-2 border-dashed border-amber-300">
+      <div class="text-5xl mb-4">&#128247;</div>
+      <p class="text-slate-700 font-semibold">Instagram feed will render here once the LightWidget or Elfsight Instagram embed is connected.</p>
+      <p class="text-sm text-slate-500 mt-3">Free widget: lightwidget.com or elfsight.com/instagram-feed-widget</p>
+    </div>
+  </div>
+</section>
+
+<!-- Reviews -->
+<section id="reviews" class="py-20" style="background:#fffaf0">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="text-center mb-12 reveal">
+      <span class="font-bold text-sm tracking-wider" style="color:#7c3a1d">REVIEWS</span>
+      <h2 class="text-3xl sm:text-4xl font-black text-slate-900 mt-2" style="font-family:'Playfair Display',serif">Regulars say it best.</h2>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<figure class="reveal bg-white p-6 rounded-2xl shadow border border-amber-100">
+  <div class="text-amber-400 mb-3">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+  <blockquote class="text-slate-700 italic mb-4">"My neighborhood spot. Gordo's Mexican bakery pulls the best espresso in Homewood and the baristas know my drink. The lavender latte is unreal."</blockquote>
+  <figcaption class="text-sm font-semibold text-slate-900">Hannah W.</figcaption>
+</figure>
+<figure class="reveal bg-white p-6 rounded-2xl shadow border border-amber-100">
+  <div class="text-amber-400 mb-3">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+  <blockquote class="text-slate-700 italic mb-4">"I work from here three days a week. Strong WiFi, real food, friendly staff who never rush you. The almond croissant is dangerous."</blockquote>
+  <figcaption class="text-sm font-semibold text-slate-900">Diego R.</figcaption>
+</figure>
+<figure class="reveal bg-white p-6 rounded-2xl shadow border border-amber-100">
+  <div class="text-amber-400 mb-3">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+  <blockquote class="text-slate-700 italic mb-4">"Got a punch card on my second visit and they remembered my dog's name on my third. This is what a coffee shop should feel like."</blockquote>
+  <figcaption class="text-sm font-semibold text-slate-900">Megan T.</figcaption>
+</figure>
+    </div>
+    <div class="mt-12">
+      <section id="google-reviews" class="py-16 md:py-24" style="background:#fffaf0">
+  <div class="max-w-5xl mx-auto px-5">
+    <div class="text-center max-w-2xl mx-auto mb-12 fade-up"><span class="inline-block uppercase tracking-widest text-xs font-semibold mb-3" style="color:#7c3a1d">Live Google Reviews</span><h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-3" style="font-family:'Playfair Display',serif">Real reviews, pulled from Google</h2><p class="text-slate-600 text-lg">Synced live from Gordo&amp;#x27;s Mexican bakery&#x27;s Google Business Profile.</p></div>
+    <!-- Elfsight Google Reviews widget. Free tier up to 200 page views / widget / month. -->
+    <script src="https://static.elfsight.com/platform/platform.js" async></script>
+    <div class="elfsight-app-YOUR-WIDGET-ID" data-elfsight-app-lazy></div>
+    <p class="mt-4 text-center text-xs text-slate-500">
+      Widget ID placeholder. Swap <code>YOUR-WIDGET-ID</code> in the page source with the real Elfsight ID once the GBP is connected.
+    </p>
+  </div>
+</section>
+
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="py-20 bg-white">
+  <div class="max-w-3xl mx-auto px-4">
+    <div class="text-center mb-10 reveal">
+      <span class="font-bold text-sm tracking-wider" style="color:#7c3a1d">FAQ</span>
+      <h2 class="text-3xl sm:text-4xl font-black text-slate-900 mt-2" style="font-family:'Playfair Display',serif">Good to know.</h2>
+    </div>
+    <div class="space-y-3">
+<details class="reveal group bg-white rounded-xl border border-amber-100 p-5 open:shadow-md">
+  <summary class="flex justify-between items-center font-semibold text-slate-900">
+    <span>Do you have oat milk and other non-dairy options?</span>
+    <span class="faq-chev ml-4" style="color:#7c3a1d">&#9660;</span>
+  </summary>
+  <p class="mt-3 text-slate-600 leading-relaxed">Yes. Oat, almond, soy, and coconut on the bar at no extra charge. House oat is our default for matcha.</p>
+</details>
+<details class="reveal group bg-white rounded-xl border border-amber-100 p-5 open:shadow-md">
+  <summary class="flex justify-between items-center font-semibold text-slate-900">
+    <span>Do you serve decaf?</span>
+    <span class="faq-chev ml-4" style="color:#7c3a1d">&#9660;</span>
+  </summary>
+  <p class="mt-3 text-slate-600 leading-relaxed">Yes, single-origin decaffeinated by the Swiss Water process. Available for any espresso drink or as drip on request.</p>
+</details>
+<details class="reveal group bg-white rounded-xl border border-amber-100 p-5 open:shadow-md">
+  <summary class="flex justify-between items-center font-semibold text-slate-900">
+    <span>How do you handle allergens?</span>
+    <span class="faq-chev ml-4" style="color:#7c3a1d">&#9660;</span>
+  </summary>
+  <p class="mt-3 text-slate-600 leading-relaxed">We bake in a shared kitchen but mark gluten-free, vegan, and nut-containing items on the case. Tell your barista about severe allergies.</p>
+</details>
+<details class="reveal group bg-white rounded-xl border border-amber-100 p-5 open:shadow-md">
+  <summary class="flex justify-between items-center font-semibold text-slate-900">
+    <span>What's the WiFi password?</span>
+    <span class="faq-chev ml-4" style="color:#7c3a1d">&#9660;</span>
+  </summary>
+  <p class="mt-3 text-slate-600 leading-relaxed">It changes monthly and is posted on a small chalkboard by the bar. Ask any team member.</p>
+</details>
+<details class="reveal group bg-white rounded-xl border border-amber-100 p-5 open:shadow-md">
+  <summary class="flex justify-between items-center font-semibold text-slate-900">
+    <span>Are laptops welcome all day?</span>
+    <span class="faq-chev ml-4" style="color:#7c3a1d">&#9660;</span>
+  </summary>
+  <p class="mt-3 text-slate-600 leading-relaxed">Anytime except Saturday and Sunday from 9am to noon, when we ask laptop users to wrap up so seating opens for our brunch crowd.</p>
+</details>
+<details class="reveal group bg-white rounded-xl border border-amber-100 p-5 open:shadow-md">
+  <summary class="flex justify-between items-center font-semibold text-slate-900">
+    <span>Do you cater meetings or events?</span>
+    <span class="faq-chev ml-4" style="color:#7c3a1d">&#9660;</span>
+  </summary>
+  <p class="mt-3 text-slate-600 leading-relaxed">Yes. Coffee boxes, pastry trays, and full barista bar service. 48-hour notice preferred. Use the form below or call us.</p>
+</details>
+<details class="reveal group bg-white rounded-xl border border-amber-100 p-5 open:shadow-md">
+  <summary class="flex justify-between items-center font-semibold text-slate-900">
+    <span>Do you sell gift cards?</span>
+    <span class="faq-chev ml-4" style="color:#7c3a1d">&#9660;</span>
+  </summary>
+  <p class="mt-3 text-slate-600 leading-relaxed">Physical and digital, in any amount $10 and up. Buy at the register or through the order form.</p>
+</details>
+<details class="reveal group bg-white rounded-xl border border-amber-100 p-5 open:shadow-md">
+  <summary class="flex justify-between items-center font-semibold text-slate-900">
+    <span>Is your patio dog friendly?</span>
+    <span class="faq-chev ml-4" style="color:#7c3a1d">&#9660;</span>
+  </summary>
+  <p class="mt-3 text-slate-600 leading-relaxed">Absolutely. The patio is leash-friendly and we keep a water bowl by the door. Treats live behind the espresso machine.</p>
+</details>
+    </div>
+  </div>
+</section>
+
+<!-- Catering / contact form -->
+<section id="contact" class="py-20 text-white" style="background:#7c3a1d">
+  <div class="max-w-3xl mx-auto px-4">
+    <div class="text-center mb-10 reveal">
+      <span class="text-amber-200 font-bold text-sm tracking-wider">CATERING + EVENTS</span>
+      <h2 class="text-3xl sm:text-4xl font-black mt-2" style="font-family:'Playfair Display',serif">Coffee for your meeting or event.</h2>
+      <p class="text-amber-100 mt-3">48 hours notice preferred. We deliver coffee boxes, pastry trays, and full barista bar service.</p>
+    </div>
+    <!-- TODO(Keelan): replace the YOUR-WEB3FORMS-KEY-HERE access_key below with the real Web3Forms access key for this client. Sign up free at web3forms.com. -->
+    <form action="https://api.web3forms.com/submit" method="POST" class="reveal grid grid-cols-1 sm:grid-cols-2 gap-4 bg-white text-slate-800 p-6 sm:p-8 rounded-2xl shadow-lg">
+      <input type="hidden" name="access_key" value="YOUR-WEB3FORMS-KEY-HERE" />
+      <input type="hidden" name="subject" value="Catering inquiry - Gordo&#x27;s Mexican bakery" />
+      <input required name="name" placeholder="Your name" class="px-4 py-3 rounded-lg border border-amber-200 focus:outline-none focus:ring-2 focus:ring-amber-700" />
+      <input required type="tel" name="phone" placeholder="Phone" class="px-4 py-3 rounded-lg border border-amber-200 focus:outline-none focus:ring-2 focus:ring-amber-700" />
+      <input required type="email" name="email" placeholder="Email" class="sm:col-span-2 px-4 py-3 rounded-lg border border-amber-200 focus:outline-none focus:ring-2 focus:ring-amber-700" />
+      <input required type="date" name="event_date" class="px-4 py-3 rounded-lg border border-amber-200 focus:outline-none focus:ring-2 focus:ring-amber-700" />
+      <input required type="number" min="5" name="guests" placeholder="Guest count" class="px-4 py-3 rounded-lg border border-amber-200 focus:outline-none focus:ring-2 focus:ring-amber-700" />
+      <textarea name="details" rows="3" placeholder="Tell us about your event" class="sm:col-span-2 px-4 py-3 rounded-lg border border-amber-200 focus:outline-none focus:ring-2 focus:ring-amber-700"></textarea>
+      <button type="submit" class="sm:col-span-2 text-white font-bold py-4 rounded-xl text-lg transition shadow-lg" style="background:#0f172a">Send Catering Request</button>
+    </form>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-stone-950 text-amber-100 py-14 pb-32 md:pb-14">
+  <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8">
+    <div>
+      <div class="text-2xl font-bold mb-3" style="font-family:'Playfair Display',serif">Gordo&#x27;s Mexican bakery</div>
+      <p class="text-sm text-amber-200/70">Homewood, AL's neighborhood cafe. Small-batch coffee, scratch-baked pastries, and a strong WiFi signal.</p>
+    </div>
+    <div>
+      <h4 class="text-white font-bold mb-3">Visit</h4>
+      <p class="text-sm">Homewood, AL</p>
+      <p class="text-sm mt-3 text-amber-200/70">Mon-Fri 6:30am-6pm | Sat-Sun 7am-5pm</p>
+      <p class="text-sm mt-3"><a href="tel:+16023762533" class="hover:text-white">(602) 376-2533</a></p>
+    </div>
+    <div>
+      <h4 class="text-white font-bold mb-3">Quick Links</h4>
+      <ul class="text-sm space-y-1">
+        <li><a href="#menu" class="hover:text-white">Menu</a></li>
+        <li><a href="#order" class="hover:text-white">Order Ahead</a></li>
+        <li><a href="#loyalty" class="hover:text-white">Loyalty</a></li>
+        <li><a href="#contact" class="hover:text-white">Catering</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 class="text-white font-bold mb-3">Follow</h4>
+      <div class="flex gap-3 text-amber-200 text-lg">
+        <a href="#" aria-label="Instagram" class="hover:text-white">IG</a>
+        <a href="#" aria-label="Facebook" class="hover:text-white">f</a>
+        <a href="#" aria-label="TikTok" class="hover:text-white">TT</a>
+      </div>
+    </div>
+  </div>
+  <div class="max-w-7xl mx-auto px-4 mt-10 pt-6 border-t border-stone-800 text-xs text-amber-200/50 flex flex-col sm:flex-row justify-between gap-2">
+    <span>&copy; 2026 Gordo&#x27;s Mexican bakery. All rights reserved.</span>
+    <span>Demo site by <a href="https://keelanodoherty.com" class="hover:text-white">Keelan O'Doherty</a> | (602) 376-2533</span>
+  </div>
+</footer>
+
+<!-- Open / Closed live status badge JS. Hardcoded weekly schedule. -->
+<script>
+(function(){
+  var schedule = {
+    0: [7, 17],   // Sun
+    1: [6.5, 18], // Mon
+    2: [6.5, 18],
+    3: [6.5, 18],
+    4: [6.5, 18],
+    5: [6.5, 18], // Fri
+    6: [7, 17],   // Sat
+  };
+  var now = new Date();
+  var dow = now.getDay();
+  var hr = now.getHours() + now.getMinutes() / 60;
+  var slot = schedule[dow];
+  var label = document.querySelector('#open-status-badge [data-status]');
+  var dot = document.querySelector('#open-status-badge span:first-child');
+  if (!label) return;
+  if (slot && hr >= slot[0] && hr < slot[1]) {
+    var close = slot[1];
+    var closeLabel = (close > 12 ? (close - 12) + 'pm' : close + 'am');
+    label.textContent = 'Open now until ' + closeLabel;
+    if (dot) dot.style.background = '#34d399';
+  } else {
+    label.textContent = 'Closed now. Back at 6:30am.';
+    if (dot) dot.style.background = '#f87171';
+  }
+})();
+</script>
+
+<div class="fixed bottom-0 left-0 right-0 z-40 grid grid-cols-3 md:hidden bg-slate-900 text-white shadow-2xl">
+  <a href="tel:+16023762533" class="flex flex-col items-center justify-center py-3 hover:bg-slate-800 transition">
+    <span class="text-xl">&#9742;</span>
+    <span class="text-xs font-semibold mt-1">Call</span>
+  </a>
+  <a href="sms:+16023762533" class="flex flex-col items-center justify-center py-3 border-x border-slate-700 hover:bg-slate-800 transition">
+    <span class="text-xl">&#128172;</span>
+    <span class="text-xs font-semibold mt-1">Text</span>
+  </a>
+  <a href="https://www.google.com/maps/dir/?api=1&destination=Homewood,+AL" target="_blank" rel="noopener" class="flex flex-col items-center justify-center py-3 hover:bg-slate-800 transition">
+    <span class="text-xl">&#128205;</span>
+    <span class="text-xs font-semibold mt-1">Directions</span>
+  </a>
+</div>
+<script>
+(function(){
+  const els = document.querySelectorAll('.reveal');
+  if (!('IntersectionObserver' in window)) {
+    els.forEach(e => e.classList.add('is-visible'));
+    return;
+  }
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(en => {
+      if (en.isIntersecting) {
+        en.target.classList.add('is-visible');
+        obs.unobserve(en.target);
+      }
+    });
+  }, {threshold: 0.12});
+  els.forEach(e => obs.observe(e));
+})();
+</script>
+
+</body>
+</html>

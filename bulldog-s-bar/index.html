@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Bulldog&#x27;s Bar | Bar in Atlanta, GA</title>
+<meta name="description" content="Bulldog&#x27;s Bar is Atlanta, GA's neighborhood bar. 18 taps, full cocktail program, weekly trivia and live music. 21+.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>body{font-family:'Inter',system-ui,sans-serif;background:#0f172a;}</style>
+<style>
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+  .reveal.is-visible { opacity: 1; transform: translateY(0); }
+  details > summary { list-style: none; cursor: pointer; }
+  details > summary::-webkit-details-marker { display: none; }
+  details[open] .faq-chev { transform: rotate(180deg); }
+  .faq-chev { transition: transform .25s ease; }
+</style>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
+    <link rel="apple-touch-icon" href="favicon.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"LocalBusiness","name":"Bulldog&#x27;s Bar","aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","reviewCount":"127"},"review":[{"@type":"Review","author":{"@type":"Person","name":"Alex P."},"reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5"},"reviewBody":"My favorite bar in Atlanta. The Old Fashioned is textbook, the trivia is mean (in a good way), and the bartenders actually know how to make a Negroni."},{"@type":"Review","author":{"@type":"Person","name":"Sloan M."},"reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5"},"reviewBody":"Booked the back room for my 30th. Bartender built a custom cocktail menu for the night, food spread was generous, my friends still talk about it."},{"@type":"Review","author":{"@type":"Person","name":"Reese K."},"reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5"},"reviewBody":"Live music Thursdays is the move. Sound is great, sightlines are great, and the kitchen serves until close. Rare combo."}]}</script>
+</head>
+<body class="bg-slate-900 text-slate-200 antialiased">
+
+<!-- Sticky topbar -->
+<div class="bg-amber-600 text-slate-900 text-sm font-semibold sticky top-0 z-50 shadow-md">
+  <div class="max-w-7xl mx-auto px-4 py-2 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
+    <span>&#127866; Want this site live on your domain?</span>
+    <a href="tel:+16023762533" class="bg-slate-900 text-amber-300 px-4 py-1.5 rounded-full font-bold hover:bg-slate-800 transition inline-flex items-center gap-2">
+      &#9742; Call (602) 376-2533
+    </a>
+  </div>
+</div>
+
+<!-- Brand bar -->
+<nav class="bg-slate-900 border-b border-slate-800 sticky top-[72px] sm:top-[40px] z-40">
+  <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+    <a href="#top" class="flex items-center gap-2">
+      <div class="w-10 h-10 bg-amber-500 text-slate-900 rounded-lg flex items-center justify-center font-black text-lg">B</div>
+      <div>
+        <div class="font-black text-amber-100 leading-none" style="font-family:'Playfair Display',serif">Bulldog&#x27;s Bar</div>
+        <div class="text-xs text-slate-400">Atlanta, GA | 21+</div>
+      </div>
+    </a>
+    <div class="hidden md:flex gap-6 text-sm font-semibold text-slate-300">
+      <a href="#drinks" class="hover:text-amber-300">Drinks</a>
+      <a href="#happy-hour" class="hover:text-amber-300">Happy Hour</a>
+      <a href="#events" class="hover:text-amber-300">Events</a>
+      <a href="#private" class="hover:text-amber-300">Private Events</a>
+      <a href="#visit" class="hover:text-amber-300">Visit</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Dark hero -->
+<header id="top" class="relative min-h-[640px] flex items-center bg-slate-900"
+        style="background: linear-gradient(rgba(15,23,42,0.78), rgba(15,23,42,0.85)), url('https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=1920&q=85') center/cover;">
+  <div class="max-w-7xl mx-auto px-4 py-20 text-amber-100 reveal">
+    <span id="open-status-badge" class="inline-flex items-center gap-2 bg-white/10 backdrop-blur px-3 py-1 rounded-full text-xs font-bold tracking-wider mb-5">
+      <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+      <span data-status>Checking hours...</span>
+    </span>
+    <h1 class="text-5xl sm:text-6xl md:text-7xl font-bold leading-tight mb-3 max-w-3xl text-amber-50" style="font-family:'Playfair Display',serif">
+      Bulldog&#x27;s Bar
+    </h1>
+    <p class="text-lg sm:text-xl text-slate-300 max-w-2xl mb-8">Atlanta, GA's neighborhood bar. Honest pours, killer trivia, and a kitchen that stays open until last call.</p>
+    <div class="flex flex-col sm:flex-row gap-3">
+      <a href="#drinks" class="bg-amber-500 hover:bg-amber-400 text-slate-900 px-7 py-4 rounded-xl font-black text-lg shadow-lg transition inline-flex items-center justify-center gap-2">
+        See the Drink List
+      </a>
+      <a href="#private" class="bg-white/5 hover:bg-white/15 border border-white/30 text-amber-100 px-7 py-4 rounded-xl font-bold text-lg transition inline-flex items-center justify-center gap-2">
+        Book Private Event
+      </a>
+    </div>
+    <div class="mt-8 flex flex-wrap gap-4 text-sm text-slate-300">
+      <span>&#10004; 18 beers on tap</span>
+      <span>&#10004; Full kitchen until close</span>
+      <span>&#10004; Live music + trivia</span>
+    </div>
+  </div>
+</header>
+
+<!-- Happy hour countdown -->
+<section id="happy-hour" class="py-14 bg-amber-600 text-slate-900">
+  <div class="max-w-5xl mx-auto px-4 text-center reveal">
+    <span class="font-black text-sm tracking-wider">HAPPY HOUR</span>
+    <h2 class="text-3xl sm:text-4xl font-black mt-1" style="font-family:'Playfair Display',serif">$5 drafts. $7 wells. 4-7pm daily.</h2>
+    <p class="mt-3 text-slate-800">Plus half-price wings and $1 off every cocktail on the menu.</p>
+    <div id="happy-countdown" class="mt-6 inline-flex gap-3 bg-slate-900 text-amber-300 px-6 py-4 rounded-2xl shadow-xl font-mono text-lg">
+      <span class="font-bold">Happy hour starts in:</span>
+      <span data-countdown class="font-black">--:--:--</span>
+    </div>
+  </div>
+</section>
+
+<!-- Drink menu -->
+<section id="drinks" class="py-20 bg-slate-900">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="text-center mb-12 reveal">
+      <span class="text-amber-400 font-bold text-sm tracking-wider">DRINK MENU</span>
+      <h2 class="text-3xl sm:text-4xl font-black text-amber-100 mt-2" style="font-family:'Playfair Display',serif">Pour, sip, repeat.</h2>
+      <p class="text-slate-400 max-w-2xl mx-auto mt-3">Cocktails are made to order with fresh juice and quality spirits. Beer list rotates weekly.</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+<div class="reveal bg-slate-800/60 backdrop-blur rounded-2xl border border-slate-700 p-6 shadow">
+  <h3 class="text-2xl font-bold text-amber-300 mb-4 pb-3 border-b-2 border-amber-500" style="font-family:'Playfair Display',serif">Cocktails</h3>
+  <div class="flex justify-between items-baseline border-b border-slate-700 pb-3 mb-3 last:border-0 last:pb-0 last:mb-0">
+  <div class="pr-3">
+    <div class="font-bold text-amber-100">Old Fashioned</div>
+    <div class="text-xs text-slate-400 mt-0.5">Bourbon, demerara, bitters, orange.</div>
+  </div>
+  <span class="font-black whitespace-nowrap text-amber-400">$12</span>
+</div>
+<div class="flex justify-between items-baseline border-b border-slate-700 pb-3 mb-3 last:border-0 last:pb-0 last:mb-0">
+  <div class="pr-3">
+    <div class="font-bold text-amber-100">Smoked Manhattan</div>
+    <div class="text-xs text-slate-400 mt-0.5">Rye, vermouth, applewood smoke.</div>
+  </div>
+  <span class="font-black whitespace-nowrap text-amber-400">$14</span>
+</div>
+<div class="flex justify-between items-baseline border-b border-slate-700 pb-3 mb-3 last:border-0 last:pb-0 last:mb-0">
+  <div class="pr-3">
+    <div class="font-bold text-amber-100">Spicy Margarita</div>
+    <div class="text-xs text-slate-400 mt-0.5">Reposado, lime, jalapeno, chili salt.</div>
+  </div>
+  <span class="font-black whitespace-nowrap text-amber-400">$11</span>
+</div>
+<div class="flex justify-between items-baseline border-b border-slate-700 pb-3 mb-3 last:border-0 last:pb-0 last:mb-0">
+  <div class="pr-3">
+    <div class="font-bold text-amber-100">Penicillin</div>
+    <div class="text-xs text-slate-400 mt-0.5">Scotch, ginger, honey, lemon.</div>
+  </div>
+  <span class="font-black whitespace-nowrap text-amber-400">$13</span>
+</div>
+<div class="flex justify-between items-baseline border-b border-slate-700 pb-3 mb-3 last:border-0 last:pb-0 last:mb-0">
+  <div class="pr-3">
+    <div class="font-bold text-amber-100">Espresso Martini</div>
+    <div class="text-xs text-slate-400 mt-0.5">Vodka, cold brew, vanilla.</div>
+  </div>
+  <span class="font-black whitespace-nowrap text-amber-400">$12</span>
+</div>
+<div class="flex justify-between items-baseline border-b border-slate-700 pb-3 mb-3 last:border-0 last:pb-0 last:mb-0">
+  <div class="pr-3">
+    <div class="font-bold text-amber-100">Negroni</div>
+    <div class="text-xs text-slate-400 mt-0.5">Gin, Campari, sweet vermouth.</div>
+  </div>
+  <span class="font-black whitespace-nowrap text-amber-400">$11</span>
+</div>
+</div>
+<div class="reveal bg-slate-800/60 backdrop-blur rounded-2xl border border-slate-700 p-6 shadow">
+  <h3 class="text-2xl font-bold text-amber-300 mb-4 pb-3 border-b-2 border-amber-500" style="font-family:'Playfair Display',serif">Beer on Tap</h3>
+  <div class="flex justify-between items-baseline border-b border-slate-700 pb-3 mb-3 last:border-0 last:pb-0 last:mb-0">
+  <div class="pr-3">
+    <div class="font-bold text-amber-100">Local IPA</div>
+    <div class="text-xs text-slate-400 mt-0.5">Hazy, citrus-forward, 6.8% ABV.</div>
+  </div>
+  <span class="font-black whitespace-nowrap text-amber-400">$7</span>
+</div>
+<div class="flex justify-between items-baseline border-b border-slate-700 pb-3 mb-3 last:border-0 last:pb-0 last:mb-0">
+  <div class="pr-3">
+    <div class="font-bold text-amber-100">Pilsner</div>
+    <div class="text-xs text-slate-400 mt-0.5">Crisp, German-style, 5.0% ABV.</div>
+  </div>
+  <span class="font-black whitespace-nowrap text-amber-400">$6</span>
+</div>
+<div class="flex justify-between items-baseline border-b border-slate-700 pb-3 mb-3 last:border-0 last:pb-0 last:mb-0">
+  <div class="pr-3">
+    <div class="font-bold text-amber-100">Stout (nitro)</div>
+    <div class="text-xs text-slate-400 mt-0.5">Smooth, coffee notes, 5.5% ABV.</div>
+  </div>
+  <span class="font-black whitespace-nowrap text-amber-400">$7</span>
+</div>
+<div class="flex justify-between items-baseline border-b border-slate-700 pb-3 mb-3 last:border-0 last:pb-0 last:mb-0">
+  <div class="pr-3">
+    <div class="font-bold text-amber-100">Sour (rotating)</div>
+    <div class="text-xs text-slate-400 mt-0.5">Ask your bartender what's on.</div>
+  </div>
+  <span class="font-black whitespace-nowrap text-amber-400">$8</span>
+</div>
+<div class="flex justify-between items-baseline border-b border-slate-700 pb-3 mb-3 last:border-0 last:pb-0 last:mb-0">
+  <div class="pr-3">
+    <div class="font-bold text-amber-100">Lager</div>
+    <div class="text-xs text-slate-400 mt-0.5">Easy-drinking, all-day beer.</div>
+  </div>
+  <span class="font-black whitespace-nowrap text-amber-400">$5</span>
+</div>
+<div class="flex justify-between items-baseline border-b border-slate-700 pb-3 mb-3 last:border-0 last:pb-0 last:mb-0">
+  <div class="pr-3">
+    <div class="font-bold text-amber-100">Cider</div>
+    <div class="text-xs text-slate-400 mt-0.5">Local apple, off-dry.</div>
+  </div>
+  <span class="font-black whitespace-nowrap text-amber-400">$6</span>
+</div>
+</div>
+<div class="reveal bg-slate-800/60 backdrop-blur rounded-2xl border border-slate-700 p-6 shadow">
+  <h3 class="text-2xl font-bold text-amber-300 mb-4 pb-3 border-b-2 border-amber-500" style="font-family:'Playfair Display',serif">Wine List</h3>
+  <div class="flex justify-between items-baseline border-b border-slate-700 pb-3 mb-3 last:border-0 last:pb-0 last:mb-0">
+  <div class="pr-3">
+    <div class="font-bold text-amber-100">House Red</div>
+    <div class="text-xs text-slate-400 mt-0.5">Spanish tempranillo blend.</div>
+  </div>
+  <span class="font-black whitespace-nowrap text-amber-400">$9</span>
+</div>
+<div class="flex justify-between items-baseline border-b border-slate-700 pb-3 mb-3 last:border-0 last:pb-0 last:mb-0">
+  <div class="pr-3">
+    <div class="font-bold text-amber-100">House White</div>
+    <div class="text-xs text-slate-400 mt-0.5">Italian pinot grigio.</div>
+  </div>
+  <span class="font-black whitespace-nowrap text-amber-400">$9</span>
+</div>
+<div class="flex justify-between items-baseline border-b border-slate-700 pb-3 mb-3 last:border-0 last:pb-0 last:mb-0">
+  <div class="pr-3">
+    <div class="font-bold text-amber-100">Cabernet Sauvignon</div>
+    <div class="text-xs text-slate-400 mt-0.5">California, full-bodied.</div>
+  </div>
+  <span class="font-black whitespace-nowrap text-amber-400">$13</span>
+</div>
+<div class="flex justify-between items-baseline border-b border-slate-700 pb-3 mb-3 last:border-0 last:pb-0 last:mb-0">
+  <div class="pr-3">
+    <div class="font-bold text-amber-100">Pinot Noir</div>
+    <div class="text-xs text-slate-400 mt-0.5">Oregon, light + bright.</div>
+  </div>
+  <span class="font-black whitespace-nowrap text-amber-400">$14</span>
+</div>
+<div class="flex justify-between items-baseline border-b border-slate-700 pb-3 mb-3 last:border-0 last:pb-0 last:mb-0">
+  <div class="pr-3">
+    <div class="font-bold text-amber-100">Sparkling</div>
+    <div class="text-xs text-slate-400 mt-0.5">Cava, by the glass or bottle.</div>
+  </div>
+  <span class="font-black whitespace-nowrap text-amber-400">$10</span>
+</div>
+<div class="flex justify-between items-baseline border-b border-slate-700 pb-3 mb-3 last:border-0 last:pb-0 last:mb-0">
+  <div class="pr-3">
+    <div class="font-bold text-amber-100">Rose</div>
+    <div class="text-xs text-slate-400 mt-0.5">Provence-style, dry.</div>
+  </div>
+  <span class="font-black whitespace-nowrap text-amber-400">$11</span>
+</div>
+</div>
+<div class="reveal bg-slate-800/60 backdrop-blur rounded-2xl border border-slate-700 p-6 shadow">
+  <h3 class="text-2xl font-bold text-amber-300 mb-4 pb-3 border-b-2 border-amber-500" style="font-family:'Playfair Display',serif">NA Options</h3>
+  <div class="flex justify-between items-baseline border-b border-slate-700 pb-3 mb-3 last:border-0 last:pb-0 last:mb-0">
+  <div class="pr-3">
+    <div class="font-bold text-amber-100">NA Beer</div>
+    <div class="text-xs text-slate-400 mt-0.5">Athletic Brewing rotating tap.</div>
+  </div>
+  <span class="font-black whitespace-nowrap text-amber-400">$5</span>
+</div>
+<div class="flex justify-between items-baseline border-b border-slate-700 pb-3 mb-3 last:border-0 last:pb-0 last:mb-0">
+  <div class="pr-3">
+    <div class="font-bold text-amber-100">Mocktail of the Day</div>
+    <div class="text-xs text-slate-400 mt-0.5">Ask your bartender. Chef picks.</div>
+  </div>
+  <span class="font-black whitespace-nowrap text-amber-400">$8</span>
+</div>
+<div class="flex justify-between items-baseline border-b border-slate-700 pb-3 mb-3 last:border-0 last:pb-0 last:mb-0">
+  <div class="pr-3">
+    <div class="font-bold text-amber-100">Iced Tea</div>
+    <div class="text-xs text-slate-400 mt-0.5">House-brewed, unsweetened.</div>
+  </div>
+  <span class="font-black whitespace-nowrap text-amber-400">$3</span>
+</div>
+<div class="flex justify-between items-baseline border-b border-slate-700 pb-3 mb-3 last:border-0 last:pb-0 last:mb-0">
+  <div class="pr-3">
+    <div class="font-bold text-amber-100">Sparkling Water</div>
+    <div class="text-xs text-slate-400 mt-0.5">Topo Chico, lime.</div>
+  </div>
+  <span class="font-black whitespace-nowrap text-amber-400">$4</span>
+</div>
+<div class="flex justify-between items-baseline border-b border-slate-700 pb-3 mb-3 last:border-0 last:pb-0 last:mb-0">
+  <div class="pr-3">
+    <div class="font-bold text-amber-100">Coffee</div>
+    <div class="text-xs text-slate-400 mt-0.5">Local roast, dark.</div>
+  </div>
+  <span class="font-black whitespace-nowrap text-amber-400">$3</span>
+</div>
+<div class="flex justify-between items-baseline border-b border-slate-700 pb-3 mb-3 last:border-0 last:pb-0 last:mb-0">
+  <div class="pr-3">
+    <div class="font-bold text-amber-100">Soda</div>
+    <div class="text-xs text-slate-400 mt-0.5">Coke, Sprite, ginger beer.</div>
+  </div>
+  <span class="font-black whitespace-nowrap text-amber-400">$3</span>
+</div>
+</div>
+    </div>
+  </div>
+</section>
+
+<!-- Events calendar -->
+<section id="events" class="py-20 bg-slate-950">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="text-center mb-12 reveal">
+      <span class="text-amber-400 font-bold text-sm tracking-wider">WEEKLY EVENTS</span>
+      <h2 class="text-3xl sm:text-4xl font-black text-amber-100 mt-2" style="font-family:'Playfair Display',serif">Every night has a vibe.</h2>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+<div class="reveal bg-slate-800/60 backdrop-blur rounded-xl border border-slate-700 p-5">
+  <div class="text-amber-400 text-xs font-bold uppercase tracking-wider">Tuesday</div>
+  <h4 class="text-amber-100 text-xl font-bold mt-1" style="font-family:'Playfair Display',serif">Trivia Night</h4>
+  <p class="text-slate-300 text-sm mt-2">8pm | Free to play | $50 bar tab to winning team</p>
+</div>
+<div class="reveal bg-slate-800/60 backdrop-blur rounded-xl border border-slate-700 p-5">
+  <div class="text-amber-400 text-xs font-bold uppercase tracking-wider">Wednesday</div>
+  <h4 class="text-amber-100 text-xl font-bold mt-1" style="font-family:'Playfair Display',serif">Open Mic</h4>
+  <p class="text-slate-300 text-sm mt-2">7pm sign-up | 8pm start | First drink on us for performers</p>
+</div>
+<div class="reveal bg-slate-800/60 backdrop-blur rounded-xl border border-slate-700 p-5">
+  <div class="text-amber-400 text-xs font-bold uppercase tracking-wider">Thursday</div>
+  <h4 class="text-amber-100 text-xl font-bold mt-1" style="font-family:'Playfair Display',serif">Live Music</h4>
+  <p class="text-slate-300 text-sm mt-2">9pm | Local bands rotate | $5 cover after 9pm</p>
+</div>
+<div class="reveal bg-slate-800/60 backdrop-blur rounded-xl border border-slate-700 p-5">
+  <div class="text-amber-400 text-xs font-bold uppercase tracking-wider">Friday</div>
+  <h4 class="text-amber-100 text-xl font-bold mt-1" style="font-family:'Playfair Display',serif">DJ Set</h4>
+  <p class="text-slate-300 text-sm mt-2">10pm-2am | Resident DJ rotation | No cover before 10</p>
+</div>
+<div class="reveal bg-slate-800/60 backdrop-blur rounded-xl border border-slate-700 p-5">
+  <div class="text-amber-400 text-xs font-bold uppercase tracking-wider">Saturday</div>
+  <h4 class="text-amber-100 text-xl font-bold mt-1" style="font-family:'Playfair Display',serif">Karaoke</h4>
+  <p class="text-slate-300 text-sm mt-2">9pm-1am | Two-drink minimum | Rumor has it Bono showed once</p>
+</div>
+<div class="reveal bg-slate-800/60 backdrop-blur rounded-xl border border-slate-700 p-5">
+  <div class="text-amber-400 text-xs font-bold uppercase tracking-wider">Sunday</div>
+  <h4 class="text-amber-100 text-xl font-bold mt-1" style="font-family:'Playfair Display',serif">Industry Night</h4>
+  <p class="text-slate-300 text-sm mt-2">All night | 25% off for service workers, show your paystub</p>
+</div>
+    </div>
+  </div>
+</section>
+
+<!-- Private events booking form -->
+<section id="private" class="py-20 bg-slate-900">
+  <div class="max-w-3xl mx-auto px-4">
+    <div class="text-center mb-10 reveal">
+      <span class="text-amber-400 font-bold text-sm tracking-wider">PRIVATE EVENTS</span>
+      <h2 class="text-3xl sm:text-4xl font-black text-amber-100 mt-2" style="font-family:'Playfair Display',serif">Take over the back room.</h2>
+      <p class="text-slate-300 mt-3">Birthdays, rehearsal dinners, office parties, fundraisers. Tell us about your event below.</p>
+    </div>
+    <!-- TODO(Keelan): replace YOUR-WEB3FORMS-KEY-HERE access_key with this client's real Web3Forms key. -->
+    <form action="https://api.web3forms.com/submit" method="POST" class="reveal grid grid-cols-1 sm:grid-cols-2 gap-4 bg-slate-800/60 backdrop-blur p-6 sm:p-8 rounded-2xl border border-slate-700">
+      <input type="hidden" name="access_key" value="YOUR-WEB3FORMS-KEY-HERE" />
+      <input type="hidden" name="subject" value="Private event inquiry - Bulldog&#x27;s Bar" />
+      <input required name="name" placeholder="Your name" class="px-4 py-3 rounded-lg bg-slate-900 border border-slate-700 text-amber-100 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-amber-500" />
+      <input required type="tel" name="phone" placeholder="Phone" class="px-4 py-3 rounded-lg bg-slate-900 border border-slate-700 text-amber-100 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-amber-500" />
+      <input required type="email" name="email" placeholder="Email" class="sm:col-span-2 px-4 py-3 rounded-lg bg-slate-900 border border-slate-700 text-amber-100 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-amber-500" />
+      <input required type="date" name="event_date" class="px-4 py-3 rounded-lg bg-slate-900 border border-slate-700 text-amber-100 focus:outline-none focus:ring-2 focus:ring-amber-500" />
+      <input required type="number" min="12" name="guests" placeholder="Guest count (12+)" class="px-4 py-3 rounded-lg bg-slate-900 border border-slate-700 text-amber-100 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-amber-500" />
+      <select name="event_type" class="sm:col-span-2 px-4 py-3 rounded-lg bg-slate-900 border border-slate-700 text-amber-100 focus:outline-none focus:ring-2 focus:ring-amber-500">
+        <option>Event type</option>
+        <option>Birthday party</option>
+        <option>Office party</option>
+        <option>Rehearsal dinner</option>
+        <option>Fundraiser</option>
+        <option>Other</option>
+      </select>
+      <textarea name="details" rows="3" placeholder="Tell us what you have in mind" class="sm:col-span-2 px-4 py-3 rounded-lg bg-slate-900 border border-slate-700 text-amber-100 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-amber-500"></textarea>
+      <button type="submit" class="sm:col-span-2 bg-amber-500 hover:bg-amber-400 text-slate-900 font-black py-4 rounded-xl text-lg transition shadow-lg">
+        Request Private Event
+      </button>
+    </form>
+  </div>
+</section>
+
+<!-- Gallery -->
+<section class="py-20 bg-slate-950">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="text-center mb-10 reveal">
+      <span class="text-amber-400 font-bold text-sm tracking-wider">THE ROOM</span>
+      <h2 class="text-3xl sm:text-4xl font-black text-amber-100 mt-2" style="font-family:'Playfair Display',serif">Take a look inside.</h2>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+<figure class="reveal aspect-square rounded-xl overflow-hidden shadow-md">
+  <img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=800&q=80" alt="Bulldog&#x27;s Bar bar interior 1" loading="lazy" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+</figure>
+<figure class="reveal aspect-square rounded-xl overflow-hidden shadow-md">
+  <img src="https://images.unsplash.com/photo-1538488881038-e252a119ace7?auto=format&fit=crop&w=800&q=80" alt="Bulldog&#x27;s Bar bar interior 2" loading="lazy" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+</figure>
+<figure class="reveal aspect-square rounded-xl overflow-hidden shadow-md">
+  <img src="https://images.unsplash.com/photo-1572116469696-31de0f17cc34?auto=format&fit=crop&w=800&q=80" alt="Bulldog&#x27;s Bar bar interior 3" loading="lazy" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+</figure>
+<figure class="reveal aspect-square rounded-xl overflow-hidden shadow-md">
+  <img src="https://images.unsplash.com/photo-1543007630-9710e4a00a20?auto=format&fit=crop&w=800&q=80" alt="Bulldog&#x27;s Bar bar interior 4" loading="lazy" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+</figure>
+<figure class="reveal aspect-square rounded-xl overflow-hidden shadow-md">
+  <img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=800&q=80" alt="Bulldog&#x27;s Bar bar interior 5" loading="lazy" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+</figure>
+<figure class="reveal aspect-square rounded-xl overflow-hidden shadow-md">
+  <img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=900&q=80&auto=format&fit=crop" alt="Bulldog&#x27;s Bar bar interior 6" loading="lazy" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+</figure>
+    </div>
+  </div>
+</section>
+
+<!-- Age 21+ + parking + rideshare info strip -->
+<section class="py-12 bg-amber-900/30 border-y border-amber-800">
+  <div class="max-w-6xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-3 gap-6 text-center text-amber-100">
+    <div class="reveal p-4">
+      <div class="text-3xl mb-2">&#127866;</div>
+      <h4 class="font-bold">21+ to enter</h4>
+      <p class="text-sm text-amber-200/80 mt-1">Valid government ID required at the door, no exceptions. We card everyone, every time.</p>
+    </div>
+    <div class="reveal p-4">
+      <div class="text-3xl mb-2">&#128663;</div>
+      <h4 class="font-bold">Parking</h4>
+      <p class="text-sm text-amber-200/80 mt-1">Two-hour street parking. Paid lot half a block south. Validate your stub at the bar after 8pm.</p>
+    </div>
+    <div class="reveal p-4">
+      <div class="text-3xl mb-2">&#128676;</div>
+      <h4 class="font-bold">Rideshare drop-off</h4>
+      <p class="text-sm text-amber-200/80 mt-1">Designated Uber/Lyft pickup curb out front, well-lit and staffed by our door host until close.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Visit + map -->
+<section id="visit" class="py-20 bg-slate-900">
+  <div class="max-w-7xl mx-auto px-4 grid md:grid-cols-2 gap-10 items-start">
+    <div class="reveal text-amber-100">
+      <span class="text-amber-400 font-bold text-sm tracking-wider">VISIT US</span>
+      <h2 class="text-3xl sm:text-4xl font-black mt-2 mb-4" style="font-family:'Playfair Display',serif">Come pull up a stool.</h2>
+      <p class="mb-2">Atlanta, GA</p>
+      <p class="text-slate-400 text-sm mb-5">Mon-Thu 4pm-12am | Fri-Sat 2pm-2am | Sun 12pm-10pm</p>
+      <a href="tel:+16023762533" class="inline-block bg-amber-500 hover:bg-amber-400 text-slate-900 px-6 py-3 rounded-xl font-bold transition">Call: (602) 376-2533</a>
+    </div>
+    <div class="reveal h-80 rounded-2xl overflow-hidden shadow-lg border border-slate-700">
+      <iframe src="https://www.google.com/maps?q=Atlanta,+GA&output=embed" class="w-full h-full border-0" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Service area map for Atlanta, GA"></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- Reviews -->
+<section id="reviews" class="py-20 bg-slate-950">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="text-center mb-12 reveal">
+      <span class="text-amber-400 font-bold text-sm tracking-wider">REGULARS SAY</span>
+      <h2 class="text-3xl sm:text-4xl font-black text-amber-100 mt-2" style="font-family:'Playfair Display',serif">Honest reviews from honest drinkers.</h2>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<figure class="reveal bg-slate-800/60 backdrop-blur p-6 rounded-2xl border border-slate-700">
+  <div class="text-amber-400 mb-3">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+  <blockquote class="text-slate-200 italic mb-4">"My favorite bar in Atlanta. The Old Fashioned is textbook, the trivia is mean (in a good way), and the bartenders actually know how to make a Negroni."</blockquote>
+  <figcaption class="text-sm font-semibold text-amber-300">Alex P.</figcaption>
+</figure>
+<figure class="reveal bg-slate-800/60 backdrop-blur p-6 rounded-2xl border border-slate-700">
+  <div class="text-amber-400 mb-3">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+  <blockquote class="text-slate-200 italic mb-4">"Booked the back room for my 30th. Bartender built a custom cocktail menu for the night, food spread was generous, my friends still talk about it."</blockquote>
+  <figcaption class="text-sm font-semibold text-amber-300">Sloan M.</figcaption>
+</figure>
+<figure class="reveal bg-slate-800/60 backdrop-blur p-6 rounded-2xl border border-slate-700">
+  <div class="text-amber-400 mb-3">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+  <blockquote class="text-slate-200 italic mb-4">"Live music Thursdays is the move. Sound is great, sightlines are great, and the kitchen serves until close. Rare combo."</blockquote>
+  <figcaption class="text-sm font-semibold text-amber-300">Reese K.</figcaption>
+</figure>
+    </div>
+    <div class="mt-12">
+      <section id="google-reviews" class="py-16 md:py-24" style="background:#1c1917">
+  <div class="max-w-5xl mx-auto px-5">
+    <div class="text-center max-w-2xl mx-auto mb-12 fade-up"><span class="inline-block uppercase tracking-widest text-xs font-semibold mb-3" style="color:#b45309">Live Google Reviews</span><h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-3" style="font-family:'Playfair Display',serif">Real reviews, pulled from Google</h2><p class="text-slate-600 text-lg">Synced live from Bulldog&amp;#x27;s Bar&#x27;s Google Business Profile.</p></div>
+    <!-- Elfsight Google Reviews widget. Free tier up to 200 page views / widget / month. -->
+    <script src="https://static.elfsight.com/platform/platform.js" async></script>
+    <div class="elfsight-app-YOUR-WIDGET-ID" data-elfsight-app-lazy></div>
+    <p class="mt-4 text-center text-xs text-slate-500">
+      Widget ID placeholder. Swap <code>YOUR-WIDGET-ID</code> in the page source with the real Elfsight ID once the GBP is connected.
+    </p>
+  </div>
+</section>
+
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="py-20 bg-slate-900">
+  <div class="max-w-3xl mx-auto px-4">
+    <div class="text-center mb-10 reveal">
+      <span class="text-amber-400 font-bold text-sm tracking-wider">FAQ</span>
+      <h2 class="text-3xl sm:text-4xl font-black text-amber-100 mt-2" style="font-family:'Playfair Display',serif">Before you head over.</h2>
+    </div>
+    <div class="space-y-3">
+<details class="reveal group bg-slate-800/60 backdrop-blur rounded-xl border border-slate-700 p-5 open:shadow-md">
+  <summary class="flex justify-between items-center font-semibold text-amber-200">
+    <span>Do you take reservations?</span>
+    <span class="faq-chev text-amber-400 ml-4">&#9660;</span>
+  </summary>
+  <p class="mt-3 text-slate-300 leading-relaxed">We hold tables for parties of 6 or more, Tuesday through Thursday. Friday and Saturday are first-come, first-served at the bar.</p>
+</details>
+<details class="reveal group bg-slate-800/60 backdrop-blur rounded-xl border border-slate-700 p-5 open:shadow-md">
+  <summary class="flex justify-between items-center font-semibold text-amber-200">
+    <span>Is there a dress code?</span>
+    <span class="faq-chev text-amber-400 ml-4">&#9660;</span>
+  </summary>
+  <p class="mt-3 text-slate-300 leading-relaxed">No formal dress code. We ask that you keep it clean and respectful. No offensive graphics, no athletic shorts after 9pm on weekends.</p>
+</details>
+<details class="reveal group bg-slate-800/60 backdrop-blur rounded-xl border border-slate-700 p-5 open:shadow-md">
+  <summary class="flex justify-between items-center font-semibold text-amber-200">
+    <span>Can you handle large groups?</span>
+    <span class="faq-chev text-amber-400 ml-4">&#9660;</span>
+  </summary>
+  <p class="mt-3 text-slate-300 leading-relaxed">Yes. Our back room seats 40 and our patio fits another 30. Use the Private Events form below for groups of 12 or more.</p>
+</details>
+<details class="reveal group bg-slate-800/60 backdrop-blur rounded-xl border border-slate-700 p-5 open:shadow-md">
+  <summary class="flex justify-between items-center font-semibold text-amber-200">
+    <span>Do you serve food?</span>
+    <span class="faq-chev text-amber-400 ml-4">&#9660;</span>
+  </summary>
+  <p class="mt-3 text-slate-300 leading-relaxed">Full bar food menu until close: shareables, burgers, wings, flatbreads. Kitchen never closes before last call.</p>
+</details>
+<details class="reveal group bg-slate-800/60 backdrop-blur rounded-xl border border-slate-700 p-5 open:shadow-md">
+  <summary class="flex justify-between items-center font-semibold text-amber-200">
+    <span>When is the live music?</span>
+    <span class="faq-chev text-amber-400 ml-4">&#9660;</span>
+  </summary>
+  <p class="mt-3 text-slate-300 leading-relaxed">Thursdays from 9pm, plus most Friday DJ sets at 10pm. Follow our Instagram for special acts and ticketed nights.</p>
+</details>
+<details class="reveal group bg-slate-800/60 backdrop-blur rounded-xl border border-slate-700 p-5 open:shadow-md">
+  <summary class="flex justify-between items-center font-semibold text-amber-200">
+    <span>Where do I park?</span>
+    <span class="faq-chev text-amber-400 ml-4">&#9660;</span>
+  </summary>
+  <p class="mt-3 text-slate-300 leading-relaxed">Two-hour street parking on the block, plus a paid lot half a block south. We recommend rideshare for late nights, drop-off zone is right out front.</p>
+</details>
+<details class="reveal group bg-slate-800/60 backdrop-blur rounded-xl border border-slate-700 p-5 open:shadow-md">
+  <summary class="flex justify-between items-center font-semibold text-amber-200">
+    <span>When is last call?</span>
+    <span class="faq-chev text-amber-400 ml-4">&#9660;</span>
+  </summary>
+  <p class="mt-3 text-slate-300 leading-relaxed">Mon-Thu last call is 11:30pm. Fri-Sat last call is 1:30am. Sunday last call is 9:30pm.</p>
+</details>
+<details class="reveal group bg-slate-800/60 backdrop-blur rounded-xl border border-slate-700 p-5 open:shadow-md">
+  <summary class="flex justify-between items-center font-semibold text-amber-200">
+    <span>When does the kitchen close?</span>
+    <span class="faq-chev text-amber-400 ml-4">&#9660;</span>
+  </summary>
+  <p class="mt-3 text-slate-300 leading-relaxed">Kitchen closes 30 minutes before last call every night. Order your late-night fries before then or you'll regret it.</p>
+</details>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-black text-slate-400 py-14 pb-32 md:pb-14">
+  <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8">
+    <div>
+      <div class="text-2xl font-bold mb-3 text-amber-200" style="font-family:'Playfair Display',serif">Bulldog&#x27;s Bar</div>
+      <p class="text-sm">Atlanta, GA's neighborhood bar. 21+ only. Drink responsibly, ride home smart.</p>
+    </div>
+    <div>
+      <h4 class="text-amber-200 font-bold mb-3">Visit</h4>
+      <p class="text-sm">Atlanta, GA</p>
+      <p class="text-sm mt-3">Mon-Thu 4pm-12am | Fri-Sat 2pm-2am | Sun 12pm-10pm</p>
+      <p class="text-sm mt-3"><a href="tel:+16023762533" class="hover:text-amber-300">(602) 376-2533</a></p>
+    </div>
+    <div>
+      <h4 class="text-amber-200 font-bold mb-3">Quick Links</h4>
+      <ul class="text-sm space-y-1">
+        <li><a href="#drinks" class="hover:text-amber-300">Drinks</a></li>
+        <li><a href="#happy-hour" class="hover:text-amber-300">Happy Hour</a></li>
+        <li><a href="#events" class="hover:text-amber-300">Events</a></li>
+        <li><a href="#private" class="hover:text-amber-300">Private Events</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 class="text-amber-200 font-bold mb-3">Follow</h4>
+      <div class="flex gap-3 text-amber-300 text-lg">
+        <a href="#" aria-label="Instagram" class="hover:text-white">IG</a>
+        <a href="#" aria-label="Facebook" class="hover:text-white">f</a>
+        <a href="#" aria-label="TikTok" class="hover:text-white">TT</a>
+      </div>
+    </div>
+  </div>
+  <div class="max-w-7xl mx-auto px-4 mt-10 pt-6 border-t border-slate-800 text-xs flex flex-col sm:flex-row justify-between gap-2">
+    <span>&copy; 2026 Bulldog&#x27;s Bar. Drink responsibly.</span>
+    <span>Demo site by <a href="https://keelanodoherty.com" class="hover:text-amber-300">Keelan O'Doherty</a> | (602) 376-2533</span>
+  </div>
+</footer>
+
+<!-- Live status badge + happy hour countdown JS. Hardcoded weekly schedule. -->
+<script>
+(function(){
+  var schedule = {
+    0: [12, 22],   // Sun
+    1: [16, 24],   // Mon
+    2: [16, 24],
+    3: [16, 24],
+    4: [16, 24],
+    5: [14, 26],   // Fri (2pm-2am)
+    6: [14, 26],   // Sat
+  };
+  var now = new Date();
+  var dow = now.getDay();
+  var hr = now.getHours() + now.getMinutes() / 60;
+  var slot = schedule[dow];
+  var label = document.querySelector('#open-status-badge [data-status]');
+  var dot = document.querySelector('#open-status-badge span:first-child');
+  if (label) {
+    if (slot && hr >= slot[0] && hr < slot[1]) {
+      var close = slot[1] % 24;
+      var closeLabel = (close === 0 ? 'midnight' : (close > 12 ? (close - 12) + 'pm' : close + 'am'));
+      label.textContent = 'Open now until ' + closeLabel;
+      if (dot) dot.style.background = '#34d399';
+    } else {
+      label.textContent = 'Closed now. Opens later today.';
+      if (dot) dot.style.background = '#f87171';
+    }
+  }
+
+  // Happy hour countdown to next 4pm.
+  var cd = document.querySelector('[data-countdown]');
+  function tick(){
+    if (!cd) return;
+    var n = new Date();
+    var target = new Date(n);
+    target.setHours(16, 0, 0, 0);
+    if (n.getHours() >= 19) {
+      target.setDate(target.getDate() + 1);
+    } else if (n.getHours() >= 16) {
+      cd.textContent = 'Happening NOW until 7pm';
+      return;
+    }
+    var diff = Math.max(0, target - n);
+    var h = Math.floor(diff / 3600000);
+    var m = Math.floor((diff % 3600000) / 60000);
+    var s = Math.floor((diff % 60000) / 1000);
+    cd.textContent = String(h).padStart(2,'0') + ':' + String(m).padStart(2,'0') + ':' + String(s).padStart(2,'0');
+  }
+  tick(); setInterval(tick, 1000);
+})();
+</script>
+
+<div class="fixed bottom-0 left-0 right-0 z-40 grid grid-cols-3 md:hidden bg-slate-900 text-white shadow-2xl">
+  <a href="tel:+16023762533" class="flex flex-col items-center justify-center py-3 hover:bg-slate-800 transition">
+    <span class="text-xl">&#9742;</span>
+    <span class="text-xs font-semibold mt-1">Call</span>
+  </a>
+  <a href="sms:+16023762533" class="flex flex-col items-center justify-center py-3 border-x border-slate-700 hover:bg-slate-800 transition">
+    <span class="text-xl">&#128172;</span>
+    <span class="text-xs font-semibold mt-1">Text</span>
+  </a>
+  <a href="https://www.google.com/maps/dir/?api=1&destination=Atlanta,+GA" target="_blank" rel="noopener" class="flex flex-col items-center justify-center py-3 hover:bg-slate-800 transition">
+    <span class="text-xl">&#128205;</span>
+    <span class="text-xs font-semibold mt-1">Directions</span>
+  </a>
+</div>
+<script>
+(function(){
+  const els = document.querySelectorAll('.reveal');
+  if (!('IntersectionObserver' in window)) {
+    els.forEach(e => e.classList.add('is-visible'));
+    return;
+  }
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(en => {
+      if (en.isIntersecting) {
+        en.target.classList.add('is-visible');
+        obs.unobserve(en.target);
+      }
+    });
+  }, {threshold: 0.12});
+  els.forEach(e => obs.observe(e));
+})();
+</script>
+
+</body>
+</html>
