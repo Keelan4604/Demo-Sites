@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Nashville Hot Kitchen | Restaurant in Nashville TN</title>
+<meta name="description" content="Nashville Hot Kitchen is Nashville TN's neighborhood kitchen. Scratch-made menu, online ordering, reservations, catering. Open Tue-Sun.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@600;700;800&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>body{font-family:'Inter',system-ui,sans-serif;}</style>
+<style>
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+  .reveal.is-visible { opacity: 1; transform: translateY(0); }
+  details > summary { list-style: none; cursor: pointer; }
+  details > summary::-webkit-details-marker { display: none; }
+  details[open] .faq-chev { transform: rotate(180deg); }
+  .faq-chev { transition: transform .25s ease; }
+</style>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
+    <link rel="apple-touch-icon" href="favicon.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"LocalBusiness","name":"Nashville Hot Kitchen","aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","reviewCount":"127"},"review":[{"@type":"Review","author":{"@type":"Person","name":"Latoya B."},"reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5"},"reviewBody":"Best brisket in Nashville TN. Hands down. The bark is perfect, the slaw is tangy, and the bread pudding ruined me for all other bread puddings."},{"@type":"Review","author":{"@type":"Person","name":"Andre H."},"reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5"},"reviewBody":"Brought my whole family for my mom&#x27;s birthday. The staff sang, brought a free dessert, and didn&#x27;t blink at our 12-top. We are regulars now."},{"@type":"Review","author":{"@type":"Person","name":"Sara K."},"reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5"},"reviewBody":"Online ordering through their site is dead simple. Food&#x27;s hot, packed right, and ready when they say it&#x27;ll be. Five stars."}]}</script>
+</head>
+<body class="bg-white text-slate-800 antialiased">
+
+<!-- Sticky topbar: phone + menu + order -->
+<div class="bg-red-800 text-white text-sm font-semibold sticky top-0 z-50 shadow-md">
+  <div class="max-w-7xl mx-auto px-4 py-2 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+    <a href="tel:+16023762533" class="inline-flex items-center gap-2 hover:text-amber-300 transition">
+      &#9742; (602) 376-2533
+    </a>
+    <div class="flex items-center gap-2">
+      <a href="#menu" class="bg-white/15 hover:bg-white/25 px-3 py-1 rounded-full text-xs font-bold transition">View Menu</a>
+      <a href="#order" class="bg-amber-400 text-slate-900 hover:bg-amber-300 px-3 py-1 rounded-full text-xs font-bold transition">Order Online</a>
+    </div>
+  </div>
+</div>
+
+<!-- Brand bar -->
+<nav class="bg-white border-b border-amber-100 sticky top-[80px] sm:top-[40px] z-40">
+  <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+    <a href="#top" class="flex items-center gap-2">
+      <div class="w-10 h-10 bg-red-800 text-white rounded-full flex items-center justify-center font-black text-lg">N</div>
+      <div>
+        <div class="font-black text-slate-900 leading-none" style="font-family:'Playfair Display',serif">Nashville Hot Kitchen</div>
+        <div class="text-xs text-slate-500">Nashville TN</div>
+      </div>
+    </a>
+    <div class="hidden md:flex gap-6 text-sm font-semibold text-slate-700">
+      <a href="#menu" class="hover:text-red-800">Menu</a>
+      <a href="#order" class="hover:text-red-800">Order</a>
+      <a href="#reserve" class="hover:text-red-800">Reserve</a>
+      <a href="#catering" class="hover:text-red-800">Catering</a>
+      <a href="#visit" class="hover:text-red-800">Visit</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<header id="top" class="relative min-h-[640px] flex items-center"
+        style="background: linear-gradient(rgba(26,17,9,0.55), rgba(26,17,9,0.7)), url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1920&q=80') center/cover;">
+  <div class="max-w-7xl mx-auto px-4 py-20 text-white reveal text-center md:text-left">
+    <span id="open-status-badge" class="inline-flex items-center gap-2 bg-white/15 backdrop-blur px-3 py-1 rounded-full text-xs font-bold tracking-wider mb-5">
+      <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+      <span data-status>Checking hours...</span>
+    </span>
+    <h1 class="text-5xl sm:text-6xl md:text-7xl font-bold leading-tight mb-3 max-w-3xl" style="font-family:'Dancing Script',cursive">
+      Nashville Hot Kitchen
+    </h1>
+    <p class="text-lg sm:text-xl text-amber-100 max-w-2xl mb-8">Slow-smoked, scratch-made, served with love in Nashville TN since day one.</p>
+    <div class="flex flex-col sm:flex-row gap-3 justify-center md:justify-start">
+      <a href="#reserve" class="bg-amber-400 hover:bg-amber-300 text-slate-900 px-7 py-4 rounded-xl font-bold text-lg shadow-lg transition inline-flex items-center justify-center gap-2">
+        Reserve a Table
+      </a>
+      <a href="#order" class="bg-red-700 hover:bg-red-800 text-white px-7 py-4 rounded-xl font-bold text-lg shadow-lg transition inline-flex items-center justify-center gap-2">
+        Order Online
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- Today's specials -->
+<section class="py-16 bg-amber-50">
+  <div class="max-w-6xl mx-auto px-4">
+    <div class="text-center mb-10 reveal">
+      <span class="text-red-800 font-bold text-sm tracking-wider">TODAY'S SPECIALS</span>
+      <h2 class="text-3xl sm:text-4xl font-black text-slate-900 mt-2" style="font-family:'Playfair Display',serif">Fresh from the kitchen.</h2>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+<div class="reveal bg-white rounded-2xl shadow-md hover:shadow-xl transition p-6 border border-amber-100">
+  <div class="flex justify-between items-baseline mb-2">
+    <h3 class="text-xl font-bold text-slate-900" style="font-family:'Playfair Display',serif">Smoked Brisket Plate</h3>
+    <span class="text-lg font-black text-red-700">$18</span>
+  </div>
+  <p class="text-slate-600 text-sm leading-relaxed">Slow-smoked 14 hours, served with two sides and Texas toast.</p>
+</div>
+<div class="reveal bg-white rounded-2xl shadow-md hover:shadow-xl transition p-6 border border-amber-100">
+  <div class="flex justify-between items-baseline mb-2">
+    <h3 class="text-xl font-bold text-slate-900" style="font-family:'Playfair Display',serif">Blackened Catfish Tacos</h3>
+    <span class="text-lg font-black text-red-700">$15</span>
+  </div>
+  <p class="text-slate-600 text-sm leading-relaxed">Three crispy tacos, slaw, chipotle aioli, lime crema.</p>
+</div>
+<div class="reveal bg-white rounded-2xl shadow-md hover:shadow-xl transition p-6 border border-amber-100">
+  <div class="flex justify-between items-baseline mb-2">
+    <h3 class="text-xl font-bold text-slate-900" style="font-family:'Playfair Display',serif">Mama's Bread Pudding</h3>
+    <span class="text-lg font-black text-red-700">$8</span>
+  </div>
+  <p class="text-slate-600 text-sm leading-relaxed">Warm cinnamon bread pudding, bourbon caramel, vanilla ice cream.</p>
+</div>
+    </div>
+  </div>
+</section>
+
+<!-- Full menu -->
+<section id="menu" class="py-20 bg-white">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="text-center mb-12 reveal">
+      <span class="text-red-800 font-bold text-sm tracking-wider">MENU</span>
+      <h2 class="text-3xl sm:text-4xl font-black text-slate-900 mt-2" style="font-family:'Playfair Display',serif">Made from scratch, daily.</h2>
+      <p class="text-slate-600 max-w-2xl mx-auto mt-3">Menu changes seasonally. Ask your server about today's off-menu specials.</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+<div class="reveal bg-white rounded-2xl border border-amber-100 p-6 shadow-sm">
+  <h3 class="text-2xl font-bold text-slate-900 mb-4 pb-3 border-b-2 border-amber-300" style="font-family:'Playfair Display',serif">Appetizers</h3>
+  <div class="flex justify-between items-baseline border-b border-amber-100 pb-3 mb-3 last:border-0 last:pb-0 last:mb-0">
+  <div class="pr-3">
+    <div class="font-bold text-slate-900">Fried Green Tomatoes</div>
+    <div class="text-xs text-slate-500 mt-0.5">Buttermilk battered, comeback sauce.</div>
+  </div>
+  <span class="font-black text-red-700 whitespace-nowrap">$9</span>
+</div>
+<div class="flex justify-between items-baseline border-b border-amber-100 pb-3 mb-3 last:border-0 last:pb-0 last:mb-0">
+  <div class="pr-3">
+    <div class="font-bold text-slate-900">Crab Cakes</div>
+    <div class="text-xs text-slate-500 mt-0.5">Two jumbo lump cakes, remoulade.</div>
+  </div>
+  <span class="font-black text-red-700 whitespace-nowrap">$14</span>
+</div>
+<div class="flex justify-between items-baseline border-b border-amber-100 pb-3 mb-3 last:border-0 last:pb-0 last:mb-0">
+  <div class="pr-3">
+    <div class="font-bold text-slate-900">Pimento Cheese Dip</div>
+    <div class="text-xs text-slate-500 mt-0.5">House-made, served with grilled bread.</div>
+  </div>
+  <span class="font-black text-red-700 whitespace-nowrap">$8</span>
+</div>
+<div class="flex justify-between items-baseline border-b border-amber-100 pb-3 mb-3 last:border-0 last:pb-0 last:mb-0">
+  <div class="pr-3">
+    <div class="font-bold text-slate-900">Wings (8)</div>
+    <div class="text-xs text-slate-500 mt-0.5">Hot, BBQ, garlic parm, or dry rub.</div>
+  </div>
+  <span class="font-black text-red-700 whitespace-nowrap">$12</span>
+</div>
+<div class="flex justify-between items-baseline border-b border-amber-100 pb-3 mb-3 last:border-0 last:pb-0 last:mb-0">
+  <div class="pr-3">
+    <div class="font-bold text-slate-900">Loaded Fries</div>
+    <div class="text-xs text-slate-500 mt-0.5">Pulled pork, cheese, scallions.</div>
+  </div>
+  <span class="font-black text-red-700 whitespace-nowrap">$10</span>
+</div>
+</div>
+<div class="reveal bg-white rounded-2xl border border-amber-100 p-6 shadow-sm">
+  <h3 class="text-2xl font-bold text-slate-900 mb-4 pb-3 border-b-2 border-amber-300" style="font-family:'Playfair Display',serif">Mains</h3>
+  <div class="flex justify-between items-baseline border-b border-amber-100 pb-3 mb-3 last:border-0 last:pb-0 last:mb-0">
+  <div class="pr-3">
+    <div class="font-bold text-slate-900">Smoked Brisket Plate</div>
+    <div class="text-xs text-slate-500 mt-0.5">14-hour smoked, two sides.</div>
+  </div>
+  <span class="font-black text-red-700 whitespace-nowrap">$18</span>
+</div>
+<div class="flex justify-between items-baseline border-b border-amber-100 pb-3 mb-3 last:border-0 last:pb-0 last:mb-0">
+  <div class="pr-3">
+    <div class="font-bold text-slate-900">Blackened Salmon</div>
+    <div class="text-xs text-slate-500 mt-0.5">Cajun spice, lemon butter, rice.</div>
+  </div>
+  <span class="font-black text-red-700 whitespace-nowrap">$22</span>
+</div>
+<div class="flex justify-between items-baseline border-b border-amber-100 pb-3 mb-3 last:border-0 last:pb-0 last:mb-0">
+  <div class="pr-3">
+    <div class="font-bold text-slate-900">Country Fried Steak</div>
+    <div class="text-xs text-slate-500 mt-0.5">Hand-breaded, cream gravy.</div>
+  </div>
+  <span class="font-black text-red-700 whitespace-nowrap">$17</span>
+</div>
+<div class="flex justify-between items-baseline border-b border-amber-100 pb-3 mb-3 last:border-0 last:pb-0 last:mb-0">
+  <div class="pr-3">
+    <div class="font-bold text-slate-900">Shrimp &amp; Grits</div>
+    <div class="text-xs text-slate-500 mt-0.5">Andouille, smoked tomato, scallions.</div>
+  </div>
+  <span class="font-black text-red-700 whitespace-nowrap">$20</span>
+</div>
+<div class="flex justify-between items-baseline border-b border-amber-100 pb-3 mb-3 last:border-0 last:pb-0 last:mb-0">
+  <div class="pr-3">
+    <div class="font-bold text-slate-900">BBQ Half Chicken</div>
+    <div class="text-xs text-slate-500 mt-0.5">Slow smoked, house BBQ glaze.</div>
+  </div>
+  <span class="font-black text-red-700 whitespace-nowrap">$16</span>
+</div>
+<div class="flex justify-between items-baseline border-b border-amber-100 pb-3 mb-3 last:border-0 last:pb-0 last:mb-0">
+  <div class="pr-3">
+    <div class="font-bold text-slate-900">Vegetarian Plate</div>
+    <div class="text-xs text-slate-500 mt-0.5">Pick any three sides + cornbread.</div>
+  </div>
+  <span class="font-black text-red-700 whitespace-nowrap">$13</span>
+</div>
+</div>
+<div class="reveal bg-white rounded-2xl border border-amber-100 p-6 shadow-sm">
+  <h3 class="text-2xl font-bold text-slate-900 mb-4 pb-3 border-b-2 border-amber-300" style="font-family:'Playfair Display',serif">Sides</h3>
+  <div class="flex justify-between items-baseline border-b border-amber-100 pb-3 mb-3 last:border-0 last:pb-0 last:mb-0">
+  <div class="pr-3">
+    <div class="font-bold text-slate-900">Collard Greens</div>
+    <div class="text-xs text-slate-500 mt-0.5">Slow-cooked with smoked turkey.</div>
+  </div>
+  <span class="font-black text-red-700 whitespace-nowrap">$5</span>
+</div>
+<div class="flex justify-between items-baseline border-b border-amber-100 pb-3 mb-3 last:border-0 last:pb-0 last:mb-0">
+  <div class="pr-3">
+    <div class="font-bold text-slate-900">Mac &amp; Cheese</div>
+    <div class="text-xs text-slate-500 mt-0.5">Three-cheese baked, golden crust.</div>
+  </div>
+  <span class="font-black text-red-700 whitespace-nowrap">$5</span>
+</div>
+<div class="flex justify-between items-baseline border-b border-amber-100 pb-3 mb-3 last:border-0 last:pb-0 last:mb-0">
+  <div class="pr-3">
+    <div class="font-bold text-slate-900">Sweet Potato Fries</div>
+    <div class="text-xs text-slate-500 mt-0.5">With chipotle aioli.</div>
+  </div>
+  <span class="font-black text-red-700 whitespace-nowrap">$5</span>
+</div>
+<div class="flex justify-between items-baseline border-b border-amber-100 pb-3 mb-3 last:border-0 last:pb-0 last:mb-0">
+  <div class="pr-3">
+    <div class="font-bold text-slate-900">Cornbread</div>
+    <div class="text-xs text-slate-500 mt-0.5">Honey butter on the side.</div>
+  </div>
+  <span class="font-black text-red-700 whitespace-nowrap">$4</span>
+</div>
+<div class="flex justify-between items-baseline border-b border-amber-100 pb-3 mb-3 last:border-0 last:pb-0 last:mb-0">
+  <div class="pr-3">
+    <div class="font-bold text-slate-900">Coleslaw</div>
+    <div class="text-xs text-slate-500 mt-0.5">Tangy, vinegar based.</div>
+  </div>
+  <span class="font-black text-red-700 whitespace-nowrap">$4</span>
+</div>
+</div>
+<div class="reveal bg-white rounded-2xl border border-amber-100 p-6 shadow-sm">
+  <h3 class="text-2xl font-bold text-slate-900 mb-4 pb-3 border-b-2 border-amber-300" style="font-family:'Playfair Display',serif">Desserts</h3>
+  <div class="flex justify-between items-baseline border-b border-amber-100 pb-3 mb-3 last:border-0 last:pb-0 last:mb-0">
+  <div class="pr-3">
+    <div class="font-bold text-slate-900">Bread Pudding</div>
+    <div class="text-xs text-slate-500 mt-0.5">Bourbon caramel, vanilla ice cream.</div>
+  </div>
+  <span class="font-black text-red-700 whitespace-nowrap">$8</span>
+</div>
+<div class="flex justify-between items-baseline border-b border-amber-100 pb-3 mb-3 last:border-0 last:pb-0 last:mb-0">
+  <div class="pr-3">
+    <div class="font-bold text-slate-900">Pecan Pie</div>
+    <div class="text-xs text-slate-500 mt-0.5">House-made, served warm.</div>
+  </div>
+  <span class="font-black text-red-700 whitespace-nowrap">$8</span>
+</div>
+<div class="flex justify-between items-baseline border-b border-amber-100 pb-3 mb-3 last:border-0 last:pb-0 last:mb-0">
+  <div class="pr-3">
+    <div class="font-bold text-slate-900">Banana Pudding</div>
+    <div class="text-xs text-slate-500 mt-0.5">Vanilla wafers, fresh banana.</div>
+  </div>
+  <span class="font-black text-red-700 whitespace-nowrap">$7</span>
+</div>
+<div class="flex justify-between items-baseline border-b border-amber-100 pb-3 mb-3 last:border-0 last:pb-0 last:mb-0">
+  <div class="pr-3">
+    <div class="font-bold text-slate-900">Sweet Tea Cake</div>
+    <div class="text-xs text-slate-500 mt-0.5">Glazed, brewed-tea infused.</div>
+  </div>
+  <span class="font-black text-red-700 whitespace-nowrap">$7</span>
+</div>
+</div>
+    </div>
+  </div>
+</section>
+
+<!-- Online ordering buttons -->
+<section id="order" class="py-16 bg-slate-900 text-white">
+  <div class="max-w-5xl mx-auto px-4 text-center reveal">
+    <span class="text-amber-400 font-bold text-sm tracking-wider">ORDER ONLINE</span>
+    <h2 class="text-3xl sm:text-4xl font-black mt-2 mb-4" style="font-family:'Playfair Display',serif">Pickup or delivery, your choice.</h2>
+    <p class="text-slate-300 mb-8 max-w-2xl mx-auto">Order direct (we keep more, you save more) or via your favorite app.</p>
+    <!-- TODO(Keelan): swap each placeholder URL below for the client's real ordering account links. -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <a href="#" class="bg-orange-500 hover:bg-orange-600 transition rounded-xl p-5 font-bold shadow-lg">
+        <div class="text-2xl mb-1">&#127869;</div>ToastTab
+      </a>
+      <a href="#" class="bg-emerald-600 hover:bg-emerald-700 transition rounded-xl p-5 font-bold shadow-lg">
+        <div class="text-2xl mb-1">&#127837;</div>ChowNow
+      </a>
+      <a href="#" class="bg-red-600 hover:bg-red-700 transition rounded-xl p-5 font-bold shadow-lg">
+        <div class="text-2xl mb-1">&#128666;</div>DoorDash
+      </a>
+      <a href="#" class="bg-slate-800 hover:bg-slate-700 transition rounded-xl p-5 font-bold shadow-lg border border-slate-700">
+        <div class="text-2xl mb-1">&#128664;</div>UberEats
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Reservations -->
+<section id="reserve" class="py-20 bg-amber-50">
+  <div class="max-w-3xl mx-auto px-4">
+    <div class="text-center mb-10 reveal">
+      <span class="text-red-800 font-bold text-sm tracking-wider">RESERVATIONS</span>
+      <h2 class="text-3xl sm:text-4xl font-black text-slate-900 mt-2" style="font-family:'Playfair Display',serif">Save your seat.</h2>
+      <p class="text-slate-600 mt-3">Parties of 4 or more. Walk-ins always welcome.</p>
+    </div>
+    <!-- TODO(Keelan): replace this Web3Forms placeholder with a real OpenTable embed once the client signs up. -->
+    <form action="https://api.web3forms.com/submit" method="POST" class="reveal grid grid-cols-1 sm:grid-cols-2 gap-4 bg-white p-6 sm:p-8 rounded-2xl border border-amber-100 shadow-lg">
+      <input type="hidden" name="access_key" value="YOUR-WEB3FORMS-KEY-HERE" />
+      <input type="hidden" name="subject" value="New reservation - Nashville Hot Kitchen" />
+      <input required name="name" placeholder="Your name" class="px-4 py-3 rounded-lg border border-amber-200 focus:outline-none focus:ring-2 focus:ring-red-700" />
+      <input required type="tel" name="phone" placeholder="Phone number" class="px-4 py-3 rounded-lg border border-amber-200 focus:outline-none focus:ring-2 focus:ring-red-700" />
+      <input required type="email" name="email" placeholder="Email" class="sm:col-span-2 px-4 py-3 rounded-lg border border-amber-200 focus:outline-none focus:ring-2 focus:ring-red-700" />
+      <input required type="date" name="date" class="px-4 py-3 rounded-lg border border-amber-200 focus:outline-none focus:ring-2 focus:ring-red-700" />
+      <input required type="time" name="time" class="px-4 py-3 rounded-lg border border-amber-200 focus:outline-none focus:ring-2 focus:ring-red-700" />
+      <select name="party" class="sm:col-span-2 px-4 py-3 rounded-lg border border-amber-200 focus:outline-none focus:ring-2 focus:ring-red-700">
+        <option>Party size</option>
+        <option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9+</option>
+      </select>
+      <textarea name="notes" rows="3" placeholder="Special requests (allergies, occasion, seating)" class="sm:col-span-2 px-4 py-3 rounded-lg border border-amber-200 focus:outline-none focus:ring-2 focus:ring-red-700"></textarea>
+      <button type="submit" class="sm:col-span-2 bg-red-800 hover:bg-red-900 text-white font-bold py-4 rounded-xl text-lg transition shadow-lg">
+        Request Reservation
+      </button>
+    </form>
+  </div>
+</section>
+
+<!-- Catering -->
+<section id="catering" class="py-20 bg-white">
+  <div class="max-w-7xl mx-auto px-4 grid md:grid-cols-2 gap-10 items-center">
+    <div class="reveal">
+      <span class="text-red-800 font-bold text-sm tracking-wider">CATERING</span>
+      <h2 class="text-3xl sm:text-4xl font-black text-slate-900 mt-2 mb-4" style="font-family:'Playfair Display',serif">From 10 to 300, we feed your event.</h2>
+      <p class="text-slate-600 mb-5">Office lunches, weddings, family reunions, fundraisers. Pickup, drop-off, or full-service. Tell us your headcount and date, we'll send a quote within the day.</p>
+      <ul class="text-slate-700 space-y-2 mb-6 text-sm">
+        <li class="flex gap-2"><span class="text-red-700">&#10004;</span> Lunch boxes from $12 / person</li>
+        <li class="flex gap-2"><span class="text-red-700">&#10004;</span> Buffet packages from $18 / person</li>
+        <li class="flex gap-2"><span class="text-red-700">&#10004;</span> Full-service plated dinners from $32 / person</li>
+        <li class="flex gap-2"><span class="text-red-700">&#10004;</span> Custom menus, dietary accommodations, dietary cards on request</li>
+      </ul>
+    </div>
+    <form action="https://api.web3forms.com/submit" method="POST" class="reveal bg-amber-50 p-6 sm:p-8 rounded-2xl border border-amber-200 grid gap-4">
+      <input type="hidden" name="access_key" value="YOUR-WEB3FORMS-KEY-HERE" />
+      <input type="hidden" name="subject" value="Catering inquiry - Nashville Hot Kitchen" />
+      <input required name="name" placeholder="Your name" class="px-4 py-3 rounded-lg border border-amber-200 focus:outline-none focus:ring-2 focus:ring-red-700" />
+      <input required type="email" name="email" placeholder="Email" class="px-4 py-3 rounded-lg border border-amber-200 focus:outline-none focus:ring-2 focus:ring-red-700" />
+      <input required type="tel" name="phone" placeholder="Phone" class="px-4 py-3 rounded-lg border border-amber-200 focus:outline-none focus:ring-2 focus:ring-red-700" />
+      <input required type="date" name="event_date" class="px-4 py-3 rounded-lg border border-amber-200 focus:outline-none focus:ring-2 focus:ring-red-700" />
+      <input required type="number" min="10" name="guests" placeholder="Guest count" class="px-4 py-3 rounded-lg border border-amber-200 focus:outline-none focus:ring-2 focus:ring-red-700" />
+      <textarea name="details" rows="3" placeholder="What kind of event? Any menu requests?" class="px-4 py-3 rounded-lg border border-amber-200 focus:outline-none focus:ring-2 focus:ring-red-700"></textarea>
+      <button type="submit" class="bg-red-800 hover:bg-red-900 text-white font-bold py-4 rounded-xl text-lg transition shadow-lg">Get Catering Quote</button>
+    </form>
+  </div>
+</section>
+
+<section id="quote-calculator" class="py-16 md:py-24 bg-white">
+  <div class="max-w-3xl mx-auto px-5">
+    <div class="text-center max-w-2xl mx-auto mb-12 fade-up"><span class="inline-block uppercase tracking-widest text-xs font-semibold mb-3" style="color:#9a1c1c">Instant quote</span><h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-3" style="font-family:'Playfair Display',serif">Catering quote</h2><p class="text-slate-600 text-lg">Get a ballpark price in 10 seconds. Final number after a quick call.</p></div>
+    <form id="qcalc_restaurant_pro" class="fade-up bg-white rounded-2xl border-2 border-slate-200 p-6 md:p-8 grid gap-5" onsubmit="return false;">
+      <label class="grid gap-2">
+        <span class="text-sm font-semibold text-slate-700">Package</span>
+        <select name="service" class="rounded-lg border-2 border-slate-200 px-4 py-3 text-base focus:outline-none focus:border-current">
+          <option value="0" data-low="12" data-high="18">Lunch boxes</option>
+          <option value="1" data-low="18" data-high="28">Buffet (mains + sides)</option>
+          <option value="2" data-low="32" data-high="55">Full-service dinner</option>
+          <option value="3" data-low="8" data-high="14">Appetizer platters</option>
+          <option value="4" data-low="6" data-high="12">Dessert + drinks add-on</option>
+        </select>
+      </label>
+      <label class="grid gap-2">
+        <span class="text-sm font-semibold text-slate-700">Number of guests: <span data-unit-display>30</span></span>
+        <input type="range" name="units" min="10" max="300" step="5" value="30" class="w-full">
+      </label>
+      <div class="rounded-xl p-5 text-center" style="background:#fff7ed">
+        <div class="text-xs uppercase tracking-widest text-slate-500 mb-1">Estimated range</div>
+        <div class="text-3xl md:text-4xl font-bold" style="color:#9a1c1c;font-family:'Playfair Display',serif" data-quote-output>$0 - $0</div>
+        <p class="text-xs text-slate-500 mt-2">Estimate only. Final price confirmed by phone or on-site visit.</p>
+      </div>
+      <a href="tel:+16023762533" class="inline-flex justify-center items-center rounded-full px-6 py-3 text-white font-semibold transition hover:-translate-y-0.5" style="background:#9a1c1c">
+        Lock this price - Call (602) 376-2533
+      </a>
+    </form>
+    <script>
+    (function(){
+      var form = document.getElementById('qcalc_restaurant_pro');
+      if (!form) return;
+      var sel = form.querySelector('select[name=service]');
+      var rng = form.querySelector('input[name=units]');
+      var unitDisp = form.querySelector('[data-unit-display]');
+      var out = form.querySelector('[data-quote-output]');
+      function fmt(n){ return '$' + Math.round(n).toLocaleString(); }
+      function recalc(){
+        var opt = sel.options[sel.selectedIndex];
+        var lo = parseFloat(opt.getAttribute('data-low')) || 0;
+        var hi = parseFloat(opt.getAttribute('data-high')) || 0;
+        var u = parseFloat(rng.value) || 0;
+        unitDisp.textContent = rng.value;
+        out.textContent = fmt(lo * u) + ' - ' + fmt(hi * u);
+      }
+      sel.addEventListener('change', recalc);
+      rng.addEventListener('input', recalc);
+      recalc();
+    })();
+    </script>
+  </div>
+</section>
+
+
+<!-- Photo gallery -->
+<section class="py-20 bg-amber-50">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="text-center mb-10 reveal">
+      <span class="text-red-800 font-bold text-sm tracking-wider">GALLERY</span>
+      <h2 class="text-3xl sm:text-4xl font-black text-slate-900 mt-2" style="font-family:'Playfair Display',serif">A taste of the kitchen.</h2>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+<figure class="reveal aspect-square rounded-xl overflow-hidden bg-gradient-to-br from-amber-100 to-amber-200 border border-amber-200 flex items-center justify-center text-amber-800">
+  <div class="text-center p-3">
+    <div class="text-3xl mb-2">&#127869;</div>
+    <div class="text-xs font-semibold">Photo 1</div>
+  </div>
+</figure>
+<figure class="reveal aspect-square rounded-xl overflow-hidden bg-gradient-to-br from-amber-100 to-amber-200 border border-amber-200 flex items-center justify-center text-amber-800">
+  <div class="text-center p-3">
+    <div class="text-3xl mb-2">&#127869;</div>
+    <div class="text-xs font-semibold">Photo 2</div>
+  </div>
+</figure>
+<figure class="reveal aspect-square rounded-xl overflow-hidden bg-gradient-to-br from-amber-100 to-amber-200 border border-amber-200 flex items-center justify-center text-amber-800">
+  <div class="text-center p-3">
+    <div class="text-3xl mb-2">&#127869;</div>
+    <div class="text-xs font-semibold">Photo 3</div>
+  </div>
+</figure>
+<figure class="reveal aspect-square rounded-xl overflow-hidden bg-gradient-to-br from-amber-100 to-amber-200 border border-amber-200 flex items-center justify-center text-amber-800">
+  <div class="text-center p-3">
+    <div class="text-3xl mb-2">&#127869;</div>
+    <div class="text-xs font-semibold">Photo 4</div>
+  </div>
+</figure>
+<figure class="reveal aspect-square rounded-xl overflow-hidden bg-gradient-to-br from-amber-100 to-amber-200 border border-amber-200 flex items-center justify-center text-amber-800">
+  <div class="text-center p-3">
+    <div class="text-3xl mb-2">&#127869;</div>
+    <div class="text-xs font-semibold">Photo 5</div>
+  </div>
+</figure>
+<figure class="reveal aspect-square rounded-xl overflow-hidden bg-gradient-to-br from-amber-100 to-amber-200 border border-amber-200 flex items-center justify-center text-amber-800">
+  <div class="text-center p-3">
+    <div class="text-3xl mb-2">&#127869;</div>
+    <div class="text-xs font-semibold">Photo 6</div>
+  </div>
+</figure>
+    </div>
+    <p class="text-center mt-4 text-xs text-slate-500"><!-- TODO(scraper): swap placeholder tiles with real food photos --></p>
+  </div>
+</section>
+
+<!-- Reviews -->
+<section id="reviews" class="py-20 bg-white">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="text-center mb-12 reveal">
+      <span class="text-red-800 font-bold text-sm tracking-wider">REVIEWS</span>
+      <h2 class="text-3xl sm:text-4xl font-black text-slate-900 mt-2" style="font-family:'Playfair Display',serif">What folks are saying.</h2>
+      <p class="text-slate-600 max-w-xl mx-auto mt-3"><!-- TODO(Keelan): drop in a Yelp or Google Reviews embed widget here when ready. -->Pulled from Google &amp; Yelp.</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<figure class="reveal bg-white p-6 rounded-2xl shadow border border-amber-100">
+  <div class="text-amber-400 mb-3">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+  <blockquote class="text-slate-700 italic mb-4">"Best brisket in Nashville TN. Hands down. The bark is perfect, the slaw is tangy, and the bread pudding ruined me for all other bread puddings."</blockquote>
+  <figcaption class="text-sm font-semibold text-slate-900">Latoya B.</figcaption>
+</figure>
+<figure class="reveal bg-white p-6 rounded-2xl shadow border border-amber-100">
+  <div class="text-amber-400 mb-3">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+  <blockquote class="text-slate-700 italic mb-4">"Brought my whole family for my mom's birthday. The staff sang, brought a free dessert, and didn't blink at our 12-top. We are regulars now."</blockquote>
+  <figcaption class="text-sm font-semibold text-slate-900">Andre H.</figcaption>
+</figure>
+<figure class="reveal bg-white p-6 rounded-2xl shadow border border-amber-100">
+  <div class="text-amber-400 mb-3">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+  <blockquote class="text-slate-700 italic mb-4">"Online ordering through their site is dead simple. Food's hot, packed right, and ready when they say it'll be. Five stars."</blockquote>
+  <figcaption class="text-sm font-semibold text-slate-900">Sara K.</figcaption>
+</figure>
+    </div>
+  </div>
+</section>
+
+<!-- Visit / map -->
+<section id="visit" class="py-20 bg-amber-50">
+  <div class="max-w-7xl mx-auto px-4 grid md:grid-cols-2 gap-10 items-start">
+    <div class="reveal">
+      <span class="text-red-800 font-bold text-sm tracking-wider">VISIT US</span>
+      <h2 class="text-3xl sm:text-4xl font-black text-slate-900 mt-2 mb-4" style="font-family:'Playfair Display',serif">Come hungry.</h2>
+      <p class="text-slate-700 mb-2">Nashville TN</p>
+      <p class="text-slate-600 text-sm mb-5">Tue-Sun 11am-9pm | Closed Mon</p>
+      <a href="tel:+16023762533" class="inline-block bg-red-800 hover:bg-red-900 text-white px-6 py-3 rounded-xl font-bold transition">Call: (602) 376-2533</a>
+    </div>
+    <div class="reveal h-80 rounded-2xl overflow-hidden shadow-lg">
+      <iframe src="https://www.google.com/maps?q=Nashville+TN&output=embed" class="w-full h-full border-0" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Service area map for Nashville TN"></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="py-20 bg-white">
+  <div class="max-w-3xl mx-auto px-4">
+    <div class="text-center mb-10 reveal">
+      <span class="text-red-800 font-bold text-sm tracking-wider">FAQ</span>
+      <h2 class="text-3xl sm:text-4xl font-black text-slate-900 mt-2" style="font-family:'Playfair Display',serif">Good to know.</h2>
+    </div>
+    <div class="space-y-3">
+<details class="reveal group bg-white rounded-xl border border-amber-100 p-5 open:shadow-md">
+  <summary class="flex justify-between items-center font-semibold text-slate-900">
+    <span>Is there parking?</span>
+    <span class="faq-chev text-red-700 ml-4">&#9660;</span>
+  </summary>
+  <p class="mt-3 text-slate-600 leading-relaxed">Yes. Free lot in front, plus overflow street parking on the side. Valet on weekends after 6pm.</p>
+</details>
+<details class="reveal group bg-white rounded-xl border border-amber-100 p-5 open:shadow-md">
+  <summary class="flex justify-between items-center font-semibold text-slate-900">
+    <span>Do you handle dietary restrictions?</span>
+    <span class="faq-chev text-red-700 ml-4">&#9660;</span>
+  </summary>
+  <p class="mt-3 text-slate-600 leading-relaxed">Absolutely. Most mains can be made gluten-free, dairy-free, or vegetarian. Tell your server, the kitchen will accommodate.</p>
+</details>
+<details class="reveal group bg-white rounded-xl border border-amber-100 p-5 open:shadow-md">
+  <summary class="flex justify-between items-center font-semibold text-slate-900">
+    <span>Can I book a private event?</span>
+    <span class="faq-chev text-red-700 ml-4">&#9660;</span>
+  </summary>
+  <p class="mt-3 text-slate-600 leading-relaxed">Yes. We have a private dining room that seats 30 and a patio that fits 60. Email events@ for the package.</p>
+</details>
+<details class="reveal group bg-white rounded-xl border border-amber-100 p-5 open:shadow-md">
+  <summary class="flex justify-between items-center font-semibold text-slate-900">
+    <span>Do you sell gift cards?</span>
+    <span class="faq-chev text-red-700 ml-4">&#9660;</span>
+  </summary>
+  <p class="mt-3 text-slate-600 leading-relaxed">Physical and digital, any amount $25 and up. Buy at the host stand or through our online ordering page.</p>
+</details>
+<details class="reveal group bg-white rounded-xl border border-amber-100 p-5 open:shadow-md">
+  <summary class="flex justify-between items-center font-semibold text-slate-900">
+    <span>Do you take reservations?</span>
+    <span class="faq-chev text-red-700 ml-4">&#9660;</span>
+  </summary>
+  <p class="mt-3 text-slate-600 leading-relaxed">Yes for parties of 4 or more. Walk-ins welcome any time. Use the form below or call us direct.</p>
+</details>
+<details class="reveal group bg-white rounded-xl border border-amber-100 p-5 open:shadow-md">
+  <summary class="flex justify-between items-center font-semibold text-slate-900">
+    <span>How long is takeout right now?</span>
+    <span class="faq-chev text-red-700 ml-4">&#9660;</span>
+  </summary>
+  <p class="mt-3 text-slate-600 leading-relaxed">Average prep time is 15 to 25 minutes. The online order confirmation will give you a live ETA.</p>
+</details>
+<details class="reveal group bg-white rounded-xl border border-amber-100 p-5 open:shadow-md">
+  <summary class="flex justify-between items-center font-semibold text-slate-900">
+    <span>Is there a kids menu?</span>
+    <span class="faq-chev text-red-700 ml-4">&#9660;</span>
+  </summary>
+  <p class="mt-3 text-slate-600 leading-relaxed">Yes. Burger, chicken tenders, mac and cheese, or pasta with butter. All $7 with a side and drink.</p>
+</details>
+<details class="reveal group bg-white rounded-xl border border-amber-100 p-5 open:shadow-md">
+  <summary class="flex justify-between items-center font-semibold text-slate-900">
+    <span>How do you handle allergies?</span>
+    <span class="faq-chev text-red-700 ml-4">&#9660;</span>
+  </summary>
+  <p class="mt-3 text-slate-600 leading-relaxed">Tell your server when you order. We re-clean prep surfaces and switch gloves. Full allergen sheet available on request.</p>
+</details>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-stone-950 text-amber-100 py-14 pb-32 md:pb-14">
+  <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8">
+    <div>
+      <div class="text-2xl font-bold mb-3" style="font-family:'Dancing Script',cursive">Nashville Hot Kitchen</div>
+      <p class="text-sm text-amber-200/70">Nashville TN's neighborhood kitchen. Scratch-made, slow-cooked, family-run.</p>
+    </div>
+    <div>
+      <h4 class="text-white font-bold mb-3">Visit</h4>
+      <p class="text-sm">Nashville TN</p>
+      <p class="text-sm mt-3 text-amber-200/70">Tue-Sun 11am-9pm | Closed Mon</p>
+      <p class="text-sm mt-3"><a href="tel:+16023762533" class="hover:text-white">(602) 376-2533</a></p>
+    </div>
+    <div>
+      <h4 class="text-white font-bold mb-3">Quick Links</h4>
+      <ul class="text-sm space-y-1">
+        <li><a href="#menu" class="hover:text-white">Menu</a></li>
+        <li><a href="#order" class="hover:text-white">Order Online</a></li>
+        <li><a href="#reserve" class="hover:text-white">Reservations</a></li>
+        <li><a href="#catering" class="hover:text-white">Catering</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 class="text-white font-bold mb-3">Follow</h4>
+      <div class="flex gap-3 text-amber-200 text-lg">
+        <a href="#" aria-label="Instagram" class="hover:text-white">IG</a>
+        <a href="#" aria-label="Facebook" class="hover:text-white">f</a>
+        <a href="#" aria-label="TikTok" class="hover:text-white">TT</a>
+      </div>
+    </div>
+  </div>
+  <div class="max-w-7xl mx-auto px-4 mt-10 pt-6 border-t border-stone-800 text-xs text-amber-200/50 flex flex-col sm:flex-row justify-between gap-2">
+    <span>&copy; 2026 Nashville Hot Kitchen. All rights reserved.</span>
+    <span>Demo site by <a href="https://keelanodoherty.com" class="hover:text-white">Keelan O'Doherty</a> | (602) 376-2533</span>
+  </div>
+</footer>
+
+<!-- Open / Closed live status badge JS. Hours hardcoded from lead profile. -->
+<script>
+(function(){
+  // Tue-Sun 11am-9pm, Mon closed. Customize per client.
+  var schedule = {
+    0: null,                       // Sun overridden below to open
+    1: null,                       // Mon closed
+    2: [11, 21],
+    3: [11, 21],
+    4: [11, 21],
+    5: [11, 21],
+    6: [11, 21],
+  };
+  schedule[0] = [11, 21];
+  var now = new Date();
+  var dow = now.getDay();
+  var hr = now.getHours() + now.getMinutes() / 60;
+  var slot = schedule[dow];
+  var label = document.querySelector('#open-status-badge [data-status]');
+  var dot = document.querySelector('#open-status-badge span:first-child');
+  if (!label) return;
+  if (slot && hr >= slot[0] && hr < slot[1]) {
+    label.textContent = 'Open now until ' + (slot[1] > 12 ? (slot[1] - 12) + 'pm' : slot[1] + 'am');
+    if (dot) dot.style.background = '#34d399';
+  } else {
+    label.textContent = 'Closed now. Back tomorrow at 11am.';
+    if (dot) dot.style.background = '#f87171';
+  }
+})();
+</script>
+
+<div class="fixed bottom-0 left-0 right-0 z-40 grid grid-cols-3 md:hidden bg-slate-900 text-white shadow-2xl">
+  <a href="tel:+16023762533" class="flex flex-col items-center justify-center py-3 hover:bg-slate-800 transition">
+    <span class="text-xl">&#9742;</span>
+    <span class="text-xs font-semibold mt-1">Call</span>
+  </a>
+  <a href="sms:+16023762533" class="flex flex-col items-center justify-center py-3 border-x border-slate-700 hover:bg-slate-800 transition">
+    <span class="text-xl">&#128172;</span>
+    <span class="text-xs font-semibold mt-1">Text</span>
+  </a>
+  <a href="https://www.google.com/maps/dir/?api=1&destination=Nashville+TN" target="_blank" rel="noopener" class="flex flex-col items-center justify-center py-3 hover:bg-slate-800 transition">
+    <span class="text-xl">&#128205;</span>
+    <span class="text-xs font-semibold mt-1">Directions</span>
+  </a>
+</div>
+<script>
+(function(){
+  const els = document.querySelectorAll('.reveal');
+  if (!('IntersectionObserver' in window)) {
+    els.forEach(e => e.classList.add('is-visible'));
+    return;
+  }
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(en => {
+      if (en.isIntersecting) {
+        en.target.classList.add('is-visible');
+        obs.unobserve(en.target);
+      }
+    });
+  }, {threshold: 0.12});
+  els.forEach(e => obs.observe(e));
+})();
+</script>
+
+</body>
+</html>
