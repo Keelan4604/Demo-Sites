@@ -524,7 +524,10 @@
           </div>
         </div>
         <div class="fade-up" style="transition-delay:0.2s">
-          <form action="https://formspree.io/f/placeholder" method="POST" class="bg-white rounded-3xl p-8 lg:p-10 shadow-lg">
+          <!-- TODO Keelan: get free access_key at https://web3forms.com -->
+          <form action="https://api.web3forms.com/submit" method="POST" class="bg-white rounded-3xl p-8 lg:p-10 shadow-lg">
+            <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY_HERE">
+            <input type="hidden" name="redirect" value="https://web3forms.com/success">
             <h3 class="font-heading text-ohana-green-dk text-2xl mb-6">Get Your Free Estimate</h3>
             <div class="space-y-5">
               <div>

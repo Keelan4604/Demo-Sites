@@ -402,9 +402,9 @@
     <h2>Let's Talk.</h2>
     <p>Call, text, or fill out the form. We'll get back to you within one business day.</p>
     <div class="contact-details">
-      <a href="tel:+12059555000" class="cdetail">
+      <a href="tel:+16023762533" class="cdetail">
         <span class="cdetail-label">Phone</span>
-        <span class="cdetail-value">(205) 555-FENCE</span>
+        <span class="cdetail-value">(602) 376-2533</span>
       </a>
       <a href="mailto:info@westalabamafence.com" class="cdetail">
         <span class="cdetail-label">Email</span>
@@ -422,7 +422,10 @@
   </div>
 
   <div class="contact-form-wrap reveal-up">
-    <form id="contact-form" action="https://formspree.io/f/REPLACE_WITH_REAL_ID" method="POST">
+    <!-- TODO Keelan: get free access_key at https://web3forms.com -->
+    <form id="contact-form" action="https://api.web3forms.com/submit" method="POST">
+      <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY_HERE">
+      <input type="hidden" name="redirect" value="https://web3forms.com/success">
       <div class="ff">
         <input type="text" id="fn" name="name" placeholder=" " required autocomplete="name">
         <label for="fn">Your Name</label>
@@ -476,7 +479,7 @@
       <a href="#contact">Contact</a>
     </nav>
     <div class="footer-contact-col">
-      <a href="tel:+12059555000">(205) 555-FENCE</a>
+      <a href="tel:+16023762533">(602) 376-2533</a>
       <a href="mailto:info@westalabamafence.com">info@westalabamafence.com</a>
       <span>Tuscaloosa, AL 35401</span>
     </div>

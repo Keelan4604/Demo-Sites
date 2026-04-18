@@ -505,7 +505,7 @@
     <div class="max-w-4xl mx-auto px-4 text-center fade-up">
       <div class="inline-flex items-center gap-2 bg-ds-gold/10 border border-ds-gold/20 rounded-full px-5 py-2 mb-6">
         <svg class="w-5 h-5 text-ds-gold" fill="currentColor" viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/></svg>
-        <span class="text-ds-gold font-heading text-sm">Coming Soon</span>
+        <span class="text-ds-gold font-heading text-sm">Online Booking Landing Soon</span>
       </div>
       <h2 class="font-heading text-white text-3xl lg:text-4xl mb-4 font-bold">Book by Chat</h2>
       <p class="text-ds-silver text-lg max-w-2xl mx-auto font-accent italic">
@@ -581,7 +581,10 @@
           </div>
         </div>
         <div class="fade-up" style="transition-delay:0.2s">
-          <form action="https://formspree.io/f/placeholder" method="POST" class="bg-ds-charcoal rounded-2xl p-8 lg:p-10 border border-ds-gold/10">
+          <!-- TODO Keelan: get free access_key at https://web3forms.com -->
+          <form action="https://api.web3forms.com/submit" method="POST" class="bg-ds-charcoal rounded-2xl p-8 lg:p-10 border border-ds-gold/10">
+            <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY_HERE">
+            <input type="hidden" name="redirect" value="https://web3forms.com/success">
             <h3 class="font-heading text-white text-2xl mb-6 font-bold">Send a Message</h3>
             <div class="space-y-5">
               <div>
