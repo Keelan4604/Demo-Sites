@@ -349,6 +349,27 @@
     return [...times].filter((t) => t >= t0).sort((a, b) => a - b).map((t) => [t, bacAt(evs, who, lb, t)]);
   }
 
+  /* ---------- least-squares polynomial fit (Keelan: sloped lines, not steps) ---------- */
+  // xs normalised to [0,1]; degree capped at 3 and at points-1. Returns f(x).
+  function polyfit(xs, ys, degree) {
+    const n = xs.length;
+    const deg = Math.max(1, Math.min(degree, n - 1));
+    const m = deg + 1;
+    const A = Array.from({ length: m }, () => new Array(m + 1).fill(0));
+    for (let r = 0; r < m; r++) {
+      for (let c = 0; c < m; c++) { let sum = 0; for (let i = 0; i < n; i++) sum += Math.pow(xs[i], r + c); A[r][c] = sum; }
+      let sy = 0; for (let i = 0; i < n; i++) sy += ys[i] * Math.pow(xs[i], r); A[r][m] = sy;
+    }
+    for (let i = 0; i < m; i++) {                       // gaussian elimination with pivoting
+      let piv = i; for (let r = i + 1; r < m; r++) if (Math.abs(A[r][i]) > Math.abs(A[piv][i])) piv = r;
+      [A[i], A[piv]] = [A[piv], A[i]];
+      if (Math.abs(A[i][i]) < 1e-12) continue;
+      for (let r = 0; r < m; r++) { if (r === i) continue; const f = A[r][i] / A[i][i]; for (let c = i; c <= m; c++) A[r][c] -= f * A[i][c]; }
+    }
+    const coef = A.map((row, i) => (Math.abs(row[i]) < 1e-12 ? 0 : row[m] / row[i]));
+    return (x) => coef.reduce((acc, c, k) => acc + c * Math.pow(x, k), 0);
+  }
+
   /* ---------- chart: cumulative standard drinks over tonight ---------- */
   function chart() {
     const svg = $('chart');
@@ -363,10 +384,20 @@
     let ymax = 0;
     PEOPLE.forEach((p) => {
       let cum = 0;
-      const pts = [[t0, 0]];
-      ev.forEach((e) => { if (e.who !== p) return; pts.push([e.t, cum]); cum += TYPES[e.type]; pts.push([e.t, cum]); });
-      pts.push([now, cum]);
-      series[p] = { pts, cum };
+      const raw = [[t0, 0]];                              // actual cumulative points
+      ev.forEach((e) => { if (e.who !== p) return; cum += TYPES[e.type]; raw.push([e.t, cum]); });
+      raw.push([now, cum]);
+      // polynomial through the points, sampled every ~2 minutes, clamped at 0 and at the current total
+      const xs = raw.map((pt) => (pt[0] - t0) / span), ys = raw.map((pt) => pt[1]);
+      const f = polyfit(xs, ys, 3);
+      const pts = [];
+      const steps = 80;
+      for (let i = 0; i <= steps; i++) {
+        const t = t0 + ((now - t0) * i) / steps;
+        const v = Math.max(0, Math.min(cum * 1.15 + 0.2, f((t - t0) / span)));
+        pts.push([t, i === steps ? cum : v]);
+      }
+      series[p] = { pts, raw, cum };
       if (cum > ymax) ymax = cum;
     });
     ymax = Math.max(4, Math.ceil(ymax) + 1);
@@ -401,6 +432,7 @@
       const d = pts.map((pt, i) => (i ? 'L' : 'M') + x(pt[0]).toFixed(1) + ' ' + y(pt[1]).toFixed(1)).join(' ');
       svg.appendChild(el('path', { class: 'area ' + p, d: d + ' L' + x(now).toFixed(1) + ' ' + y(0) + ' L' + x(t0).toFixed(1) + ' ' + y(0) + ' Z' }));
       svg.appendChild(el('path', { class: 'line ' + p, d }));
+      series[p].raw.slice(1, -1).forEach((pt) => svg.appendChild(el('circle', { class: 'dot ' + p, cx: x(pt[0]), cy: y(pt[1]), r: 3, opacity: 0.7 })));
       const last = pts[pts.length - 1];
       svg.appendChild(el('circle', { class: 'dot ' + p, cx: x(last[0]), cy: y(last[1]), r: 5 }));
       const tx = Math.min(x(last[0]) + 8, W - R - 26);
