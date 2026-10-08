@@ -50,9 +50,15 @@ in the `meta` table (`weight:keelan`, `weight:rein`, default 180 lb) and is edit
 under the chart (`POST /api/weight`), so both phones use the same numbers. It is an estimate for
 fun, and the page says so.
 
-**Tap effect**: every +1 spawns a spinning Galaxy Gas canister (inline SVG in `app.js`) that
-bursts into flames after a second. Keelan's ask verbatim. Pure CSS keyframes, off under
-prefers-reduced-motion.
+**Tap effect**: every +1 spawns a real Galaxy Gas 0.6 L can (`public/galaxy-gas.webp`, cut out
+of a retailer product photo, gold-spectrum.com, blue raspberry flavour) that spins 20 turns in
+1.1 s, then a white flash, a shockwave ring, three layered fireballs, 26 flames, 60 sparks, 14
+metal shards, a body shake, haptics, and a synthesised rising whine plus noise-blast boom through
+WebAudio. All CSS keyframes and a few DOM nodes, cleaned up within two seconds. Off under
+prefers-reduced-motion. Keelan asked for it this loud on 2026-10-08.
+
+**Weights** for the BAC estimate: Keelan 250 lb, Rein 165 lb (Keelan, 2026-10-08), stored in
+the D1 `meta` table.
 
 ## Deploy
 

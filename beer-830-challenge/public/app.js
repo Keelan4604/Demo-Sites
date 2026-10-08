@@ -102,45 +102,83 @@
   document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') { if (mode === 'local') tryLeaveLocal(); else refresh(); } });
   window.addEventListener('online', () => { if (mode === 'local') tryLeaveLocal(); else refresh(); });
 
-  /* ---------- tap effect: Galaxy Gas canister spins, then bursts into flames ---------- */
-  const CAN_SVG = '<svg viewBox="0 0 120 240" xmlns="http://www.w3.org/2000/svg">'
-    + '<defs><linearGradient id="gal" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1b0b3b"/><stop offset="0.45" stop-color="#5b2a9e"/><stop offset="0.7" stop-color="#1f6fd1"/><stop offset="1" stop-color="#0b1a3a"/></linearGradient>'
-    + '<linearGradient id="shine" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset="0.35" stop-color="#fff" stop-opacity="0.35"/><stop offset="0.5" stop-color="#fff" stop-opacity="0"/></linearGradient></defs>'
-    + '<rect x="42" y="4" width="36" height="22" rx="6" fill="#c9ced6"/><rect x="36" y="22" width="48" height="16" rx="6" fill="#8e96a3"/>'
-    + '<rect x="14" y="36" width="92" height="196" rx="18" fill="url(#gal)"/><rect x="14" y="36" width="92" height="196" rx="18" fill="url(#shine)"/>'
-    + '<g fill="#fff"><circle cx="30" cy="60" r="1.6"/><circle cx="90" cy="80" r="1.2"/><circle cx="50" cy="110" r="1.8"/><circle cx="75" cy="150" r="1.3"/><circle cx="34" cy="190" r="1.5"/><circle cx="95" cy="205" r="1.1"/><circle cx="60" cy="70" r="1"/></g>'
-    + '<ellipse cx="60" cy="130" rx="30" ry="12" fill="#ff5fa2" opacity="0.5" transform="rotate(-25 60 130)"/>'
-    + '<rect x="22" y="100" width="76" height="62" rx="8" fill="#fff" opacity="0.92"/>'
-    + '<text x="60" y="126" text-anchor="middle" font-family="Bebas Neue, Impact, sans-serif" font-size="26" fill="#2a1455">GALAXY</text>'
-    + '<text x="60" y="152" text-anchor="middle" font-family="Bebas Neue, Impact, sans-serif" font-size="26" fill="#e23b57">GAS</text>'
-    + '</svg>';
+  /* ---------- tap effect: real Galaxy Gas can, violent spin, explosion with sound ---------- */
+  const canImg = new Image(); canImg.src = 'galaxy-gas.webp';
+  let audioCtx = null;
+  function ac() {
+    audioCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)();
+    if (audioCtx.state === 'suspended') audioCtx.resume();
+    return audioCtx;
+  }
+  // rising sawtooth while the can spins up
+  function whine() {
+    try {
+      const a = ac(), t = a.currentTime;
+      const w = a.createOscillator(); w.type = 'sawtooth';
+      w.frequency.setValueAtTime(120, t); w.frequency.exponentialRampToValueAtTime(3200, t + 0.95);
+      const f = a.createBiquadFilter(); f.type = 'bandpass'; f.Q.value = 2;
+      f.frequency.setValueAtTime(400, t); f.frequency.exponentialRampToValueAtTime(5000, t + 0.95);
+      const g = a.createGain(); g.gain.setValueAtTime(0.0001, t);
+      g.gain.exponentialRampToValueAtTime(0.25, t + 0.1); g.gain.exponentialRampToValueAtTime(0.0001, t + 1.0);
+      w.connect(f).connect(g).connect(a.destination); w.start(t); w.stop(t + 1.0);
+    } catch (e) { /* no audio */ }
+  }
+  // noise blast through a falling low-pass plus a sub thump
+  function boom() {
+    try {
+      const a = ac(), t = a.currentTime;
+      const len = Math.floor(a.sampleRate * 1.4);
+      const buf = a.createBuffer(1, len, a.sampleRate); const d = buf.getChannelData(0);
+      for (let i = 0; i < len; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / len, 2.2);
+      const n = a.createBufferSource(); n.buffer = buf;
+      const lp = a.createBiquadFilter(); lp.type = 'lowpass';
+      lp.frequency.setValueAtTime(4000, t); lp.frequency.exponentialRampToValueAtTime(120, t + 1.2);
+      const g = a.createGain(); g.gain.setValueAtTime(0.0001, t);
+      g.gain.exponentialRampToValueAtTime(1.0, t + 0.02); g.gain.exponentialRampToValueAtTime(0.0001, t + 1.3);
+      n.connect(lp).connect(g).connect(a.destination); n.start(t); n.stop(t + 1.4);
+      const o = a.createOscillator(); o.type = 'sine';
+      o.frequency.setValueAtTime(140, t); o.frequency.exponentialRampToValueAtTime(30, t + 0.5);
+      const og = a.createGain(); og.gain.setValueAtTime(0.0001, t);
+      og.gain.exponentialRampToValueAtTime(0.9, t + 0.015); og.gain.exponentialRampToValueAtTime(0.0001, t + 0.6);
+      o.connect(og).connect(a.destination); o.start(t); o.stop(t + 0.65);
+    } catch (e) { /* no audio */ }
+  }
   function blast() {
     const fx = $('fx');
     if (!fx || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    whine();
     const can = document.createElement('div');
     can.className = 'fx-can';
-    can.innerHTML = CAN_SVG;
+    const im = document.createElement('img'); im.src = 'galaxy-gas.webp'; im.alt = ''; can.appendChild(im);
     fx.appendChild(can);
     setTimeout(() => {
-      const ring = document.createElement('div'); ring.className = 'fx-ring'; fx.appendChild(ring);
-      const n = 16;
-      for (let i = 0; i < n; i++) {
-        const f = document.createElement('div');
-        f.className = 'fx-flame';
-        f.textContent = i % 3 === 0 ? '💥' : '🔥';
-        const a = (i / n) * Math.PI * 2 + Math.random() * 0.4;
-        const r = 110 + Math.random() * 120;
-        f.style.setProperty('--dx', (Math.cos(a) * r).toFixed(0) + 'px');
-        f.style.setProperty('--dy', (Math.sin(a) * r - 40).toFixed(0) + 'px');
-        f.style.setProperty('--rot', (Math.random() * 360 - 180).toFixed(0) + 'deg');
-        f.style.animationDelay = (Math.random() * 0.12).toFixed(2) + 's';
-        fx.appendChild(f);
-        setTimeout(() => f.remove(), 1200);
-      }
-      setTimeout(() => ring.remove(), 900);
-      haptic([20, 40, 60]);
-    }, 1000);
-    setTimeout(() => can.remove(), 1600);
+      boom();
+      document.body.classList.remove('shake'); void document.body.offsetWidth; document.body.classList.add('shake');
+      setTimeout(() => document.body.classList.remove('shake'), 600);
+      const mk = (cls) => { const e = document.createElement('div'); e.className = cls; fx.appendChild(e); return e; };
+      const flash = mk('fx-flash'); setTimeout(() => flash.remove(), 600);
+      const ring = mk('fx-ring'); setTimeout(() => ring.remove(), 800);
+      const f1 = mk('fx-fire'), f2 = mk('fx-fire two'), f3 = mk('fx-fire smoke');
+      setTimeout(() => { f1.remove(); f2.remove(); f3.remove(); }, 2000);
+      const throwOut = (cls, n, rMin, rMax, text) => {
+        for (let i = 0; i < n; i++) {
+          const e = document.createElement('div');
+          e.className = cls; if (text) e.textContent = text(i);
+          const ang = (i / n) * Math.PI * 2 + Math.random() * 0.5;
+          const r = rMin + Math.random() * (rMax - rMin);
+          e.style.setProperty('--dx', (Math.cos(ang) * r).toFixed(0) + 'px');
+          e.style.setProperty('--dy', (Math.sin(ang) * r - 60).toFixed(0) + 'px');
+          e.style.setProperty('--rot', (Math.random() * 1080 - 540).toFixed(0) + 'deg');
+          e.style.animationDelay = (Math.random() * 0.1).toFixed(2) + 's';
+          fx.appendChild(e); setTimeout(() => e.remove(), 1600);
+        }
+      };
+      throwOut('fx-flame', 26, 140, 320, (i) => (i % 4 === 0 ? '💥' : '🔥'));
+      throwOut('fx-spark', 60, 80, 420);
+      throwOut('fx-shard', 14, 120, 360);
+      haptic([30, 30, 80, 30, 120]);
+    }, 1050);
+    setTimeout(() => can.remove(), 1200);
   }
 
   /* ---------- actions ---------- */
