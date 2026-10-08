@@ -42,6 +42,8 @@ img { display: block; }
 .dot { width: 8px; height: 8px; border-radius: 50%; background: #f5c542; box-shadow: 0 0 0 2px rgba(255,255,255,0.25); }
 .dot.on { background: #4ade80; }
 .dot.off { background: #f87171; }
+.dot.local { background: #d9dde0; }
+.banner { background: #fff4d6; color: #7a4b00; font-size: 13px; font-weight: 600; padding: 10px 14px; text-align: center; border-bottom: 1px solid #f0d9a0; }
 .icon-btn { width: 40px; height: 40px; border-radius: 12px; background: rgba(255,255,255,0.14); display: grid; place-items: center; }
 .icon-btn svg { width: 20px; height: 20px; }
 .icon-btn:active { background: rgba(255,255,255,0.28); }
