@@ -349,25 +349,28 @@
     return [...times].filter((t) => t >= t0).sort((a, b) => a - b).map((t) => [t, bacAt(evs, who, lb, t)]);
   }
 
-  /* ---------- least-squares polynomial fit (Keelan: sloped lines, not steps) ---------- */
-  // xs normalised to [0,1]; degree capped at 3 and at points-1. Returns f(x).
-  function polyfit(xs, ys, degree) {
+  /* ---------- monotone cubic spline (Fritsch-Carlson) through the cumulative points ----------
+     Piecewise cubic, passes through every point, never overshoots or dips between them. */
+  function monotoneSpline(xs, ys) {
     const n = xs.length;
-    const deg = Math.max(1, Math.min(degree, n - 1));
-    const m = deg + 1;
-    const A = Array.from({ length: m }, () => new Array(m + 1).fill(0));
-    for (let r = 0; r < m; r++) {
-      for (let c = 0; c < m; c++) { let sum = 0; for (let i = 0; i < n; i++) sum += Math.pow(xs[i], r + c); A[r][c] = sum; }
-      let sy = 0; for (let i = 0; i < n; i++) sy += ys[i] * Math.pow(xs[i], r); A[r][m] = sy;
+    if (n < 2) return () => (ys[0] || 0);
+    const h = [], d = [];
+    for (let i = 0; i < n - 1; i++) { h.push(xs[i + 1] - xs[i]); d.push(h[i] === 0 ? 0 : (ys[i + 1] - ys[i]) / h[i]); }
+    const m = new Array(n).fill(0);
+    m[0] = d[0]; m[n - 1] = d[n - 2];
+    for (let i = 1; i < n - 1; i++) m[i] = d[i - 1] * d[i] <= 0 ? 0 : (d[i - 1] + d[i]) / 2;
+    for (let i = 0; i < n - 1; i++) {
+      if (d[i] === 0) { m[i] = 0; m[i + 1] = 0; continue; }
+      const a = m[i] / d[i], b = m[i + 1] / d[i], s2 = a * a + b * b;
+      if (s2 > 9) { const t = 3 / Math.sqrt(s2); m[i] = t * a * d[i]; m[i + 1] = t * b * d[i]; }
     }
-    for (let i = 0; i < m; i++) {                       // gaussian elimination with pivoting
-      let piv = i; for (let r = i + 1; r < m; r++) if (Math.abs(A[r][i]) > Math.abs(A[piv][i])) piv = r;
-      [A[i], A[piv]] = [A[piv], A[i]];
-      if (Math.abs(A[i][i]) < 1e-12) continue;
-      for (let r = 0; r < m; r++) { if (r === i) continue; const f = A[r][i] / A[i][i]; for (let c = i; c <= m; c++) A[r][c] -= f * A[i][c]; }
-    }
-    const coef = A.map((row, i) => (Math.abs(row[i]) < 1e-12 ? 0 : row[m] / row[i]));
-    return (x) => coef.reduce((acc, c, k) => acc + c * Math.pow(x, k), 0);
+    return (x) => {
+      if (x <= xs[0]) return ys[0];
+      if (x >= xs[n - 1]) return ys[n - 1];
+      let i = 0; while (i < n - 2 && x > xs[i + 1]) i++;
+      const t = (x - xs[i]) / h[i], t2 = t * t, t3 = t2 * t;
+      return (2 * t3 - 3 * t2 + 1) * ys[i] + (t3 - 2 * t2 + t) * h[i] * m[i] + (-2 * t3 + 3 * t2) * ys[i + 1] + (t3 - t2) * h[i] * m[i + 1];
+    };
   }
 
   /* ---------- chart: cumulative standard drinks over tonight ---------- */
@@ -378,25 +381,26 @@
     const ev = state.events.filter((e) => TYPES[e.type] > 0).slice().sort((a, b) => a.t - b.t);
     const now = Date.now();
     const t0 = Math.min(state.night.startedAt, ev.length ? ev[0].t : now) ;
-    const span = Math.max(now - t0, 3600000);
+    const span = Math.max(now - t0, 600000);
     const t1 = t0 + span;
     const series = {};
     let ymax = 0;
     PEOPLE.forEach((p) => {
       let cum = 0;
       const raw = [[t0, 0]];                              // actual cumulative points
-      ev.forEach((e) => { if (e.who !== p) return; cum += TYPES[e.type]; raw.push([e.t, cum]); });
-      raw.push([now, cum]);
-      // polynomial through the points, sampled every ~2 minutes, clamped at 0 and at the current total
-      const xs = raw.map((pt) => (pt[0] - t0) / span), ys = raw.map((pt) => pt[1]);
-      const f = polyfit(xs, ys, 3);
+      ev.forEach((e) => {
+        if (e.who !== p) return;
+        cum += TYPES[e.type];
+        const last = raw[raw.length - 1];
+        if (raw.length > 1 && e.t - last[0] < 1000) last[1] = cum;             // same-second taps share a point
+        else raw.push([Math.max(e.t, last[0] + 1000), cum]);                   // never collapse the starting zero
+      });
+      if (now - raw[raw.length - 1][0] > 1000) raw.push([now, cum]);
+      // smooth curve through every point, sampled 120 times across the elapsed time
+      const f = monotoneSpline(raw.map((pt) => pt[0]), raw.map((pt) => pt[1]));
       const pts = [];
-      const steps = 80;
-      for (let i = 0; i <= steps; i++) {
-        const t = t0 + ((now - t0) * i) / steps;
-        const v = Math.max(0, Math.min(cum * 1.15 + 0.2, f((t - t0) / span)));
-        pts.push([t, i === steps ? cum : v]);
-      }
+      const steps = 120;
+      for (let i = 0; i <= steps; i++) { const t = t0 + ((now - t0) * i) / steps; pts.push([t, f(t)]); }
       series[p] = { pts, raw, cum };
       if (cum > ymax) ymax = cum;
     });
@@ -414,7 +418,7 @@
       svg.appendChild(el('text', { class: 'axis', x: L - 6, y: y(v) + 4, 'text-anchor': 'end' }, String(v)));
     }
     // x ticks on the clock: every 30 min up to 3 h, then hourly
-    const stepMs = span <= 3 * 3600000 ? 1800000 : 3600000;
+    const stepMs = [300000, 600000, 900000, 1800000, 3600000, 7200000].find((ms) => span / ms <= 6) || 7200000;
     const first = Math.ceil(t0 / stepMs) * stepMs;
     for (let t = first; t <= t1; t += stepMs) {
       svg.appendChild(el('line', { class: 'grid', x1: x(t), x2: x(t), y1: T, y2: H - B }));
