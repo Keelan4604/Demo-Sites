@@ -18,7 +18,7 @@ deploy, with no wrangler login needed on this PC.
 |---|---|
 | Live | https://beer.keelanodoherty.org |
 | Repo | `github.com/Keelan4604/Demo-Sites`, folder `beer-830-challenge/`. Local clone `C:/Users/Keela/Documents/Websites/demo-sites/` |
-| Hosting | Cloudflare Pages project GitHub-connected to Demo-Sites (Keelan, 2026-10-08): a push to `main` deploys the folder. Static files at the folder root, no build step |
+| Hosting | A Cloudflare Pages project that is a direct upload, not git-connected (verified 2026-10-08: pushes to Demo-Sites main and to keelan-portfolio master both left the old demo live for 4+ minutes, despite Keelan recalling it as connected). Until he connects it in the dashboard or logs wrangler in, nothing on this PC can change the live site. Static files at the folder root, no build step |
 | API | `functions/api/[[path]].js`, a Pages Function. Deploys with the push |
 | State | D1 database bound to the Pages project as `DB`. Tables are created on first request. Without the binding every `/api` route answers 503 and the page runs local-only on that phone, then replays those taps when the binding appears |
 | Live sync | Each phone polls `/api/state` every 2.5 s while visible and re-renders when the version string changes. D1 is strongly consistent, so a tap shows on the other phone within one poll |
@@ -41,11 +41,16 @@ Tabs: Tonight (counts, taunt line, panels), Log (tonight's events with times), A
 
 ## Deploy
 
-Push to `main`. That is the whole deploy for the site and the Function.
+Once the project is git-connected, push to `main` and that is the whole deploy for the site and the
+Function. Connecting it is step 0 below.
 
 One-time setup Keelan does in the Cloudflare dashboard (nothing on this PC can do it: wrangler is
 logged out and tokens stay off C: by rule):
 
+0. Workers & Pages > the project serving beer.keelanodoherty.org > Settings > Builds > connect
+   GitHub repo `Keelan4604/Demo-Sites`, branch `main`, root directory `beer-830-challenge`, no
+   build command. Save and deploy. (Alternative: `npx wrangler login` on this PC, then
+   `npx wrangler pages deploy . --project-name <name>` from this folder.)
 1. Workers & Pages > D1 > Create database, any name (for example `beer`).
 2. The Pages project that serves beer.keelanodoherty.org > Settings > Bindings > Add > D1
    database, variable name `DB`, pick that database. Save, then redeploy (Deployments > Retry,
