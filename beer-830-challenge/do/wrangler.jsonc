@@ -1,0 +1,11 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "beer-tracker-do",
+  "main": "src/index.js",
+  "compatibility_date": "2025-10-01",
+  "workers_dev": false,
+  "durable_objects": {
+    "bindings": [{ "name": "TRACKER", "class_name": "Tracker" }]
+  },
+  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["Tracker"] }]
+}

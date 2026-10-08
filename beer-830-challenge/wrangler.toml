@@ -1,0 +1,12 @@
+# Cloudflare Pages config for the beer tracker.
+# Deploy: npx wrangler pages deploy . --project-name <project>  (from this folder)
+# The PIN is a Pages secret (npx wrangler pages secret put PIN), never in this file.
+
+name = "beer-tracker"
+pages_build_output_dir = "."
+compatibility_date = "2025-10-01"
+
+[[durable_objects.bindings]]
+name = "TRACKER"
+class_name = "Tracker"
+script_name = "beer-tracker-do"
