@@ -1,5 +1,5 @@
 /*
-  Pages Function: /api/*
+  /api/* handler, run by src/worker.js (originally a Pages Function)
   Shared state lives in a D1 database bound as DB (Pages project > Settings >
   Bindings > D1). Tables are created on first use. Optional PIN env var gates
   writes and reads. Without the DB binding every route answers 503 and the
