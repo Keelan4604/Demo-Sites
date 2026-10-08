@@ -26,7 +26,7 @@ sites deploy. Keelan approved a wrangler login from his phone to make the deploy
 
 ## How it works
 
-Two side-by-side panels, one per person. Each tap posts `{who, type}` to `/api/event`, which
+Two side-by-side panels, one per person. The big scoreboard number is total drinks tonight (every tap counts one; Keelan 2026-10-08, was beers only); the small line under it is standard drinks and pace. Each tap posts `{who, type}` to `/api/event`, which
 inserts a row and returns the full state; every other phone picks it up on its next poll. Undo
 removes that person's last event. "New night" (the header arrow) archives tonight into
 `history` with totals and a winner, then starts a fresh night. "Wipe tonight" on the All time

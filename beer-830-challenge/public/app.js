@@ -369,8 +369,8 @@
     PEOPLE.forEach((p) => {
       const cap = NAMES[p];
       const bigEl = $('score' + cap);
-      const newBeer = String(t[p].beer);
-      if (bigEl.textContent !== newBeer) { bigEl.textContent = newBeer; bump(bigEl); }
+      const drinks = String(Object.keys(TYPES).reduce((n, ty) => n + t[p][ty], 0));   // every tap counts one
+      if (bigEl.textContent !== drinks) { bigEl.textContent = drinks; bump(bigEl); }
       $('std' + cap).textContent = std(t[p].std);
       $('pace' + cap).textContent = pace(state.events, p).toFixed(1);
       const panel = document.querySelector('.panel[data-who="' + p + '"]');
