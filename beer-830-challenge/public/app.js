@@ -19,6 +19,8 @@
   const WIDMARK_R = 0.68;          // body water constant, male
   const BURN_PER_HR = 0.015;       // BAC % cleared per hour
   const DEFAULT_LB = 180;
+  // 100 beers combined, from noon Thursday 2026-10-08 to 2 am Sunday 2026-10-11, local time
+  const CHALLENGE = { start: new Date(2026, 9, 8, 12, 0, 0).getTime(), end: new Date(2026, 9, 11, 2, 0, 0).getTime(), goal: 100 };
   const RETRY_LOCAL_MS = 15000;
 
   const $ = (id) => document.getElementById(id);
@@ -27,7 +29,8 @@
 
   /* ---------- api ---------- */
   async function api(path, body) {
-    const res = await fetch('/api' + path, {
+    const sep = path.includes('?') ? '&' : '?';
+    const res = await fetch('/api' + path + sep + 'cs=' + CHALLENGE.start, {
       method: body ? 'POST' : 'GET',
       headers: { 'content-type': 'application/json' },
       body: body ? JSON.stringify(body) : undefined,
@@ -308,6 +311,7 @@
     if (!state.history) state.history = [];
     if (!state.weights) state.weights = { keelan: DEFAULT_LB, rein: DEFAULT_LB };
     state.totals = totalsOf(state.events);
+    if (!state.challenge) state.challenge = state.events.filter((e) => e.type === 'beer' && e.t >= CHALLENGE.start).map((e) => e.t);
     render();
   }
 
@@ -385,6 +389,73 @@
     }).join('');
     $('nightsEmpty').hidden = state.history.length > 0;
     chart();
+    hundred();
+  }
+
+  /* ---------- 100 beer challenge: mean line vs combined ---------- */
+  function hundred() {
+    const svg = $('hundredChart');
+    if (!svg) return;
+    const { start, end, goal } = CHALLENGE;
+    const now = Date.now();
+    const beers = (state.challenge || []).filter((t) => t >= start && t <= end).sort((a, b) => a - b);
+    const count = beers.length;
+    const frac = Math.min(Math.max((now - start) / (end - start), 0), 1);
+    const target = goal * frac;
+    const diff = count - target;
+    const hoursLeft = Math.max((end - now) / 3600000, 0);
+    const need = count >= goal ? 0 : hoursLeft > 0 ? (goal - count) / hoursLeft : Infinity;
+
+    $('hundredCount').textContent = count;
+    $('hundredTarget').textContent = target.toFixed(1);
+    $('hundredNeed').textContent = need === Infinity ? '--' : need.toFixed(1);
+    $('hundredLeft').textContent = hoursLeft >= 24 ? Math.floor(hoursLeft / 24) + 'd ' + Math.round(hoursLeft % 24) + 'h' : hoursLeft >= 1 ? hoursLeft.toFixed(1) + 'h' : Math.round(hoursLeft * 60) + 'm';
+    const fmt = (t) => new Date(t).toLocaleString([], { weekday: 'short', hour: 'numeric', minute: '2-digit' });
+    $('hundredWindow').textContent = fmt(start) + ' to ' + fmt(end);
+    const st = $('hundredStatus');
+    st.className = 'hundred-status';
+    if (count >= goal) { st.textContent = 'Done. ' + count + ' beers.'; st.classList.add('done'); }
+    else if (now < start) { st.textContent = 'Starts ' + fmt(start); }
+    else if (now > end) { st.textContent = 'Over. Finished at ' + count + '.'; st.classList.add('behind'); }
+    else if (diff >= 0) { st.textContent = 'Ahead of pace by ' + diff.toFixed(1); st.classList.add('ahead'); }
+    else { st.textContent = 'Behind pace by ' + (-diff).toFixed(1); st.classList.add('behind'); }
+
+    // chart
+    const W = 600, H = 300, L = 34, R = 14, T = 18, B = 34;
+    const x = (t) => L + ((t - start) / (end - start)) * (W - L - R);
+    const ymax = Math.max(goal, count) * 1.05;
+    const y = (v) => T + (1 - v / ymax) * (H - T - B);
+    const ns = 'http://www.w3.org/2000/svg';
+    const el = (tag, attrs, text) => { const n = document.createElementNS(ns, tag); for (const k in attrs) n.setAttribute(k, attrs[k]); if (text != null) n.textContent = text; return n; };
+    svg.textContent = '';
+    for (let v = 0; v <= ymax; v += 20) {
+      svg.appendChild(el('line', { class: 'grid', x1: L, x2: W - R, y1: y(v), y2: y(v) }));
+      svg.appendChild(el('text', { class: 'axis', x: L - 6, y: y(v) + 4, 'text-anchor': 'end' }, String(v)));
+    }
+    // one tick per noon and midnight
+    const d0 = new Date(start); d0.setHours(0, 0, 0, 0);
+    for (let t = d0.getTime(); t <= end; t += 12 * 3600000) {
+      if (t < start) continue;
+      svg.appendChild(el('line', { class: 'grid', x1: x(t), x2: x(t), y1: T, y2: H - B }));
+      if (end - t < 4 * 3600000) continue;   // too close to the 2am label
+      const d = new Date(t);
+      const lbl = d.getHours() === 0 ? d.toLocaleDateString([], { weekday: 'short' }) : 'noon';
+      svg.appendChild(el('text', { class: 'axis', x: x(t), y: H - B + 16, 'text-anchor': 'middle' }, lbl));
+    }
+    svg.appendChild(el('text', { class: 'axis', x: x(end), y: H - B + 16, 'text-anchor': 'end' }, '2am'));
+    // mean line to the goal
+    svg.appendChild(el('path', { class: 'mean', d: 'M' + x(start) + ' ' + y(0) + ' L' + x(end) + ' ' + y(goal) }));
+    svg.appendChild(el('text', { class: 'goal', x: x(end) - 4, y: y(goal) - 6, 'text-anchor': 'end' }, goal + ' by 2am Sun'));
+    // combined beers: a step up at every beer, flat to now
+    const pts = [[start, 0]];
+    beers.forEach((t, i) => { pts.push([t, i]); pts.push([t, i + 1]); });
+    const upTo = Math.min(Math.max(now, start), end);
+    pts.push([upTo, count]);
+    const d = pts.map((pt, i) => (i ? 'L' : 'M') + x(pt[0]).toFixed(1) + ' ' + y(pt[1]).toFixed(1)).join(' ');
+    svg.appendChild(el('path', { class: 'combined-area', d: d + ' L' + x(upTo).toFixed(1) + ' ' + y(0) + ' Z' }));
+    svg.appendChild(el('path', { class: 'combined', d }));
+    svg.appendChild(el('line', { class: 'now', x1: x(upTo), x2: x(upTo), y1: T, y2: H - B }));
+    svg.appendChild(el('circle', { class: 'dot', cx: x(upTo), cy: y(count), r: 6 }));
   }
 
   /* ---------- estimated BAC (Widmark) ---------- */

@@ -166,13 +166,39 @@ h2 { font-family: var(--font-display); font-size: 24px; letter-spacing: 0.04em; 
 .nights .w.tie { color: var(--grey); }
 .danger { margin: 28px auto 8px; display: block; min-height: 44px; padding: 0 16px; border-radius: 12px; border: 2px solid var(--grey-light); color: var(--grey); font-size: 13px; font-weight: 700; background: #fff; }
 
+/* ---------- 100 beer challenge ---------- */
+.hundred-head { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.hundred-window { font-family: var(--font-mono); font-size: 11px; color: var(--grey); letter-spacing: 0.04em; }
+.hundred-card { background: var(--card); border-radius: var(--radius); padding: 18px 12px 12px; box-shadow: 0 1px 2px rgba(0,0,0,0.05); border-top: 5px solid var(--crimson); }
+.hundred-big { text-align: center; font-family: var(--font-display); font-size: clamp(84px, 26vw, 128px); line-height: 0.9; color: var(--crimson); }
+.hundred-big small { font-size: 0.32em; color: var(--grey); margin-left: 6px; }
+.hundred-status { text-align: center; margin-top: 10px; font-size: 18px; font-weight: 800; padding: 8px 12px; border-radius: 12px; }
+.hundred-status.ahead { color: #166534; background: rgba(34,197,94,0.14); }
+.hundred-status.behind { color: var(--crimson); background: rgba(158,27,50,0.10); }
+.hundred-status.done { color: #fff; background: var(--crimson); }
+.hundred-meta { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 12px 0 10px; }
+.hundred-meta div { text-align: center; background: var(--bg); border-radius: 12px; padding: 10px 6px; }
+.hundred-meta b { display: block; font-family: var(--font-display); font-size: 26px; line-height: 1; font-variant-numeric: tabular-nums; }
+.hundred-meta span { display: block; font-size: 10.5px; color: var(--grey); margin-top: 4px; }
+#hundredChart { width: 100%; height: 230px; display: block; }
+#hundredChart .grid { stroke: #e7eaee; stroke-width: 1; }
+#hundredChart .axis { fill: var(--grey); font-family: var(--font-mono); font-size: 11px; }
+#hundredChart .mean { fill: none; stroke: var(--grey); stroke-width: 3; stroke-dasharray: 8 6; stroke-linecap: round; }
+#hundredChart .combined { fill: none; stroke: var(--crimson); stroke-width: 4; stroke-linejoin: round; stroke-linecap: round; }
+#hundredChart .combined-area { fill: rgba(158,27,50,0.10); }
+#hundredChart .now { stroke: var(--ink); stroke-width: 1; stroke-dasharray: 3 4; opacity: 0.6; }
+#hundredChart .dot { fill: var(--crimson); stroke: #fff; stroke-width: 2; }
+#hundredChart .goal { font-family: var(--font-display); font-size: 16px; fill: var(--grey); }
+.hundred-legend { display: flex; gap: 16px; justify-content: center; font-size: 12px; font-weight: 600; color: var(--ink-2); padding-top: 8px; }
+.lg.mean i { background: var(--grey); } .lg.combined i { background: var(--crimson); }
+
 /* ---------- bottom tabs ---------- */
 .tabs {
   position: fixed; left: 0; right: 0; bottom: 0; z-index: 10; height: calc(var(--tabs-h) + env(safe-area-inset-bottom));
-  padding-bottom: env(safe-area-inset-bottom); display: grid; grid-template-columns: 1fr 1fr 1fr 1fr;
+  padding-bottom: env(safe-area-inset-bottom); display: grid; grid-template-columns: 1.15fr 0.8fr 0.8fr 1fr 1.05fr;
   background: #fff; border-top: 1px solid var(--grey-light);
 }
-.tab-btn { font-weight: 800; font-size: 14px; color: var(--grey); letter-spacing: 0.04em; position: relative; }
+.tab-btn { font-weight: 800; font-size: 13.5px; color: var(--grey); letter-spacing: 0.02em; position: relative; padding: 0 2px; }
 .tab-btn.active { color: var(--crimson); }
 .tab-btn.game { display: grid; place-items: center; text-decoration: none; color: var(--ink); }
 .tab-btn.active::after { content: ""; position: absolute; left: 20%; right: 20%; top: 0; height: 3px; background: var(--crimson); border-radius: 0 0 3px 3px; }
