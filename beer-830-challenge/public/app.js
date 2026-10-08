@@ -123,24 +123,31 @@
       w.connect(f).connect(g).connect(a.destination); w.start(t); w.stop(t + 1.0);
     } catch (e) { /* no audio */ }
   }
-  // noise blast through a falling low-pass plus a sub thump
+  // bass-boosted blast: noise through a falling low-pass and a waveshaper, two sub thumps, a compressor on the end
   function boom() {
     try {
       const a = ac(), t = a.currentTime;
-      const len = Math.floor(a.sampleRate * 1.4);
+      const comp = a.createDynamicsCompressor(); comp.threshold.value = -18; comp.ratio.value = 12; comp.attack.value = 0.002; comp.release.value = 0.25;
+      const master = a.createGain(); master.gain.value = 1.0; comp.connect(master).connect(a.destination);
+      const shaper = a.createWaveShaper(); const curve = new Float32Array(256);
+      for (let i = 0; i < 256; i++) { const x = (i / 128) - 1; curve[i] = Math.tanh(x * 4); }
+      shaper.curve = curve; shaper.connect(comp);
+      const len = Math.floor(a.sampleRate * 2.0);
       const buf = a.createBuffer(1, len, a.sampleRate); const d = buf.getChannelData(0);
-      for (let i = 0; i < len; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / len, 2.2);
+      for (let i = 0; i < len; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / len, 2.6);
       const n = a.createBufferSource(); n.buffer = buf;
       const lp = a.createBiquadFilter(); lp.type = 'lowpass';
-      lp.frequency.setValueAtTime(4000, t); lp.frequency.exponentialRampToValueAtTime(120, t + 1.2);
+      lp.frequency.setValueAtTime(5000, t); lp.frequency.exponentialRampToValueAtTime(90, t + 1.6);
       const g = a.createGain(); g.gain.setValueAtTime(0.0001, t);
-      g.gain.exponentialRampToValueAtTime(1.0, t + 0.02); g.gain.exponentialRampToValueAtTime(0.0001, t + 1.3);
-      n.connect(lp).connect(g).connect(a.destination); n.start(t); n.stop(t + 1.4);
-      const o = a.createOscillator(); o.type = 'sine';
-      o.frequency.setValueAtTime(140, t); o.frequency.exponentialRampToValueAtTime(30, t + 0.5);
-      const og = a.createGain(); og.gain.setValueAtTime(0.0001, t);
-      og.gain.exponentialRampToValueAtTime(0.9, t + 0.015); og.gain.exponentialRampToValueAtTime(0.0001, t + 0.6);
-      o.connect(og).connect(a.destination); o.start(t); o.stop(t + 0.65);
+      g.gain.exponentialRampToValueAtTime(1.4, t + 0.015); g.gain.exponentialRampToValueAtTime(0.0001, t + 1.9);
+      n.connect(lp).connect(g).connect(shaper); n.start(t); n.stop(t + 2.0);
+      [0, 0.22].forEach((off, k) => {
+        const o = a.createOscillator(); o.type = 'sine';
+        o.frequency.setValueAtTime(k ? 110 : 150, t + off); o.frequency.exponentialRampToValueAtTime(28, t + off + 0.6);
+        const og = a.createGain(); og.gain.setValueAtTime(0.0001, t + off);
+        og.gain.exponentialRampToValueAtTime(k ? 0.8 : 1.2, t + off + 0.012); og.gain.exponentialRampToValueAtTime(0.0001, t + off + 0.75);
+        o.connect(og).connect(shaper); o.start(t + off); o.stop(t + off + 0.8);
+      });
     } catch (e) { /* no audio */ }
   }
   function blast() {
@@ -153,14 +160,15 @@
     fx.appendChild(can);
     setTimeout(() => {
       boom();
-      document.body.classList.remove('shake'); void document.body.offsetWidth; document.body.classList.add('shake');
-      setTimeout(() => document.body.classList.remove('shake'), 600);
-      const mk = (cls) => { const e = document.createElement('div'); e.className = cls; fx.appendChild(e); return e; };
-      const flash = mk('fx-flash'); setTimeout(() => flash.remove(), 600);
-      const ring = mk('fx-ring'); setTimeout(() => ring.remove(), 800);
-      const f1 = mk('fx-fire'), f2 = mk('fx-fire two'), f3 = mk('fx-fire smoke');
-      setTimeout(() => { f1.remove(); f2.remove(); f3.remove(); }, 2000);
-      const throwOut = (cls, n, rMin, rMax, text) => {
+      const shakers = [document.querySelector('.top'), document.querySelector('main')].filter(Boolean);
+      shakers.forEach((el) => { el.classList.remove('shake'); void el.offsetWidth; el.classList.add('shake'); });
+      setTimeout(() => shakers.forEach((el) => el.classList.remove('shake')), 850);
+      const mk = (cls, life) => { const e = document.createElement('div'); e.className = cls; fx.appendChild(e); setTimeout(() => e.remove(), life); return e; };
+      mk('fx-flash', 500);
+      mk('fx-inferno', 1800);
+      mk('fx-ring', 750);
+      mk('fx-fire', 1400); mk('fx-fire two', 1700); mk('fx-fire three', 2000); mk('fx-fire smoke', 2400);
+      const throwOut = (cls, n, rMin, rMax, text, life) => {
         for (let i = 0; i < n; i++) {
           const e = document.createElement('div');
           e.className = cls; if (text) e.textContent = text(i);
@@ -170,15 +178,26 @@
           e.style.setProperty('--dy', (Math.sin(ang) * r - 60).toFixed(0) + 'px');
           e.style.setProperty('--rot', (Math.random() * 1080 - 540).toFixed(0) + 'deg');
           e.style.animationDelay = (Math.random() * 0.1).toFixed(2) + 's';
-          fx.appendChild(e); setTimeout(() => e.remove(), 1600);
+          fx.appendChild(e); setTimeout(() => e.remove(), life);
         }
       };
-      throwOut('fx-flame', 26, 140, 320, (i) => (i % 4 === 0 ? '💥' : '🔥'));
-      throwOut('fx-spark', 60, 80, 420);
-      throwOut('fx-shard', 14, 120, 360);
-      haptic([30, 30, 80, 30, 120]);
-    }, 1050);
-    setTimeout(() => can.remove(), 1200);
+      // flame tongues: spread sideways a little, rise a lot
+      for (let i = 0; i < 22; i++) {
+        const e = document.createElement('div'); e.className = 'fx-tongue';
+        const dx = (Math.random() * 2 - 1) * 150;
+        e.style.setProperty('--dx', dx.toFixed(0) + 'px');
+        e.style.setProperty('--rot', ((Math.random() * 2 - 1) * 18).toFixed(0) + 'deg');
+        e.style.setProperty('--dur', (1.1 + Math.random() * 0.7).toFixed(2) + 's');
+        e.style.width = (50 + Math.random() * 60).toFixed(0) + 'px';
+        e.style.animationDelay = (Math.random() * 0.35).toFixed(2) + 's';
+        fx.appendChild(e); setTimeout(() => e.remove(), 2300);
+      }
+      throwOut('fx-flame', 34, 120, 340, (i) => (i % 5 === 0 ? '💥' : '🔥'), 1500);
+      throwOut('fx-spark', 70, 80, 440, null, 1700);
+      throwOut('fx-shard', 14, 120, 360, null, 1800);
+      haptic([30, 30, 90, 30, 140]);
+    }, 1000);
+    setTimeout(() => can.remove(), 1150);
   }
 
   /* ---------- actions ---------- */

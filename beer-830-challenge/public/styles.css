@@ -194,72 +194,100 @@ h2 { font-family: var(--font-display); font-size: 24px; letter-spacing: 0.04em; 
   .drink .cnt { font-size: 20px; }
 }
 
-/* ---------- tap effect: real Galaxy Gas can, violent spin, real explosion ---------- */
-.fx { position: fixed; inset: 0; z-index: 45; pointer-events: none; overflow: hidden; }
+/* ---------- tap effect: real Galaxy Gas can, violent spin, meme-edit explosion ----------
+   Every piece is anchored to the same point (--fx-x, --fx-y) so the blast comes out of the can. */
+.fx { position: fixed; inset: 0; z-index: 45; pointer-events: none; overflow: hidden; --fx-x: 50%; --fx-y: 42%; }
 .fx-can {
-  position: absolute; left: 50%; top: 44%; width: 150px; height: 430px; margin: -215px 0 0 -75px;
+  position: absolute; left: var(--fx-x); top: var(--fx-y); width: 96px; height: 276px; margin: -138px 0 0 -48px;
   transform-origin: 50% 50%; will-change: transform, opacity, filter;
-  animation: canspin 1.1s cubic-bezier(0.55, 0, 0.9, 0.2) forwards;
-  filter: drop-shadow(0 14px 22px rgba(0,0,0,0.45));
+  animation: canspin 1.05s cubic-bezier(0.5, 0, 0.9, 0.2) forwards;
+  filter: drop-shadow(0 12px 18px rgba(0,0,0,0.45));
 }
 .fx-can img { width: 100%; height: 100%; object-fit: contain; display: block; }
 @keyframes canspin {
-  0%   { transform: translateY(60px) scale(0.15) rotate(0deg); opacity: 0; }
+  0%   { transform: translateY(40px) scale(0.15) rotate(0deg); opacity: 0; }
   8%   { transform: translateY(0) scale(1) rotate(360deg); opacity: 1; }
-  50%  { transform: translateY(-6px) scale(1.08) rotate(2880deg); opacity: 1; }
-  85%  { transform: translateY(-12px) scale(1.25) rotate(5760deg); opacity: 1; filter: brightness(1.7) drop-shadow(0 0 30px #ff9a1a); }
-  100% { transform: translateY(-16px) scale(1.6) rotate(7200deg); opacity: 0; filter: brightness(4) drop-shadow(0 0 60px #fff); }
+  50%  { transform: translateY(-4px) scale(1.05) rotate(2880deg); opacity: 1; }
+  86%  { transform: translateY(-8px) scale(1.2) rotate(5760deg); opacity: 1; filter: brightness(1.8) drop-shadow(0 0 28px #ff9a1a); }
+  100% { transform: translateY(-10px) scale(1.5) rotate(7200deg); opacity: 0; filter: brightness(4) drop-shadow(0 0 60px #fff); }
 }
-.fx-flash { position: absolute; inset: 0; background: #fff; opacity: 0; animation: flash 0.5s ease-out forwards; }
-@keyframes flash { 0% { opacity: 0.95; background: #fff; } 40% { opacity: 0.6; background: #ffb347; } 100% { opacity: 0; background: #ff4d00; } }
+.fx-flash { position: absolute; inset: 0; opacity: 0; animation: flash 0.45s ease-out forwards; }
+@keyframes flash { 0% { opacity: 1; background: #fff; } 35% { opacity: 0.7; background: #ffc14d; } 100% { opacity: 0; background: #ff4d00; } }
+/* whole-screen inferno wash that flickers while the fireball grows */
+.fx-inferno {
+  position: absolute; inset: 0; opacity: 0;
+  background:
+    radial-gradient(60% 55% at var(--fx-x) var(--fx-y), rgba(255,236,120,0.95) 0%, rgba(255,140,0,0.9) 25%, rgba(230,40,0,0.85) 50%, rgba(90,10,0,0.7) 72%, rgba(20,0,0,0.5) 100%);
+  animation: inferno 1.7s ease-out forwards;
+}
+@keyframes inferno {
+  0% { opacity: 0; } 6% { opacity: 1; } 14% { opacity: 0.75; } 22% { opacity: 1; } 30% { opacity: 0.8; }
+  40% { opacity: 0.95; } 55% { opacity: 0.7; } 70% { opacity: 0.45; } 100% { opacity: 0; }
+}
 .fx-fire {
-  position: absolute; left: 50%; top: 44%; width: 120px; height: 120px; margin: -60px 0 0 -60px; border-radius: 50%;
-  background: radial-gradient(circle, #fff 0%, #ffe066 14%, #ff9a1a 30%, #ff3c00 48%, rgba(120,20,0,0.9) 64%, rgba(20,10,10,0) 72%);
-  animation: fireball 1.1s cubic-bezier(0.15, 0.9, 0.3, 1) forwards; will-change: transform, opacity;
+  position: absolute; left: var(--fx-x); top: var(--fx-y); width: 140px; height: 140px; margin: -70px 0 0 -70px; border-radius: 50%;
+  background: radial-gradient(circle, #fff 0%, #fff2a8 10%, #ffd23f 22%, #ff9a1a 36%, #ff3c00 52%, rgba(140,20,0,0.9) 66%, rgba(20,10,10,0) 74%);
+  animation: fireball 1.3s cubic-bezier(0.15, 0.9, 0.3, 1) forwards; will-change: transform, opacity;
 }
-.fx-fire.two { animation-delay: 0.08s; animation-duration: 1.35s; background: radial-gradient(circle, #fff3b0 0%, #ff8a00 22%, #e02800 45%, rgba(40,10,5,0.85) 60%, rgba(0,0,0,0) 70%); }
-.fx-fire.smoke { animation-delay: 0.18s; animation-duration: 1.8s; background: radial-gradient(circle, rgba(60,40,40,0) 0%, rgba(50,35,35,0.55) 30%, rgba(30,20,20,0.75) 50%, rgba(0,0,0,0) 70%); }
-@keyframes fireball { 0% { transform: scale(0.1); opacity: 1; } 55% { opacity: 1; } 100% { transform: scale(7); opacity: 0; } }
+.fx-fire.two { animation-delay: 0.06s; animation-duration: 1.6s; background: radial-gradient(circle, #fff3b0 0%, #ffb000 20%, #ff5a00 42%, #c01800 58%, rgba(40,10,5,0.9) 66%, rgba(0,0,0,0) 74%); }
+.fx-fire.three { animation-delay: 0.14s; animation-duration: 1.9s; background: radial-gradient(circle, #ffe08a 0%, #ff7a00 30%, #d61f00 52%, rgba(60,10,0,0.85) 64%, rgba(0,0,0,0) 72%); }
+.fx-fire.smoke { animation-delay: 0.3s; animation-duration: 2.3s; background: radial-gradient(circle, rgba(70,40,30,0) 0%, rgba(60,35,30,0.6) 30%, rgba(25,15,15,0.8) 52%, rgba(0,0,0,0) 72%); }
+@keyframes fireball { 0% { transform: scale(0.08); opacity: 1; } 60% { opacity: 1; } 100% { transform: scale(12); opacity: 0; } }
+/* flame tongues that lick upward out of the blast, like a looping fire gif */
+.fx-tongue {
+  position: absolute; left: var(--fx-x); top: var(--fx-y); width: 70px; height: 190px; margin: -170px 0 0 -35px; opacity: 0;
+  border-radius: 50% 50% 45% 45% / 70% 70% 30% 30%;
+  background: linear-gradient(180deg, rgba(255,255,255,0) 0%, #ffe066 18%, #ff9a1a 45%, #ff3c00 72%, rgba(120,10,0,0) 100%);
+  filter: blur(1px); transform-origin: 50% 100%;
+  animation: tongue var(--dur, 1.3s) ease-out forwards; will-change: transform, opacity;
+}
+@keyframes tongue {
+  0%   { transform: translate(var(--dx), 60px) scaleY(0.2) scaleX(0.8) rotate(var(--rot)); opacity: 0; }
+  15%  { opacity: 1; }
+  55%  { transform: translate(calc(var(--dx) * 1.3), -120px) scaleY(1.3) scaleX(1.05) rotate(calc(var(--rot) * -1)); opacity: 1; }
+  100% { transform: translate(calc(var(--dx) * 1.6), -330px) scaleY(1.8) scaleX(0.6) rotate(var(--rot)); opacity: 0; }
+}
 .fx-ring {
-  position: absolute; left: 50%; top: 44%; width: 60px; height: 60px; margin: -30px 0 0 -30px; border-radius: 50%;
+  position: absolute; left: var(--fx-x); top: var(--fx-y); width: 60px; height: 60px; margin: -30px 0 0 -30px; border-radius: 50%;
   border: 8px solid rgba(255,220,160,0.95); box-shadow: 0 0 40px 10px rgba(255,120,20,0.8), inset 0 0 30px rgba(255,255,255,0.8);
-  animation: ring 0.75s cubic-bezier(0.1, 0.8, 0.2, 1) forwards; will-change: transform, opacity;
+  animation: ring 0.7s cubic-bezier(0.1, 0.8, 0.2, 1) forwards; will-change: transform, opacity;
 }
-@keyframes ring { 0% { transform: scale(0.2); opacity: 1; } 100% { transform: scale(14); opacity: 0; border-width: 1px; } }
+@keyframes ring { 0% { transform: scale(0.2); opacity: 1; } 100% { transform: scale(16); opacity: 0; border-width: 1px; } }
 .fx-flame {
-  position: absolute; left: 50%; top: 44%; font-size: 40px; line-height: 1; margin: -20px 0 0 -20px; opacity: 0;
-  animation: burst 1.1s cubic-bezier(0.1, 0.8, 0.3, 1) forwards; will-change: transform, opacity;
+  position: absolute; left: var(--fx-x); top: var(--fx-y); font-size: 44px; line-height: 1; margin: -22px 0 0 -22px; opacity: 0;
+  animation: burst 1.2s cubic-bezier(0.1, 0.8, 0.3, 1) forwards; will-change: transform, opacity;
 }
 @keyframes burst {
   0%   { transform: translate(0, 0) scale(0.3) rotate(0deg); opacity: 0; }
   8%   { opacity: 1; }
-  100% { transform: translate(var(--dx), var(--dy)) scale(1.8) rotate(var(--rot)); opacity: 0; }
+  100% { transform: translate(var(--dx), var(--dy)) scale(2) rotate(var(--rot)); opacity: 0; }
 }
 .fx-spark {
-  position: absolute; left: 50%; top: 44%; width: 6px; height: 6px; margin: -3px 0 0 -3px; border-radius: 50%;
+  position: absolute; left: var(--fx-x); top: var(--fx-y); width: 6px; height: 6px; margin: -3px 0 0 -3px; border-radius: 50%;
   background: #ffd166; box-shadow: 0 0 10px 3px #ff8a00; opacity: 0;
-  animation: spark 1.3s cubic-bezier(0.2, 0.7, 0.4, 1) forwards; will-change: transform, opacity;
+  animation: spark 1.4s cubic-bezier(0.2, 0.7, 0.4, 1) forwards; will-change: transform, opacity;
 }
 @keyframes spark {
   0%   { transform: translate(0, 0) scale(1); opacity: 1; }
   60%  { opacity: 1; }
-  100% { transform: translate(var(--dx), calc(var(--dy) + 260px)) scale(0.3); opacity: 0; }
+  100% { transform: translate(var(--dx), calc(var(--dy) + 280px)) scale(0.3); opacity: 0; }
 }
 .fx-shard {
-  position: absolute; left: 50%; top: 44%; width: 22px; height: 34px; margin: -17px 0 0 -11px; opacity: 0;
+  position: absolute; left: var(--fx-x); top: var(--fx-y); width: 18px; height: 30px; margin: -15px 0 0 -9px; opacity: 0;
   background: linear-gradient(180deg, #fff, #cfd6e4); border-radius: 3px; box-shadow: 0 2px 6px rgba(0,0,0,0.4);
-  animation: shard 1.4s cubic-bezier(0.2, 0.7, 0.4, 1) forwards; will-change: transform, opacity;
+  animation: shard 1.5s cubic-bezier(0.2, 0.7, 0.4, 1) forwards; will-change: transform, opacity;
 }
 @keyframes shard {
   0%   { transform: translate(0, 0) rotate(0deg); opacity: 1; }
   70%  { opacity: 1; }
-  100% { transform: translate(var(--dx), calc(var(--dy) + 320px)) rotate(var(--rot)); opacity: 0; }
+  100% { transform: translate(var(--dx), calc(var(--dy) + 340px)) rotate(var(--rot)); opacity: 0; }
 }
 @keyframes shake {
   0%, 100% { transform: translate(0, 0); }
-  10% { transform: translate(-9px, 6px); } 20% { transform: translate(8px, -7px); } 30% { transform: translate(-7px, -5px); }
-  40% { transform: translate(7px, 6px); } 50% { transform: translate(-5px, 3px); } 60% { transform: translate(5px, -4px); }
-  70% { transform: translate(-3px, 2px); } 80% { transform: translate(3px, -2px); } 90% { transform: translate(-1px, 1px); }
+  8% { transform: translate(-14px, 9px) rotate(-0.6deg); } 16% { transform: translate(12px, -11px) rotate(0.5deg); } 24% { transform: translate(-11px, -7px); }
+  32% { transform: translate(10px, 9px) rotate(-0.4deg); } 40% { transform: translate(-8px, 5px); } 50% { transform: translate(7px, -6px) rotate(0.3deg); }
+  60% { transform: translate(-5px, 3px); } 70% { transform: translate(4px, -3px); } 80% { transform: translate(-2px, 2px); } 90% { transform: translate(1px, -1px); }
 }
-body.shake { animation: shake 0.55s linear; }
-@media (prefers-reduced-motion: reduce) { .fx { display: none; } body.shake { animation: none; } }
+/* shake the content, never body: a transformed body would re-anchor the fixed .fx overlay to the page */
+.top.shake, main.shake { animation: shake 0.8s linear; }
+@media (prefers-reduced-motion: reduce) { .fx { display: none; } .top.shake, main.shake { animation: none; } }
