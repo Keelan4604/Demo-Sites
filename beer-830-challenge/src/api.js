@@ -62,7 +62,7 @@ async function getWeights(db) {
   return w;
 }
 
-// Beers (type beer only) across every night, for the challenge view. Window start comes
+// Every drink across every night, for the 100-drink challenge view (each tap counts one). Window start comes
 // from the client so the timezone decision lives in one place (app.js).
 const CHALLENGE_FALLBACK_START = Date.UTC(2026, 9, 8, 16, 0, 0);   // 2026-10-08 12:00 EDT
 
@@ -73,7 +73,7 @@ async function snapshot(db, challengeStart) {
     db.prepare('SELECT id, t, who, type FROM events WHERE night = ? ORDER BY id ASC').bind(night.id).all(),
     db.prepare('SELECT id, started_at, ended_at, totals, winner FROM nights ORDER BY id ASC').all(),
     getWeights(db),
-    db.prepare("SELECT t FROM events WHERE type = 'beer' AND t >= ? ORDER BY t ASC").bind(since).all(),
+    db.prepare('SELECT t FROM events WHERE t >= ? ORDER BY t ASC').bind(since).all(),
   ]);
   const events = ev.results || [];
   const history = (nights.results || []).map((n) => ({ id: n.id, startedAt: n.started_at, endedAt: n.ended_at, totals: JSON.parse(n.totals), winner: n.winner }));

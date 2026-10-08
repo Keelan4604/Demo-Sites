@@ -19,7 +19,7 @@
   const WIDMARK_R = 0.68;          // body water constant, male
   const BURN_PER_HR = 0.015;       // BAC % cleared per hour
   const DEFAULT_LB = 180;
-  // 100 beers combined, from noon Thursday 2026-10-08 to 2 am Sunday 2026-10-11, local time
+  // 100 drinks combined (every tap counts one), from noon Thursday 2026-10-08 to 2 am Sunday 2026-10-11, local time
   const CHALLENGE = { start: new Date(2026, 9, 8, 12, 0, 0).getTime(), end: new Date(2026, 9, 11, 2, 0, 0).getTime(), goal: 100 };
   const RETRY_LOCAL_MS = 15000;
 
@@ -311,7 +311,7 @@
     if (!state.history) state.history = [];
     if (!state.weights) state.weights = { keelan: DEFAULT_LB, rein: DEFAULT_LB };
     state.totals = totalsOf(state.events);
-    if (!state.challenge) state.challenge = state.events.filter((e) => e.type === 'beer' && e.t >= CHALLENGE.start).map((e) => e.t);
+    if (!state.challenge) state.challenge = state.events.filter((e) => e.t >= CHALLENGE.start).map((e) => e.t);
     render();
   }
 
@@ -392,7 +392,7 @@
     hundred();
   }
 
-  /* ---------- 100 beer challenge: mean line vs combined ---------- */
+  /* ---------- 100 drink challenge: mean line vs combined ---------- */
   function hundred() {
     const svg = $('hundredChart');
     if (!svg) return;
@@ -414,7 +414,7 @@
     $('hundredWindow').textContent = fmt(start) + ' to ' + fmt(end);
     const st = $('hundredStatus');
     st.className = 'hundred-status';
-    if (count >= goal) { st.textContent = 'Done. ' + count + ' beers.'; st.classList.add('done'); }
+    if (count >= goal) { st.textContent = 'Done. ' + count + ' drinks.'; st.classList.add('done'); }
     else if (now < start) { st.textContent = 'Starts ' + fmt(start); }
     else if (now > end) { st.textContent = 'Over. Finished at ' + count + '.'; st.classList.add('behind'); }
     else if (diff >= 0) { st.textContent = 'Ahead of pace by ' + diff.toFixed(1); st.classList.add('ahead'); }
@@ -446,7 +446,7 @@
     // mean line to the goal
     svg.appendChild(el('path', { class: 'mean', d: 'M' + x(start) + ' ' + y(0) + ' L' + x(end) + ' ' + y(goal) }));
     svg.appendChild(el('text', { class: 'goal', x: x(end) - 4, y: y(goal) - 6, 'text-anchor': 'end' }, goal + ' by 2am Sun'));
-    // combined beers: a step up at every beer, flat to now
+    // combined drinks: a step up at every tap, flat to now
     const pts = [[start, 0]];
     beers.forEach((t, i) => { pts.push([t, i]); pts.push([t, i + 1]); });
     const upTo = Math.min(Math.max(now, start), end);

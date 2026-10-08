@@ -57,13 +57,13 @@ metal shards, a body shake, haptics, and a synthesised rising whine plus noise-b
 WebAudio. All CSS keyframes and a few DOM nodes, cleaned up within two seconds. Off under
 prefers-reduced-motion. Keelan asked for it this loud on 2026-10-08.
 
-**100 beers challenge** (`100` tab, `hundred()` in `app.js`): 100 beers combined between
+**100 drinks challenge** (`100` tab, `hundred()` in `app.js`): 100 drinks combined (every tap counts one, any type; Keelan changed it from beers only on 2026-10-08) between
 2026-10-08 12:00 and 2026-10-11 02:00 local, defined once as `CHALLENGE` in `app.js`. Two lines:
-the dashed mean line from 0 to 100 across the window, and the solid combined count (type `beer`
-only) stepping up at every beer. Status reads ahead or behind the mean by N, with beers/hr still
-needed and time left. To make beers survive "New night", events now carry a `night` column and
+the dashed mean line from 0 to 100 across the window, and the solid combined count stepping up
+at every drink. Status reads ahead or behind the mean by N, with beers/hr still
+needed and time left. To make drinks survive "New night", events now carry a `night` column and
 are never deleted on a new night (only on wipe); tonight's view filters by the current night id,
-and `/api/state?cs=<ms>` returns every beer since the window start as `challenge`. The column
+and `/api/state?cs=<ms>` returns every drink since the window start as `challenge`. The column
 was added by an in-code ALTER on 2026-10-08 with old rows backfilled to the current night.
 
 **Weights** for the BAC estimate: Keelan 250 lb, Rein 165 lb (Keelan, 2026-10-08), stored in
