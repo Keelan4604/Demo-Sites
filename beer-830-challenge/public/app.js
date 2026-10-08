@@ -135,12 +135,12 @@
     try {
       const a = ac(), t = a.currentTime;
       const w = a.createOscillator(); w.type = 'sawtooth';
-      w.frequency.setValueAtTime(120, t); w.frequency.exponentialRampToValueAtTime(3200, t + 0.95);
+      w.frequency.setValueAtTime(120, t); w.frequency.exponentialRampToValueAtTime(2600, t + 1.3);
       const f = a.createBiquadFilter(); f.type = 'bandpass'; f.Q.value = 2;
-      f.frequency.setValueAtTime(400, t); f.frequency.exponentialRampToValueAtTime(5000, t + 0.95);
+      f.frequency.setValueAtTime(400, t); f.frequency.exponentialRampToValueAtTime(5000, t + 1.3);
       const g = a.createGain(); g.gain.setValueAtTime(0.0001, t);
-      g.gain.exponentialRampToValueAtTime(0.25, t + 0.1); g.gain.exponentialRampToValueAtTime(0.0001, t + 1.0);
-      w.connect(f).connect(g).connect(a.destination); w.start(t); w.stop(t + 1.0);
+      g.gain.exponentialRampToValueAtTime(0.25, t + 0.1); g.gain.exponentialRampToValueAtTime(0.0001, t + 1.35);
+      w.connect(f).connect(g).connect(a.destination); w.start(t); w.stop(t + 1.35);
     } catch (e) { /* no audio */ }
   }
   // bass-boosted blast: noise through a falling low-pass and a waveshaper, two sub thumps, a compressor on the end
@@ -216,8 +216,8 @@
       throwOut('fx-spark', 70, 80, 440, null, 1700);
       throwOut('fx-shard', 14, 120, 360, null, 1800);
       haptic([30, 30, 90, 30, 140]);
-    }, 1000);
-    setTimeout(() => can.remove(), 1150);
+    }, 1330);
+    setTimeout(() => can.remove(), 1450);
   }
 
   /* ---------- actions ---------- */

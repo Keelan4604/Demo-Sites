@@ -230,16 +230,16 @@ h2 { font-family: var(--font-display); font-size: 24px; letter-spacing: 0.04em; 
 .fx-can {
   position: absolute; left: var(--fx-x); top: var(--fx-y); width: 96px; height: 276px; margin: -138px 0 0 -48px;
   transform-origin: 50% 50%; will-change: transform, opacity, filter;
-  animation: canspin 1.05s cubic-bezier(0.5, 0, 0.9, 0.2) forwards;
+  animation: canspin 1.4s cubic-bezier(0.45, 0, 0.75, 0.3) forwards;
   filter: drop-shadow(0 12px 18px rgba(0,0,0,0.45));
 }
 .fx-can img { width: 100%; height: 100%; object-fit: contain; display: block; }
 @keyframes canspin {
   0%   { transform: translateY(40px) scale(0.15) rotate(0deg); opacity: 0; }
-  8%   { transform: translateY(0) scale(1) rotate(360deg); opacity: 1; }
-  50%  { transform: translateY(-4px) scale(1.05) rotate(2880deg); opacity: 1; }
-  86%  { transform: translateY(-8px) scale(1.2) rotate(5760deg); opacity: 1; filter: brightness(1.8) drop-shadow(0 0 28px #ff9a1a); }
-  100% { transform: translateY(-10px) scale(1.5) rotate(7200deg); opacity: 0; filter: brightness(4) drop-shadow(0 0 60px #fff); }
+  10%  { transform: translateY(0) scale(1) rotate(90deg); opacity: 1; }
+  55%  { transform: translateY(-4px) scale(1.05) rotate(720deg); opacity: 1; }
+  88%  { transform: translateY(-8px) scale(1.2) rotate(1440deg); opacity: 1; filter: brightness(1.8) drop-shadow(0 0 28px #ff9a1a); }
+  100% { transform: translateY(-10px) scale(1.5) rotate(1800deg); opacity: 0; filter: brightness(4) drop-shadow(0 0 60px #fff); }
 }
 .fx-flash { position: absolute; inset: 0; opacity: 0; animation: flash 0.45s ease-out forwards; }
 @keyframes flash { 0% { opacity: 1; background: #fff; } 35% { opacity: 0.7; background: #ffc14d; } 100% { opacity: 0; background: #ff4d00; } }
