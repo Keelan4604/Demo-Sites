@@ -19,10 +19,10 @@ sites deploy. Keelan approved a wrangler login from his phone to make the deploy
 | Live | https://beer.keelanodoherty.org (also https://beer-tracker.keelan4604.workers.dev) |
 | Repo | `github.com/Keelan4604/Demo-Sites`, folder `beer-830-challenge/`. Local clone `C:/Users/Keela/Documents/Websites/demo-sites/` |
 | Hosting | Cloudflare Worker `beer-tracker` with static assets, like `personal-website` and `dashboard`. Deployed by `npx wrangler deploy` from this folder (`wrangler.jsonc`). Custom domain `beer.keelanodoherty.org` is attached to the Worker. **Nothing is git-connected**: pushing changes nothing live; run the deploy. |
-| Code | `public/` static files, `src/worker.js` (routes `/api/*` to the handler, everything else to assets), `src/api.js` (the API) |
+| Code | `public/` static files, `src/worker.js` (routes `/api/*` to the handler, everything else to assets), `src/api.js` (the API). `public/830/` is the old 8:30 Beer Challenge game, rethemed crimson, reachable from the bottom bar |
 | State | D1 database `beer-tracker` (id `c79fe986-379f-4f84-b184-7ce79a7e43cd`, region ENAM) bound as `DB`. Tables are created on first request. Without the binding every `/api` route answers 503 and the page runs local-only on that phone, then replays those taps when the server answers |
 | Live sync | Each phone polls `/api/state` every 2.5 s while visible and re-renders when the version string changes. D1 is strongly consistent, so a tap shows on the other phone within one poll |
-| PIN | Worker secret `PIN`, set 2026-10-08 to 1831 (Keelan gave no preference). Change with `printf 'NEW' \| npx wrangler secret put PIN --name beer-tracker`. Phones store it in localStorage after the first entry |
+| Auth | None. Keelan removed the PIN 2026-10-08 ("remove the pin"). Anyone with the URL can tap. |
 
 ## How it works
 
@@ -33,11 +33,26 @@ removes that person's last event. "New night" (the header arrow) archives tonigh
 tab discards it without recording.
 
 Standard-drink weights live in both `src/api.js` and `public/app.js` and must match:
-beer 1, shot 1, seltzer 1, mixed 1.5, car bomb 2, water 0. Pace is standard drinks per hour
+beer 1, shot 1, seltzer 1, mixed 1.5, car bomb 2. Pace is standard drinks per hour
 since that person's first non-water drink tonight, with a half-hour floor.
 
-Tabs: Tonight (counts, taunt line, panels), Log (tonight's events with times), All time
-(nights won, all-time totals by type, past nights, wipe button).
+Tabs: Tonight (counts, taunt line, panels, chart), Log (tonight's events with times), All time
+(nights won, all-time totals by type, past nights, wipe button), and a link to the 8:30 game.
+
+Drink types: beer 1, shot 1, seltzer 1, mixed 1.5, car bomb 2 standard drinks. Water was removed
+2026-10-08 at Keelan's request; old water rows, if any, are ignored by the client.
+
+**Chart** (bottom of Tonight, `chart()` in `app.js`, hand-drawn SVG, redrawn every render): solid
+lines are cumulative standard drinks per person on the left axis; dashed lines are estimated BAC
+on the right axis, Widmark formula with 0.6 oz alcohol per standard drink, r = 0.68, burn-off
+0.015 %/hr from each person's first drink, a dotted guide at 0.08. Body weight per person lives
+in the `meta` table (`weight:keelan`, `weight:rein`, default 180 lb) and is edited from the button
+under the chart (`POST /api/weight`), so both phones use the same numbers. It is an estimate for
+fun, and the page says so.
+
+**Tap effect**: every +1 spawns a spinning Galaxy Gas canister (inline SVG in `app.js`) that
+bursts into flames after a second. Keelan's ask verbatim. Pure CSS keyframes, off under
+prefers-reduced-motion.
 
 ## Deploy
 

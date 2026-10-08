@@ -1,9 +1,8 @@
 /*
   /api/* handler, run by src/worker.js (originally a Pages Function)
-  Shared state lives in a D1 database bound as DB (Pages project > Settings >
-  Bindings > D1). Tables are created on first use. Optional PIN env var gates
-  writes and reads. Without the DB binding every route answers 503 and the
-  page falls back to local-only mode.
+  Shared state lives in a D1 database bound as DB. Tables are created on
+  first use. No auth by design (Keelan, 2026-10-08). Without the DB binding
+  every route answers 503 and the page falls back to local-only mode.
 
   Routes:
     GET  /api/state            full snapshot
@@ -11,18 +10,19 @@
     POST /api/undo             { who }
     POST /api/night/new        archive tonight, start fresh
     POST /api/night/clear      drop tonight without archiving
+    POST /api/weight           { who, lb }  body weight for the BAC estimate
     POST /api/import           { events: [{t, who, type}] }  replay local-only taps
 */
 
 const PEOPLE = ['keelan', 'rein'];
-const TYPES = { beer: 1, carbomb: 2, shot: 1, seltzer: 1, mixed: 1.5, water: 0 };
+const TYPES = { beer: 1, carbomb: 2, shot: 1, seltzer: 1, mixed: 1.5 };
 
 const json = (data, status = 200) =>
   new Response(JSON.stringify(data), { status, headers: { 'content-type': 'application/json; charset=utf-8', 'cache-control': 'no-store' } });
 
 function totalsOf(events) {
   const out = {};
-  for (const p of PEOPLE) out[p] = { beer: 0, carbomb: 0, shot: 0, seltzer: 0, mixed: 0, water: 0, std: 0 };
+  for (const p of PEOPLE) out[p] = { beer: 0, carbomb: 0, shot: 0, seltzer: 0, mixed: 0, std: 0 };
   for (const e of events) {
     const t = out[e.who];
     if (!t || !(e.type in TYPES)) continue;
@@ -48,24 +48,31 @@ async function getNight(db) {
   return night;
 }
 
+const DEFAULT_LB = 180;
+async function getWeights(db) {
+  const rows = await db.prepare("SELECT key, value FROM meta WHERE key LIKE 'weight:%'").all();
+  const w = {};
+  for (const p of PEOPLE) w[p] = DEFAULT_LB;
+  for (const r of rows.results || []) { const p = r.key.slice(7); if (PEOPLE.includes(p)) w[p] = Number(r.value) || DEFAULT_LB; }
+  return w;
+}
+
 async function snapshot(db) {
-  const [night, ev, nights] = await Promise.all([
+  const [night, ev, nights, weights] = await Promise.all([
     getNight(db),
     db.prepare('SELECT id, t, who, type FROM events ORDER BY id ASC').all(),
     db.prepare('SELECT id, started_at, ended_at, totals, winner FROM nights ORDER BY id ASC').all(),
+    getWeights(db),
   ]);
   const events = ev.results || [];
   const history = (nights.results || []).map((n) => ({ id: n.id, startedAt: n.started_at, endedAt: n.ended_at, totals: JSON.parse(n.totals), winner: n.winner }));
   const last = events.length ? events[events.length - 1].id : 0;
-  return { night, events, history, totals: totalsOf(events), version: night.id + ':' + events.length + ':' + last + ':' + history.length, serverTime: Date.now() };
+  return { night, events, history, weights, totals: totalsOf(events), version: night.id + ':' + events.length + ':' + last + ':' + history.length + ':' + weights.keelan + ':' + weights.rein, serverTime: Date.now() };
 }
 
 export async function onRequest({ request, env }) {
   const url = new URL(request.url);
   const path = url.pathname.replace(/^\/api/, '');
-  const pin = request.headers.get('x-pin') || url.searchParams.get('pin') || '';
-
-  if (env.PIN && pin !== env.PIN) return json({ error: 'pin' }, 401);
   const db = env.DB;
   if (!db) return json({ error: 'no-binding', hint: 'Bind a D1 database as DB on the Pages project' }, 503);
 
@@ -80,6 +87,15 @@ export async function onRequest({ request, env }) {
       const type = String(body.type || '').toLowerCase();
       if (!PEOPLE.includes(who) || !(type in TYPES)) return json({ error: 'bad event' }, 400);
       await db.prepare('INSERT INTO events (t, who, type) VALUES (?, ?, ?)').bind(Date.now(), who, type).run();
+      return json(await snapshot(db));
+    }
+
+    if (request.method === 'POST' && path === '/weight') {
+      const body = await request.json().catch(() => ({}));
+      const who = String(body.who || '').toLowerCase();
+      const lb = Math.round(Number(body.lb));
+      if (!PEOPLE.includes(who) || !(lb >= 80 && lb <= 400)) return json({ error: 'bad weight' }, 400);
+      await db.prepare('INSERT OR REPLACE INTO meta (key, value) VALUES (?, ?)').bind('weight:' + who, String(lb)).run();
       return json(await snapshot(db));
     }
 

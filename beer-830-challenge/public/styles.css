@@ -93,14 +93,42 @@ h2 { font-family: var(--font-display); font-size: 24px; letter-spacing: 0.04em; 
 .drink .cnt { font-family: var(--font-display); font-size: 24px; line-height: 1; min-width: 22px; text-align: right; opacity: 0.95; }
 .panel[data-who="rein"] .drink { background: var(--ink); box-shadow: 0 3px 0 #000; }
 .panel[data-who="rein"] .drink:active, .panel[data-who="rein"] .drink.pressed { box-shadow: 0 0 0 #000; }
-.drink.water { background: var(--grey); box-shadow: 0 3px 0 #5f666a; }
-.panel[data-who="rein"] .drink.water { background: var(--grey); box-shadow: 0 3px 0 #5f666a; }
-.drink.water:active, .drink.water.pressed { box-shadow: 0 0 0 #5f666a; }
 .undo {
   min-height: 44px; border-radius: 12px; border: 2px solid var(--grey-light); color: var(--ink-2); font-weight: 700; font-size: 14px; background: #fff;
 }
 .undo:active { background: var(--grey-light); }
 .undo:disabled { opacity: 0.4; }
+/* ---------- chart ---------- */
+.chart-card { margin-top: 12px; background: var(--card); border-radius: var(--radius); padding: 12px 10px 8px; box-shadow: 0 1px 2px rgba(0,0,0,0.05); border-top: 5px solid var(--crimson); }
+.chart-head { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; padding: 0 4px 4px; }
+.chart-head h3 { font-family: var(--font-display); font-size: 20px; letter-spacing: 0.05em; font-weight: 400; color: var(--crimson); margin: 0; }
+.legend { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 12px; font-weight: 600; color: var(--ink-2); padding: 0 4px 8px; }
+.lg { display: inline-flex; align-items: center; gap: 5px; }
+.lg i { width: 14px; height: 3px; border-radius: 2px; background: var(--crimson); }
+.lg.rein i { background: var(--ink); }
+.lg b { color: var(--ink); font-variant-numeric: tabular-nums; }
+#chart { width: 100%; height: 190px; display: block; }
+#chart .grid { stroke: #e7eaee; stroke-width: 1; }
+#chart .axis { fill: var(--grey); font-family: var(--font-mono); font-size: 11px; }
+#chart .line { fill: none; stroke-width: 3; stroke-linejoin: round; stroke-linecap: round; }
+#chart .line.keelan { stroke: var(--crimson); }
+#chart .line.rein { stroke: var(--ink); }
+#chart .area.keelan { fill: rgba(158,27,50,0.10); }
+#chart .area.rein { fill: rgba(20,20,20,0.07); }
+#chart .dot.keelan { fill: var(--crimson); }
+#chart .dot.rein { fill: var(--ink); }
+#chart .end { font-family: var(--font-display); font-size: 16px; }
+#chart .end.keelan { fill: var(--crimson); }
+#chart .end.rein { fill: var(--ink); }
+#chart .empty { fill: var(--grey); font-size: 14px; font-weight: 600; }
+#chart .bac { fill: none; stroke-width: 2.5; stroke-dasharray: 6 5; stroke-linecap: round; opacity: 0.85; }
+#chart .bac.keelan { stroke: var(--crimson-light); }
+#chart .bac.rein { stroke: #5f666a; }
+#chart .axis.right { fill: var(--grey); }
+#chart .limit { stroke: #c0304a; stroke-width: 1; stroke-dasharray: 2 4; opacity: 0.7; }
+.chart-foot { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; padding: 6px 4px 2px; font-size: 11px; color: var(--grey); }
+.weights { font-size: 11px; font-weight: 600; color: var(--ink-2); border: 1px solid var(--grey-light); border-radius: 999px; padding: 5px 10px; background: #fff; }
+.weights b { color: var(--crimson); }
 .fine { font-size: 11px; color: var(--grey); text-align: center; margin: 12px 8px 0; }
 
 /* ---------- log ---------- */
@@ -111,7 +139,6 @@ h2 { font-family: var(--font-display); font-size: 24px; letter-spacing: 0.04em; 
   border-left: 4px solid var(--crimson);
 }
 .log li.rein { border-left-color: var(--ink); }
-.log li.water { border-left-color: var(--grey); }
 .log .t { font-variant-numeric: tabular-nums; color: var(--grey); font-size: 12px; }
 .log .who { font-weight: 800; }
 .log .what { color: var(--ink-2); }
@@ -142,21 +169,15 @@ h2 { font-family: var(--font-display); font-size: 24px; letter-spacing: 0.04em; 
 /* ---------- bottom tabs ---------- */
 .tabs {
   position: fixed; left: 0; right: 0; bottom: 0; z-index: 10; height: calc(var(--tabs-h) + env(safe-area-inset-bottom));
-  padding-bottom: env(safe-area-inset-bottom); display: grid; grid-template-columns: 1fr 1fr 1fr;
+  padding-bottom: env(safe-area-inset-bottom); display: grid; grid-template-columns: 1fr 1fr 1fr 1fr;
   background: #fff; border-top: 1px solid var(--grey-light);
 }
 .tab-btn { font-weight: 800; font-size: 14px; color: var(--grey); letter-spacing: 0.04em; position: relative; }
 .tab-btn.active { color: var(--crimson); }
+.tab-btn.game { display: grid; place-items: center; text-decoration: none; color: var(--ink); }
 .tab-btn.active::after { content: ""; position: absolute; left: 20%; right: 20%; top: 0; height: 3px; background: var(--crimson); border-radius: 0 0 3px 3px; }
 
-/* ---------- pin + toast ---------- */
-.overlay { position: fixed; inset: 0; z-index: 50; background: var(--crimson); display: grid; place-items: center; padding: 24px; }
-.pin-card { background: #fff; border-radius: 20px; padding: 28px 24px; width: min(340px, 100%); text-align: center; display: grid; gap: 14px; justify-items: center; }
-.pin-card h2 { margin: 0; }
-.pin-card input { width: 100%; font-size: 32px; text-align: center; letter-spacing: 0.4em; padding: 10px; border: 2px solid var(--grey-light); border-radius: 12px; font-family: var(--font); font-weight: 700; }
-.pin-card input:focus { outline: 0; border-color: var(--crimson); }
-.pin-card button { width: 100%; min-height: 52px; border-radius: 12px; background: var(--crimson); color: #fff; font-weight: 800; font-size: 16px; }
-.err { color: var(--crimson); font-size: 13px; font-weight: 700; }
+/* ---------- toast ---------- */
 .toast {
   position: fixed; left: 50%; bottom: calc(var(--tabs-h) + 14px + env(safe-area-inset-bottom)); transform: translateX(-50%);
   background: var(--ink); color: #fff; padding: 10px 16px; border-radius: 999px; font-size: 13px; font-weight: 700; z-index: 40;
@@ -172,3 +193,36 @@ h2 { font-family: var(--font-display); font-size: 24px; letter-spacing: 0.04em; 
   .drink .ico { font-size: 18px; }
   .drink .cnt { font-size: 20px; }
 }
+
+/* ---------- tap effect: Galaxy Gas canister spins, then bursts into flames ---------- */
+.fx { position: fixed; inset: 0; z-index: 45; pointer-events: none; overflow: hidden; }
+.fx-can {
+  position: absolute; left: 50%; top: 42%; width: 120px; height: 240px; margin: -120px 0 0 -60px;
+  transform-origin: 50% 50%; will-change: transform, opacity;
+  animation: canspin 1.5s cubic-bezier(0.2, 0.8, 0.3, 1) forwards;
+  filter: drop-shadow(0 10px 18px rgba(0,0,0,0.35));
+}
+.fx-can svg { width: 100%; height: 100%; }
+@keyframes canspin {
+  0%   { transform: translateY(40px) scale(0.2) rotate(0deg); opacity: 0; }
+  12%  { transform: translateY(0) scale(1) rotate(180deg); opacity: 1; }
+  60%  { transform: translateY(-10px) scale(1.05) rotate(1440deg); opacity: 1; }
+  72%  { transform: translateY(-14px) scale(1.25) rotate(1620deg); opacity: 1; filter: brightness(1.6) drop-shadow(0 0 24px #ff7a1a); }
+  100% { transform: translateY(-30px) scale(0.3) rotate(1800deg); opacity: 0; filter: brightness(3) drop-shadow(0 0 40px #ff7a1a); }
+}
+.fx-flame {
+  position: absolute; left: 50%; top: 42%; font-size: 34px; line-height: 1; margin: -17px 0 0 -17px;
+  animation: burst 0.9s cubic-bezier(0.1, 0.7, 0.3, 1) forwards; opacity: 0; will-change: transform, opacity;
+}
+@keyframes burst {
+  0%   { transform: translate(0, 0) scale(0.4) rotate(0deg); opacity: 0; }
+  10%  { opacity: 1; }
+  100% { transform: translate(var(--dx), var(--dy)) scale(1.5) rotate(var(--rot)); opacity: 0; }
+}
+.fx-ring {
+  position: absolute; left: 50%; top: 42%; width: 40px; height: 40px; margin: -20px 0 0 -20px; border-radius: 50%;
+  border: 6px solid #ff7a1a; box-shadow: 0 0 30px #ff7a1a, inset 0 0 20px #ffd166; opacity: 0;
+  animation: ring 0.8s ease-out forwards;
+}
+@keyframes ring { 0% { transform: scale(0.3); opacity: 0.9; } 100% { transform: scale(9); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .fx { display: none; } }

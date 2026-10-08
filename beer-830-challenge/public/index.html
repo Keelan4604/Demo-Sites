@@ -64,7 +64,6 @@
           <button class="drink" data-type="shot"><span class="ico">🥃</span><span class="lbl">Shot</span><span class="cnt" data-count="shot">0</span></button>
           <button class="drink" data-type="seltzer"><span class="ico">🥫</span><span class="lbl">Seltzer</span><span class="cnt" data-count="seltzer">0</span></button>
           <button class="drink" data-type="mixed"><span class="ico">🍹</span><span class="lbl">Mixed</span><span class="cnt" data-count="mixed">0</span></button>
-          <button class="drink water" data-type="water"><span class="ico">💧</span><span class="lbl">Water</span><span class="cnt" data-count="water">0</span></button>
           <button class="undo" data-undo="keelan">Undo last</button>
         </div>
         <div class="panel" data-who="rein">
@@ -74,11 +73,24 @@
           <button class="drink" data-type="shot"><span class="ico">🥃</span><span class="lbl">Shot</span><span class="cnt" data-count="shot">0</span></button>
           <button class="drink" data-type="seltzer"><span class="ico">🥫</span><span class="lbl">Seltzer</span><span class="cnt" data-count="seltzer">0</span></button>
           <button class="drink" data-type="mixed"><span class="ico">🍹</span><span class="lbl">Mixed</span><span class="cnt" data-count="mixed">0</span></button>
-          <button class="drink water" data-type="water"><span class="ico">💧</span><span class="lbl">Water</span><span class="cnt" data-count="water">0</span></button>
           <button class="undo" data-undo="rein">Undo last</button>
         </div>
       </div>
-      <p class="fine">Standard drinks: beer, shot, seltzer 1 · mixed 1.5 · car bomb 2 · water 0</p>
+      <div class="chart-card">
+        <div class="chart-head">
+          <h3>Drinks over time</h3>
+        </div>
+        <div class="legend">
+          <span class="lg keelan"><i></i>Keelan <b id="lgKeelan">0</b> drinks · est. BAC <b id="bacKeelan">0.000</b></span>
+          <span class="lg rein"><i></i>Rein <b id="lgRein">0</b> drinks · est. BAC <b id="bacRein">0.000</b></span>
+        </div>
+        <svg id="chart" viewBox="0 0 600 250" preserveAspectRatio="none" role="img" aria-label="Standard drinks and estimated blood alcohol for Keelan and Rein over tonight"></svg>
+        <div class="chart-foot">
+          <span>Solid: drinks (left). Dashed: est. BAC % (right), Widmark, burns 0.015/hr.</span>
+          <button class="weights" id="weightsBtn">Keelan <b id="wKeelan">180</b> lb · Rein <b id="wRein">180</b> lb</button>
+        </div>
+      </div>
+      <p class="fine">Standard drinks: beer, shot, seltzer 1 · mixed 1.5 · car bomb 2</p>
     </section>
 
     <!-- ========== LOG ========== -->
@@ -112,19 +124,10 @@
     <button class="tab-btn active" data-tab="tonight">Tonight</button>
     <button class="tab-btn" data-tab="log">Log</button>
     <button class="tab-btn" data-tab="alltime">All time</button>
+    <a class="tab-btn game" href="830/">8:30 Game</a>
   </nav>
 
-  <!-- ========== PIN ========== -->
-  <div class="overlay" id="pinOverlay" hidden>
-    <form class="pin-card" id="pinForm">
-      <img src="logo.svg" alt="" width="64" height="64" />
-      <h2>PIN</h2>
-      <input id="pinInput" inputmode="numeric" autocomplete="one-time-code" maxlength="8" placeholder="····" />
-      <button type="submit">Open</button>
-      <p class="err" id="pinErr" hidden>Wrong PIN</p>
-    </form>
-  </div>
-
+  <div class="fx" id="fx" aria-hidden="true"></div>
   <div class="toast" id="toast" hidden></div>
 
   <script src="app.js"></script>
