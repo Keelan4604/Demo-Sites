@@ -102,15 +102,17 @@
       <div class="hundred-card">
         <div class="hundred-big"><span id="hundredCount">0</span><small>/ 100</small></div>
         <div class="hundred-status" id="hundredStatus">Counting</div>
+        <div class="hundred-sub" id="hundredSub"></div>
         <div class="hundred-meta">
-          <div><b id="hundredTarget">0</b><span>on pace now</span></div>
-          <div><b id="hundredNeed">0.0</b><span>drinks/hr needed</span></div>
+          <div><b id="hundredTarget">0</b><span>sleep line now</span></div>
+          <div><b id="hundredNeed">0.0</b><span>drinks per awake hr</span></div>
           <div><b id="hundredLeft">0h</b><span>time left</span></div>
         </div>
         <svg id="hundredChart" viewBox="0 0 600 300" preserveAspectRatio="none" role="img" aria-label="Combined drinks against the pace needed to reach 100"></svg>
         <div class="hundred-legend">
-          <span class="lg mean"><i></i>Mean line to 100</span>
-          <span class="lg combined"><i></i>Keelan + Rein combined</span>
+          <span class="lg mean"><i></i>Flat mean</span>
+          <span class="lg sched"><i></i>Sleep line, off 2am to 2pm</span>
+          <span class="lg combined"><i></i>Keelan + Rein</span>
         </div>
       </div>
     </section>

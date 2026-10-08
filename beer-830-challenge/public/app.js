@@ -20,7 +20,24 @@
   const BURN_PER_HR = 0.015;       // BAC % cleared per hour
   const DEFAULT_LB = 180;
   // 100 drinks combined (every tap counts one), from noon Thursday 2026-10-08 to 2 am Sunday 2026-10-11, local time
-  const CHALLENGE = { start: new Date(2026, 9, 8, 12, 0, 0).getTime(), end: new Date(2026, 9, 11, 2, 0, 0).getTime(), goal: 100 };
+  const CHALLENGE = { start: new Date(2026, 9, 8, 12, 0, 0).getTime(), end: new Date(2026, 9, 11, 2, 0, 0).getTime(), goal: 100, sleepFrom: 2, sleepTo: 14 };
+  // Sleep windows: 2 am to 2 pm local every day. awakeMs(t) = awake time between the window start and t.
+  function sleepWindows() {
+    const out = [];
+    const d = new Date(CHALLENGE.start); d.setHours(0, 0, 0, 0);
+    for (let k = 0; k < 6; k++) {
+      const a = new Date(d); a.setDate(d.getDate() + k); a.setHours(CHALLENGE.sleepFrom, 0, 0, 0);
+      const b = new Date(d); b.setDate(d.getDate() + k); b.setHours(CHALLENGE.sleepTo, 0, 0, 0);
+      out.push([a.getTime(), b.getTime()]);
+    }
+    return out;
+  }
+  function awakeMs(t) {
+    const { start } = CHALLENGE;
+    let span = Math.max(0, t - start);
+    sleepWindows().forEach(([a, b]) => { const lo = Math.max(a, start), hi = Math.min(b, t); if (hi > lo) span -= hi - lo; });
+    return span;
+  }
   const RETRY_LOCAL_MS = 15000;
 
   const $ = (id) => document.getElementById(id);
@@ -404,7 +421,24 @@
     const target = goal * frac;
     const diff = count - target;
     const hoursLeft = Math.max((end - now) / 3600000, 0);
-    const need = count >= goal ? 0 : hoursLeft > 0 ? (goal - count) / hoursLeft : Infinity;
+    const awakeTotal = awakeMs(end);
+    // sleep line: by each 2 am you must be where the flat mean will be at 2 pm, flat until the mean
+    // catches up at 2 pm, then climb to the next 2 am target; 100 at the end.
+    const mean = (t) => goal * (Math.min(Math.max(t, start), end) - start) / (end - start);
+    const schedPts = [[start, 0]];
+    sleepWindows().forEach(([a, b]) => { if (a > start && a < end) { const v = Math.min(goal, mean(Math.min(b, end))); schedPts.push([a, v]); if (b < end) schedPts.push([b, v]); } });
+    schedPts.push([end, goal]);
+    const sched = (t) => {
+      t = Math.min(Math.max(t, start), end);
+      for (let i = 1; i < schedPts.length; i++) {
+        const [t0, v0] = schedPts[i - 1], [t1, v1] = schedPts[i];
+        if (t <= t1) return t1 === t0 ? v1 : v0 + (v1 - v0) * (t - t0) / (t1 - t0);
+      }
+      return goal;
+    };
+    const awakeLeft = Math.max((awakeTotal - awakeMs(Math.min(Math.max(now, start), end))) / 3600000, 0);
+    const need = count >= goal ? 0 : awakeLeft > 0 ? (goal - count) / awakeLeft : Infinity;
+    const sdiff = count - sched(now);
 
     $('hundredCount').textContent = count;
     $('hundredTarget').textContent = target.toFixed(1);
@@ -417,8 +451,10 @@
     if (count >= goal) { st.textContent = 'Done. ' + count + ' drinks.'; st.classList.add('done'); }
     else if (now < start) { st.textContent = 'Starts ' + fmt(start); }
     else if (now > end) { st.textContent = 'Over. Finished at ' + count + '.'; st.classList.add('behind'); }
-    else if (diff >= 0) { st.textContent = 'Ahead of pace by ' + diff.toFixed(1); st.classList.add('ahead'); }
-    else { st.textContent = 'Behind pace by ' + (-diff).toFixed(1); st.classList.add('behind'); }
+    else if (sdiff >= 0) { st.textContent = 'Ahead of the sleep line by ' + sdiff.toFixed(1); st.classList.add('ahead'); }
+    else { st.textContent = 'Behind the sleep line by ' + (-sdiff).toFixed(1); st.classList.add('behind'); }
+    $('hundredSub').textContent = now < start || now > end || count >= goal ? '' : 'Flat mean line: ' + (diff >= 0 ? 'ahead by ' : 'behind by ') + Math.abs(diff).toFixed(1);
+    $('hundredTarget').textContent = sched(now).toFixed(1);
 
     // chart
     const W = 600, H = 300, L = 34, R = 14, T = 18, B = 34;
@@ -446,6 +482,14 @@
     // mean line to the goal
     svg.appendChild(el('path', { class: 'mean', d: 'M' + x(start) + ' ' + y(0) + ' L' + x(end) + ' ' + y(goal) }));
     svg.appendChild(el('text', { class: 'goal', x: x(end) - 4, y: y(goal) - 6, 'text-anchor': 'end' }, goal + ' by 2am Sun'));
+    // sleep-adjusted line: rises while awake, flat from 2am to 2pm, hits 100 at the end. Labelled at each 2am.
+    svg.appendChild(el('path', { class: 'sched', d: schedPts.map((pt, i) => (i ? 'L' : 'M') + x(pt[0]).toFixed(1) + ' ' + y(pt[1]).toFixed(1)).join(' ') }));
+    sleepWindows().forEach(([a]) => {
+      if (a <= start || a >= end) return;
+      const v = sched(a);
+      svg.appendChild(el('circle', { class: 'sched-dot', cx: x(a), cy: y(v), r: 4 }));
+      svg.appendChild(el('text', { class: 'sched-lbl', x: x(a) - 6, y: y(v) - 8, 'text-anchor': 'end' }, Math.round(v) + ' by 2am ' + new Date(a).toLocaleDateString([], { weekday: 'short' })));
+    });
     // combined drinks: a step up at every tap, flat to now
     const pts = [[start, 0]];
     beers.forEach((t, i) => { pts.push([t, i]); pts.push([t, i + 1]); });

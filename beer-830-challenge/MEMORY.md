@@ -59,8 +59,12 @@ prefers-reduced-motion. Keelan asked for it this loud on 2026-10-08.
 
 **100 drinks challenge** (`100` tab, `hundred()` in `app.js`): 100 drinks combined (every tap counts one, any type; Keelan changed it from beers only on 2026-10-08) between
 2026-10-08 12:00 and 2026-10-11 02:00 local, defined once as `CHALLENGE` in `app.js`. Two lines:
-the dashed mean line from 0 to 100 across the window, and the solid combined count stepping up
-at every drink. Status reads ahead or behind the mean by N, with beers/hr still
+the dashed flat mean line from 0 to 100 across the window, a solid black sleep line (Keelan's rule 2026-10-08): by each 2 am you must be where the flat
+mean will be at 2 pm, it stays flat while you sleep so the mean catches up and meets it at 2 pm,
+then it climbs to the next 2 am target, landing on 100 at 2 am Sunday, with the target labelled
+at each 2 am, and the solid crimson combined count stepping
+up at every drink. Status compares against the sleep line; the small line under it gives the
+flat-mean comparison. "Drinks per awake hr" is remaining drinks over awake hours left. Status reads ahead or behind the mean by N, with beers/hr still
 needed and time left. To make drinks survive "New night", events now carry a `night` column and
 are never deleted on a new night (only on wipe); tonight's view filters by the current night id,
 and `/api/state?cs=<ms>` returns every drink since the window start as `challenge`. The column
