@@ -1,0 +1,11 @@
+# Phones kept serving stale app.js after deploys. Revalidate the page and its code on every load.
+/
+  Cache-Control: no-cache
+/index.html
+  Cache-Control: no-cache
+/app.js
+  Cache-Control: no-cache
+/styles.css
+  Cache-Control: no-cache
+/830/*
+  Cache-Control: no-cache
