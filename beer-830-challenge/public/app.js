@@ -481,14 +481,15 @@
     svg.appendChild(el('text', { class: 'axis', x: x(end), y: H - B + 16, 'text-anchor': 'end' }, '2am'));
     // mean line to the goal
     svg.appendChild(el('path', { class: 'mean', d: 'M' + x(start) + ' ' + y(0) + ' L' + x(end) + ' ' + y(goal) }));
-    svg.appendChild(el('text', { class: 'goal', x: x(end) - 4, y: y(goal) - 6, 'text-anchor': 'end' }, goal + ' by 2am Sun'));
+    svg.appendChild(el('text', { class: 'goal', x: x(end) - 4, y: y(goal) - 6, 'text-anchor': 'end' }, 'Sat night: ' + goal));
     // sleep-adjusted line: rises while awake, flat from 2am to 2pm, hits 100 at the end. Labelled at each 2am.
     svg.appendChild(el('path', { class: 'sched', d: schedPts.map((pt, i) => (i ? 'L' : 'M') + x(pt[0]).toFixed(1) + ' ' + y(pt[1]).toFixed(1)).join(' ') }));
     sleepWindows().forEach(([a]) => {
       if (a <= start || a >= end) return;
       const v = sched(a);
       svg.appendChild(el('circle', { class: 'sched-dot', cx: x(a), cy: y(v), r: 4 }));
-      svg.appendChild(el('text', { class: 'sched-lbl', x: x(a) - 6, y: y(v) - 8, 'text-anchor': 'end' }, Math.round(v) + ' by 2am ' + new Date(a).toLocaleDateString([], { weekday: 'short' })));
+      const nightOf = new Date(a); nightOf.setDate(nightOf.getDate() - 1);     // 2 am Friday is Thursday night
+      svg.appendChild(el('text', { class: 'sched-lbl', x: x(a) - 6, y: y(v) - 8, 'text-anchor': 'end' }, nightOf.toLocaleDateString([], { weekday: 'short' }) + ' night: ' + Math.round(v)));
     });
     // combined drinks: a step up at every tap, flat to now
     const pts = [[start, 0]];
